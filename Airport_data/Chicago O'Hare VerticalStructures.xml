@@ -1,0 +1,1928 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<message:AIXMBasicMessage xmlns:message="http://www.aixm.aero/schema/5.1/message" xmlns:gts="http://www.isotc211.org/2005/gts" xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:smXML="http://www.isotc211.org/smXML" xmlns:aixm="http://www.aixm.aero/schema/5.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gss="http://www.isotc211.org/2005/gss" xmlns:gsr="http://www.isotc211.org/2005/gsr" xmlns:scXML="http://www.isotc211.org/scXML" xmlns:iso19115="http://www.isotc211.org/2005/gmd" xsi:schemaLocation="http://www.isotc211.org/2005/gts iso/19139/gts/gts.xsd http://www.isotc211.org/2005/gco iso/19139/gco/gco.xsd http://www.w3.org/2001/XMLSchema http://www.w3.org/2001/XMLSchema.xsd http://www.isotc211.org/2005/gss iso/19139/gss/gss.xsd http://www.isotc211.org/2005/gsr iso/19139/gsr/gsr.xsd http://www.isotc211.org/2005/gmd iso/19139/gmd/gmd.xsd " gml:id="M001">
+  <gml:identifier codeSpace="http://www.faa.gov/NASR">KORD</gml:identifier>
+  <message:hasMember>
+    <aixm:VerticalStructure gml:id="VPS0">
+      <gml:identifier>VPS0</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:VerticalStructureTimeSlice gml:id="TS0">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="TSP0">
+              <gml:beginPosition>2008-03-23T14:00:00</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:type>Terminal Building</aixm:type>
+          <aixm:part>
+            <aixm:VerticalStructurePart>
+              <aixm:verticalExtent uom="FT">56.99176340607403</aixm:verticalExtent>
+              <aixm:horizontalProjection_surfaceExtent>
+                <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4269" gml:id="b9826ec1">
+                  <gml:patches>
+                    <gml:PolygonPatch>
+                      <gml:exterior>
+                        <gml:LinearRing>
+                          <gml:posList>41.9771976092916 -87.9104037282193 41.977212710899 -87.9105002446219 41.9774387599395 -87.9104489893068 41.977427249251 -87.9103434618094 41.9776839599702 -87.9102933135768 41.9776991536129 -87.9103852633764 41.9779389221052 -87.9103299334949 41.9779237284834 -87.9102379836953 41.9781737175689 -87.9101830219434 41.9781888191554 -87.910279538346 41.9784081465242 -87.9102234713075 41.978396175731 -87.910140777723 41.9792286437224 -87.9099423100675 41.9792437452251 -87.9100388264702 41.9794800148037 -87.9099879401825 41.9794615064017 -87.9098913007708 41.9797115874807 -87.9098317724159 41.9797266891509 -87.9099282888185 41.9799628666104 -87.9098819700318 41.9799512639586 -87.9097810091374 41.9802047519369 -87.9097216037917 41.9802165386594 -87.90981343148 41.9804562153048 -87.9097626682016 41.9804411134671 -87.909666150901 41.9807870468139 -87.9095872310941 41.9808860296237 -87.9095816624602 41.9809399872976 -87.9096110293271 41.9809799492329 -87.909658172365 41.981002600817 -87.909718401064 41.9810082180722 -87.9097780147172 41.9810003001843 -87.9098325697308 41.9809788464835 -87.9098820661046 41.9809473564905 -87.9099220611428 41.9808990164069 -87.9099523070313 41.9808339180167 -87.9099682389629 41.9795221889373 -87.9102636665723 41.9795480650249 -87.9105022441942 41.9788184470031 -87.9106724323121 41.9788447830999 -87.910888176919 41.9784305287018 -87.9109737715444 41.9784006935866 -87.9107624714292 41.9782398350476 -87.9107932282098 41.9782068691392 -87.9105681052764 41.976847260153 -87.9108709448614 41.9767757161056 -87.9108683634647 41.9767286643494 -87.9108346760132 41.9766986469222 -87.9108016018118 41.9766725884388 -87.9107412510015 41.9766600654334 -87.910685957933 41.9766714824234 -87.9106269593256 41.9766861221582 -87.9105772160355 41.9767212030792 -87.9105282108004 41.9767626375383 -87.9105022854966 41.9768072027907 -87.910490183011 41.9771976092916 -87.9104037282193</gml:posList>
+                        </gml:LinearRing>
+                      </gml:exterior>
+                    </gml:PolygonPatch>
+                  </gml:patches>
+                  <aixm:elevation uom="FT">743.008236593926</aixm:elevation>
+                </aixm:ElevatedSurface>
+              </aixm:horizontalProjection_surfaceExtent>
+            </aixm:VerticalStructurePart>
+          </aixm:part>
+        </aixm:VerticalStructureTimeSlice>
+      </aixm:timeSlice>
+    </aixm:VerticalStructure>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:VerticalStructure gml:id="VPS1">
+      <gml:identifier>VPS1</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:VerticalStructureTimeSlice gml:id="TS1">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="TSP1">
+              <gml:beginPosition>2008-03-23T14:00:00</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:type>Terminal Building</aixm:type>
+          <aixm:part>
+            <aixm:VerticalStructurePart>
+              <aixm:verticalExtent uom="FT">122.47363214996994</aixm:verticalExtent>
+              <aixm:horizontalProjection_surfaceExtent>
+                <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4269" gml:id="b9826ec1">
+                  <gml:patches>
+                    <gml:PolygonPatch>
+                      <gml:exterior>
+                        <gml:LinearRing>
+                          <gml:posList>41.9779112967597 -87.9053480838692 41.9778544917317 -87.9050940902798 41.9777846048983 -87.904846025977 41.977701976741 -87.904605099505 41.9776070098159 -87.9043724846335 41.9775001667924 -87.9041493146387 41.9773819681989 -87.9039366767825 41.9772529898872 -87.903735607015 41.9771138602265 -87.9035470849279 41.9769652570425 -87.903372028982 41.9768121501725 -87.9032153312165 41.9769040416541 -87.9030541227676 41.9770746303172 -87.9032345658491 41.9772354115052 -87.9034305173205 41.9773856019082 -87.9036410225261 41.9775244698137 -87.9038650559057 41.9776513386712 -87.9041015259911 41.9777655903884 -87.9043492807239 41.9778666683424 -87.9046071130679 41.9779540800915 -87.9048737668898 41.9780273997746 -87.9051479430791 41.9780590800812 -87.9052894354339 41.9779112967597 -87.9053480838692</gml:posList>
+                        </gml:LinearRing>
+                      </gml:exterior>
+                    </gml:PolygonPatch>
+                  </gml:patches>
+                  <aixm:elevation uom="FT">735.52636785003</aixm:elevation>
+                </aixm:ElevatedSurface>
+              </aixm:horizontalProjection_surfaceExtent>
+            </aixm:VerticalStructurePart>
+          </aixm:part>
+        </aixm:VerticalStructureTimeSlice>
+      </aixm:timeSlice>
+    </aixm:VerticalStructure>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:VerticalStructure gml:id="VPS2">
+      <gml:identifier>VPS2</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:VerticalStructureTimeSlice gml:id="TS2">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="TSP2">
+              <gml:beginPosition>2008-03-23T14:00:00</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:type>Terminal Building</aixm:type>
+          <aixm:part>
+            <aixm:VerticalStructurePart>
+              <aixm:verticalExtent uom="FT">82.95468359497704</aixm:verticalExtent>
+              <aixm:horizontalProjection_surfaceExtent>
+                <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4269" gml:id="b9826ec1">
+                  <gml:patches>
+                    <gml:PolygonPatch>
+                      <gml:exterior>
+                        <gml:LinearRing>
+                          <gml:posList>41.9784543345382 -87.9056321659034 41.9784060320084 -87.9053183074069 41.978341511037 -87.905009729146 41.9782610859637 -87.9047079344829 41.9781651486115 -87.9044143937309 41.9780541663775 -87.904130536991 41.9779286799559 -87.9038577471846 41.977789300704 -87.9035973533164 41.9776367076635 -87.903350623999 41.9774716442523 -87.903118761273 41.9772949146428 -87.9029028947501 41.977107379844 -87.9027040761105 41.9769099535064 -87.9025232739785 41.97688770228 -87.9025045483471 41.9775972356792 -87.9011317050122 41.9778651188619 -87.9013745954815 41.9781197072242 -87.9016419380621 41.9783597604372 -87.9019324302879 41.9785841089858 -87.9022446569099 41.9787916598664 -87.9025770967915 41.978981401912 -87.9029281303189 41.9791524107184 -87.9032960472921 41.9793038531479 -87.9036790552566 41.9794349913882 -87.904075288236 41.979545186547 -87.9044828158232 41.9796339017645 -87.9048996525846 41.9797007048291 -87.9053237677335 41.9797073185141 -87.9053757492589 41.9784543345382 -87.9056321659034</gml:posList>
+                        </gml:LinearRing>
+                      </gml:exterior>
+                    </gml:PolygonPatch>
+                  </gml:patches>
+                  <aixm:elevation uom="FT">734.045316405023</aixm:elevation>
+                </aixm:ElevatedSurface>
+              </aixm:horizontalProjection_surfaceExtent>
+            </aixm:VerticalStructurePart>
+          </aixm:part>
+        </aixm:VerticalStructureTimeSlice>
+      </aixm:timeSlice>
+    </aixm:VerticalStructure>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:VerticalStructure gml:id="VPS3">
+      <gml:identifier>VPS3</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:VerticalStructureTimeSlice gml:id="TS3">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="TSP3">
+              <gml:beginPosition>2008-03-23T14:00:00</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:type>Terminal Building</aixm:type>
+          <aixm:part>
+            <aixm:VerticalStructurePart>
+              <aixm:verticalExtent uom="FT">87.52325945404698</aixm:verticalExtent>
+              <aixm:horizontalProjection_surfaceExtent>
+                <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4269" gml:id="b9826ec1">
+                  <gml:patches>
+                    <gml:PolygonPatch>
+                      <gml:exterior>
+                        <gml:LinearRing>
+                          <gml:posList>41.9769445470502 -87.9063994701371 41.9764589225423 -87.9054587921175 41.9764103062688 -87.905502738713 41.9763353554059 -87.9055000343071 41.976283238523 -87.9053793317886 41.9762279925217 -87.9054138991596 41.9762534067575 -87.9055062179868 41.9754969070426 -87.9061644346404 41.9751963771901 -87.907204709679 41.9751556789719 -87.9071941012609 41.9750829402236 -87.9074199802068 41.9751299000282 -87.9074582351592 41.9746739498458 -87.9091052937567 41.9745257045889 -87.9090176833971 41.9749812866298 -87.9073888921096 41.9750286145758 -87.9074088806499 41.9750729940407 -87.9072368186626 41.9745022885838 -87.9061194078988 41.9743656461462 -87.9061327584336 41.9743643574837 -87.9061966926715 41.9733213069896 -87.9061864793193 41.9732785804764 -87.9059381534455 41.9753646821346 -87.9059585801499 41.9757812356579 -87.9055897232521 41.9758072021897 -87.9056546415633 41.9759250600355 -87.9055583523236 41.9758989096005 -87.9055025681163 41.9761145522054 -87.9052909842719 41.9761407026404 -87.9053467693771 41.9762171260689 -87.9052764054412 41.9761511976856 -87.9051643440921 41.9761736635241 -87.9050646132894 41.9762224638683 -87.9050115334879 41.9757576488137 -87.9040533262134 41.9758896863013 -87.9039301275965 41.9757718251057 -87.9036882305228 41.9757996321771 -87.9036618131824 41.9757471472364 -87.9035593779738 41.9757296892886 -87.9035740552863 41.9757115099241 -87.9035870647424 41.9756926977111 -87.9035983429612 41.9756733443006 -87.9036078349966 41.9756535439806 -87.9036154946041 41.9756333932163 -87.9036212844671 41.9756129901801 -87.9036251763777 41.9755924342736 -87.9036271513752 41.975571825643 -87.9036271998373 41.9755512646917 -87.9036253215282 41.9755308515903 -87.9036215255986 41.9755106857897 -87.903615830542 41.9754908655354 -87.9036082641041 41.9754714873897 -87.9035988631479 41.9754526457612 -87.9035876734738 41.9754344324442 -87.9035747495969 41.9754169361722 -87.9035601544809 41.9754002421853 -87.9035439592318 41.975384431815 -87.9035262427512 41.9753695820877 -87.9035070913521 41.9753557653498 -87.903486598338 41.9753430489152 -87.903464863549 41.9753314947369 -87.9034419928748 41.9753211591058 -87.9034180977389 41.9753120923761 -87.903393294556 41.9753075687954 -87.9033789944613 41.9731120797263 -87.9033729014672 41.973117049468 -87.9031262959259 41.9753121703956 -87.9031506571278 41.9753238735343 -87.9031235620144 41.9753369584455 -87.9030976270027 41.9753513613808 -87.9030729784456 41.9753670121705 -87.9030497364283 41.9753838345656 -87.9030280141835 41.9754017466091 -87.90300791754 41.9754206610353 -87.9029895444065 41.9754404856949 -87.902972984295 41.9754611240044 -87.9029583178848 41.9754824754158 -87.9029456166291 41.9755044359073 -87.9029349424072 41.9755268984895 -87.9029263472228 41.975549753727 -87.9029198729508 41.9755728902715 -87.9029155511333 41.9755961954039 -87.9029134028255 41.975619555584 -87.902913438494 41.9756428570033 -87.9029156579649 41.9756441984481 -87.9029158514876 41.9758220879662 -87.9025475243374 41.9757620531116 -87.9024813759345 41.9758979559166 -87.9021663737061 41.9758174798339 -87.902099489044 41.9759664578563 -87.9018123802661 41.9760333065094 -87.9018787728915 41.9761754708171 -87.9015914180953 41.9760911260672 -87.9013781507313 41.9761408467649 -87.9012794022062 41.9753778881612 -87.9005663620737 41.9728754137006 -87.9005674736456 41.9728737538819 -87.90031148888 41.9729437315696 -87.9002226116159 41.9729418875127 -87.899975761852 41.9731941792826 -87.8999757241412 41.9731881051166 -87.9002771307143 41.9746263514046 -87.900301603253 41.9750458467096 -87.8994484224604 41.9745132524315 -87.897454932344 41.9741532298872 -87.8973871013194 41.974008853465 -87.8974458727639 41.9739534198757 -87.8971513888233 41.9740567302733 -87.8971002744749 41.9742964951855 -87.89670675828 41.9742521125384 -87.8965406348519 41.9744517349619 -87.8964472951385 41.9755058729108 -87.9003059166546 41.9762684633731 -87.9010372231991 41.9763178159294 -87.9009567428817 41.9764881588834 -87.9009628879527 41.9766798599018 -87.9005859178373 41.9766260863824 -87.9005474168666 41.9767183460472 -87.9003679438015 41.9768054518159 -87.9004442076879 41.9773306501341 -87.899421179073 41.9767855329449 -87.897372395888 41.9767814735493 -87.8965587755611 41.9770199535676 -87.8965673790197 41.977025485487 -87.8973079319026 41.9774636393114 -87.8989673434935 41.977500621555 -87.8991074051405 41.9775361626529 -87.8990355677882 41.9778501491065 -87.8993576614501 41.976991085368 -87.9010450149767 41.9773995434924 -87.9014162189252 41.9770312413815 -87.902097581953 41.9769575789717 -87.9020309433093 41.9772901559284 -87.9014305526355 41.9769487305553 -87.9011166081064 41.976070146026 -87.9027575575479 41.9759290827928 -87.9026519258968 41.9758719960844 -87.9027778280217 41.9760323961215 -87.9029389987597 41.9759872804576 -87.9031475935711 41.9760115901855 -87.903294714328 41.9760777026395 -87.9033976415732 41.9760824916602 -87.9034983564493 41.9760066206113 -87.9035413198692 41.9760185913208 -87.9036240125558 41.9759353542611 -87.9036941295755 41.9759939167175 -87.9038333454222 41.9760769697064 -87.9037723616086 41.9766544889619 -87.9048900183906 41.977113029303 -87.9044678356731 41.9774811606573 -87.9051483493091 41.9774047372679 -87.905218713245 41.9770898271817 -87.9046041010956 41.9766870849702 -87.9049643159262 41.9772570542909 -87.9061182604119 41.977152639783 -87.9062241748943 41.9771788336095 -87.9062739251148 41.9772075530915 -87.906321105346 41.9772386583107 -87.9063654857304 41.9772719977255 -87.9064068500513 41.9773074089097 -87.9064449967858 41.9773447193435 -87.906479740087 41.9773837472542 -87.9065109106889 41.9774243025019 -87.9065383567315 41.9774661875053 -87.9065619445005 41.977509198205 -87.9065815590785 41.9775531250572 -87.9065971049054 41.9775977540547 -87.9066085062435 41.9776428677694 -87.9066157075465 41.9776882464119 -87.9066186737305 41.977733668902 -87.9066173903444 41.977778913946 -87.9066118636409 41.9778237611144 -87.9066021205455 41.9778679919163 -87.9065882085255 41.9778680832296 -87.9065881742768 41.9778629261093 -87.9065057276086 41.9800611727636 -87.9060366317097 41.9801280247665 -87.9064412115464 41.980764829027 -87.9063088051997 41.9807394148749 -87.9062164863725 41.9811371874912 -87.9061028761854 41.9810904084076 -87.9057173017136 41.9812419667698 -87.9056405089775 41.9813666384141 -87.9055444648583 41.9814859684906 -87.9053751072768 41.9815714144825 -87.9051953872955 41.9816299737566 -87.9049964168288 41.9817338325141 -87.9045797165489 41.9817960765522 -87.9045362619902 41.9818227790318 -87.9045646456815 41.9818421160032 -87.9046201847684 41.9818341977804 -87.9046747397819 41.9817456227539 -87.9050097296528 41.98163679057 -87.9053348482627 41.9815097261739 -87.9055496276517 41.9814537438897 -87.9056207287447 41.9814270414101 -87.9055923450533 41.9813642453274 -87.9056632010259 41.9814038424711 -87.9060667967892 41.9815121256252 -87.9061072641108 41.9815447217173 -87.9061815616464 41.9815287017034 -87.9062998057773 41.9814938967628 -87.9063351103055 41.9814244711198 -87.9063965861559 41.9771290795277 -87.907393265669 41.9770338715911 -87.9073806900021 41.9769467657806 -87.9073044261157 41.9769082763272 -87.907184214736 41.9769513674227 -87.9070760878844 41.9770406819562 -87.9070427497071 41.9775200348911 -87.9069412231501 41.9775318216764 -87.9070330499406 41.9779152303709 -87.9069554823366 41.9778800541066 -87.9066708678613 41.9778317368973 -87.9066870696442 41.9777826940955 -87.906698714896 41.9777331646326 -87.9067057468822 41.9776833898114 -87.9067081313437 41.9776336121296 -87.9067058566637 41.9775840740992 -87.9066989339241 41.9775350170644 -87.9066873968518 41.9774866800263 -87.9066713016544 41.9774392984779 -87.9066507267459 41.9773931032575 -87.9066257723653 41.9773483194235 -87.9065965600878 41.9773051651582 -87.9065632322327 41.9772638507049 -87.9065259511699 41.9772245773434 -87.9064848985291 41.9771875364097 -87.9064402743145 41.9771529083634 -87.9063922959309 41.9771208619089 -87.9063411971241 41.9770915531732 -87.9062872268425 41.9770851476989 -87.9062742961906 41.9769445470502 -87.9063994701371</gml:posList>
+                        </gml:LinearRing>
+                      </gml:exterior>
+                    </gml:PolygonPatch>
+                  </gml:patches>
+                  <aixm:elevation uom="FT">735.476740545953</aixm:elevation>
+                </aixm:ElevatedSurface>
+              </aixm:horizontalProjection_surfaceExtent>
+            </aixm:VerticalStructurePart>
+          </aixm:part>
+        </aixm:VerticalStructureTimeSlice>
+      </aixm:timeSlice>
+    </aixm:VerticalStructure>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:VerticalStructure gml:id="VPS4">
+      <gml:identifier>VPS4</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:VerticalStructureTimeSlice gml:id="TS4">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="TSP4">
+              <gml:beginPosition>2008-03-23T14:00:00</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:type>Terminal Building</aixm:type>
+          <aixm:part>
+            <aixm:VerticalStructurePart>
+              <aixm:verticalExtent uom="FT">53.638298325812</aixm:verticalExtent>
+              <aixm:horizontalProjection_surfaceExtent>
+                <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4269" gml:id="b9826ec1">
+                  <gml:patches>
+                    <gml:PolygonPatch>
+                      <gml:exterior>
+                        <gml:LinearRing>
+                          <gml:posList>41.9651991954681 -87.9194025543845 41.9650014134167 -87.9194045583901 41.9650022428236 -87.9195325505765 41.964952621782 -87.9195323630886 41.9644363367718 -87.9195304125628 41.964434849467 -87.918081643785 41.9643666196974 -87.9180837521127 41.9643666156776 -87.9175764730915 41.964162296185 -87.9175645309892 41.9641628468897 -87.917368037541 41.9641264749195 -87.917311884194 41.9641650550683 -87.9172584352528 41.9641655133189 -87.9170665084077 41.9650963222175 -87.9170635321695 41.9650926401333 -87.917246202575 41.9649801221805 -87.9172467127937 41.9649791118852 -87.9174660401548 41.9650096820271 -87.9174717132791 41.9650083086151 -87.9183856795667 41.9651991847488 -87.9183879964264 41.9651987264982 -87.9185799232154 41.9650077592502 -87.9185821730991 41.9650053715232 -87.9192081877828 41.9651995612647 -87.9192151943388 41.9651991954681 -87.9194025543845</gml:posList>
+                        </gml:LinearRing>
+                      </gml:exterior>
+                    </gml:PolygonPatch>
+                  </gml:patches>
+                  <aixm:elevation uom="FT">755.361701674188</aixm:elevation>
+                </aixm:ElevatedSurface>
+              </aixm:horizontalProjection_surfaceExtent>
+            </aixm:VerticalStructurePart>
+          </aixm:part>
+        </aixm:VerticalStructureTimeSlice>
+      </aixm:timeSlice>
+    </aixm:VerticalStructure>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:VerticalStructure gml:id="VPS5">
+      <gml:identifier>VPS5</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:VerticalStructureTimeSlice gml:id="TS5">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="TSP5">
+              <gml:beginPosition>2008-03-23T14:00:00</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:type>Terminal Building</aixm:type>
+          <aixm:part>
+            <aixm:VerticalStructurePart>
+              <aixm:verticalExtent uom="FT">33.78688936737694</aixm:verticalExtent>
+              <aixm:horizontalProjection_surfaceExtent>
+                <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4269" gml:id="b9826ec1">
+                  <gml:patches>
+                    <gml:PolygonPatch>
+                      <gml:exterior>
+                        <gml:LinearRing>
+                          <gml:posList>41.9655662582565 -87.916522973782 41.9646218224308 -87.9165254584325 41.9646135243423 -87.9154146297814 41.9644772497112 -87.9154097127819 41.964479172488 -87.9142992533827 41.964622444151 -87.9142952825212 41.9646248144592 -87.9118092448535 41.9655724727785 -87.9118160166427 41.9655680711604 -87.9137261509903 41.9657043457916 -87.9137310677653 41.9657074785109 -87.9139139837402 41.9655711114257 -87.9139136340171 41.9655717679836 -87.9150653176482 41.9657354813772 -87.9150620843927 41.9657327171343 -87.9148609011079 41.9659987276154 -87.9148567888307 41.9660079422052 -87.915583763567 41.9657384332081 -87.9155923196625 41.9657335478811 -87.9151579861985 41.9655699269415 -87.915156652402 41.9655662582565 -87.916522973782</gml:posList>
+                        </gml:LinearRing>
+                      </gml:exterior>
+                    </gml:PolygonPatch>
+                  </gml:patches>
+                  <aixm:elevation uom="FT">755.213110632623</aixm:elevation>
+                </aixm:ElevatedSurface>
+              </aixm:horizontalProjection_surfaceExtent>
+            </aixm:VerticalStructurePart>
+          </aixm:part>
+        </aixm:VerticalStructureTimeSlice>
+      </aixm:timeSlice>
+    </aixm:VerticalStructure>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:VerticalStructure gml:id="VPS6">
+      <gml:identifier>VPS6</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:VerticalStructureTimeSlice gml:id="TS6">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="TSP6">
+              <gml:beginPosition>2008-03-23T14:00:00</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:type>Terminal Building</aixm:type>
+          <aixm:part>
+            <aixm:VerticalStructurePart>
+              <aixm:verticalExtent uom="FT">41.88262086418797</aixm:verticalExtent>
+              <aixm:horizontalProjection_surfaceExtent>
+                <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4269" gml:id="b9826ec1">
+                  <gml:patches>
+                    <gml:PolygonPatch>
+                      <gml:exterior>
+                        <gml:LinearRing>
+                          <gml:posList>41.9637716334883 -87.9156468542494 41.9633627184806 -87.9156366703026 41.9633794446293 -87.9124382180984 41.9636588998092 -87.9124437310639 41.9636574299234 -87.9128549852701 41.9636370806468 -87.912849681061 41.9636342293095 -87.9131603434004 41.9637773174042 -87.9131655061938 41.9637811951158 -87.9141573533324 41.9639754773114 -87.9141597933134 41.9639746519242 -87.9145390799518 41.9637769623269 -87.9145365174105 41.9637716334883 -87.9156468542494</gml:posList>
+                        </gml:LinearRing>
+                      </gml:exterior>
+                    </gml:PolygonPatch>
+                  </gml:patches>
+                  <aixm:elevation uom="FT">750.117379135812</aixm:elevation>
+                </aixm:ElevatedSurface>
+              </aixm:horizontalProjection_surfaceExtent>
+            </aixm:VerticalStructurePart>
+          </aixm:part>
+        </aixm:VerticalStructureTimeSlice>
+      </aixm:timeSlice>
+    </aixm:VerticalStructure>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:VerticalStructure gml:id="VPS7">
+      <gml:identifier>VPS7</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:VerticalStructureTimeSlice gml:id="TS7">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="TSP7">
+              <gml:beginPosition>2008-03-23T14:00:00</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:type>Terminal Building</aixm:type>
+          <aixm:part>
+            <aixm:VerticalStructurePart>
+              <aixm:verticalExtent uom="FT">41.79903750923802</aixm:verticalExtent>
+              <aixm:horizontalProjection_surfaceExtent>
+                <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4269" gml:id="b9826ec1">
+                  <gml:patches>
+                    <gml:PolygonPatch>
+                      <gml:exterior>
+                        <gml:LinearRing>
+                          <gml:posList>41.9637778640892 -87.9120864442106 41.9633677592378 -87.9120842884077 41.9633773342644 -87.9088124080374 41.9637837650712 -87.908814544087 41.9637802518162 -87.9100152401362 41.963897188806 -87.9100158542842 41.9638958515717 -87.9104728342293 41.9637816145089 -87.9104722335496 41.9637800267106 -87.9110149921849 41.9638222594655 -87.9110152139606 41.9638219941625 -87.9111059543197 41.96389088183 -87.9111063161642 41.9638896450892 -87.9115290950721 41.9638235176449 -87.9115287471447 41.9638231344295 -87.9116595678405 41.9637791142291 -87.9116593361882 41.9637778640892 -87.9120864442106</gml:posList>
+                        </gml:LinearRing>
+                      </gml:exterior>
+                    </gml:PolygonPatch>
+                  </gml:patches>
+                  <aixm:elevation uom="FT">750.200962490762</aixm:elevation>
+                </aixm:ElevatedSurface>
+              </aixm:horizontalProjection_surfaceExtent>
+            </aixm:VerticalStructurePart>
+          </aixm:part>
+        </aixm:VerticalStructureTimeSlice>
+      </aixm:timeSlice>
+    </aixm:VerticalStructure>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:VerticalStructure gml:id="VPS8">
+      <gml:identifier>VPS8</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:VerticalStructureTimeSlice gml:id="TS8">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="TSP8">
+              <gml:beginPosition>2008-03-23T14:00:00</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:type>Terminal Building</aixm:type>
+          <aixm:part>
+            <aixm:VerticalStructurePart>
+              <aixm:verticalExtent uom="FT">28.831998997007986</aixm:verticalExtent>
+              <aixm:horizontalProjection_surfaceExtent>
+                <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4269" gml:id="b9826ec1">
+                  <gml:patches>
+                    <gml:PolygonPatch>
+                      <gml:exterior>
+                        <gml:LinearRing>
+                          <gml:posList>41.9638014760567 -87.908141994621 41.9635839919073 -87.9081405319792 41.9635846739236 -87.907958458662 41.9635430588692 -87.9079581785243 41.9635443853843 -87.9076040656667 41.9635828784387 -87.9076043242553 41.9635835577751 -87.9074230500487 41.9638041639246 -87.9074245351374 41.9638014760567 -87.908141994621</gml:posList>
+                        </gml:LinearRing>
+                      </gml:exterior>
+                    </gml:PolygonPatch>
+                  </gml:patches>
+                  <aixm:elevation uom="FT">745.168001002992</aixm:elevation>
+                </aixm:ElevatedSurface>
+              </aixm:horizontalProjection_surfaceExtent>
+            </aixm:VerticalStructurePart>
+          </aixm:part>
+        </aixm:VerticalStructureTimeSlice>
+      </aixm:timeSlice>
+    </aixm:VerticalStructure>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:VerticalStructure gml:id="VPS9">
+      <gml:identifier>VPS9</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:VerticalStructureTimeSlice gml:id="TS9">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="TSP9">
+              <gml:beginPosition>2008-03-23T14:00:00</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:type>Terminal Building</aixm:type>
+          <aixm:part>
+            <aixm:VerticalStructurePart>
+              <aixm:verticalExtent uom="FT">52.43721704987297</aixm:verticalExtent>
+              <aixm:horizontalProjection_surfaceExtent>
+                <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4269" gml:id="b9826ec1">
+                  <gml:patches>
+                    <gml:PolygonPatch>
+                      <gml:exterior>
+                        <gml:LinearRing>
+                          <gml:posList>41.9609739623685 -87.9121606784458 41.9609697416388 -87.913723493274 41.9611607102267 -87.9137212436429 41.9611632922413 -87.9141006532904 41.9612212086915 -87.9141027430994 41.9612184471284 -87.914239745679 41.9611638456258 -87.9142423459312 41.9611600737674 -87.9145986760964 41.9609759199831 -87.9146011717458 41.9609620237332 -87.9154598448527 41.9603587340759 -87.9154517879769 41.9603567081257 -87.9153831636779 41.9602578171 -87.9153841657087 41.960259565688 -87.9152973973335 41.9603617716614 -87.9153010849148 41.9603590020588 -87.9145926230578 41.9602602034871 -87.9145890580367 41.9602619520751 -87.9145022898859 41.9603675641103 -87.9145061004764 41.9603609288553 -87.9138203490742 41.9602554079343 -87.9138119718807 41.9602572476365 -87.913720636678 41.9603049445613 -87.9137223574594 41.9603045693854 -87.9130642525915 41.9602056783597 -87.9130652546224 41.9601029190017 -87.9129198744003 41.9602251955495 -87.9127734737409 41.9603070522463 -87.9127718571131 41.9603057578892 -87.9121594196221 41.9609739623685 -87.9121606784458</gml:posList>
+                        </gml:LinearRing>
+                      </gml:exterior>
+                    </gml:PolygonPatch>
+                  </gml:patches>
+                  <aixm:elevation uom="FT">750.562782950127</aixm:elevation>
+                </aixm:ElevatedSurface>
+              </aixm:horizontalProjection_surfaceExtent>
+            </aixm:VerticalStructurePart>
+          </aixm:part>
+        </aixm:VerticalStructureTimeSlice>
+      </aixm:timeSlice>
+    </aixm:VerticalStructure>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:VerticalStructure gml:id="VPS10">
+      <gml:identifier>VPS10</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:VerticalStructureTimeSlice gml:id="TS10">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="TSP10">
+              <gml:beginPosition>2008-03-23T14:00:00</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:type>Terminal Building</aixm:type>
+          <aixm:part>
+            <aixm:VerticalStructurePart>
+              <aixm:verticalExtent uom="FT">38.274606578624</aixm:verticalExtent>
+              <aixm:horizontalProjection_surfaceExtent>
+                <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4269" gml:id="b9826ec1">
+                  <gml:patches>
+                    <gml:PolygonPatch>
+                      <gml:exterior>
+                        <gml:LinearRing>
+                          <gml:posList>41.9603375326139 -87.9101771758655 41.9597002613933 -87.9101771336653 41.9597002895315 -87.9094456466475 41.9598141916157 -87.9094456538306 41.959814233153 -87.9083432843043 41.9596518194762 -87.9083432735297 41.9596518328753 -87.9079721593689 41.9601382619179 -87.9079721916925 41.9601382002819 -87.9096365128754 41.9603375527127 -87.9096365254456 41.9603375326139 -87.9101771758655</gml:posList>
+                        </gml:LinearRing>
+                      </gml:exterior>
+                    </gml:PolygonPatch>
+                  </gml:patches>
+                  <aixm:elevation uom="FT">745.725393421376</aixm:elevation>
+                </aixm:ElevatedSurface>
+              </aixm:horizontalProjection_surfaceExtent>
+            </aixm:VerticalStructurePart>
+          </aixm:part>
+        </aixm:VerticalStructureTimeSlice>
+      </aixm:timeSlice>
+    </aixm:VerticalStructure>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:VerticalStructure gml:id="VPS11">
+      <gml:identifier>VPS11</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:VerticalStructureTimeSlice gml:id="TS11">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="TSP11">
+              <gml:beginPosition>2008-03-23T14:00:00</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:type>Terminal Building</aixm:type>
+          <aixm:part>
+            <aixm:VerticalStructurePart>
+              <aixm:verticalExtent uom="FT">32.815222077643966</aixm:verticalExtent>
+              <aixm:horizontalProjection_surfaceExtent>
+                <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4269" gml:id="b9826ec1">
+                  <gml:patches>
+                    <gml:PolygonPatch>
+                      <gml:exterior>
+                        <gml:LinearRing>
+                          <gml:posList>41.9611024762167 -87.9092577532909 41.9608744991994 -87.9092561981677 41.9608754867162 -87.9089963444496 41.9608466048662 -87.9089961478145 41.9608480064164 -87.9086272038227 41.9611048652837 -87.9086289573767 41.9611024762167 -87.9092577532909</gml:posList>
+                        </gml:LinearRing>
+                      </gml:exterior>
+                    </gml:PolygonPatch>
+                  </gml:patches>
+                  <aixm:elevation uom="FT">745.184777922356</aixm:elevation>
+                </aixm:ElevatedSurface>
+              </aixm:horizontalProjection_surfaceExtent>
+            </aixm:VerticalStructurePart>
+          </aixm:part>
+        </aixm:VerticalStructureTimeSlice>
+      </aixm:timeSlice>
+    </aixm:VerticalStructure>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:VerticalStructure gml:id="VPS12">
+      <gml:identifier>VPS12</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:VerticalStructureTimeSlice gml:id="TS12">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="TSP12">
+              <gml:beginPosition>2008-03-23T14:00:00</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:type>Terminal Building</aixm:type>
+          <aixm:part>
+            <aixm:VerticalStructurePart>
+              <aixm:verticalExtent uom="FT">42.870830946241995</aixm:verticalExtent>
+              <aixm:horizontalProjection_surfaceExtent>
+                <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4269" gml:id="b9826ec1">
+                  <gml:patches>
+                    <gml:PolygonPatch>
+                      <gml:exterior>
+                        <gml:LinearRing>
+                          <gml:posList>41.961114836925 -87.9078134470185 41.9607049210015 -87.9078103358743 41.9607092784024 -87.9067793475786 41.9605880737859 -87.9067784281525 41.9605908447285 -87.9061226303798 41.9607117679629 -87.9061235480102 41.960715279878 -87.9052925806974 41.9611229782435 -87.9052956756799 41.9611169298709 -87.9067268370313 41.961223528083 -87.9067267723841 41.9612185369027 -87.9071014116105 41.9611178450323 -87.9071016181223 41.961114836925 -87.9078134470185</gml:posList>
+                        </gml:LinearRing>
+                      </gml:exterior>
+                    </gml:PolygonPatch>
+                  </gml:patches>
+                  <aixm:elevation uom="FT">745.129169053758</aixm:elevation>
+                </aixm:ElevatedSurface>
+              </aixm:horizontalProjection_surfaceExtent>
+            </aixm:VerticalStructurePart>
+          </aixm:part>
+        </aixm:VerticalStructureTimeSlice>
+      </aixm:timeSlice>
+    </aixm:VerticalStructure>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:VerticalStructure gml:id="VPS13">
+      <gml:identifier>VPS13</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:VerticalStructureTimeSlice gml:id="TS13">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="TSP13">
+              <gml:beginPosition>2008-03-23T14:00:00</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:type>Terminal Building</aixm:type>
+          <aixm:part>
+            <aixm:VerticalStructurePart>
+              <aixm:verticalExtent uom="FT">61.75265245941796</aixm:verticalExtent>
+              <aixm:horizontalProjection_surfaceExtent>
+                <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4269" gml:id="b9826ec1">
+                  <gml:patches>
+                    <gml:PolygonPatch>
+                      <gml:exterior>
+                        <gml:LinearRing>
+                          <gml:posList>41.9940429410094 -87.9271431206447 41.9946018366303 -87.9262469907982 41.993930025102 -87.9254944211768 41.9933711308211 -87.9263905505744 41.9940429410094 -87.9271431206447</gml:posList>
+                        </gml:LinearRing>
+                      </gml:exterior>
+                    </gml:PolygonPatch>
+                  </gml:patches>
+                  <aixm:elevation uom="FT">758.247347540582</aixm:elevation>
+                </aixm:ElevatedSurface>
+              </aixm:horizontalProjection_surfaceExtent>
+            </aixm:VerticalStructurePart>
+          </aixm:part>
+        </aixm:VerticalStructureTimeSlice>
+      </aixm:timeSlice>
+    </aixm:VerticalStructure>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:VerticalStructure gml:id="VPS14">
+      <gml:identifier>VPS14</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:VerticalStructureTimeSlice gml:id="TS14">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="TSP14">
+              <gml:beginPosition>2008-03-23T14:00:00</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:type>Terminal Building</aixm:type>
+          <aixm:part>
+            <aixm:VerticalStructurePart>
+              <aixm:verticalExtent uom="FT">59.94625597504296</aixm:verticalExtent>
+              <aixm:horizontalProjection_surfaceExtent>
+                <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4269" gml:id="b9826ec1">
+                  <gml:patches>
+                    <gml:PolygonPatch>
+                      <gml:exterior>
+                        <gml:LinearRing>
+                          <gml:posList>41.9919199582136 -87.9277066480756 41.9925901028886 -87.9284574699792 41.9928191880149 -87.9280864186697 41.9929036213667 -87.9279569331173 41.9922299768358 -87.9272105539097 41.9919199582136 -87.9277066480756</gml:posList>
+                        </gml:LinearRing>
+                      </gml:exterior>
+                    </gml:PolygonPatch>
+                  </gml:patches>
+                  <aixm:elevation uom="FT">761.053744024957</aixm:elevation>
+                </aixm:ElevatedSurface>
+              </aixm:horizontalProjection_surfaceExtent>
+            </aixm:VerticalStructurePart>
+          </aixm:part>
+        </aixm:VerticalStructureTimeSlice>
+      </aixm:timeSlice>
+    </aixm:VerticalStructure>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:VerticalStructure gml:id="VPS15">
+      <gml:identifier>VPS15</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:VerticalStructureTimeSlice gml:id="TS15">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="TSP15">
+              <gml:beginPosition>2008-03-23T14:00:00</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:type>Terminal Building</aixm:type>
+          <aixm:part>
+            <aixm:VerticalStructurePart>
+              <aixm:verticalExtent uom="FT">56.95529966858601</aixm:verticalExtent>
+              <aixm:horizontalProjection_surfaceExtent>
+                <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4269" gml:id="b9826ec1">
+                  <gml:patches>
+                    <gml:PolygonPatch>
+                      <gml:exterior>
+                        <gml:LinearRing>
+                          <gml:posList>41.9931479305978 -87.92122078941 41.9926481305517 -87.9206452064075 41.9926033157822 -87.9205940298811 41.9925448178092 -87.9205272269258 41.9922808372981 -87.9209381495909 41.9923508169956 -87.921018365708 41.9922766956233 -87.9211436536849 41.9927961093332 -87.9217610748428 41.9931479305978 -87.92122078941</gml:posList>
+                        </gml:LinearRing>
+                      </gml:exterior>
+                    </gml:PolygonPatch>
+                  </gml:patches>
+                  <aixm:elevation uom="FT">753.044700331414</aixm:elevation>
+                </aixm:ElevatedSurface>
+              </aixm:horizontalProjection_surfaceExtent>
+            </aixm:VerticalStructurePart>
+          </aixm:part>
+        </aixm:VerticalStructureTimeSlice>
+      </aixm:timeSlice>
+    </aixm:VerticalStructure>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:VerticalStructure gml:id="VPS16">
+      <gml:identifier>VPS16</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:VerticalStructureTimeSlice gml:id="TS16">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="TSP16">
+              <gml:beginPosition>2008-03-23T14:00:00</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:type>Terminal Building</aixm:type>
+          <aixm:part>
+            <aixm:VerticalStructurePart>
+              <aixm:verticalExtent uom="FT">64.772848897254</aixm:verticalExtent>
+              <aixm:horizontalProjection_surfaceExtent>
+                <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4269" gml:id="b9826ec1">
+                  <gml:patches>
+                    <gml:PolygonPatch>
+                      <gml:exterior>
+                        <gml:LinearRing>
+                          <gml:posList>41.9917828045987 -87.9222688416357 41.9919048989182 -87.922409313837 41.9927505227731 -87.9233452117833 41.9928540391826 -87.9234644238258 41.9928718694205 -87.9234357276732 41.9927593353887 -87.9233101303776 41.9930589375181 -87.9228279730603 41.9928487157035 -87.9225933494647 41.9928871538214 -87.9225314886495 41.9927254154613 -87.9223509747204 41.9926883547752 -87.9224106166567 41.9922146562572 -87.9218819311228 41.9919144618856 -87.9223650417612 41.9918014213663 -87.9222388803743 41.9917828045987 -87.9222688416357</gml:posList>
+                        </gml:LinearRing>
+                      </gml:exterior>
+                    </gml:PolygonPatch>
+                  </gml:patches>
+                  <aixm:elevation uom="FT">754.227151102746</aixm:elevation>
+                </aixm:ElevatedSurface>
+              </aixm:horizontalProjection_surfaceExtent>
+            </aixm:VerticalStructurePart>
+          </aixm:part>
+        </aixm:VerticalStructureTimeSlice>
+      </aixm:timeSlice>
+    </aixm:VerticalStructure>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:VerticalStructure gml:id="VPS17">
+      <gml:identifier>VPS17</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:VerticalStructureTimeSlice gml:id="TS17">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="TSP17">
+              <gml:beginPosition>2008-03-23T14:00:00</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:type>Terminal Building</aixm:type>
+          <aixm:part>
+            <aixm:VerticalStructurePart>
+              <aixm:verticalExtent uom="FT">49.52440577057598</aixm:verticalExtent>
+              <aixm:horizontalProjection_surfaceExtent>
+                <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4269" gml:id="b9826ec1">
+                  <gml:patches>
+                    <gml:PolygonPatch>
+                      <gml:exterior>
+                        <gml:LinearRing>
+                          <gml:posList>41.9936994888487 -87.9222904800253 41.9932834200393 -87.9218108913099 41.9930700427268 -87.9221433873271 41.9930823779767 -87.9221576056601 41.9930037183151 -87.9222801750896 41.9930832368617 -87.9223718328547 41.9930074191581 -87.9224899755256 41.9932638760511 -87.9227855856285 41.9934226585606 -87.9225381636925 41.9934904166804 -87.9226162659823 41.9936994888487 -87.9222904800253</gml:posList>
+                        </gml:LinearRing>
+                      </gml:exterior>
+                    </gml:PolygonPatch>
+                  </gml:patches>
+                  <aixm:elevation uom="FT">754.475594229424</aixm:elevation>
+                </aixm:ElevatedSurface>
+              </aixm:horizontalProjection_surfaceExtent>
+            </aixm:VerticalStructurePart>
+          </aixm:part>
+        </aixm:VerticalStructureTimeSlice>
+      </aixm:timeSlice>
+    </aixm:VerticalStructure>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:VerticalStructure gml:id="VPS18">
+      <gml:identifier>VPS18</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:VerticalStructureTimeSlice gml:id="TS18">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="TSP18">
+              <gml:beginPosition>2008-03-23T14:00:00</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:type>Terminal Building</aixm:type>
+          <aixm:part>
+            <aixm:VerticalStructurePart>
+              <aixm:verticalExtent uom="FT">23.588320069586985</aixm:verticalExtent>
+              <aixm:horizontalProjection_surfaceExtent>
+                <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4269" gml:id="b9826ec1">
+                  <gml:patches>
+                    <gml:PolygonPatch>
+                      <gml:exterior>
+                        <gml:LinearRing>
+                          <gml:posList>41.9889343855695 -87.9245287960905 41.9891894744102 -87.9248106401659 41.9893807900358 -87.9244996298992 41.9891257011951 -87.9242177858237 41.9889343855695 -87.9245287960905</gml:posList>
+                        </gml:LinearRing>
+                      </gml:exterior>
+                    </gml:PolygonPatch>
+                  </gml:patches>
+                  <aixm:elevation uom="FT">753.411679930413</aixm:elevation>
+                </aixm:ElevatedSurface>
+              </aixm:horizontalProjection_surfaceExtent>
+            </aixm:VerticalStructurePart>
+          </aixm:part>
+        </aixm:VerticalStructureTimeSlice>
+      </aixm:timeSlice>
+    </aixm:VerticalStructure>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:VerticalStructure gml:id="VPS19">
+      <gml:identifier>VPS19</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:VerticalStructureTimeSlice gml:id="TS19">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="TSP19">
+              <gml:beginPosition>2008-03-23T14:00:00</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:type>Terminal Building</aixm:type>
+          <aixm:part>
+            <aixm:VerticalStructurePart>
+              <aixm:verticalExtent uom="FT">75.78905969170296</aixm:verticalExtent>
+              <aixm:horizontalProjection_surfaceExtent>
+                <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4269" gml:id="b9826ec1">
+                  <gml:patches>
+                    <gml:PolygonPatch>
+                      <gml:exterior>
+                        <gml:LinearRing>
+                          <gml:posList>41.9894837865585 -87.9189129321905 41.9900559299108 -87.9180092471675 41.9893396734295 -87.9171957632057 41.988711330057 -87.9181894072769 41.9889975893211 -87.9185145420486 41.9889100969453 -87.9186528999176 41.9891879683467 -87.918985201583 41.9892589101026 -87.9188711416401 41.9893745701542 -87.9189960768986 41.98944692016 -87.9188762641061 41.9894837865585 -87.9189129321905</gml:posList>
+                        </gml:LinearRing>
+                      </gml:exterior>
+                    </gml:PolygonPatch>
+                  </gml:patches>
+                  <aixm:elevation uom="FT">744.210940308297</aixm:elevation>
+                </aixm:ElevatedSurface>
+              </aixm:horizontalProjection_surfaceExtent>
+            </aixm:VerticalStructurePart>
+          </aixm:part>
+        </aixm:VerticalStructureTimeSlice>
+      </aixm:timeSlice>
+    </aixm:VerticalStructure>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:VerticalStructure gml:id="VPS20">
+      <gml:identifier>VPS20</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:VerticalStructureTimeSlice gml:id="TS20">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="TSP20">
+              <gml:beginPosition>2008-03-23T14:00:00</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:type>Terminal Building</aixm:type>
+          <aixm:part>
+            <aixm:VerticalStructurePart>
+              <aixm:verticalExtent uom="FT">31.856423669134983</aixm:verticalExtent>
+              <aixm:horizontalProjection_surfaceExtent>
+                <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4269" gml:id="b9826ec1">
+                  <gml:patches>
+                    <gml:PolygonPatch>
+                      <gml:exterior>
+                        <gml:LinearRing>
+                          <gml:posList>41.9949718659886 -87.9232249263288 41.995307330921 -87.9226941384156 41.9954328366619 -87.9228366101892 41.9950973703897 -87.9233673978779 41.9949718659886 -87.9232249263288</gml:posList>
+                        </gml:LinearRing>
+                      </gml:exterior>
+                    </gml:PolygonPatch>
+                  </gml:patches>
+                  <aixm:elevation uom="FT">753.143576330865</aixm:elevation>
+                </aixm:ElevatedSurface>
+              </aixm:horizontalProjection_surfaceExtent>
+            </aixm:VerticalStructurePart>
+          </aixm:part>
+        </aixm:VerticalStructureTimeSlice>
+      </aixm:timeSlice>
+    </aixm:VerticalStructure>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:VerticalStructure gml:id="VPS21">
+      <gml:identifier>VPS21</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:VerticalStructureTimeSlice gml:id="TS21">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="TSP21">
+              <gml:beginPosition>2008-03-23T14:00:00</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:type>Terminal Building</aixm:type>
+          <aixm:part>
+            <aixm:VerticalStructurePart>
+              <aixm:verticalExtent uom="FT">29.396727376258013</aixm:verticalExtent>
+              <aixm:horizontalProjection_surfaceExtent>
+                <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4269" gml:id="b9826ec1">
+                  <gml:patches>
+                    <gml:PolygonPatch>
+                      <gml:exterior>
+                        <gml:LinearRing>
+                          <gml:posList>41.9881632073461 -87.9162757684589 41.9881633071697 -87.915562801279 41.9879400654091 -87.9155627451617 41.9879399655855 -87.9162757123415 41.9881632073461 -87.9162757684589</gml:posList>
+                        </gml:LinearRing>
+                      </gml:exterior>
+                    </gml:PolygonPatch>
+                  </gml:patches>
+                  <aixm:elevation uom="FT">750.603272623742</aixm:elevation>
+                </aixm:ElevatedSurface>
+              </aixm:horizontalProjection_surfaceExtent>
+            </aixm:VerticalStructurePart>
+          </aixm:part>
+        </aixm:VerticalStructureTimeSlice>
+      </aixm:timeSlice>
+    </aixm:VerticalStructure>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:VerticalStructure gml:id="VPS22">
+      <gml:identifier>VPS22</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:VerticalStructureTimeSlice gml:id="TS22">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="TSP22">
+              <gml:beginPosition>2008-03-23T14:00:00</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:type>Terminal Building</aixm:type>
+          <aixm:part>
+            <aixm:VerticalStructurePart>
+              <aixm:verticalExtent uom="FT">121.96723681000401</aixm:verticalExtent>
+              <aixm:horizontalProjection_surfaceExtent>
+                <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4269" gml:id="b9826ec1">
+                  <gml:patches>
+                    <gml:PolygonPatch>
+                      <gml:exterior>
+                        <gml:LinearRing>
+                          <gml:posList>41.9942228258272 -87.9161705024682 41.9950206268053 -87.9149275873392 41.9949274250552 -87.9148203363666 41.9950398358149 -87.9146403910182 41.9949256362698 -87.9145172085631 41.9950757280959 -87.9142849982367 41.9944784345546 -87.9135854980912 41.9943792835855 -87.913761078859 41.99430209113 -87.9136791578978 41.9941696057761 -87.9139026399608 41.9940943682553 -87.9138163135655 41.9933043843364 -87.9151116270072 41.9934169250678 -87.9152413749643 41.9942228258272 -87.9161705024682</gml:posList>
+                        </gml:LinearRing>
+                      </gml:exterior>
+                    </gml:PolygonPatch>
+                  </gml:patches>
+                  <aixm:elevation uom="FT">745.032763189996</aixm:elevation>
+                </aixm:ElevatedSurface>
+              </aixm:horizontalProjection_surfaceExtent>
+            </aixm:VerticalStructurePart>
+          </aixm:part>
+        </aixm:VerticalStructureTimeSlice>
+      </aixm:timeSlice>
+    </aixm:VerticalStructure>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:VerticalStructure gml:id="VPS23">
+      <gml:identifier>VPS23</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:VerticalStructureTimeSlice gml:id="TS23">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="TSP23">
+              <gml:beginPosition>2008-03-23T14:00:00</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:type>Terminal Building</aixm:type>
+          <aixm:part>
+            <aixm:VerticalStructurePart>
+              <aixm:verticalExtent uom="FT">123.89998751190899</aixm:verticalExtent>
+              <aixm:horizontalProjection_surfaceExtent>
+                <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4269" gml:id="b9826ec1">
+                  <gml:patches>
+                    <gml:PolygonPatch>
+                      <gml:exterior>
+                        <gml:LinearRing>
+                          <gml:posList>41.9963544068523 -87.9213205044999 41.9974295218275 -87.9196023250561 41.9974614265239 -87.9196381829572 41.9979904943154 -87.918792662305 41.99806317394 -87.9186765102137 41.997993606936 -87.918598324281 41.9979198527002 -87.9187161922295 41.9972927969852 -87.9180114464053 41.9973700309781 -87.9178880160239 41.9973107290566 -87.9178213661566 41.9972397792612 -87.9179347528846 41.996708412177 -87.918783950035 41.9967370461429 -87.9188161317044 41.9956590208741 -87.9205389624042 41.9963544068523 -87.9213205044999</gml:posList>
+                        </gml:LinearRing>
+                      </gml:exterior>
+                    </gml:PolygonPatch>
+                  </gml:patches>
+                  <aixm:elevation uom="FT">750.100012488091</aixm:elevation>
+                </aixm:ElevatedSurface>
+              </aixm:horizontalProjection_surfaceExtent>
+            </aixm:VerticalStructurePart>
+          </aixm:part>
+        </aixm:VerticalStructureTimeSlice>
+      </aixm:timeSlice>
+    </aixm:VerticalStructure>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:VerticalStructure gml:id="VPS24">
+      <gml:identifier>VPS24</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:VerticalStructureTimeSlice gml:id="TS24">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="TSP24">
+              <gml:beginPosition>2008-03-23T14:00:00</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:type>Terminal Building</aixm:type>
+          <aixm:part>
+            <aixm:VerticalStructurePart>
+              <aixm:verticalExtent uom="FT">60.98732119110798</aixm:verticalExtent>
+              <aixm:horizontalProjection_surfaceExtent>
+                <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4269" gml:id="b9826ec1">
+                  <gml:patches>
+                    <gml:PolygonPatch>
+                      <gml:exterior>
+                        <gml:LinearRing>
+                          <gml:posList>41.9904366022075 -87.9216080581759 41.9892139278439 -87.9235747778616 41.9891013201168 -87.9237489480645 41.9895016757527 -87.9241838406815 41.9908498491576 -87.9220799763271 41.9904366022075 -87.9216080581759</gml:posList>
+                        </gml:LinearRing>
+                      </gml:exterior>
+                    </gml:PolygonPatch>
+                  </gml:patches>
+                  <aixm:elevation uom="FT">753.012678808892</aixm:elevation>
+                </aixm:ElevatedSurface>
+              </aixm:horizontalProjection_surfaceExtent>
+            </aixm:VerticalStructurePart>
+          </aixm:part>
+        </aixm:VerticalStructureTimeSlice>
+      </aixm:timeSlice>
+    </aixm:VerticalStructure>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:VerticalStructure gml:id="VPS25">
+      <gml:identifier>VPS25</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:VerticalStructureTimeSlice gml:id="TS25">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="TSP25">
+              <gml:beginPosition>2008-03-23T14:00:00</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:type>Terminal Building</aixm:type>
+          <aixm:part>
+            <aixm:VerticalStructurePart>
+              <aixm:verticalExtent uom="FT">55.809533410346035</aixm:verticalExtent>
+              <aixm:horizontalProjection_surfaceExtent>
+                <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4269" gml:id="b9826ec1">
+                  <gml:patches>
+                    <gml:PolygonPatch>
+                      <gml:exterior>
+                        <gml:LinearRing>
+                          <gml:posList>41.9919442320988 -87.8945195098736 41.9919437175717 -87.8939755058827 41.9921033187687 -87.8939752347238 41.9925362624572 -87.8939745002604 41.9926859482893 -87.8939742452633 41.99268609434 -87.89412842513 41.9928448487112 -87.8941281557669 41.9928451461722 -87.8944435728145 41.992692666619 -87.8944438314031 41.9926927362945 -87.8945182384796 41.9925333803018 -87.8945185096385 41.9920903122218 -87.8945192620596 41.9919442320988 -87.8945195098736</gml:posList>
+                        </gml:LinearRing>
+                      </gml:exterior>
+                    </gml:PolygonPatch>
+                  </gml:patches>
+                  <aixm:elevation uom="FT">736.190466589654</aixm:elevation>
+                </aixm:ElevatedSurface>
+              </aixm:horizontalProjection_surfaceExtent>
+            </aixm:VerticalStructurePart>
+          </aixm:part>
+        </aixm:VerticalStructureTimeSlice>
+      </aixm:timeSlice>
+    </aixm:VerticalStructure>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:VerticalStructure gml:id="VPS26">
+      <gml:identifier>VPS26</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:VerticalStructureTimeSlice gml:id="TS26">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="TSP26">
+              <gml:beginPosition>2008-03-23T14:00:00</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:type>Terminal Building</aixm:type>
+          <aixm:part>
+            <aixm:VerticalStructurePart>
+              <aixm:verticalExtent uom="FT">50.772343926704025</aixm:verticalExtent>
+              <aixm:horizontalProjection_surfaceExtent>
+                <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4269" gml:id="b9826ec1">
+                  <gml:patches>
+                    <gml:PolygonPatch>
+                      <gml:exterior>
+                        <gml:LinearRing>
+                          <gml:posList>41.9919374588326 -87.8931486939453 41.9919390720893 -87.892401428533 41.9920972489575 -87.8924020408851 41.9925439066676 -87.8924037719922 41.9926890019537 -87.8924043340633 41.992687390037 -87.8931515994756 41.9925443434796 -87.8931510445875 41.9920924627841 -87.8931492937272 41.9919374588326 -87.8931486939453</gml:posList>
+                        </gml:LinearRing>
+                      </gml:exterior>
+                    </gml:PolygonPatch>
+                  </gml:patches>
+                  <aixm:elevation uom="FT">736.227656073296</aixm:elevation>
+                </aixm:ElevatedSurface>
+              </aixm:horizontalProjection_surfaceExtent>
+            </aixm:VerticalStructurePart>
+          </aixm:part>
+        </aixm:VerticalStructureTimeSlice>
+      </aixm:timeSlice>
+    </aixm:VerticalStructure>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:VerticalStructure gml:id="VPS27">
+      <gml:identifier>VPS27</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:VerticalStructureTimeSlice gml:id="TS27">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="TSP27">
+              <gml:beginPosition>2008-03-23T14:00:00</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:type>Terminal Building</aixm:type>
+          <aixm:part>
+            <aixm:VerticalStructurePart>
+              <aixm:verticalExtent uom="FT">24.808594041144033</aixm:verticalExtent>
+              <aixm:horizontalProjection_surfaceExtent>
+                <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4269" gml:id="b9826ec1">
+                  <gml:patches>
+                    <gml:PolygonPatch>
+                      <gml:exterior>
+                        <gml:LinearRing>
+                          <gml:posList>41.9925995546431 -87.8919007327468 41.992597980244 -87.8915282394467 41.9927139591951 -87.8915273595271 41.9927155335943 -87.8918998528273 41.9925995546431 -87.8919007327468</gml:posList>
+                        </gml:LinearRing>
+                      </gml:exterior>
+                    </gml:PolygonPatch>
+                  </gml:patches>
+                  <aixm:elevation uom="FT">735.191405958856</aixm:elevation>
+                </aixm:ElevatedSurface>
+              </aixm:horizontalProjection_surfaceExtent>
+            </aixm:VerticalStructurePart>
+          </aixm:part>
+        </aixm:VerticalStructureTimeSlice>
+      </aixm:timeSlice>
+    </aixm:VerticalStructure>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:VerticalStructure gml:id="VPS28">
+      <gml:identifier>VPS28</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:VerticalStructureTimeSlice gml:id="TS28">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="TSP28">
+              <gml:beginPosition>2008-03-23T14:00:00</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:type>Terminal Building</aixm:type>
+          <aixm:part>
+            <aixm:VerticalStructurePart>
+              <aixm:verticalExtent uom="FT">23.997972779548036</aixm:verticalExtent>
+              <aixm:horizontalProjection_surfaceExtent>
+                <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4269" gml:id="b9826ec1">
+                  <gml:patches>
+                    <gml:PolygonPatch>
+                      <gml:exterior>
+                        <gml:LinearRing>
+                          <gml:posList>41.9924531422214 -87.8910030082705 41.9921736870414 -87.890997495305 41.992177689365 -87.8907142958841 41.9921773677856 -87.8906457321918 41.9924568685227 -87.8906489609579 41.9924531422214 -87.8910030082705</gml:posList>
+                        </gml:LinearRing>
+                      </gml:exterior>
+                    </gml:PolygonPatch>
+                  </gml:patches>
+                  <aixm:elevation uom="FT">735.002027220452</aixm:elevation>
+                </aixm:ElevatedSurface>
+              </aixm:horizontalProjection_surfaceExtent>
+            </aixm:VerticalStructurePart>
+          </aixm:part>
+        </aixm:VerticalStructureTimeSlice>
+      </aixm:timeSlice>
+    </aixm:VerticalStructure>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:VerticalStructure gml:id="VPS29">
+      <gml:identifier>VPS29</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:VerticalStructureTimeSlice gml:id="TS29">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="TSP29">
+              <gml:beginPosition>2008-03-23T14:00:00</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:type>Terminal Building</aixm:type>
+          <aixm:part>
+            <aixm:VerticalStructurePart>
+              <aixm:verticalExtent uom="FT">54.96098356751202</aixm:verticalExtent>
+              <aixm:horizontalProjection_surfaceExtent>
+                <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4269" gml:id="b9826ec1">
+                  <gml:patches>
+                    <gml:PolygonPatch>
+                      <gml:exterior>
+                        <gml:LinearRing>
+                          <gml:posList>41.9919427032567 -87.890885747315 41.991279563653 -87.8908857006254 41.9912795649929 -87.8908517034063 41.9913256861787 -87.8908517069978 41.9913256982379 -87.8905388075976 41.9914137131803 -87.8905388129849 41.9914137185399 -87.8904052178489 41.9917751215309 -87.8904052429895 41.9917751161712 -87.8905393570984 41.9918813847643 -87.8905393642814 41.9918813727051 -87.8908508719721 41.9919427045966 -87.8908508755636 41.9919427032567 -87.890885747315</gml:posList>
+                        </gml:LinearRing>
+                      </gml:exterior>
+                    </gml:PolygonPatch>
+                  </gml:patches>
+                  <aixm:elevation uom="FT">733.039016432488</aixm:elevation>
+                </aixm:ElevatedSurface>
+              </aixm:horizontalProjection_surfaceExtent>
+            </aixm:VerticalStructurePart>
+          </aixm:part>
+        </aixm:VerticalStructureTimeSlice>
+      </aixm:timeSlice>
+    </aixm:VerticalStructure>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:VerticalStructure gml:id="VPS30">
+      <gml:identifier>VPS30</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:VerticalStructureTimeSlice gml:id="TS30">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="TSP30">
+              <gml:beginPosition>2008-03-23T14:00:00</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:type>Terminal Building</aixm:type>
+          <aixm:part>
+            <aixm:VerticalStructurePart>
+              <aixm:verticalExtent uom="FT">25.802253060615044</aixm:verticalExtent>
+              <aixm:horizontalProjection_surfaceExtent>
+                <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4269" gml:id="b9826ec1">
+                  <gml:patches>
+                    <gml:PolygonPatch>
+                      <gml:exterior>
+                        <gml:LinearRing>
+                          <gml:posList>41.9905694252197 -87.890052977065 41.9903587920515 -87.8900517487691 41.9903598010069 -87.8897410743084 41.9905735749339 -87.8897423223576 41.9905734704206 -87.8897746638913 41.9907627118591 -87.8897757682802 41.9907618770926 -87.8900327496894 41.9905694948953 -87.890031627343 41.9905694252197 -87.890052977065</gml:posList>
+                        </gml:LinearRing>
+                      </gml:exterior>
+                    </gml:PolygonPatch>
+                  </gml:patches>
+                  <aixm:elevation uom="FT">734.197746939385</aixm:elevation>
+                </aixm:ElevatedSurface>
+              </aixm:horizontalProjection_surfaceExtent>
+            </aixm:VerticalStructurePart>
+          </aixm:part>
+        </aixm:VerticalStructureTimeSlice>
+      </aixm:timeSlice>
+    </aixm:VerticalStructure>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:VerticalStructure gml:id="VPS31">
+      <gml:identifier>VPS31</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:VerticalStructureTimeSlice gml:id="TS31">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="TSP31">
+              <gml:beginPosition>2008-03-23T14:00:00</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:type>Terminal Building</aixm:type>
+          <aixm:part>
+            <aixm:VerticalStructurePart>
+              <aixm:verticalExtent uom="FT">36.63780241516804</aixm:verticalExtent>
+              <aixm:horizontalProjection_surfaceExtent>
+                <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4269" gml:id="b9826ec1">
+                  <gml:patches>
+                    <gml:PolygonPatch>
+                      <gml:exterior>
+                        <gml:LinearRing>
+                          <gml:posList>41.9941905982115 -87.8955031953092 41.993754390492 -87.8954965312653 41.993757997541 -87.8951537612892 41.9941907067445 -87.8951648698249 41.9941905982115 -87.8955031953092</gml:posList>
+                        </gml:LinearRing>
+                      </gml:exterior>
+                    </gml:PolygonPatch>
+                  </gml:patches>
+                  <aixm:elevation uom="FT">736.362197584832</aixm:elevation>
+                </aixm:ElevatedSurface>
+              </aixm:horizontalProjection_surfaceExtent>
+            </aixm:VerticalStructurePart>
+          </aixm:part>
+        </aixm:VerticalStructureTimeSlice>
+      </aixm:timeSlice>
+    </aixm:VerticalStructure>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:VerticalStructure gml:id="VPS32">
+      <gml:identifier>VPS32</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:VerticalStructureTimeSlice gml:id="TS32">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="TSP32">
+              <gml:beginPosition>2008-03-23T14:00:00</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:type>Terminal Building</aixm:type>
+          <aixm:part>
+            <aixm:VerticalStructurePart>
+              <aixm:verticalExtent uom="FT">36.994641595161056</aixm:verticalExtent>
+              <aixm:horizontalProjection_surfaceExtent>
+                <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4269" gml:id="b9826ec1">
+                  <gml:patches>
+                    <gml:PolygonPatch>
+                      <gml:exterior>
+                        <gml:LinearRing>
+                          <gml:posList>41.9746070310147 -87.8792598189344 41.974605402014 -87.8810917252894 41.9729618428545 -87.8810891034882 41.9729622823464 -87.8805946928419 41.9729623409676 -87.8805289287304 41.9741936936203 -87.880530896877 41.9741948241729 -87.8792591616883 41.9746070310147 -87.8792598189344</gml:posList>
+                        </gml:LinearRing>
+                      </gml:exterior>
+                    </gml:PolygonPatch>
+                  </gml:patches>
+                  <aixm:elevation uom="FT">738.005358404839</aixm:elevation>
+                </aixm:ElevatedSurface>
+              </aixm:horizontalProjection_surfaceExtent>
+            </aixm:VerticalStructurePart>
+          </aixm:part>
+        </aixm:VerticalStructureTimeSlice>
+      </aixm:timeSlice>
+    </aixm:VerticalStructure>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:VerticalStructure gml:id="VPS33">
+      <gml:identifier>VPS33</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:VerticalStructureTimeSlice gml:id="TS33">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="TSP33">
+              <gml:beginPosition>2008-03-23T14:00:00</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:type>Terminal Building</aixm:type>
+          <aixm:part>
+            <aixm:VerticalStructurePart>
+              <aixm:verticalExtent uom="FT">88.69191961792706</aixm:verticalExtent>
+              <aixm:horizontalProjection_surfaceExtent>
+                <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4269" gml:id="b9826ec1">
+                  <gml:patches>
+                    <gml:PolygonPatch>
+                      <gml:exterior>
+                        <gml:LinearRing>
+                          <gml:posList>41.9739469172722 -87.8850863087456 41.973945904967 -87.8851365431744 41.9738913031294 -87.8851391434265 41.9738817301126 -87.8854449926956 41.9739396468979 -87.8854470829535 41.9739372574959 -87.8859040018431 41.9738759336439 -87.8859017894738 41.9738797122019 -87.8862218323844 41.9739376289871 -87.8862239226423 41.9739358834139 -87.8866488771065 41.9738813736955 -87.8866469125514 41.973881193142 -87.8869942293771 41.9739391095923 -87.8869963196351 41.9739401269221 -87.8874533642273 41.9738891160545 -87.8874469533847 41.9738827658663 -87.8877620615626 41.9739371834657 -87.8877685945165 41.9739382929146 -87.8882210743016 41.9738906891138 -87.8882147855703 41.9738841546873 -87.8885390233627 41.9739353494581 -87.8885363009992 41.9739334203167 -87.8889703886694 41.9739080500847 -87.8891206272896 41.9738905614631 -87.8892728717405 41.9738810396546 -87.8894263803024 41.9738795310486 -87.889580405097 41.9738860429949 -87.8897341957311 41.9739005437678 -87.8898870029521 41.9739229627212 -87.8900380822986 41.9739531906321 -87.8901866977272 41.9739910802331 -87.8903321251985 41.9740364469299 -87.8904736562045 41.9740890697006 -87.8906106012203 41.9741486921723 -87.8907422930635 41.9741532262024 -87.8907515110948 41.9738242400901 -87.8913428906738 41.9741766237837 -87.8917897623184 41.9746013718872 -87.891352650598 41.9746967562009 -87.8914361141245 41.9747962523784 -87.8915104570788 41.9748993756843 -87.8915753172694 41.9750056237123 -87.891630378704 41.9751144788327 -87.8916753731289 41.9752254107142 -87.8917100813358 41.9753378789079 -87.8917343342296 41.97545133548 -87.8917480136529 41.9755652276815 -87.8917510529608 41.9756790006411 -87.891743437346 41.9757921000683 -87.8917252039112 41.9758453384919 -87.891712869918 41.9758829060006 -87.8917096555179 41.9760178917181 -87.8917785065309 41.9763347311734 -87.8919590301122 41.9763091345417 -87.8920449389946 41.9765383159744 -87.8921766001033 41.9765569148206 -87.8920995802043 41.9767793746157 -87.8922264286917 41.9767538700612 -87.8923077691753 41.9769864583512 -87.892439554191 41.9770047810914 -87.8923762341011 41.9772305556876 -87.8925077730985 41.9772087340756 -87.8925755358844 41.977442841742 -87.8927165151618 41.9774718912357 -87.8926284459871 41.9777380879597 -87.8927842941095 41.9777522622627 -87.8928178621433 41.9777744043863 -87.8928383894099 41.9777947055097 -87.8928432720657 41.9778113302854 -87.8928388473273 41.977828379479 -87.8928225490619 41.9778370197481 -87.8927891534204 41.9778329588032 -87.8927570722711 41.9778191701651 -87.8927354855095 41.9777996263864 -87.8927193093554 41.9777778599412 -87.8927127961548 41.9777594843373 -87.8927182372901 41.9774990532274 -87.8925494507584 41.9775314635634 -87.8924637878944 41.9759544483731 -87.8915431424111 41.975954627165 -87.891535116155 41.9759543877606 -87.8915270927357 41.9759537313264 -87.8915191112423 41.9759526610603 -87.89151121056 41.9759511821767 -87.89150342918 41.9759493018804 -87.8914958050125 41.9759470293321 -87.8914883752017 41.9759443756034 -87.8914811759448 41.9759413536231 -87.8914742423159 41.9759379781138 -87.891467608095 41.9759342655208 -87.8914613056032 41.9759302339314 -87.8914553655457 41.9759259029872 -87.891449816862 41.975921293788 -87.8914446865844 41.9759164287894 -87.8914399997074 41.9759113316931 -87.8914357790649 41.9759060273319 -87.8914320452194 41.9759005415478 -87.8914288163619 41.9758949010672 -87.8914261082229 41.9758891333699 -87.8914239339964 41.9758832665555 -87.8914223042749 41.9758773292066 -87.8914212269982 41.9758713502493 -87.8914207074148 41.9758653588125 -87.891420748056 41.9758593840859 -87.8914213487238 41.9758534551777 -87.8914225064918 41.975847600973 -87.8914242157194 41.9758418499929 -87.8914264680795 41.9758362302556 -87.8914292525989 41.9758307691399 -87.8914325557116 41.9758254932518 -87.8914363613251 41.9758236055865 -87.8914378806853 41.9741043169902 -87.889118227728 41.974107116569 -87.889112429405 41.9741096075296 -87.8891063834802 41.9741117777365 -87.8891001194089 41.9741136166166 -87.8890936677089 41.974115115211 -87.8890870598122 41.9741162662187 -87.889080327912 41.9741170640322 -87.8890735048052 41.9741175047646 -87.8890666237335 41.9741175862686 -87.8890597182206 41.9741173081472 -87.8890528219096 41.9741166717554 -87.8890459683986 41.9741156801936 -87.8890391910772 41.9741143382926 -87.8890325229638 41.97411265259 -87.8890259965449 41.9741106312984 -87.8890196436164 41.9741082842652 -87.8890134951293 41.9741056229251 -87.8890075810382 41.9741026602438 -87.8890019301561 41.9740994106552 -87.8889965700135 41.9740958899909 -87.8889915267245 41.9740921154033 -87.8889868248595 41.9740881052818 -87.8889824873255 41.9740838791633 -87.8889785352544 41.974079457637 -87.8889749879005 41.9740748622442 -87.8889718625461 41.9740731934638 -87.8889708627486 41.9740777602263 -87.8851915722671 41.9740129378583 -87.8851938025938 41.9740118317592 -87.8850795100201 41.9740048340574 -87.8850883990035 41.9740052943179 -87.8850655641927 41.9740076670703 -87.885062923929 41.9740098966189 -87.8850600682738 41.9740119721017 -87.8850570111394 41.9740138834071 -87.88505376742 41.9740156212235 -87.8850503529185 41.9740171770844 -87.8850467842702 41.9740185434097 -87.885043078861 41.974019713543 -87.8850392547435 41.9740206817833 -87.8850353305483 41.9740214434135 -87.8850313253937 41.9740219947232 -87.8850272587923 41.9740223330262 -87.8850231505564 41.9740224566745 -87.8850190207007 41.9740223650656 -87.8850148893455 41.9740220586459 -87.8850107766184 41.9740215389082 -87.8850067025562 41.9740208083846 -87.8850026870073 41.9740198706342 -87.884998749535 41.9740187302255 -87.8849949093224 41.9740173927146 -87.8849911850784 41.9740158646176 -87.8849875949474 41.9740141533793 -87.88498415642 41.9740122673366 -87.8849808862483 41.9740102156782 -87.8849778003645 41.9740080083996 -87.8849749138025 41.9740056562544 -87.8849722406254 41.974003170702 -87.8849697938566 41.9740005638517 -87.8849675854166 41.9739978484039 -87.8849656260647 41.973995037588 -87.8849639253466 41.973992145098 -87.8849624915481 41.9739891850258 -87.8849613316544 41.9739861717925 -87.8849604513165 41.9739831200784 -87.8849598548233 41.9739800447511 -87.8849595450808 41.9739769607932 -87.884959523598 41.9739738832296 -87.8849597904798 41.9739708270537 -87.8849603444257 41.973967807155 -87.8849611827371 41.9739648382461 -87.8849623013297 41.9739619347913 -87.8849636947539 41.9739591109358 -87.8849653562211 41.9739563804373 -87.8849672776368 41.9739537565984 -87.8849694496401 41.9739512522022 -87.884971861649 41.9739488794498 -87.8849745019127 41.9739466499012 -87.8849773575679 41.9739445744184 -87.8849804147023 41.973942663113 -87.8849836584218 41.9739409252966 -87.8849870729232 41.9739393694357 -87.8849906415715 41.9739380031104 -87.8849943469807 41.9739368329771 -87.8849981710982 41.9739358647368 -87.8850020952934 41.9739351031065 -87.8850061004481 41.9739345517969 -87.8850101670494 41.9739342134939 -87.8850142752854 41.9739340898456 -87.8850184051411 41.9739341814545 -87.8850225364962 41.9739344878742 -87.8850266492233 41.9739350076119 -87.8850307232855 41.9739357381355 -87.8850347388344 41.9739366758859 -87.8850386763067 41.9739378162946 -87.8850425165194 41.9739391538055 -87.8850462407633 41.9739406819025 -87.8850498308943 41.9739423931408 -87.8850532694218 41.9739442791835 -87.8850565395934 41.9739463308419 -87.8850596254772 41.9739485381205 -87.8850625120393 41.9739508902657 -87.8850651852163 41.9739533758181 -87.8850676319851 41.9739540992122 -87.8850682865561 41.9739569538993 -87.885095811877 41.9739469172722 -87.8850863087456</gml:posList>
+                        </gml:LinearRing>
+                      </gml:exterior>
+                    </gml:PolygonPatch>
+                  </gml:patches>
+                  <aixm:elevation uom="FT">740.308080382073</aixm:elevation>
+                </aixm:ElevatedSurface>
+              </aixm:horizontalProjection_surfaceExtent>
+            </aixm:VerticalStructurePart>
+          </aixm:part>
+        </aixm:VerticalStructureTimeSlice>
+      </aixm:timeSlice>
+    </aixm:VerticalStructure>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:VerticalStructure gml:id="VPS34">
+      <gml:identifier>VPS34</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:VerticalStructureTimeSlice gml:id="TS34">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="TSP34">
+              <gml:beginPosition>2008-03-23T14:00:00</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:type>Terminal Building</aixm:type>
+          <aixm:part>
+            <aixm:VerticalStructurePart>
+              <aixm:verticalExtent uom="FT">64.87730436829304</aixm:verticalExtent>
+              <aixm:horizontalProjection_surfaceExtent>
+                <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4269" gml:id="b9826ec1">
+                  <gml:patches>
+                    <gml:PolygonPatch>
+                      <gml:exterior>
+                        <gml:LinearRing>
+                          <gml:posList>41.9799097215945 -87.8981083480487 41.9784625433549 -87.8981047026676 41.9784617644461 -87.8986599911781 41.9799089427694 -87.8986636365592 41.9799097215945 -87.8981083480487</gml:posList>
+                        </gml:LinearRing>
+                      </gml:exterior>
+                    </gml:PolygonPatch>
+                  </gml:patches>
+                  <aixm:elevation uom="FT">741.122695631707</aixm:elevation>
+                </aixm:ElevatedSurface>
+              </aixm:horizontalProjection_surfaceExtent>
+            </aixm:VerticalStructurePart>
+          </aixm:part>
+        </aixm:VerticalStructureTimeSlice>
+      </aixm:timeSlice>
+    </aixm:VerticalStructure>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:VerticalStructure gml:id="VPS35">
+      <gml:identifier>VPS35</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:VerticalStructureTimeSlice gml:id="TS35">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="TSP35">
+              <gml:beginPosition>2008-03-23T14:00:00</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:type>Terminal Building</aixm:type>
+          <aixm:part>
+            <aixm:VerticalStructurePart>
+              <aixm:verticalExtent uom="FT">43.781476788794976</aixm:verticalExtent>
+              <aixm:horizontalProjection_surfaceExtent>
+                <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4269" gml:id="b9826ec1">
+                  <gml:patches>
+                    <gml:PolygonPatch>
+                      <gml:exterior>
+                        <gml:LinearRing>
+                          <gml:posList>41.9787296534031 -87.8968035296798 41.9787309985932 -87.8963991761081 41.9790361349032 -87.8964010005944 41.9790347897969 -87.8968053523703 41.9787296534031 -87.8968035296798</gml:posList>
+                        </gml:LinearRing>
+                      </gml:exterior>
+                    </gml:PolygonPatch>
+                  </gml:patches>
+                  <aixm:elevation uom="FT">747.218523211205</aixm:elevation>
+                </aixm:ElevatedSurface>
+              </aixm:horizontalProjection_surfaceExtent>
+            </aixm:VerticalStructurePart>
+          </aixm:part>
+        </aixm:VerticalStructureTimeSlice>
+      </aixm:timeSlice>
+    </aixm:VerticalStructure>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:VerticalStructure gml:id="VPS36">
+      <gml:identifier>VPS36</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:VerticalStructureTimeSlice gml:id="TS36">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="TSP36">
+              <gml:beginPosition>2008-03-23T14:00:00</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:type>Terminal Building</aixm:type>
+          <aixm:part>
+            <aixm:VerticalStructurePart>
+              <aixm:verticalExtent uom="FT">27.896754377161983</aixm:verticalExtent>
+              <aixm:horizontalProjection_surfaceExtent>
+                <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4269" gml:id="b9826ec1">
+                  <gml:patches>
+                    <gml:PolygonPatch>
+                      <gml:exterior>
+                        <gml:LinearRing>
+                          <gml:posList>41.9793245227885 -87.8973529083631 41.9787921892075 -87.8973534237446 41.9787912405483 -87.8971942121745 41.9792991955633 -87.8971981269187 41.9792990014432 -87.8972433709465 41.9793249919259 -87.8972435702753 41.9793245227885 -87.8973529083631</gml:posList>
+                        </gml:LinearRing>
+                      </gml:exterior>
+                    </gml:PolygonPatch>
+                  </gml:patches>
+                  <aixm:elevation uom="FT">747.103245622838</aixm:elevation>
+                </aixm:ElevatedSurface>
+              </aixm:horizontalProjection_surfaceExtent>
+            </aixm:VerticalStructurePart>
+          </aixm:part>
+        </aixm:VerticalStructureTimeSlice>
+      </aixm:timeSlice>
+    </aixm:VerticalStructure>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:VerticalStructure gml:id="VPS37">
+      <gml:identifier>VPS37</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:VerticalStructureTimeSlice gml:id="TS37">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="TSP37">
+              <gml:beginPosition>2008-03-23T14:00:00</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:type>Terminal Building</aixm:type>
+          <aixm:part>
+            <aixm:VerticalStructurePart>
+              <aixm:verticalExtent uom="FT">44.73922061232304</aixm:verticalExtent>
+              <aixm:horizontalProjection_surfaceExtent>
+                <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4269" gml:id="b9826ec1">
+                  <gml:patches>
+                    <gml:PolygonPatch>
+                      <gml:exterior>
+                        <gml:LinearRing>
+                          <gml:posList>41.9792446275586 -87.8976673718652 41.9787401609263 -87.8976615266852 41.9787390630342 -87.8978317085179 41.9792435296664 -87.8978375536979 41.9792446275586 -87.8976673718652</gml:posList>
+                        </gml:LinearRing>
+                      </gml:exterior>
+                    </gml:PolygonPatch>
+                  </gml:patches>
+                  <aixm:elevation uom="FT">746.260779387677</aixm:elevation>
+                </aixm:ElevatedSurface>
+              </aixm:horizontalProjection_surfaceExtent>
+            </aixm:VerticalStructurePart>
+          </aixm:part>
+        </aixm:VerticalStructureTimeSlice>
+      </aixm:timeSlice>
+    </aixm:VerticalStructure>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:VerticalStructure gml:id="VPS38">
+      <gml:identifier>VPS38</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:VerticalStructureTimeSlice gml:id="TS38">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="TSP38">
+              <gml:beginPosition>2008-03-23T14:00:00</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:type>Terminal Building</aixm:type>
+          <aixm:part>
+            <aixm:VerticalStructurePart>
+              <aixm:verticalExtent uom="FT">25.933267824923973</aixm:verticalExtent>
+              <aixm:horizontalProjection_surfaceExtent>
+                <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4269" gml:id="b9826ec1">
+                  <gml:patches>
+                    <gml:PolygonPatch>
+                      <gml:exterior>
+                        <gml:LinearRing>
+                          <gml:posList>41.9800699110139 -87.8974239466047 41.9796098521522 -87.8974155747985 41.9796078853257 -87.8975836502115 41.9796553908103 -87.8975833431375 41.9796557738583 -87.897689973228 41.9797315649311 -87.8976894847828 41.9797311956172 -87.8975866922192 41.9798156108802 -87.8975861481056 41.9798159674648 -87.8976854048292 41.9798876089909 -87.8976849415246 41.9798872589384 -87.8975875308364 41.9800698982847 -87.8975863528216 41.9800699110139 -87.8974239466047</gml:posList>
+                        </gml:LinearRing>
+                      </gml:exterior>
+                    </gml:PolygonPatch>
+                  </gml:patches>
+                  <aixm:elevation uom="FT">746.066732175076</aixm:elevation>
+                </aixm:ElevatedSurface>
+              </aixm:horizontalProjection_surfaceExtent>
+            </aixm:VerticalStructurePart>
+          </aixm:part>
+        </aixm:VerticalStructureTimeSlice>
+      </aixm:timeSlice>
+    </aixm:VerticalStructure>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:VerticalStructure gml:id="VPS39">
+      <gml:identifier>VPS39</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:VerticalStructureTimeSlice gml:id="TS39">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="TSP39">
+              <gml:beginPosition>2008-03-23T14:00:00</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:type>Terminal Building</aixm:type>
+          <aixm:part>
+            <aixm:VerticalStructurePart>
+              <aixm:verticalExtent uom="FT">32.837685876166006</aixm:verticalExtent>
+              <aixm:horizontalProjection_surfaceExtent>
+                <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4269" gml:id="b9826ec1">
+                  <gml:patches>
+                    <gml:PolygonPatch>
+                      <gml:exterior>
+                        <gml:LinearRing>
+                          <gml:posList>41.9933351755642 -87.8948630250877 41.9933378433333 -87.8945614964033 41.9931674544872 -87.894557633736 41.9930890038523 -87.8945593720261 41.9930864740943 -87.8947695040031 41.9930063204284 -87.8947711830333 41.9930072396096 -87.8945564216018 41.9929270403866 -87.8945603830357 41.9929278724733 -87.8948574690241 41.9933351755642 -87.8948630250877</gml:posList>
+                        </gml:LinearRing>
+                      </gml:exterior>
+                    </gml:PolygonPatch>
+                  </gml:patches>
+                  <aixm:elevation uom="FT">735.162314123834</aixm:elevation>
+                </aixm:ElevatedSurface>
+              </aixm:horizontalProjection_surfaceExtent>
+            </aixm:VerticalStructurePart>
+          </aixm:part>
+        </aixm:VerticalStructureTimeSlice>
+      </aixm:timeSlice>
+    </aixm:VerticalStructure>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:VerticalStructure gml:id="VPS40">
+      <gml:identifier>VPS40</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:VerticalStructureTimeSlice gml:id="TS40">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="TSP40">
+              <gml:beginPosition>2008-03-23T14:00:00</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:type>Terminal Building</aixm:type>
+          <aixm:part>
+            <aixm:VerticalStructurePart>
+              <aixm:verticalExtent uom="FT">12.74308138397896</aixm:verticalExtent>
+              <aixm:horizontalProjection_surfaceExtent>
+                <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4269" gml:id="b9826ec1">
+                  <gml:patches>
+                    <gml:PolygonPatch>
+                      <gml:exterior>
+                        <gml:LinearRing>
+                          <gml:posList>41.9923249003757 -87.8962226786078 41.9923282314023 -87.8959920049981 41.9922345285243 -87.8959895753426 41.9922311974977 -87.8962202471566 41.9923249003757 -87.8962226786078</gml:posList>
+                        </gml:LinearRing>
+                      </gml:exterior>
+                    </gml:PolygonPatch>
+                  </gml:patches>
+                  <aixm:elevation uom="FT">737.256918616021</aixm:elevation>
+                </aixm:ElevatedSurface>
+              </aixm:horizontalProjection_surfaceExtent>
+            </aixm:VerticalStructurePart>
+          </aixm:part>
+        </aixm:VerticalStructureTimeSlice>
+      </aixm:timeSlice>
+    </aixm:VerticalStructure>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:VerticalStructure gml:id="VPS41">
+      <gml:identifier>VPS41</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:VerticalStructureTimeSlice gml:id="TS41">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="TSP41">
+              <gml:beginPosition>2008-03-23T14:00:00</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:type>Terminal Building</aixm:type>
+          <aixm:part>
+            <aixm:VerticalStructurePart>
+              <aixm:verticalExtent uom="FT">19.50770502594696</aixm:verticalExtent>
+              <aixm:horizontalProjection_surfaceExtent>
+                <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4269" gml:id="b9826ec1">
+                  <gml:patches>
+                    <gml:PolygonPatch>
+                      <gml:exterior>
+                        <gml:LinearRing>
+                          <gml:posList>41.9917153868171 -87.8961685904904 41.9918273942626 -87.8961739939148 41.9918275805107 -87.8961620270087 41.9918607648251 -87.8961629554136 41.9918603146139 -87.8961918257544 41.9919226862788 -87.8961959936999 41.9919232168849 -87.8960544218236 41.9919049002581 -87.8960539639063 41.9919038497654 -87.8960106161949 41.9919553185486 -87.8960097703947 41.9919583186165 -87.8959252388558 41.9918800435103 -87.8959207368999 41.9918775727085 -87.8959746023438 41.991718540975 -87.8959700303536 41.9917153868171 -87.8961685904904</gml:posList>
+                        </gml:LinearRing>
+                      </gml:exterior>
+                    </gml:PolygonPatch>
+                  </gml:patches>
+                  <aixm:elevation uom="FT">737.492294974053</aixm:elevation>
+                </aixm:ElevatedSurface>
+              </aixm:horizontalProjection_surfaceExtent>
+            </aixm:VerticalStructurePart>
+          </aixm:part>
+        </aixm:VerticalStructureTimeSlice>
+      </aixm:timeSlice>
+    </aixm:VerticalStructure>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:VerticalStructure gml:id="VPS42">
+      <gml:identifier>VPS42</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:VerticalStructureTimeSlice gml:id="TS42">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="TSP42">
+              <gml:beginPosition>2008-03-23T14:00:00</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:type>Terminal Building</aixm:type>
+          <aixm:part>
+            <aixm:VerticalStructurePart>
+              <aixm:verticalExtent uom="FT">14.063634209907036</aixm:verticalExtent>
+              <aixm:horizontalProjection_surfaceExtent>
+                <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4269" gml:id="b9826ec1">
+                  <gml:patches>
+                    <gml:PolygonPatch>
+                      <gml:exterior>
+                        <gml:LinearRing>
+                          <gml:posList>41.9913146426061 -87.8958013030818 41.9913121651048 -87.8960732592855 41.9913479957497 -87.8960738447014 41.9913477545651 -87.8961003949277 41.9914576248476 -87.8961021924777 41.9914591737884 -87.8959321507138 41.9914774850555 -87.895932448809 41.9914780571988 -87.895869611777 41.991455775766 -87.8958692472389 41.9914563733677 -87.8958036214005 41.9913146426061 -87.8958013030818</gml:posList>
+                        </gml:LinearRing>
+                      </gml:exterior>
+                    </gml:PolygonPatch>
+                  </gml:patches>
+                  <aixm:elevation uom="FT">736.936365790093</aixm:elevation>
+                </aixm:ElevatedSurface>
+              </aixm:horizontalProjection_surfaceExtent>
+            </aixm:VerticalStructurePart>
+          </aixm:part>
+        </aixm:VerticalStructureTimeSlice>
+      </aixm:timeSlice>
+    </aixm:VerticalStructure>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:VerticalStructure gml:id="VPS43">
+      <gml:identifier>VPS43</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:VerticalStructureTimeSlice gml:id="TS43">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="TSP43">
+              <gml:beginPosition>2008-03-23T14:00:00</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:type>Terminal Building</aixm:type>
+          <aixm:part>
+            <aixm:VerticalStructurePart>
+              <aixm:verticalExtent uom="FT">28.560443215644</aixm:verticalExtent>
+              <aixm:horizontalProjection_surfaceExtent>
+                <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4269" gml:id="b9826ec1">
+                  <gml:patches>
+                    <gml:PolygonPatch>
+                      <gml:exterior>
+                        <gml:LinearRing>
+                          <gml:posList>41.9909115133479 -87.8896938675212 41.9911869648643 -87.8896939716749 41.9911868925089 -87.8900378352653 41.9909108273118 -87.8900377311116 41.9909108474105 -87.8899388514964 41.9908954209786 -87.8899388443134 41.9908954504567 -87.8897948697179 41.9909114919092 -87.8897948751052 41.9909115133479 -87.8896938675212</gml:posList>
+                        </gml:LinearRing>
+                      </gml:exterior>
+                    </gml:PolygonPatch>
+                  </gml:patches>
+                  <aixm:elevation uom="FT">735.439556784356</aixm:elevation>
+                </aixm:ElevatedSurface>
+              </aixm:horizontalProjection_surfaceExtent>
+            </aixm:VerticalStructurePart>
+          </aixm:part>
+        </aixm:VerticalStructureTimeSlice>
+      </aixm:timeSlice>
+    </aixm:VerticalStructure>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:VerticalStructure gml:id="VPS44">
+      <gml:identifier>VPS44</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:VerticalStructureTimeSlice gml:id="TS44">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="TSP44">
+              <gml:beginPosition>2008-03-23T14:00:00</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:type>Terminal Building</aixm:type>
+          <aixm:part>
+            <aixm:VerticalStructurePart>
+              <aixm:verticalExtent uom="FT">20.781067185675965</aixm:verticalExtent>
+              <aixm:horizontalProjection_surfaceExtent>
+                <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4269" gml:id="b9826ec1">
+                  <gml:patches>
+                    <gml:PolygonPatch>
+                      <gml:exterior>
+                        <gml:LinearRing>
+                          <gml:posList>41.9912700127448 -87.8895743816262 41.9912680872881 -87.890042565282 41.9913117229331 -87.890042886722 41.9913115581236 -87.8900828584154 41.9913473525909 -87.8900831223913 41.9913475120407 -87.8900445082881 41.9914844968263 -87.8900455210935 41.9914864276427 -87.8895759798475 41.9912700127448 -87.8895743816262</gml:posList>
+                        </gml:LinearRing>
+                      </gml:exterior>
+                    </gml:PolygonPatch>
+                  </gml:patches>
+                  <aixm:elevation uom="FT">737.218932814324</aixm:elevation>
+                </aixm:ElevatedSurface>
+              </aixm:horizontalProjection_surfaceExtent>
+            </aixm:VerticalStructurePart>
+          </aixm:part>
+        </aixm:VerticalStructureTimeSlice>
+      </aixm:timeSlice>
+    </aixm:VerticalStructure>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:VerticalStructure gml:id="VPS45">
+      <gml:identifier>VPS45</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:VerticalStructureTimeSlice gml:id="TS45">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="TSP45">
+              <gml:beginPosition>2008-03-23T14:00:00</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:type>Terminal Building</aixm:type>
+          <aixm:part>
+            <aixm:VerticalStructurePart>
+              <aixm:verticalExtent uom="FT">41.95102243927704</aixm:verticalExtent>
+              <aixm:horizontalProjection_surfaceExtent>
+                <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4269" gml:id="b9826ec1">
+                  <gml:patches>
+                    <gml:PolygonPatch>
+                      <gml:exterior>
+                        <gml:LinearRing>
+                          <gml:posList>41.9882221541903 -87.9212570185271 41.9882258503436 -87.9225961849606 41.9883077070404 -87.9225945685573 41.9883075248121 -87.92277279492 41.9881985971592 -87.9227642947174 41.988145285324 -87.9228720529905 41.9882218949169 -87.9229616485563 41.9881794477758 -87.9230378087379 41.9882627783782 -87.9231322169251 41.9880796402488 -87.9234226640101 41.9880065298418 -87.9233286248504 41.9879223725124 -87.9234444101449 41.9878789117262 -87.9234017115987 41.987815747502 -87.9234908339833 41.9878591165041 -87.9235380995815 41.9878097634453 -87.9236185803478 41.9878298366996 -87.9236375848148 41.9877802076185 -87.9237317658391 41.9877967823568 -87.9237552143489 41.9877402473581 -87.9238537164067 41.9874333507358 -87.9235181676074 41.9875072878699 -87.9234020132854 41.9875273611242 -87.9234210177524 41.9876574641106 -87.9232246286825 41.9875826968997 -87.9232127906217 41.9875918083161 -87.9227606816599 41.9875441120612 -87.9227589608784 41.9875409800118 -87.9225760444546 41.9876023956479 -87.9225736904452 41.9876012774896 -87.9212757475703 41.9875638021 -87.9212743953674 41.9875643528047 -87.9210779016948 41.9875951065148 -87.9210744412764 41.9875940928698 -87.920955582773 41.987818760969 -87.9209728289722 41.9878202348746 -87.9210688537871 41.9880248310595 -87.9210670957437 41.9880270399081 -87.92095749368 41.9882552065232 -87.9209702960608 41.9882529983447 -87.921079898349 41.9883075080631 -87.9210818649244 41.9883072333807 -87.921264658339 41.9882221541903 -87.9212570185271</gml:posList>
+                        </gml:LinearRing>
+                      </gml:exterior>
+                    </gml:PolygonPatch>
+                  </gml:patches>
+                  <aixm:elevation uom="FT">756.048977560723</aixm:elevation>
+                </aixm:ElevatedSurface>
+              </aixm:horizontalProjection_surfaceExtent>
+            </aixm:VerticalStructurePart>
+          </aixm:part>
+        </aixm:VerticalStructureTimeSlice>
+      </aixm:timeSlice>
+    </aixm:VerticalStructure>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:VerticalStructure gml:id="VPS46">
+      <gml:identifier>VPS46</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:VerticalStructureTimeSlice gml:id="TS46">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="TSP46">
+              <gml:beginPosition>2008-03-23T14:00:00</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:type>Terminal Building</aixm:type>
+          <aixm:part>
+            <aixm:VerticalStructurePart>
+              <aixm:verticalExtent uom="FT">62.497906976019976</aixm:verticalExtent>
+              <aixm:horizontalProjection_surfaceExtent>
+                <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4269" gml:id="b9826ec1">
+                  <gml:patches>
+                    <gml:PolygonPatch>
+                      <gml:exterior>
+                        <gml:LinearRing>
+                          <gml:posList>41.9901515703048 -87.8900776291791 41.9900255165389 -87.8900730805336 41.9895584090587 -87.8900745063625 41.9894835507337 -87.8900672353536 41.9894878773165 -87.8900216914348 41.9895662354974 -87.890024517952 41.9895682587678 -87.8897549554886 41.989742282801 -87.889578431052 41.9897452279324 -87.8894322943684 41.9897722807995 -87.8894344259287 41.9897749164107 -87.8893775795328 41.9898828773154 -87.8893766475363 41.9898843311223 -87.8894320016605 41.9899668577762 -87.8894311522688 41.9899639126449 -87.8895772889523 41.9900375744266 -87.8896439275961 41.9900398388815 -87.8897200568009 41.9900574627727 -87.8897340295646 41.990060689286 -87.8900195077977 41.9901525832799 -87.8900273929545 41.9901515703048 -87.8900776291791</gml:posList>
+                        </gml:LinearRing>
+                      </gml:exterior>
+                    </gml:PolygonPatch>
+                  </gml:patches>
+                  <aixm:elevation uom="FT">735.50209302398</aixm:elevation>
+                </aixm:ElevatedSurface>
+              </aixm:horizontalProjection_surfaceExtent>
+            </aixm:VerticalStructurePart>
+          </aixm:part>
+        </aixm:VerticalStructureTimeSlice>
+      </aixm:timeSlice>
+    </aixm:VerticalStructure>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:VerticalStructure gml:id="VPS47">
+      <gml:identifier>VPS47</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:VerticalStructureTimeSlice gml:id="TS47">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="TSP47">
+              <gml:beginPosition>2008-03-23T14:00:00</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:type>Terminal Building</aixm:type>
+          <aixm:part>
+            <aixm:VerticalStructurePart>
+              <aixm:verticalExtent uom="FT">38.81547718552304</aixm:verticalExtent>
+              <aixm:horizontalProjection_surfaceExtent>
+                <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4269" gml:id="b9826ec1">
+                  <gml:patches>
+                    <gml:PolygonPatch>
+                      <gml:exterior>
+                        <gml:LinearRing>
+                          <gml:posList>41.9881113097903 -87.9196484000131 41.9888893698129 -87.9196460953309 41.9888898763005 -87.9199531343994 41.9880323935351 -87.9199556743815 41.9880326816167 -87.9201303292135 41.9878888773378 -87.920130755144 41.9878891774786 -87.9203126152154 41.9876373245306 -87.9203133611268 41.9876367088401 -87.9199401963268 41.9874862934247 -87.9199406418984 41.9874851551676 -87.9192502862104 41.9881106498826 -87.919248433469 41.9881113097903 -87.9196484000131</gml:posList>
+                        </gml:LinearRing>
+                      </gml:exterior>
+                    </gml:PolygonPatch>
+                  </gml:patches>
+                  <aixm:elevation uom="FT">751.184522814477</aixm:elevation>
+                </aixm:ElevatedSurface>
+              </aixm:horizontalProjection_surfaceExtent>
+            </aixm:VerticalStructurePart>
+          </aixm:part>
+        </aixm:VerticalStructureTimeSlice>
+      </aixm:timeSlice>
+    </aixm:VerticalStructure>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:VerticalStructure gml:id="VPS48">
+      <gml:identifier>VPS48</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:VerticalStructureTimeSlice gml:id="TS48">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="TSP48">
+              <gml:beginPosition>2008-03-23T14:00:00</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:type>Terminal Building</aixm:type>
+          <aixm:part>
+            <aixm:VerticalStructurePart>
+              <aixm:verticalExtent uom="FT">19.666661553657036</aixm:verticalExtent>
+              <aixm:horizontalProjection_surfaceExtent>
+                <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4269" gml:id="b9826ec1">
+                  <gml:patches>
+                    <gml:PolygonPatch>
+                      <gml:exterior>
+                        <gml:LinearRing>
+                          <gml:posList>41.9935847426185 -87.8927744803126 41.9930221206964 -87.8927804942935 41.9930199017985 -87.892407580787 41.9931821158281 -87.8924058460884 41.9931818237269 -87.8923567447804 41.9933610171489 -87.8923548287107 41.9933605213807 -87.8922713782158 41.9934230444559 -87.8922707101952 41.9934222324679 -87.8921341197412 41.9935809225232 -87.8921324227534 41.9935847426185 -87.8927744803126</gml:posList>
+                        </gml:LinearRing>
+                      </gml:exterior>
+                    </gml:PolygonPatch>
+                  </gml:patches>
+                  <aixm:elevation uom="FT">737.333338446343</aixm:elevation>
+                </aixm:ElevatedSurface>
+              </aixm:horizontalProjection_surfaceExtent>
+            </aixm:VerticalStructurePart>
+          </aixm:part>
+        </aixm:VerticalStructureTimeSlice>
+      </aixm:timeSlice>
+    </aixm:VerticalStructure>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:VerticalStructure gml:id="VPS49">
+      <gml:identifier>VPS49</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:VerticalStructureTimeSlice gml:id="TS49">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="TSP49">
+              <gml:beginPosition>2008-03-23T14:00:00</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:type>Terminal Building</aixm:type>
+          <aixm:part>
+            <aixm:VerticalStructurePart>
+              <aixm:verticalExtent uom="FT">54.89671736267803</aixm:verticalExtent>
+              <aixm:horizontalProjection_surfaceExtent>
+                <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4269" gml:id="b9826ec1">
+                  <gml:patches>
+                    <gml:PolygonPatch>
+                      <gml:exterior>
+                        <gml:LinearRing>
+                          <gml:posList>41.9930118529341 -87.8935059718197 41.993013649759 -87.8932603539433 41.9931149794285 -87.8932625663125 41.9931132281606 -87.8935059017853 41.9930118529341 -87.8935059718197</gml:posList>
+                        </gml:LinearRing>
+                      </gml:exterior>
+                    </gml:PolygonPatch>
+                  </gml:patches>
+                  <aixm:elevation uom="FT">732.103282637322</aixm:elevation>
+                </aixm:ElevatedSurface>
+              </aixm:horizontalProjection_surfaceExtent>
+            </aixm:VerticalStructurePart>
+          </aixm:part>
+        </aixm:VerticalStructureTimeSlice>
+      </aixm:timeSlice>
+    </aixm:VerticalStructure>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:VerticalStructure gml:id="VPS50">
+      <gml:identifier>VPS50</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:VerticalStructureTimeSlice gml:id="TS50">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="TSP50">
+              <gml:beginPosition>2008-03-23T14:00:00</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:type>Terminal Building</aixm:type>
+          <aixm:part>
+            <aixm:VerticalStructurePart>
+              <aixm:verticalExtent uom="FT">12.912596993719944</aixm:verticalExtent>
+              <aixm:horizontalProjection_surfaceExtent>
+                <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4269" gml:id="b9826ec1">
+                  <gml:patches>
+                    <gml:PolygonPatch>
+                      <gml:exterior>
+                        <gml:LinearRing>
+                          <gml:posList>41.9932896948573 -87.8939381793353 41.9930714951938 -87.8939379746193 41.9930715273517 -87.893877463089 41.9932897270153 -87.893877667805 41.9932896948573 -87.8939381793353</gml:posList>
+                        </gml:LinearRing>
+                      </gml:exterior>
+                    </gml:PolygonPatch>
+                  </gml:patches>
+                  <aixm:elevation uom="FT">734.08740300628</aixm:elevation>
+                </aixm:ElevatedSurface>
+              </aixm:horizontalProjection_surfaceExtent>
+            </aixm:VerticalStructurePart>
+          </aixm:part>
+        </aixm:VerticalStructureTimeSlice>
+      </aixm:timeSlice>
+    </aixm:VerticalStructure>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:VerticalStructure gml:id="VPS51">
+      <gml:identifier>VPS51</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:VerticalStructureTimeSlice gml:id="TS51">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="TSP51">
+              <gml:beginPosition>2008-03-23T14:00:00</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:type>Terminal Building</aixm:type>
+          <aixm:part>
+            <aixm:VerticalStructurePart>
+              <aixm:verticalExtent uom="FT">5.764645867621994</aixm:verticalExtent>
+              <aixm:horizontalProjection_surfaceExtent>
+                <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4269" gml:id="b9826ec1">
+                  <gml:patches>
+                    <gml:PolygonPatch>
+                      <gml:exterior>
+                        <gml:LinearRing>
+                          <gml:posList>41.9903948263634 -87.895593309848 41.99027810108 -87.8955909232906 41.9902785941685 -87.8955475450514 41.9903953207917 -87.8955499316088 41.9903948263634 -87.895593309848</gml:posList>
+                        </gml:LinearRing>
+                      </gml:exterior>
+                    </gml:PolygonPatch>
+                  </gml:patches>
+                  <aixm:elevation uom="FT">737.235354132378</aixm:elevation>
+                </aixm:ElevatedSurface>
+              </aixm:horizontalProjection_surfaceExtent>
+            </aixm:VerticalStructurePart>
+          </aixm:part>
+        </aixm:VerticalStructureTimeSlice>
+      </aixm:timeSlice>
+    </aixm:VerticalStructure>
+  </message:hasMember>
+</message:AIXMBasicMessage>

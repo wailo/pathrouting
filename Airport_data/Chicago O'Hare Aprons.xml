@@ -1,0 +1,982 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<message:AIXMBasicMessage xmlns:message="http://www.aixm.aero/schema/5.1/message" xmlns:gts="http://www.isotc211.org/2005/gts" xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:smXML="http://www.isotc211.org/smXML" xmlns:aixm="http://www.aixm.aero/schema/5.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  xmlns:xlink="http://www.w3.org/1999/xlink"  xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gss="http://www.isotc211.org/2005/gss" xmlns:gsr="http://www.isotc211.org/2005/gsr" xmlns:scXML="http://www.isotc211.org/scXML"  xmlns:iso19115="http://www.isotc211.org/2005/gmd" xsi:schemaLocation="http://www.isotc211.org/2005/gts iso/19139/gts/gts.xsd http://www.isotc211.org/2005/gco iso/19139/gco/gco.xsd http://www.w3.org/2001/XMLSchema http://www.w3.org/2001/XMLSchema.xsd http://www.isotc211.org/2005/gss iso/19139/gss/gss.xsd http://www.isotc211.org/2005/gsr iso/19139/gsr/gsr.xsd http://www.isotc211.org/2005/gmd iso/19139/gmd/gmd.xsd " gml:id="M001">
+  <gml:identifier codeSpace="http://www.faa.gov/NASR">KORD</gml:identifier>
+  <message:hasMember>
+    <aixm:ApronElement gml:id="AE0">
+      <gml:identifier>AE0</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:ApronElementTimeSlice gml:id="AETS0">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="AETSP0">
+              <gml:beginPosition>2008-03-23T14:00:00</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:type>NORMAL</aixm:type>
+          <aixm:surfaceProperties>
+            <aixm:SurfaceCharacteristics>
+              <aixm:composition>CONC</aixm:composition>
+            </aixm:SurfaceCharacteristics>
+          </aixm:surfaceProperties>
+          <aixm:extent>
+            <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4269" gml:id="b9826ec1">
+              <gml:patches>
+                <gml:PolygonPatch>
+                  <gml:exterior>
+                    <gml:LinearRing>
+                      <gml:posList>41.9719826506601 -87.9205685950426 41.9718104686739 -87.9208228770965 41.9717684817933 -87.9208762030285 41.9717197739032 -87.9209247166759 41.9716543994906 -87.9209543484164 41.971578988451 -87.9209744779235 41.9714324011704 -87.9209737589484 41.970037444662 -87.9209715578026 41.9700824577388 -87.9209661826613 41.9701201629236 -87.9209561179078 41.970170068697 -87.9209327832039 41.9702305169151 -87.9208938335191 41.9702791792481 -87.9208476033977 41.9703243423953 -87.9208058172069 41.9703613112973 -87.9207477400459 41.9703894401155 -87.9207053391459 41.9704194568729 -87.9206538663201 41.9704428437349 -87.9205930140454 41.9704592791221 -87.9205387661058 41.970476220327 -87.9204594009518 41.9704903075146 -87.920352512385 41.9704968416061 -87.9153759317267 41.9704965642439 -87.9152205390524 41.9705021798242 -87.9151110599979 41.9705085444165 -87.9150649136035 41.9705202371775 -87.9149922142892 41.9705419672357 -87.9149290172085 41.9705706943256 -87.9148569324911 41.9705996056537 -87.9147757141187 41.9706348708549 -87.9147175756776 41.9706806322737 -87.9146461055571 41.9707194884448 -87.9145789560213 41.9708461846995 -87.9143824439422 41.9712805064897 -87.9148923582326 41.9716753376595 -87.9153476167229 41.9717235410719 -87.9154087668683 41.9717730790388 -87.9154882456037 41.9718043399064 -87.9155442145493 41.9718390075059 -87.9156003062795 41.9718668154147 -87.9156584355173 41.9718892368685 -87.9157300807239 41.971921326808 -87.9158294952494 41.9719481224117 -87.9159378589161 41.9719651574106 -87.9160230200913 41.9719774963452 -87.9160874463659 41.9719864285481 -87.9161517498557 41.9719851861126 -87.9162134010165 41.9719826506601 -87.9205685950426</gml:posList>
+                    </gml:LinearRing>
+                  </gml:exterior>
+                </gml:PolygonPatch>
+              </gml:patches>
+              <aixm:elevation uom="FT">751.92056340667</aixm:elevation>
+            </aixm:ElevatedSurface>
+          </aixm:extent>
+        </aixm:ApronElementTimeSlice>
+      </aixm:timeSlice>
+    </aixm:ApronElement>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:ApronElement gml:id="AE2">
+      <gml:identifier>AE2</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:ApronElementTimeSlice gml:id="AETS2">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="AETSP2">
+              <gml:beginPosition>2008-03-23T14:00:00</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:type>NORMAL</aixm:type>
+          <aixm:surfaceProperties>
+            <aixm:SurfaceCharacteristics>
+              <aixm:composition>CONC</aixm:composition>
+            </aixm:SurfaceCharacteristics>
+          </aixm:surfaceProperties>
+          <aixm:extent>
+            <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4269" gml:id="b9826ec1">
+              <gml:patches>
+                <gml:PolygonPatch>
+                  <gml:exterior>
+                    <gml:LinearRing>
+                      <gml:posList>41.9615664523175 -87.9042766893076 41.9616665841037 -87.9040449427348 41.9617269874347 -87.9040928229298 41.9617607800702 -87.9041077528305 41.961806542159 -87.9041208286149 41.9618490817541 -87.9041246490821 41.9619087936894 -87.9041222328947 41.9619412973274 -87.9041165511283 41.9620118732868 -87.9040825368496 41.9620413379995 -87.9040584638662 41.9620726437543 -87.9040276029319 41.9621004509931 -87.9040011864893 41.9621330497651 -87.9039740580301 41.9620969899948 -87.9040413251879 41.9620686762684 -87.9040928597428 41.9620470848914 -87.904149206919 41.9620340569059 -87.9042035778678 41.962029636529 -87.9042536892874 41.9620246198903 -87.9043334845246 41.962031572705 -87.9044114265433 41.962046996457 -87.9044919598354 41.9620641687971 -87.9045702708817 41.9620833684273 -87.9046326589752 41.9621111301091 -87.904693071739 41.9621640285808 -87.9047749572341 41.9615664523175 -87.9042766893076</gml:posList>
+                    </gml:LinearRing>
+                  </gml:exterior>
+                </gml:PolygonPatch>
+              </gml:patches>
+              <aixm:elevation uom="FT">737.913633055413</aixm:elevation>
+            </aixm:ElevatedSurface>
+          </aixm:extent>
+        </aixm:ApronElementTimeSlice>
+      </aixm:timeSlice>
+    </aixm:ApronElement>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:ApronElement gml:id="AE3">
+      <gml:identifier>AE3</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:ApronElementTimeSlice gml:id="AETS3">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="AETSP3">
+              <gml:beginPosition>2008-03-23T14:00:00</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:type>NORMAL</aixm:type>
+          <aixm:surfaceProperties>
+            <aixm:SurfaceCharacteristics>
+              <aixm:composition>CONC</aixm:composition>
+            </aixm:SurfaceCharacteristics>
+          </aixm:surfaceProperties>
+          <aixm:extent>
+            <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4269" gml:id="b9826ec1">
+              <gml:patches>
+                <gml:PolygonPatch>
+                  <gml:exterior>
+                    <gml:LinearRing>
+                      <gml:posList>41.9658765274427 -87.903942333338 41.9658722812547 -87.9027996608016 41.9662389360392 -87.9032150564661 41.9663056007891 -87.9032905840932 41.9663648075768 -87.9033978319232 41.9663879190864 -87.9034352267093 41.9664041253483 -87.90347694208 41.9664133339085 -87.9035275446385 41.9664227260369 -87.9035690157867 41.9664253964858 -87.9036056725178 41.9664250333691 -87.904131217951 41.9664238428553 -87.9047824114099 41.9664085189269 -87.9047110140174 41.9663693853935 -87.9046227706545 41.9663295155773 -87.9045710610135 41.9662695725069 -87.9045003469056 41.9659363412115 -87.9041181475539 41.965909730516 -87.9040851963616 41.9658897497158 -87.9040616252916 41.9658868943587 -87.9040341017665 41.9658807253938 -87.9040018886292 41.9658765274427 -87.903942333338</gml:posList>
+                    </gml:LinearRing>
+                  </gml:exterior>
+                </gml:PolygonPatch>
+              </gml:patches>
+              <aixm:elevation uom="FT">739.560756869042</aixm:elevation>
+            </aixm:ElevatedSurface>
+          </aixm:extent>
+        </aixm:ApronElementTimeSlice>
+      </aixm:timeSlice>
+    </aixm:ApronElement>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:ApronElement gml:id="AE4">
+      <gml:identifier>AE4</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:ApronElementTimeSlice gml:id="AETS4">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="AETSP4">
+              <gml:beginPosition>2008-03-23T14:00:00</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:type>NORMAL</aixm:type>
+          <aixm:surfaceProperties>
+            <aixm:SurfaceCharacteristics>
+              <aixm:composition>CONC</aixm:composition>
+            </aixm:SurfaceCharacteristics>
+          </aixm:surfaceProperties>
+          <aixm:extent>
+            <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4269" gml:id="b9826ec1">
+              <gml:patches>
+                <gml:PolygonPatch>
+                  <gml:exterior>
+                    <gml:LinearRing>
+                      <gml:posList>41.956768960633 -87.8984638624925 41.9567297373253 -87.8985492793383 41.9567219108867 -87.8985992677488 41.9567172158274 -87.8986630798754 41.9567983409311 -87.8992052755418 41.9568069967766 -87.8992832795141 41.9568116931758 -87.8993885609931 41.9568000010847 -87.8994612603074 41.9567677748089 -87.8995377881697 41.9567395066396 -87.899587040321 41.9566973368607 -87.8996494984489 41.9555796246739 -87.9009756252375 41.9555236417198 -87.9010467263305 41.9554890210174 -87.9010728976526 41.9554440883355 -87.9011032674482 41.9553961153883 -87.9011152469247 41.9553246631251 -87.9011080980271 41.9552568942859 -87.9010873732275 41.9544570619978 -87.9007212386931 41.9545133946695 -87.9007331625012 41.9547287644344 -87.9007043729694 41.9548352045365 -87.900667082337 41.9550184364599 -87.9005411622546 41.9551268100582 -87.9004079693676 41.9558356581541 -87.8995766554742 41.956768960633 -87.8984638624925</gml:posList>
+                    </gml:LinearRing>
+                  </gml:exterior>
+                </gml:PolygonPatch>
+              </gml:patches>
+              <aixm:elevation uom="FT">743.66797441932</aixm:elevation>
+            </aixm:ElevatedSurface>
+          </aixm:extent>
+        </aixm:ApronElementTimeSlice>
+      </aixm:timeSlice>
+    </aixm:ApronElement>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:ApronElement gml:id="AE6">
+      <gml:identifier>AE6</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:ApronElementTimeSlice gml:id="AETS6">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="AETSP6">
+              <gml:beginPosition>2008-03-23T14:00:00</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:type>NORMAL</aixm:type>
+          <aixm:surfaceProperties>
+            <aixm:SurfaceCharacteristics>
+              <aixm:composition>CONC</aixm:composition>
+            </aixm:SurfaceCharacteristics>
+          </aixm:surfaceProperties>
+          <aixm:extent>
+            <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4269" gml:id="b9826ec1">
+              <gml:patches>
+                <gml:PolygonPatch>
+                  <gml:exterior>
+                    <gml:LinearRing>
+                      <gml:posList>41.9705462569709 -87.8831158707262 41.9705454972395 -87.8818333071395 41.9705499189563 -87.880988631039 41.9705528185306 -87.8809293244597 41.9705676426711 -87.8808704488615 41.9705941140155 -87.8808257022576 41.9706242232269 -87.8807696603596 41.9706594877581 -87.8807115246121 41.9706981141339 -87.8806557915838 41.9707714060993 -87.880571603034 41.9708165699164 -87.8805298194245 41.9708494413609 -87.8805058676546 41.9708839696093 -87.8804842611397 41.9709248162229 -87.8804722583184 41.970972696716 -87.8804648454449 41.9710306587233 -87.8804646515035 41.9712743871017 -87.880466590918 41.9715178856848 -87.880479947738 41.9715499283924 -87.8804970971909 41.97159196217 -87.8805260339746 41.9716336736982 -87.8805709565624 41.9717198589877 -87.8806928882747 41.9717545728142 -87.8807466962545 41.9717894246518 -87.8807936552276 41.9718140093971 -87.8808425284747 41.9718399759288 -87.8809074449902 41.9718480328328 -87.8809305850792 41.9718574249612 -87.8809720562274 41.9718631343355 -87.8810271032776 41.9718658051194 -87.881063758213 41.9718605131284 -87.8813263477626 41.9718619019494 -87.8821033131542 41.9718570578247 -87.8831533948066 41.9718547153197 -87.883692580789 41.9718497439032 -87.8837700927246 41.9718418719074 -87.8838223635387 41.9718202801954 -87.883878710715 41.9718111647593 -87.8839080892542 41.9717810562179 -87.8839641275607 41.9717545842035 -87.8840088741646 41.9717213449526 -87.8840510887551 41.9715492081885 -87.8842185428371 41.971495573434 -87.884257736969 41.9714609527315 -87.8842839082911 41.971169252076 -87.8842939501488 41.9710498744325 -87.8842964965283 41.9709955482823 -87.8842853951756 41.9709413608132 -87.8842674448163 41.9708721649654 -87.8842329591521 41.9708082168915 -87.8841918040566 41.970778841953 -87.8841700036003 41.9706699598573 -87.8840746741912 41.9706299058029 -87.8840320968583 41.9705936269567 -87.8839713788163 41.9705692840659 -87.8839187488513 41.9705515590113 -87.8838678392189 41.9705424429052 -87.8838126700574 41.9705401864897 -87.8837554645106 41.9705462569709 -87.8831158707262</gml:posList>
+                    </gml:LinearRing>
+                  </gml:exterior>
+                </gml:PolygonPatch>
+              </gml:patches>
+              <aixm:elevation uom="FT">740.607770151818</aixm:elevation>
+            </aixm:ElevatedSurface>
+          </aixm:extent>
+        </aixm:ApronElementTimeSlice>
+      </aixm:timeSlice>
+    </aixm:ApronElement>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:ApronElement gml:id="AE8">
+      <gml:identifier>AE8</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:ApronElementTimeSlice gml:id="AETS8">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="AETSP8">
+              <gml:beginPosition>2008-03-23T14:00:00</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:type>NORMAL</aixm:type>
+          <aixm:surfaceProperties>
+            <aixm:SurfaceCharacteristics>
+              <aixm:composition>CONC</aixm:composition>
+            </aixm:SurfaceCharacteristics>
+          </aixm:surfaceProperties>
+          <aixm:extent>
+            <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4269" gml:id="b9826ec1">
+              <gml:patches>
+                <gml:PolygonPatch>
+                  <gml:exterior>
+                    <gml:LinearRing>
+                      <gml:posList>41.9795359609102 -87.914566405495 41.9794156165186 -87.9146169043486 41.9793142399521 -87.9146566623473 41.9791923760979 -87.9146979664904 41.9790962938673 -87.9147287753478 41.9789814278824 -87.9147611914053 41.978875217073 -87.9147870646323 41.9787486110951 -87.9148099169517 41.9786579152357 -87.9148272100649 41.9786016100322 -87.9148297488125 41.9785471003138 -87.9148277820126 41.9784775358221 -87.9148115618626 41.9784217828308 -87.9147866996452 41.9783813607187 -87.9147623909691 41.9783343089625 -87.9147287026198 41.9782640534101 -87.9146621865362 41.9779457389605 -87.9143010904393 41.9779056849479 -87.9142585144533 41.9778390203237 -87.9141829881729 41.9777937179929 -87.9141470780267 41.9777563345759 -87.9141411592207 41.9777222660019 -87.914139929578 41.9776948270719 -87.9141480800575 41.9776672040922 -87.914165363743 41.9776436308146 -87.9141940432849 41.9776493393096 -87.9141645439812 41.9776583166299 -87.9141420175912 41.9776845583047 -87.9141086888417 41.9777227239803 -87.9140757901752 41.9777673812471 -87.9140591210866 41.9778186681998 -87.9140518312222 41.9778688983999 -87.9140538186733 41.9779557272251 -87.9140592364638 41.9780663120586 -87.9140700814725 41.97818384866 -87.9140743221461 41.9782520317839 -87.9140744972322 41.9783927697529 -87.91407026015 41.9785139892759 -87.9140609235749 41.9786079999992 -87.9140483205227 41.9787208865122 -87.9140295432186 41.9788270513457 -87.9140059532932 41.9789779653767 -87.9139611272271 41.9790233611664 -87.9139492303553 41.9791245997217 -87.9139163222612 41.9792328361463 -87.9138745269793 41.9794392263088 -87.9137837165858 41.9795443318565 -87.9137280980368 41.9796409202397 -87.9136721719649 41.9797496167573 -87.9136075427701 41.9799553158591 -87.9134664368921 41.9801438886804 -87.9133292830201 41.9805001330017 -87.913077072032 41.980459849822 -87.9131304593564 41.9804352195196 -87.9131684166625 41.98041569965 -87.9132065580334 41.9803867420948 -87.9132900597073 41.9803805734649 -87.9133423929239 41.9803778115668 -87.9133948491497 41.9803764311202 -87.9134633504395 41.9803781813831 -87.9135456749964 41.9803768009365 -87.9136141762863 41.980364693807 -87.913707426212 41.9803498237745 -87.9137685860095 41.980333158592 -87.9138342509056 41.98031156688 -87.9138905976329 41.9802831617045 -87.9139466987908 41.980260234768 -87.9139847171526 41.980209316857 -87.9140582865098 41.9801239160872 -87.9141511768357 41.9800035725331 -87.9142862220432 41.9799600665248 -87.9143303531524 41.9799202894976 -87.9143586232623 41.9798598871716 -87.9143952898701 41.9797546895049 -87.9144554750221 41.9796512873231 -87.9145111555245 41.979585866851 -87.9145430705666 41.9795359609102 -87.914566405495</gml:posList>
+                    </gml:LinearRing>
+                  </gml:exterior>
+                </gml:PolygonPatch>
+              </gml:patches>
+              <aixm:elevation uom="FT">744.767855472291</aixm:elevation>
+            </aixm:ElevatedSurface>
+          </aixm:extent>
+        </aixm:ApronElementTimeSlice>
+      </aixm:timeSlice>
+    </aixm:ApronElement>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:ApronElement gml:id="AE9">
+      <gml:identifier>AE9</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:ApronElementTimeSlice gml:id="AETS9">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="AETSP9">
+              <gml:beginPosition>2008-03-23T14:00:00</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:type>NORMAL</aixm:type>
+          <aixm:surfaceProperties>
+            <aixm:SurfaceCharacteristics>
+              <aixm:composition>CONC</aixm:composition>
+            </aixm:SurfaceCharacteristics>
+          </aixm:surfaceProperties>
+          <aixm:extent>
+            <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4269" gml:id="b9826ec1">
+              <gml:patches>
+                <gml:PolygonPatch>
+                  <gml:exterior>
+                    <gml:LinearRing>
+                      <gml:posList>41.9911027351795 -87.9309518525168 41.9909866061579 -87.9318121786155 41.9909867160309 -87.9317026672373 41.9909665784608 -87.9315874265053 41.9909451277747 -87.9315131792509 41.9909233836475 -87.9314480418577 41.9908949881863 -87.9313779580594 41.9908533650924 -87.9312957035369 41.9908146281737 -87.9312295874576 41.9907491412083 -87.9311482406889 41.9894005082128 -87.929619457648 41.9894664882666 -87.9296323843849 41.9895088965502 -87.9296371081164 41.9895585403703 -87.9296285594284 41.9896067786205 -87.9296108030105 41.9900788638818 -87.929382451311 41.9901303527638 -87.929369445561 41.990185022602 -87.9293634674952 41.9902201953491 -87.9293814645441 41.9902550036395 -87.9294108493685 41.9903043741172 -87.9294638878675 41.9910993492163 -87.9303675625755 41.9911367529205 -87.9304221948064 41.9911474052382 -87.93046159545 41.9911525223704 -87.9305143672796 41.9911507684228 -87.930569025549 41.9911394957248 -87.9306550771938 41.9911027351795 -87.9309518525168</gml:posList>
+                    </gml:LinearRing>
+                  </gml:exterior>
+                </gml:PolygonPatch>
+              </gml:patches>
+              <aixm:elevation uom="FT">752.164142794335</aixm:elevation>
+            </aixm:ElevatedSurface>
+          </aixm:extent>
+        </aixm:ApronElementTimeSlice>
+      </aixm:timeSlice>
+    </aixm:ApronElement>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:ApronElement gml:id="AE10">
+      <gml:identifier>AE10</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:ApronElementTimeSlice gml:id="AETS10">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="AETSP10">
+              <gml:beginPosition>2008-03-23T14:00:00</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:type>NORMAL</aixm:type>
+          <aixm:surfaceProperties>
+            <aixm:SurfaceCharacteristics>
+              <aixm:composition>CONC</aixm:composition>
+            </aixm:SurfaceCharacteristics>
+          </aixm:surfaceProperties>
+          <aixm:extent>
+            <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4269" gml:id="b9826ec1">
+              <gml:patches>
+                <gml:PolygonPatch>
+                  <gml:exterior>
+                    <gml:LinearRing>
+                      <gml:posList>41.9990855592728 -87.9141843587824 41.9991082105219 -87.9142445870324 41.9991211942902 -87.914277046188 41.9991270872328 -87.9143229595833 41.9991324281307 -87.9143962734944 41.9991268125504 -87.9145057529979 41.9991112521271 -87.914601163216 41.9990991915596 -87.9146921293912 41.9990832626599 -87.9148058069192 41.9990749766306 -87.9148786287937 41.9990593250932 -87.9149786060637 41.999057391597 -87.9150745078694 41.9990593264331 -87.9151476987714 41.999068350755 -87.9152074356582 41.9990945929741 -87.9152586532625 41.9991809625019 -87.9153714515443 42.0004477749783 -87.9167973230527 42.0005281591094 -87.9168687745423 42.000598965534 -87.9169078898854 42.0006805475484 -87.9169199735156 42.0008354201883 -87.9168478701673 42.0014818939395 -87.9165183607139 42.0014469061006 -87.9165298050556 42.0013888958563 -87.9165322820741 42.0013039104599 -87.9165200756592 42.0012598031652 -87.9165093440074 42.0012158834584 -87.9164894791496 42.0011685550099 -87.9164694910582 42.0011247264173 -87.916445059373 42.001091024896 -87.9164255630938 42.0010709529816 -87.9164065584023 42.0010341214208 -87.9163732390804 42.0009940687063 -87.9163306630944 42.0009575131678 -87.9162836435146 42.0008907559639 -87.9162126836127 42.0007974818584 -87.9161042063646 41.9990793876281 -87.9141774379456 41.9990855592728 -87.9141843587824</gml:posList>
+                    </gml:LinearRing>
+                  </gml:exterior>
+                </gml:PolygonPatch>
+              </gml:patches>
+              <aixm:elevation uom="FT">742.076282210076</aixm:elevation>
+            </aixm:ElevatedSurface>
+          </aixm:extent>
+        </aixm:ApronElementTimeSlice>
+      </aixm:timeSlice>
+    </aixm:ApronElement>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:ApronElement gml:id="AE11">
+      <gml:identifier>AE11</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:ApronElementTimeSlice gml:id="AETS11">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="AETSP11">
+              <gml:beginPosition>2008-03-23T14:00:00</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:type>NORMAL</aixm:type>
+          <aixm:surfaceProperties>
+            <aixm:SurfaceCharacteristics>
+              <aixm:composition>CONC</aixm:composition>
+            </aixm:SurfaceCharacteristics>
+          </aixm:surfaceProperties>
+          <aixm:extent>
+            <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4269" gml:id="b9826ec1">
+              <gml:patches>
+                <gml:PolygonPatch>
+                  <gml:exterior>
+                    <gml:LinearRing>
+                      <gml:posList>41.9894983072085 -87.8975456789883 41.9895567757033 -87.8975203678324 41.9896082471664 -87.89750394566 41.9896492217419 -87.8975008533712 41.9896899189551 -87.8975114626872 41.9897337488876 -87.8975358939235 41.9897808924279 -87.8975650156698 41.98983144337 -87.8975942595275 41.9898820854262 -87.8976189367821 41.9899295049888 -87.8976343587195 41.9899770170055 -87.897645212258 41.992864742417 -87.8976442928319 41.9929431005979 -87.897647119349 41.9930149199976 -87.8976360000388 41.9930662990066 -87.8976241444694 41.9931003676644 -87.8976253727653 41.9931449332098 -87.8976132711775 41.9932104925305 -87.897574506231 41.9932417982853 -87.8975436443987 41.9932634271799 -87.8975079825155 41.9932613074357 -87.8972748325607 41.992425389919 -87.8972748307649 41.9923126133627 -87.8972748307649 41.991562469112 -87.8972748289692 41.9913593595618 -87.8972748289692 41.9912503347652 -87.8972748289692 41.98996789085 -87.8972748253777 41.9894976935278 -87.8972804191521 41.9894983072085 -87.8975456789883</gml:posList>
+                    </gml:LinearRing>
+                  </gml:exterior>
+                </gml:PolygonPatch>
+              </gml:patches>
+              <aixm:elevation uom="FT">739.017404741967</aixm:elevation>
+            </aixm:ElevatedSurface>
+          </aixm:extent>
+        </aixm:ApronElementTimeSlice>
+      </aixm:timeSlice>
+    </aixm:ApronElement>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:Apron gml:id="F1006">
+      <aixm:timeSlice>
+        <aixm:ApronTimeSlice gml:id="TS1007">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="VT1008">
+               <gml:beginPosition>2008-03-23T14:00:00</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+         
+        </aixm:ApronTimeSlice>
+      </aixm:timeSlice>
+      <aixm:timeSlice>
+        <aixm:ApronTimeSlice gml:id="TS1007">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="VT1008">
+                <gml:beginPosition>2010-01-23T14:00:00</gml:beginPosition>
+	      <gml:endPosition>2010-12-23T14:00:00</gml:endPosition>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>TEMPDELTA</aixm:interpretation>
+          <aixm:sequenceNumber>2</aixm:sequenceNumber>
+         <aixm:contaminant>
+            <aixm:ApronContamination gml:id="id1000">
+              <aixm:frictionEstimation>MEDIUM</aixm:frictionEstimation>              
+              <aixm:layer>
+                <aixm:SurfaceContaminationLayer gml:id="id1002">
+                  <aixm:type>GRAS</aixm:type>
+                  <aixm:extent>
+                    <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4269" gml:id="b9826ec1">
+              <gml:patches>
+                <gml:PolygonPatch>
+                  <gml:exterior>
+                    <gml:LinearRing>
+                      <gml:posList>41.9897916412194 -87.9144798487942 41.990337910829 -87.9138543498848 41.9908409226494 -87.9132555381279 41.9922066877876 -87.9116321668756 41.9936561506646 -87.9099158442417 41.99373662457 -87.909813636196 41.9938138759818 -87.9097021710373 41.9938566982989 -87.9096313402053 41.9938133467157 -87.9096516079854 41.9937520228637 -87.9096493947183 41.9937046957551 -87.9096294070759 41.9936713627102 -87.9095916441601 41.9936182337733 -87.9095211760705 41.9929865741132 -87.9085523783354 41.9929402586399 -87.9084821562641 41.9929176073908 -87.908421927565 41.9929117144483 -87.9083760146187 41.9929156725547 -87.908348737112 41.9929199080234 -87.9083077588983 41.9929325340347 -87.9082592421084 41.9928472551971 -87.9083473696451 41.9927431170675 -87.9084395834206 41.9926457924015 -87.9085320441123 41.9925692766026 -87.9086069746513 41.9924992982449 -87.9086958510175 41.9923978305643 -87.908824722422 41.9915003654299 -87.9098800198427 41.9906935012723 -87.9108380448481 41.9895270818653 -87.9122126839373 41.9892998377811 -87.9124923995951 41.9890551908915 -87.9127897679658 41.9889610887191 -87.9128914844238 41.9888874282773 -87.9129939384878 41.9888170827832 -87.9131010826129 41.988739462895 -87.9132308141837 41.9887108275892 -87.9132983318491 41.9886860592757 -87.9133431390598 41.9886464674916 -87.9134468223175 41.9886356027976 -87.9134784208579 41.9886133206948 -87.9135690184546 41.9886085331815 -87.9136373971842 41.9886140589875 -87.9137015774404 41.9886329350284 -87.9137799499913 41.9886590854634 -87.9138357346475 41.9886953649796 -87.9138964544853 41.9887185682733 -87.9139292822195 41.9887548477895 -87.9139900020573 41.9887979407693 -87.9140509679134 41.9888377188014 -87.9141072441574 41.9888844938653 -87.9141546327647 41.9889911202155 -87.914277302083 41.989041211567 -87.9143293803025 41.9891244497153 -87.9144283555416 41.98920446537 -87.9145180741166 41.9892545567215 -87.9145701518872 41.98929829286 -87.9145991506244 41.9893490287102 -87.914619261276 41.9894274780053 -87.9146175220881 41.9894717675284 -87.9146191198604 41.9895231465374 -87.9146072633931 41.9895746166606 -87.9145908403228 41.9896329015872 -87.9145746628218 41.9896810581026 -87.9145535501394 41.9897431175675 -87.9145192287866 41.9897916412194 -87.9144798487942</gml:posList>
+                    </gml:LinearRing>
+                  </gml:exterior>
+                </gml:PolygonPatch>
+              </gml:patches>
+              <aixm:elevation uom="FT">743.830980009759</aixm:elevation>
+            </aixm:ElevatedSurface>
+                  </aixm:extent>
+                </aixm:SurfaceContaminationLayer>
+              </aixm:layer>
+            </aixm:ApronContamination>
+          </aixm:contaminant>
+        </aixm:ApronTimeSlice>
+      </aixm:timeSlice>
+    </aixm:Apron>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:ApronElement gml:id="AE13">
+      <gml:identifier>AE13</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:ApronElementTimeSlice gml:id="AETS13">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="AETSP13">
+              <gml:beginPosition>2008-03-23T14:00:00</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:type>NORMAL</aixm:type>
+          <aixm:surfaceProperties>
+            <aixm:SurfaceCharacteristics>
+              <aixm:composition>CONC</aixm:composition>
+            </aixm:SurfaceCharacteristics>
+          </aixm:surfaceProperties>
+          <aixm:extent>
+            <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4269" gml:id="b9826ec1">
+              <gml:patches>
+                <gml:PolygonPatch>
+                  <gml:exterior>
+                    <gml:LinearRing>
+                      <gml:posList>41.9897916412194 -87.9144798487942 41.990337910829 -87.9138543498848 41.9908409226494 -87.9132555381279 41.9922066877876 -87.9116321668756 41.9936561506646 -87.9099158442417 41.99373662457 -87.909813636196 41.9938138759818 -87.9097021710373 41.9938566982989 -87.9096313402053 41.9938133467157 -87.9096516079854 41.9937520228637 -87.9096493947183 41.9937046957551 -87.9096294070759 41.9936713627102 -87.9095916441601 41.9936182337733 -87.9095211760705 41.9929865741132 -87.9085523783354 41.9929402586399 -87.9084821562641 41.9929176073908 -87.908421927565 41.9929117144483 -87.9083760146187 41.9929156725547 -87.908348737112 41.9929199080234 -87.9083077588983 41.9929325340347 -87.9082592421084 41.9928472551971 -87.9083473696451 41.9927431170675 -87.9084395834206 41.9926457924015 -87.9085320441123 41.9925692766026 -87.9086069746513 41.9924992982449 -87.9086958510175 41.9923978305643 -87.908824722422 41.9915003654299 -87.9098800198427 41.9906935012723 -87.9108380448481 41.9895270818653 -87.9122126839373 41.9892998377811 -87.9124923995951 41.9890551908915 -87.9127897679658 41.9889610887191 -87.9128914844238 41.9888874282773 -87.9129939384878 41.9888170827832 -87.9131010826129 41.988739462895 -87.9132308141837 41.9887108275892 -87.9132983318491 41.9886860592757 -87.9133431390598 41.9886464674916 -87.9134468223175 41.9886356027976 -87.9134784208579 41.9886133206948 -87.9135690184546 41.9886085331815 -87.9136373971842 41.9886140589875 -87.9137015774404 41.9886329350284 -87.9137799499913 41.9886590854634 -87.9138357346475 41.9886953649796 -87.9138964544853 41.9887185682733 -87.9139292822195 41.9887548477895 -87.9139900020573 41.9887979407693 -87.9140509679134 41.9888377188014 -87.9141072441574 41.9888844938653 -87.9141546327647 41.9889911202155 -87.914277302083 41.989041211567 -87.9143293803025 41.9891244497153 -87.9144283555416 41.98920446537 -87.9145180741166 41.9892545567215 -87.9145701518872 41.98929829286 -87.9145991506244 41.9893490287102 -87.914619261276 41.9894274780053 -87.9146175220881 41.9894717675284 -87.9146191198604 41.9895231465374 -87.9146072633931 41.9895746166606 -87.9145908403228 41.9896329015872 -87.9145746628218 41.9896810581026 -87.9145535501394 41.9897431175675 -87.9145192287866 41.9897916412194 -87.9144798487942</gml:posList>
+                    </gml:LinearRing>
+                  </gml:exterior>
+                </gml:PolygonPatch>
+              </gml:patches>
+              <aixm:elevation uom="FT">743.830980009759</aixm:elevation>
+            </aixm:ElevatedSurface>
+          </aixm:extent>
+        </aixm:ApronElementTimeSlice>
+      </aixm:timeSlice>    
+    </aixm:ApronElement>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:ApronElement gml:id="AE15">
+      <gml:identifier>AE15</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:ApronElementTimeSlice gml:id="AETS15">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="AETSP15">
+              <gml:beginPosition>2008-03-23T14:00:00</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:type>NORMAL</aixm:type>
+          <aixm:surfaceProperties>
+            <aixm:SurfaceCharacteristics>
+              <aixm:composition>CONC</aixm:composition>
+            </aixm:SurfaceCharacteristics>
+          </aixm:surfaceProperties>
+          <aixm:extent>
+            <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4269" gml:id="b9826ec1">
+              <gml:patches>
+                <gml:PolygonPatch>
+                  <gml:exterior>
+                    <gml:LinearRing>
+                      <gml:posList>41.982339235886 -87.9176563816856 41.9823373402424 -87.9168199888382 41.9823399637944 -87.9167743827414 41.9823476518869 -87.9167312442354 41.9823654224987 -87.9166953248858 41.9823935516519 -87.9166529239859 41.9827159557708 -87.9162189739153 41.9827301813046 -87.9161897816856 41.9827392046217 -87.9161649717696 41.9827399409045 -87.9161284378232 41.9827355667547 -87.9160917193631 41.9827244250333 -87.9160524715831 41.9827146188715 -87.9160315526176 41.9827298114883 -87.9160389558388 41.9827531072362 -87.91606721697 41.9827724900996 -87.9161204720819 41.9827834479177 -87.9161688532924 41.982785566322 -87.9162329107639 41.9827828050939 -87.916369913568 41.9827842193733 -87.91762104012 41.9827728944187 -87.9176754724611 41.9827652525532 -87.9177163274411 41.9827541115018 -87.9177616262395 41.9827327499201 -87.9178065562348 41.9827115725766 -87.9178423527996 41.9826871724045 -87.9178688929248 41.9826558666497 -87.9178997539714 41.9826177467614 -87.9179303691119 41.9825794429699 -87.9179701177951 41.9825413234166 -87.9180007329355 41.982513700416 -87.9180180166211 41.9824790797135 -87.9180441879432 41.982447957862 -87.918065915391 41.9824204269804 -87.9180786323051 41.982392987883 -87.9180867824479 41.982098202745 -87.9180807165024 41.982172140549 -87.9180491086465 41.9822311155315 -87.9179986806129 41.9822644469015 -87.9179518973992 41.9822979625097 -87.9178959806428 41.9823197381249 -87.9178305001483 41.9823349300718 -87.9177533570157 41.982339533347 -87.9176941120533 41.982339235886 -87.9176563816856</gml:posList>
+                    </gml:LinearRing>
+                  </gml:exterior>
+                </gml:PolygonPatch>
+              </gml:patches>
+              <aixm:elevation uom="FT">747.520963258469</aixm:elevation>
+            </aixm:ElevatedSurface>
+          </aixm:extent>
+        </aixm:ApronElementTimeSlice>
+      </aixm:timeSlice>
+    </aixm:ApronElement>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:ApronElement gml:id="AE16">
+      <gml:identifier>AE16</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:ApronElementTimeSlice gml:id="AETS16">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="AETSP16">
+              <gml:beginPosition>2008-03-23T14:00:00</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:type>NORMAL</aixm:type>
+          <aixm:surfaceProperties>
+            <aixm:SurfaceCharacteristics>
+              <aixm:composition>CONC</aixm:composition>
+            </aixm:SurfaceCharacteristics>
+          </aixm:surfaceProperties>
+          <aixm:extent>
+            <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4269" gml:id="b9826ec1">
+              <gml:patches>
+                <gml:PolygonPatch>
+                  <gml:exterior>
+                    <gml:LinearRing>
+                      <gml:posList>41.9814749607607 -87.8951103363604 41.9811232212308 -87.894631496699 41.9810784711122 -87.8945681855878 41.9810589043455 -87.8945240639064 41.9810378640082 -87.8944684637639 41.9810286557831 -87.8944178612054 41.981021335162 -87.8943581847008 41.9810270428614 -87.8942441399411 41.9810734923261 -87.8938847789917 41.9810785555268 -87.8938027004531 41.9810763912304 -87.8937409265076 41.9810673669085 -87.8936811889473 41.9810480302721 -87.8936256516562 41.9810250564386 -87.8935814060677 41.9810020367131 -87.8935394446786 41.980980352547 -87.8935158125529 41.9809482940955 -87.8934786727639 41.980995621874 -87.8934986613043 41.9810394508016 -87.8935230925406 41.9810697445862 -87.8935424651372 41.9810998541326 -87.8935709727356 41.9811365011202 -87.8936134261614 41.9811765551746 -87.8936560016985 41.9821819597751 -87.8950267404094 41.9822614233852 -87.8951438595004 41.9823212743365 -87.8952191411092 41.9823444783002 -87.8952519674966 41.9823874788259 -87.8953174999557 41.9825350653475 -87.8955788360689 41.9826492283799 -87.8957993708502 41.9825836690592 -87.8957535898919 41.9825482189499 -87.8957363147362 41.9825176953701 -87.8957283595449 41.9824819695734 -87.8957247841983 41.982410333407 -87.8957267703024 41.9821657307346 -87.8957682163101 41.9821077680573 -87.8957684084558 41.9820582766524 -87.8957711936706 41.9820124221095 -87.8957626835913 41.9819719077946 -87.895742942865 41.9819248101464 -87.8957115369193 41.9818729702069 -87.8956616813946 41.9818364612304 -87.8956123771664 41.9814749607607 -87.8951103363604</gml:posList>
+                    </gml:LinearRing>
+                  </gml:exterior>
+                </gml:PolygonPatch>
+              </gml:patches>
+              <aixm:elevation uom="FT">742.655224747384</aixm:elevation>
+            </aixm:ElevatedSurface>
+          </aixm:extent>
+        </aixm:ApronElementTimeSlice>
+      </aixm:timeSlice>
+    </aixm:ApronElement>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:ApronElement gml:id="AE17">
+      <gml:identifier>AE17</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:ApronElementTimeSlice gml:id="AETS17">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="AETSP17">
+              <gml:beginPosition>2008-03-23T14:00:00</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:type>NORMAL</aixm:type>
+          <aixm:surfaceProperties>
+            <aixm:SurfaceCharacteristics>
+              <aixm:composition>CONC</aixm:composition>
+            </aixm:SurfaceCharacteristics>
+          </aixm:surfaceProperties>
+          <aixm:extent>
+            <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4269" gml:id="b9826ec1">
+              <gml:patches>
+                <gml:PolygonPatch>
+                  <gml:exterior>
+                    <gml:LinearRing>
+                      <gml:posList>41.9809170452871 -87.8910216895018 41.9806030005577 -87.8915164988056 41.9803225226883 -87.8919639648448 41.9799086881857 -87.8926208355806 41.9796582614089 -87.8930161403467 41.9796822006505 -87.892927888005 41.9796900267542 -87.8928778995945 41.9796894276451 -87.892823037507 41.9796788841955 -87.8927541056851 41.9795142439162 -87.8921266350375 41.9794814170239 -87.8919792072067 41.9794792986196 -87.8919151490618 41.9794836717645 -87.8918673209436 41.9794928791522 -87.8918333775971 41.9795200412224 -87.8917543823685 41.9795571476331 -87.8916894550785 41.9799323103702 -87.8910905997747 41.9799760465087 -87.891035051709 41.9800071223007 -87.8910156072822 41.9800433083579 -87.8909963478181 41.9800777451571 -87.8909793097019 41.9801306895208 -87.8909743659905 41.9801901714933 -87.8909833663108 41.980719616638 -87.8911030120279 41.9807639976103 -87.8911000418504 41.9808102665216 -87.8910880013183 41.9808480638256 -87.8910733695128 41.980877298408 -87.8910607148327 41.9809170452871 -87.8910216895018</gml:posList>
+                    </gml:LinearRing>
+                  </gml:exterior>
+                </gml:PolygonPatch>
+              </gml:patches>
+              <aixm:elevation uom="FT">737.180745787347</aixm:elevation>
+            </aixm:ElevatedSurface>
+          </aixm:extent>
+        </aixm:ApronElementTimeSlice>
+      </aixm:timeSlice>
+    </aixm:ApronElement>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:ApronElement gml:id="AE18">
+      <gml:identifier>AE18</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:ApronElementTimeSlice gml:id="AETS18">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="AETSP18">
+              <gml:beginPosition>2008-03-23T14:00:00</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:type>NORMAL</aixm:type>
+          <aixm:surfaceProperties>
+            <aixm:SurfaceCharacteristics>
+              <aixm:composition>CONC</aixm:composition>
+            </aixm:SurfaceCharacteristics>
+          </aixm:surfaceProperties>
+          <aixm:extent>
+            <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4269" gml:id="b9826ec1">
+              <gml:patches>
+                <gml:PolygonPatch>
+                  <gml:exterior>
+                    <gml:LinearRing>
+                      <gml:posList>41.9822450911713 -87.9026999461607 41.9819313037054 -87.9038905563563 41.9818331539872 -87.9043623027885 41.9818227790318 -87.9045646456815 41.9818421160032 -87.9046201847684 41.9818341977804 -87.9046747397819 41.9817456227539 -87.9050097296528 41.98163679057 -87.9053348482627 41.9815097261739 -87.9055496276517 41.9814537438897 -87.9056207287447 41.9814270414101 -87.9055923450533 41.9813642453274 -87.9056632010259 41.9814038424711 -87.9060667967892 41.9815121256252 -87.9061072641108 41.9815447217173 -87.9061815616464 41.9815287017034 -87.9062998057773 41.9814938967628 -87.9063351103055 41.9814244711198 -87.9063965861559 41.9771290795277 -87.907393265669 41.9770338715911 -87.9073806900021 41.9769467657806 -87.9073044261157 41.9769082763272 -87.907184214736 41.9769513674227 -87.9070760878844 41.9770406819562 -87.9070427497071 41.9775200348911 -87.9069412231501 41.9775318216764 -87.9070330499406 41.9779152303709 -87.9069554823366 41.9778800541066 -87.9066708678613 41.9778317368973 -87.9066870696442 41.9777826940955 -87.906698714896 41.9777331646326 -87.9067057468822 41.9776833898114 -87.9067081313437 41.9776336121296 -87.9067058566637 41.9775840740992 -87.9066989339241 41.9775350170644 -87.9066873968518 41.9774866800263 -87.9066713016544 41.9774392984779 -87.9066507267459 41.9773931032575 -87.9066257723653 41.9773483194235 -87.9065965600878 41.9773051651582 -87.9065632322327 41.9772638507049 -87.9065259511699 41.9772245773434 -87.9064848985291 41.9771875364097 -87.9064402743145 41.9771529083634 -87.9063922959309 41.9771208619089 -87.9063411971241 41.9770915531732 -87.9062872268425 41.9770851476989 -87.9062742961906 41.9769445470502 -87.9063994701371 41.9764589225423 -87.9054587921175 41.9764103062688 -87.905502738713 41.9763353554059 -87.9055000343071 41.976283238523 -87.9053793317886 41.9762279925217 -87.9054138991596 41.9762534067575 -87.9055062179868 41.9754969070426 -87.9061644346404 41.9751963771901 -87.907204709679 41.9751556789719 -87.9071941012609 41.9750829402236 -87.9074199802068 41.9751299000282 -87.9074582351592 41.9746739498458 -87.9091052937567 41.9745257045889 -87.9090176833971 41.9749812866298 -87.9073888921096 41.9750286145758 -87.9074088806499 41.9750729940407 -87.9072368186626 41.9745022885838 -87.9061194078988 41.9743656461462 -87.9061327584336 41.9743643574837 -87.9061966926715 41.9733213069896 -87.9061864793193 41.9732785804764 -87.9059381534455 41.9753646821346 -87.9059585801499 41.9757812356579 -87.9055897232521 41.9758072021897 -87.9056546415633 41.9759250600355 -87.9055583523236 41.9758989096005 -87.9055025681163 41.9761145522054 -87.9052909842719 41.9761407026404 -87.9053467693771 41.9762171260689 -87.9052764054412 41.9761511976856 -87.9051643440921 41.9761736635241 -87.9050646132894 41.9762224638683 -87.9050115334879 41.9757576488137 -87.9040533262134 41.9758896863013 -87.9039301275965 41.9757718251057 -87.9036882305228 41.9757996321771 -87.9036618131824 41.9757471472364 -87.9035593779738 41.9757296892886 -87.9035740552863 41.9757115099241 -87.9035870647424 41.9756926977111 -87.9035983429612 41.9756733443006 -87.9036078349966 41.9756535439806 -87.9036154946041 41.9756333932163 -87.9036212844671 41.9756129901801 -87.9036251763777 41.9755924342736 -87.9036271513752 41.975571825643 -87.9036271998373 41.9755512646917 -87.9036253215282 41.9755308515903 -87.9036215255986 41.9755106857897 -87.903615830542 41.9754908655354 -87.9036082641041 41.9754714873897 -87.9035988631479 41.9754526457612 -87.9035876734738 41.9754344324442 -87.9035747495969 41.9754169361722 -87.9035601544809 41.9754002421853 -87.9035439592318 41.975384431815 -87.9035262427512 41.9753695820877 -87.9035070913521 41.9753557653498 -87.903486598338 41.9753430489152 -87.903464863549 41.9753314947369 -87.9034419928748 41.9753211591058 -87.9034180977389 41.9753120923761 -87.903393294556 41.9753075687954 -87.9033789944613 41.9731120797263 -87.9033729014672 41.973117049468 -87.9031262959259 41.9753121703956 -87.9031506571278 41.9753238735343 -87.9031235620144 41.9753369584455 -87.9030976270027 41.9753513613808 -87.9030729784456 41.9753670121705 -87.9030497364283 41.9753838345656 -87.9030280141835 41.9754017466091 -87.90300791754 41.9754206610353 -87.9029895444065 41.9754404856949 -87.902972984295 41.9754611240044 -87.9029583178848 41.9754824754158 -87.9029456166291 41.9755044359073 -87.9029349424072 41.9755268984895 -87.9029263472228 41.975549753727 -87.9029198729508 41.9755728902715 -87.9029155511333 41.9755961954039 -87.9029134028255 41.975619555584 -87.902913438494 41.9756428570033 -87.9029156579649 41.9756441984481 -87.9029158514876 41.9758220879662 -87.9025475243374 41.9757620531116 -87.9024813759345 41.9758979559166 -87.9021663737061 41.9758174798339 -87.902099489044 41.9759664578563 -87.9018123802661 41.9760333065094 -87.9018787728915 41.9761754708171 -87.9015914180953 41.9760911260672 -87.9013781507313 41.9761408467649 -87.9012794022062 41.9753778881612 -87.9005663620737 41.9728754137006 -87.9005674736456 41.9728737538819 -87.90031148888 41.9729437315696 -87.9002226116159 41.9729418875127 -87.899975761852 41.9731941792826 -87.8999757241412 41.9731881051166 -87.9002771307143 41.9746263514046 -87.900301603253 41.9750458467096 -87.8994484224604 41.9745132524315 -87.897454932344 41.9741532298872 -87.8973871013194 41.974008853465 -87.8974458727639 41.9739534198757 -87.8971513888233 41.9740567302733 -87.8971002744749 41.9742964951855 -87.89670675828 41.9742521125384 -87.8965406348519 41.9744517349619 -87.8964472951385 41.9755058729108 -87.9003059166546 41.9762684633731 -87.9010372231991 41.9763178159294 -87.9009567428817 41.9764881588834 -87.9009628879527 41.9766798599018 -87.9005859178373 41.9766260863824 -87.9005474168666 41.9767183460472 -87.9003679438015 41.9768054518159 -87.9004442076879 41.9773306501341 -87.899421179073 41.9767855329449 -87.897372395888 41.9767814735493 -87.8965587755611 41.9770199535676 -87.8965673790197 41.977025485487 -87.8973079319026 41.9774636393114 -87.8989673434935 41.9775331569427 -87.8989012992444 41.9775842598143 -87.898903143484 41.9780069862699 -87.8989046860368 41.9780825813803 -87.8988754224259 41.9782457407194 -87.8987304978765 41.978255748957 -87.8958654186908 41.978197832423 -87.8958633284329 41.9781573181919 -87.8958435877067 41.9781139493992 -87.8957963216596 41.9780774863147 -87.8957447350278 41.9780685541956 -87.8956804308645 41.9780727893294 -87.8956394535487 41.9780876131767 -87.8955805779505 41.9781264690966 -87.8955134275168 41.9781645887337 -87.8954828134987 41.9782096142046 -87.8954478771001 41.9782578624204 -87.8954221978146 41.9783677658657 -87.8953732617161 41.9779644129675 -87.8953749910274 41.9773184913447 -87.8953676823077 41.9761543131536 -87.8953622375809 41.9756035993836 -87.8953675027323 41.9754537202689 -87.8953616234329 41.9753615703514 -87.8953580085796 41.9753117424605 -87.8953560530033 41.975107233705 -87.8953569598592 41.9749367264441 -87.8953577158717 41.9746349290327 -87.8953590537086 41.9745974077511 -87.8953599839093 41.9744830018592 -87.8953695660539 41.9743922598565 -87.8953891433665 41.9743049249206 -87.8954088427904 41.9741865599173 -87.8954457024417 41.9740849073285 -87.8954991602494 41.9740004270797 -87.8955463831985 41.9738726706179 -87.8956263194023 41.9737550429024 -87.8957111921345 41.9736561066546 -87.8957990242697 41.9735463519397 -87.8959161720927 41.9734554725959 -87.8960271443169 41.9734001070072 -87.8960969021857 41.9733315566631 -87.8961995421103 41.9732804084543 -87.896284527975 41.9732362123902 -87.8963629090557 41.9731970343047 -87.896446041702 41.9731632885662 -87.8965133753027 41.9731383825765 -87.8965650319689 41.9730506349471 -87.8967743738141 41.9729985206602 -87.896907311704 41.9729524507261 -87.8970195176114 41.9728210939149 -87.8973288757842 41.9727555942204 -87.8974831328684 41.9726483267213 -87.8977306165335 41.9726081024978 -87.8978349480585 41.9725138090526 -87.8980565567009 41.9724660059395 -87.8981689026771 41.972430949765 -87.8982512900855 41.9723893320307 -87.8983708945002 41.9723626302211 -87.8984270567138 41.9723427619737 -87.8984877496153 41.9723066687056 -87.8985869901771 41.972273706147 -87.8987000526592 41.9722443345583 -87.8988041040466 41.9722166666705 -87.8989082182854 41.9721956739002 -87.8990194275492 41.9721796076593 -87.8991399549816 41.9721672245075 -87.8992469047164 41.9721642787062 -87.899308495495 41.9721595370849 -87.8993745900252 41.9721536133243 -87.9009373433488 41.9721537365964 -87.9015247273747 41.9721538066069 -87.9018582204844 41.9721519273773 -87.9027127570714 41.9721640606351 -87.9038279114699 41.9721766789419 -87.9042168224531 41.9721876022572 -87.904431989725 41.9721913221939 -87.9045052663743 41.9721993338758 -87.9046152365676 41.9722036443797 -87.9047045897066 41.97221074291 -87.9048517445828 41.9722173630909 -87.9049889797127 41.9722317976513 -87.9052882098317 41.9722492955905 -87.9056041772779 41.9722821737346 -87.9062565999305 41.9722867783496 -87.9063664480126 41.9723047355444 -87.9065750347431 41.9723213106177 -87.9066830296068 41.9723429036696 -87.9067957751383 41.9723695153701 -87.9069132722355 41.9723949754143 -87.9070033077612 41.972446218087 -87.9071673930082 41.9725028931068 -87.9073156810054 41.9725420725322 -87.9074016410668 41.9725863164982 -87.9074900684945 41.9726274297548 -87.907564673104 41.9726602559772 -87.907627554132 41.9726783954003 -87.9076579140509 41.9729166947814 -87.9080138379267 41.9730790290683 -87.9082481991177 41.9732316489775 -87.9084570740668 41.9732724788422 -87.9085121130361 41.9734075649695 -87.908694210596 41.9738447990632 -87.9092446846894 41.9745829440475 -87.9100893616879 41.9749366624632 -87.9104700157931 41.975167347782 -87.9107092793931 41.9753248660824 -87.9108726544194 41.9755081998393 -87.9110592054498 41.9755723547624 -87.9111244856055 41.9756171179452 -87.9111700340137 41.9757742073056 -87.911329879485 41.9764228973586 -87.9119611055036 41.9768563087609 -87.9123629149405 41.9770327299424 -87.9124903874524 41.9771908275463 -87.9125966337004 41.9773933523391 -87.9126976273673 41.9775726273494 -87.9127680770505 41.9776793911769 -87.9127993496615 41.9778150672642 -87.912833950254 41.9779491779758 -87.9128616394374 41.97797297996 -87.9128647833541 41.9780495422372 -87.9128721158676 41.978136279027 -87.9128821007101 41.9782418916484 -87.9128859113005 41.9782726914181 -87.9128801671317 41.9783682674961 -87.9128744754887 41.9784638895499 -87.9128665005441 41.9785631025738 -87.9128495149538 41.9786657684727 -87.9128303686222 41.9787788390564 -87.9128024576631 41.978814795067 -87.9127946151554 41.9790072356343 -87.9127192971826 41.9791070929056 -87.9126703440243 41.979194888102 -87.9126278106875 41.9793172581088 -87.912561389779 41.9794123271968 -87.9124962689965 41.9795523296367 -87.9124007784184 41.9800296544649 -87.9120615344058 41.9804655910192 -87.9117459323955 41.9807543890858 -87.9115415589533 41.9808634078527 -87.9114609457501 41.9809691575641 -87.9113733600822 41.9810403324651 -87.911309661986 41.9811463581988 -87.9112083751623 41.9812161519833 -87.911128632002 41.9813103000478 -87.9110246326915 41.9813926160002 -87.9109156357969 41.9814681640461 -87.9108041095826 41.9815385102102 -87.9106969659064 41.9816054493075 -87.910589699221 41.9816745058042 -87.9104619429799 41.9817383600841 -87.9103385701749 41.9820045032168 -87.9097357821692 41.9820581831934 -87.9096097570352 41.9822266341885 -87.9092022420382 41.9822771831207 -87.909062394086 41.9823223918249 -87.9089337776786 41.9823765233526 -87.9087637547701 41.9824128876184 -87.9086427164456 41.9824532672719 -87.9085083141181 41.9825047367251 -87.9083227974421 41.9825381592093 -87.9081869010471 41.9825995262735 -87.9079331915021 41.9826336391485 -87.9077630437887 41.9826586365873 -87.9076222737167 41.9826828595558 -87.9074569377268 41.9827043122516 -87.9073228945501 41.9827405877481 -87.9070454280745 41.9827578505323 -87.9068655330072 41.9827700414065 -87.906746552617 41.9827822389802 -87.9064796433805 41.9827852762306 -87.906328940094 41.9827845824901 -87.9060250050989 41.982790171942 -87.9055896604007 41.9827937511878 -87.904396998556 41.9827948371882 -87.9024821732494 41.9827086445291 -87.9027166969562 41.9822450911713 -87.9026999461607</gml:posList>
+                    </gml:LinearRing>
+                  </gml:exterior>
+                </gml:PolygonPatch>
+              </gml:patches>
+              <aixm:elevation uom="FT">745.423324889863</aixm:elevation>
+            </aixm:ElevatedSurface>
+          </aixm:extent>
+        </aixm:ApronElementTimeSlice>
+      </aixm:timeSlice>
+    </aixm:ApronElement>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:ApronElement gml:id="AE19">
+      <gml:identifier>AE19</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:ApronElementTimeSlice gml:id="AETS19">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="AETSP19">
+              <gml:beginPosition>2008-03-23T14:00:00</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:type>NORMAL</aixm:type>
+          <aixm:surfaceProperties>
+            <aixm:SurfaceCharacteristics>
+              <aixm:composition>CONC</aixm:composition>
+            </aixm:SurfaceCharacteristics>
+          </aixm:surfaceProperties>
+          <aixm:extent>
+            <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4269" gml:id="b9826ec1">
+              <gml:patches>
+                <gml:PolygonPatch>
+                  <gml:exterior>
+                    <gml:LinearRing>
+                      <gml:posList>41.9661694085627 -87.9167868903941 41.9661679279575 -87.9160144936258 41.9669314324925 -87.9160237610644 41.966952765936 -87.9131042503234 41.9669939240797 -87.9130920248286 41.967049170081 -87.9130574574575 41.9671009175664 -87.9130273341292 41.9671359060753 -87.9129828959461 41.9671673042841 -87.9129474679598 41.9671955711136 -87.9128982171553 41.9672236543747 -87.9128580995569 41.9672487911646 -87.9127950254853 41.9672633386128 -87.9127498496961 41.9672807293589 -87.9127002056214 41.9672742207258 -87.9172790712748 41.9672496353106 -87.9171456518983 41.9672242211584 -87.9170533334078 41.9671847191487 -87.9169833569059 41.9671382194371 -87.9169222680406 41.9670880369715 -87.9168747566486 41.967007376818 -87.916817005417 41.9669666782649 -87.9168063967744 41.9669157595164 -87.9167954195533 41.966813461759 -87.916796298575 41.9661694085627 -87.9167868903941</gml:posList>
+                    </gml:LinearRing>
+                  </gml:exterior>
+                </gml:PolygonPatch>
+              </gml:patches>
+              <aixm:elevation uom="FT">750.713464445794</aixm:elevation>
+            </aixm:ElevatedSurface>
+          </aixm:extent>
+        </aixm:ApronElementTimeSlice>
+      </aixm:timeSlice>
+    </aixm:ApronElement>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:ApronElement gml:id="AE20">
+      <gml:identifier>AE20</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:ApronElementTimeSlice gml:id="AETS20">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="AETSP20">
+              <gml:beginPosition>2008-03-23T14:00:00</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:type>NORMAL</aixm:type>
+          <aixm:surfaceProperties>
+            <aixm:SurfaceCharacteristics>
+              <aixm:composition>CONC</aixm:composition>
+            </aixm:SurfaceCharacteristics>
+          </aixm:surfaceProperties>
+          <aixm:extent>
+            <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4269" gml:id="b9826ec1">
+              <gml:patches>
+                <gml:PolygonPatch>
+                  <gml:exterior>
+                    <gml:LinearRing>
+                      <gml:posList>41.966793681276 -87.9195418817083 41.9667985692829 -87.9203144014297 41.964953168467 -87.9213766274313 41.964952621782 -87.9195323630886 41.9650022428236 -87.9195325505765 41.9650014134167 -87.9194045583901 41.9651991954681 -87.9194025543845 41.9651995612647 -87.9192151943388 41.9650053715232 -87.9192081877828 41.9650077592502 -87.9185821730991 41.9651987264982 -87.9185799232154 41.9651991847488 -87.9183879964264 41.9650083086151 -87.9183856795667 41.9650096820271 -87.9174717132791 41.9649791118852 -87.9174660401548 41.9649801221805 -87.9172467127937 41.9650926401333 -87.917246202575 41.9650963222175 -87.9170635321695 41.9650971489445 -87.9168533382389 41.9661091700412 -87.9168807127164 41.966106425897 -87.9187086453479 41.9661115818867 -87.9187910928438 41.9661310106422 -87.9188420647244 41.9661539392536 -87.9188885927656 41.9661871791745 -87.9189309228175 41.9662377301165 -87.9189601672021 41.9667482997228 -87.9191705323037 41.9668093475525 -87.9191864451834 41.9668637648169 -87.9191929786984 41.9669285871848 -87.9191907474598 41.9669663392666 -87.9191783993206 41.967014933264 -87.9191462942793 41.9670102415545 -87.9195482919336 41.9669661362696 -87.9195375604502 41.9668911854905 -87.9195348561566 41.966793681276 -87.9195418817083</gml:posList>
+                    </gml:LinearRing>
+                  </gml:exterior>
+                </gml:PolygonPatch>
+              </gml:patches>
+              <aixm:elevation uom="FT">752.198014445031</aixm:elevation>
+            </aixm:ElevatedSurface>
+          </aixm:extent>
+        </aixm:ApronElementTimeSlice>
+      </aixm:timeSlice>
+    </aixm:ApronElement>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:ApronElement gml:id="AE21">
+      <gml:identifier>AE21</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:ApronElementTimeSlice gml:id="AETS21">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="AETSP21">
+              <gml:beginPosition>2008-03-23T14:00:00</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:type>NORMAL</aixm:type>
+          <aixm:surfaceProperties>
+            <aixm:SurfaceCharacteristics>
+              <aixm:composition>CONC</aixm:composition>
+            </aixm:SurfaceCharacteristics>
+          </aixm:surfaceProperties>
+          <aixm:extent>
+            <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4269" gml:id="b9826ec1">
+              <gml:patches>
+                <gml:PolygonPatch>
+                  <gml:exterior>
+                    <gml:LinearRing>
+                      <gml:posList>41.962556821741 -87.9087621745064 41.9633749277786 -87.9087688421419 41.9633773342644 -87.9088124080374 41.9633677592378 -87.9120842884077 41.9633794446293 -87.9124382180984 41.9633627184806 -87.9156366703026 41.9633719344103 -87.9165327384201 41.9622733494984 -87.9165217201211 41.962288218526 -87.9117236735729 41.96228066141 -87.9110835899965 41.9622847870058 -87.9091871559069 41.9622918751517 -87.9090046085106 41.9623103807064 -87.908763061609 41.962556821741 -87.9087621745064</gml:posList>
+                    </gml:LinearRing>
+                  </gml:exterior>
+                </gml:PolygonPatch>
+              </gml:patches>
+              <aixm:elevation uom="FT">747.092208094323</aixm:elevation>
+            </aixm:ElevatedSurface>
+          </aixm:extent>
+        </aixm:ApronElementTimeSlice>
+      </aixm:timeSlice>
+    </aixm:ApronElement>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:ApronElement gml:id="AE22">
+      <gml:identifier>AE22</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:ApronElementTimeSlice gml:id="AETS22">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="AETSP22">
+              <gml:beginPosition>2008-03-23T14:00:00</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:type>NORMAL</aixm:type>
+          <aixm:surfaceProperties>
+            <aixm:SurfaceCharacteristics>
+              <aixm:composition>CONC</aixm:composition>
+            </aixm:SurfaceCharacteristics>
+          </aixm:surfaceProperties>
+          <aixm:extent>
+            <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4269" gml:id="b9826ec1">
+              <gml:patches>
+                <gml:PolygonPatch>
+                  <gml:exterior>
+                    <gml:LinearRing>
+                      <gml:posList>41.9594979021951 -87.9110833071652 41.9594988146766 -87.9101921740048 41.9597031341693 -87.9102041166684 41.9597002613933 -87.9101771336653 41.9603375326139 -87.9101771758655 41.9610904478072 -87.9102043420355 41.9611024762167 -87.9092577532909 41.9611048652837 -87.9086289573767 41.961114836925 -87.9078134470185 41.9611178450323 -87.9071016181223 41.9612185369027 -87.9071014116105 41.961223528083 -87.9067267723841 41.9611169298709 -87.9067268370313 41.9611251837422 -87.9048478873028 41.9620669571585 -87.9056542105823 41.9620416368004 -87.9057264187578 41.9620225778611 -87.9058262725697 41.9620136473332 -87.9059310620121 41.9620153972611 -87.906013386569 41.962023501062 -87.9061187910572 41.962038879257 -87.9062016076509 41.9620639034941 -87.9062710943608 41.9620601356554 -87.9063775906676 41.9620486324923 -87.9070329825998 41.9620545736717 -87.9072457067481 41.9620552195103 -87.9073828323369 41.9620682072984 -87.907753476908 41.9620710626555 -87.9079500931409 41.9620775130024 -87.9084758854903 41.9620764343715 -87.91106708073 41.9620858271698 -87.9111085509803 41.9620782767534 -87.911144838684 41.9620602307893 -87.9111944589649 41.9620350939994 -87.9112575330365 41.9619997363442 -87.9113202380806 41.9619577501336 -87.9113735639003 41.9618989131623 -87.9114171423661 41.9618541640486 -87.9114383780578 41.9617450521576 -87.9114390110611 41.9604801879164 -87.9114390743615 41.9595561924814 -87.9114422968425 41.9595598718857 -87.9110905332803 41.9594979021951 -87.9110833071652</gml:posList>
+                    </gml:LinearRing>
+                  </gml:exterior>
+                </gml:PolygonPatch>
+              </gml:patches>
+              <aixm:elevation uom="FT">746.514300088758</aixm:elevation>
+            </aixm:ElevatedSurface>
+          </aixm:extent>
+        </aixm:ApronElementTimeSlice>
+      </aixm:timeSlice>
+    </aixm:ApronElement>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:ApronElement gml:id="AE23">
+      <gml:identifier>AE23</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:ApronElementTimeSlice gml:id="AETS23">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="AETSP23">
+              <gml:beginPosition>2008-03-23T14:00:00</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:type>NORMAL</aixm:type>
+          <aixm:surfaceProperties>
+            <aixm:SurfaceCharacteristics>
+              <aixm:composition>CONC</aixm:composition>
+            </aixm:SurfaceCharacteristics>
+          </aixm:surfaceProperties>
+          <aixm:extent>
+            <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4269" gml:id="b9826ec1">
+              <gml:patches>
+                <gml:PolygonPatch>
+                  <gml:exterior>
+                    <gml:LinearRing>
+                      <gml:posList>41.9611607102267 -87.9137212436429 41.9611671391349 -87.912048826751 41.9617940930164 -87.9120668776725 41.9618727272196 -87.9120560043807 41.9619346031162 -87.9120308166829 41.9619763133045 -87.9119911906721 41.9620148009993 -87.9119423084462 41.962043343851 -87.9118793573838 41.9620617582915 -87.9118114706909 41.9620907151767 -87.9117165475711 41.9620833670874 -87.9130961734698 41.9620798993895 -87.9141362173051 41.9620759319036 -87.9153261040361 41.9620759118049 -87.915459104553 41.962059705543 -87.9154173889578 41.9620296887857 -87.9153843154298 41.9619889902325 -87.9153737067872 41.9617982065529 -87.9153668232123 41.9611575319502 -87.915352847306 41.9611600737674 -87.9145986760964 41.9611638456258 -87.9142423459312 41.9612184471284 -87.914239745679 41.9612212086915 -87.9141027430994 41.9611632922413 -87.9141006532904 41.9611607102267 -87.9137212436429</gml:posList>
+                    </gml:LinearRing>
+                  </gml:exterior>
+                </gml:PolygonPatch>
+              </gml:patches>
+              <aixm:elevation uom="FT">750.562782950127</aixm:elevation>
+            </aixm:ElevatedSurface>
+          </aixm:extent>
+        </aixm:ApronElementTimeSlice>
+      </aixm:timeSlice>
+    </aixm:ApronElement>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:ApronElement gml:id="AE25">
+      <gml:identifier>AE25</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:ApronElementTimeSlice gml:id="AETS25">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="AETSP25">
+              <gml:beginPosition>2008-03-23T14:00:00</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:type>NORMAL</aixm:type>
+          <aixm:surfaceProperties>
+            <aixm:SurfaceCharacteristics>
+              <aixm:composition>CONC</aixm:composition>
+            </aixm:SurfaceCharacteristics>
+          </aixm:surfaceProperties>
+          <aixm:extent>
+            <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4269" gml:id="b9826ec1">
+              <gml:patches>
+                <gml:PolygonPatch>
+                  <gml:exterior>
+                    <gml:LinearRing>
+                      <gml:posList>41.9725371389682 -87.8823567120337 41.972583838478 -87.8823755004972 41.9726314021559 -87.8823898773636 41.9726795982764 -87.8823997725902 41.9727281920329 -87.8824051379685 41.9727769466813 -87.8824059473589 41.9728157650763 -87.882403326222 41.9729007524825 -87.8824155337592 41.9729068340302 -87.8824158752611 41.9729128829885 -87.8824167844809 41.9729188698877 -87.8824182569891 41.9729247655601 -87.8824202856117 41.9729305412826 -87.8824228604654 41.9729361689165 -87.882425969006 41.9729416210446 -87.8824295960887 41.9729468711045 -87.882433724043 41.9729518935186 -87.8824383327577 41.9729566638181 -87.8824433997798 41.9729611587626 -87.8824489004231 41.9729653564532 -87.8824548078891 41.9729692364392 -87.8824610933972 41.9729727798177 -87.8824677263251 41.9729759693256 -87.8824746743578 41.9729787894241 -87.8824819036451 41.9729812263739 -87.8824893789668 41.9729832683024 -87.8824970639037 41.9729849052615 -87.8825049210158 41.9729861292762 -87.8825129120238 41.9729869343831 -87.8825209979964 41.9729873166599 -87.8825291395396 41.9729872742441 -87.8825372969886 41.9729868073425 -87.8825454306011 41.9729859182296 -87.882553500751 41.9729846112373 -87.8825614681213 41.9729828927329 -87.8825692938958 41.9729828868766 -87.8825693077855 41.9730750562228 -87.8825634931333 41.9730768965949 -87.8824721574816 41.9730765597118 -87.8824665391533 41.9730765160792 -87.8824609030166 41.9730767659097 -87.88245527653 41.9730773079861 -87.8824496871054 41.9730781396674 -87.8824441619738 41.9730792569019 -87.8824387280531 41.9730806542464 -87.8824334118169 41.9730823248932 -87.8824282391652 41.9730842607032 -87.8824232352988 41.9730864522451 -87.8824184245959 41.9730888888422 -87.8824138304939 41.9730915586234 -87.8824094753747 41.9730944485819 -87.882405380456 41.9730975446382 -87.882401565688 41.9731008317085 -87.8823980496556 41.9731042937785 -87.8823948494887 41.9731079139815 -87.8823919807783 41.9731116746801 -87.8823894575002 41.9731155575526 -87.8823872919478 41.973119543682 -87.8823854946714 41.9731236136483 -87.882384074427 41.9731277476231 -87.8823830381341 41.973131925466 -87.8823823908412 41.973136126823 -87.8823821357021 41.9731403312255 -87.8823822739596 41.9731445181901 -87.8823828049402 41.9731486673183 -87.882383726057 41.973152758396 -87.8823850328225 41.9731567714919 -87.8823867188701 41.9731606870545 -87.8823887759857 41.9731644860077 -87.8823911941471 41.9731671317751 -87.8823931514785 41.9747492021056 -87.8823862557823 41.9749229517914 -87.8823925229645 41.9750184374252 -87.8825604906323 41.9750279266974 -87.8831046724029 41.9750142992678 -87.8831041803662 41.9750096976675 -87.8833325176996 41.9749061697394 -87.8834447957033 41.9748087379876 -87.8835664787903 41.97471787709 -87.883696974133 41.9746340297116 -87.8838356459712 41.9745745468054 -87.883947488102 41.9745692993665 -87.8840387016424 41.9745852292712 -87.884094118618 41.9744721763772 -87.8843275400726 41.9743715482896 -87.8845709619784 41.9742838352583 -87.8848231984082 41.9742094646123 -87.8850830204916 41.9741811135011 -87.8851992078141 41.9740777602263 -87.8851915722671 41.9740129378583 -87.8851938025938 41.9740118317592 -87.8850795100201 41.9740048340574 -87.8850883990035 41.9740052943179 -87.8850655641927 41.9740076670703 -87.885062923929 41.9740098966189 -87.8850600682738 41.9740119721017 -87.8850570111394 41.9740138834071 -87.88505376742 41.9740156212235 -87.8850503529185 41.9740171770844 -87.8850467842702 41.9740185434097 -87.885043078861 41.974019713543 -87.8850392547435 41.9740206817833 -87.8850353305483 41.9740214434135 -87.8850313253937 41.9740219947232 -87.8850272587923 41.9740223330262 -87.8850231505564 41.9740224566745 -87.8850190207007 41.9740223650656 -87.8850148893455 41.9740220586459 -87.8850107766184 41.9740215389082 -87.8850067025562 41.9740208083846 -87.8850026870073 41.9740198706342 -87.884998749535 41.9740187302255 -87.8849949093224 41.9740173927146 -87.8849911850784 41.9740158646176 -87.8849875949474 41.9740141533793 -87.88498415642 41.9740122673366 -87.8849808862483 41.9740102156782 -87.8849778003645 41.9740080083996 -87.8849749138025 41.9740056562544 -87.8849722406254 41.974003170702 -87.8849697938566 41.9740005638517 -87.8849675854166 41.9739978484039 -87.8849656260647 41.973995037588 -87.8849639253466 41.973992145098 -87.8849624915481 41.9739891850258 -87.8849613316544 41.9739861717925 -87.8849604513165 41.9739831200784 -87.8849598548233 41.9739800447511 -87.8849595450808 41.9739769607932 -87.884959523598 41.9739738832296 -87.8849597904798 41.9739708270537 -87.8849603444257 41.973967807155 -87.8849611827371 41.9739648382461 -87.8849623013297 41.9739619347913 -87.8849636947539 41.9739591109358 -87.8849653562211 41.9739563804373 -87.8849672776368 41.9739537565984 -87.8849694496401 41.9739512522022 -87.884971861649 41.9739488794498 -87.8849745019127 41.9739466499012 -87.8849773575679 41.9739445744184 -87.8849804147023 41.973942663113 -87.8849836584218 41.9739409252966 -87.8849870729232 41.9739393694357 -87.8849906415715 41.9739380031104 -87.8849943469807 41.9739368329771 -87.8849981710982 41.9739358647368 -87.8850020952934 41.9739351031065 -87.8850061004481 41.9739345517969 -87.8850101670494 41.9739342134939 -87.8850142752854 41.9739340898456 -87.8850184051411 41.9739341814545 -87.8850225364962 41.9739344878742 -87.8850266492233 41.9739350076119 -87.8850307232855 41.9739357381355 -87.8850347388344 41.9739366758859 -87.8850386763067 41.9739378162946 -87.8850425165194 41.9739391538055 -87.8850462407633 41.9739406819025 -87.8850498308943 41.9739423931408 -87.8850532694218 41.9739442791835 -87.8850565395934 41.9739463308419 -87.8850596254772 41.9739485381205 -87.8850625120393 41.9739508902657 -87.8850651852163 41.9739533758181 -87.8850676319851 41.9739540992122 -87.8850682865561 41.9739569538993 -87.885095811877 41.9739469172722 -87.8850863087456 41.973945904967 -87.8851365431744 41.9738913031294 -87.8851391434265 41.9738817301126 -87.8854449926956 41.9739396468979 -87.8854470829535 41.9739372574959 -87.8859040018431 41.9738759336439 -87.8859017894738 41.9738797122019 -87.8862218323844 41.9739376289871 -87.8862239226423 41.9739358834139 -87.8866488771065 41.9738813736955 -87.8866469125514 41.973881193142 -87.8869942293771 41.9739391095923 -87.8869963196351 41.9739401269221 -87.8874533642273 41.9738891160545 -87.8874469533847 41.9738827658663 -87.8877620615626 41.9739371834657 -87.8877685945165 41.9739382929146 -87.8882210743016 41.9738906891138 -87.8882147855703 41.9738841546873 -87.8885390233627 41.9739353494581 -87.8885363009992 41.9739334203167 -87.8889703886694 41.9739080500847 -87.8891206272896 41.9738905614631 -87.8892728717405 41.9738810396546 -87.8894263803024 41.9738795310486 -87.889580405097 41.9738860429949 -87.8897341957311 41.9739005437678 -87.8898870029521 41.9739229627212 -87.8900380822986 41.9739531906321 -87.8901866977272 41.9739910802331 -87.8903321251985 41.9740364469299 -87.8904736562045 41.9740890697006 -87.8906106012203 41.9741486921723 -87.8907422930635 41.9741532262024 -87.8907515110948 41.9738242400901 -87.8913428906738 41.9741766237837 -87.8917897623184 41.9746013718872 -87.891352650598 41.9746967562009 -87.8914361141245 41.9747962523784 -87.8915104570788 41.9748993756843 -87.8915753172694 41.9750056237123 -87.891630378704 41.9751144788327 -87.8916753731289 41.9752254107142 -87.8917100813358 41.9753378789079 -87.8917343342296 41.97545133548 -87.8917480136529 41.9755652276815 -87.8917510529608 41.9756790006411 -87.891743437346 41.9757921000683 -87.8917252039112 41.9758453384919 -87.891712869918 41.9758829060006 -87.8917096555179 41.9760178917181 -87.8917785065309 41.9763347311734 -87.8919590301122 41.9763091345417 -87.8920449389946 41.9765383159744 -87.8921766001033 41.9765569148206 -87.8920995802043 41.9767793746157 -87.8922264286917 41.9767538700612 -87.8923077691753 41.9769864583512 -87.892439554191 41.9770047810914 -87.8923762341011 41.9772305556876 -87.8925077730985 41.9772087340756 -87.8925755358844 41.977442841742 -87.8927165151618 41.9774718912357 -87.8926284459871 41.9777380879597 -87.8927842941095 41.9777522622627 -87.8928178621433 41.9777744043863 -87.8928383894099 41.9777947055097 -87.8928432720657 41.9778113302854 -87.8928388473273 41.977828379479 -87.8928225490619 41.9783030420653 -87.8932921136527 41.9782956938922 -87.8937345210522 41.9782884019955 -87.8941735416593 41.9779302960309 -87.8941750016075 41.9767017004191 -87.8941686320672 41.9762089032669 -87.8941759874766 41.9761867586728 -87.8941751883659 41.9761511707198 -87.8941647640126 41.9761241459909 -87.8941523625339 41.9760990086985 -87.8941308907006 41.9760690832228 -87.8940932498961 41.9760409071726 -87.8940533877437 41.9760146647023 -87.8940021710373 41.9759985047511 -87.8939581714671 41.9759926573657 -87.8939099752193 41.9759998391381 -87.8938919530299 41.9760071589218 -87.8938670818338 41.9760178397126 -87.8938446169483 41.9760352420992 -87.8938269646843 41.9760455547487 -87.8938227662109 41.9761008285532 -87.8936722299295 41.9762277245388 -87.8933266316405 41.9762305315753 -87.8931873439636 41.9754890338744 -87.893185725989 41.9751771222884 -87.8931836123863 41.9745294050969 -87.8931808074182 41.9731991935764 -87.8931798790132 41.9731378703943 -87.893177666644 41.9730835904712 -87.8931642828877 41.9730465753421 -87.8931400976698 41.973023095691 -87.8931209710914 41.9729963928765 -87.8930925856043 41.9729563847141 -87.8930477276636 41.972926505298 -87.8930078026598 41.9728966721089 -87.8929655952524 41.972865227338 -87.8929187601863 41.9728339664704 -87.8928627919142 41.972812788122 -87.8928140425741 41.9728073497453 -87.8928001416406 41.9727930773145 -87.8927470717158 41.9727820277123 -87.8927032571083 41.972781750685 -87.8926324110124 41.9727852371417 -87.8913597689678 41.9727845846035 -87.8905462707522 41.9727918559827 -87.8897079192981 41.9727897295389 -87.8887983949207 41.9727918375589 -87.8869651525246 41.9727915538321 -87.8862179320062 41.9727922921248 -87.8837766795511 41.9727850636228 -87.8837124382392 41.9727642993078 -87.883643136492 41.9727448246602 -87.8835944500033 41.9727167407291 -87.8835500194521 41.9726835004733 -87.8835076899334 41.9726449658815 -87.8834743068622 41.9725978220063 -87.8834451869116 41.9725572155722 -87.8834300127884 41.9725080005246 -87.8834190946026 41.9724126083498 -87.8834156539375 41.972430260371 -87.8834002505482 41.9724470676576 -87.883383234434 41.9724629483263 -87.8833646884958 41.9724778250081 -87.8833447030875 41.9724916252251 -87.883323375576 41.9725042817443 -87.8833008098669 41.9725157329042 -87.8832771158979 41.972525922916 -87.8832524091037 41.972534802135 -87.8832268098534 41.9725358057536 -87.883223587248 41.9725371389682 -87.8823567120337</gml:posList>
+                    </gml:LinearRing>
+                  </gml:exterior>
+                </gml:PolygonPatch>
+              </gml:patches>
+              <aixm:elevation uom="FT">740.545840449059</aixm:elevation>
+            </aixm:ElevatedSurface>
+          </aixm:extent>
+        </aixm:ApronElementTimeSlice>
+      </aixm:timeSlice>
+    </aixm:ApronElement>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:ApronElement gml:id="AE26">
+      <gml:identifier>AE26</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:ApronElementTimeSlice gml:id="AETS26">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="AETSP26">
+              <gml:beginPosition>2008-03-23T14:00:00</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:type>NORMAL</aixm:type>
+          <aixm:surfaceProperties>
+            <aixm:SurfaceCharacteristics>
+              <aixm:composition>CONC</aixm:composition>
+            </aixm:SurfaceCharacteristics>
+          </aixm:surfaceProperties>
+          <aixm:extent>
+            <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4269" gml:id="b9826ec1">
+              <gml:patches>
+                <gml:PolygonPatch>
+                  <gml:exterior>
+                    <gml:LinearRing>
+                      <gml:posList>41.9723404911542 -87.8792482830092 41.972679897779 -87.8792457761363 41.972971312028 -87.8792436248227 41.9729746202761 -87.8785719409103 41.9741954750362 -87.8788947636483 41.9741948241729 -87.8792591616883 41.9741936936203 -87.880530896877 41.9729623409676 -87.8805289287304 41.9729622823464 -87.8805946928419 41.9726930487017 -87.8805895498017 41.9726829186155 -87.8804155196677 41.9725466443194 -87.8804106028926 41.9725504141679 -87.8798851795707 41.9725422182479 -87.8797843443792 41.9725264725814 -87.8797197941976 41.9725005981688 -87.8796503092834 41.972471040667 -87.8795944002712 41.9724377082921 -87.8795566391512 41.9723903346215 -87.8795389330145 41.9723349234758 -87.8795245741637 41.9723404911542 -87.8792482830092</gml:posList>
+                    </gml:LinearRing>
+                  </gml:exterior>
+                </gml:PolygonPatch>
+              </gml:patches>
+              <aixm:elevation uom="FT">737.280850119317</aixm:elevation>
+            </aixm:ElevatedSurface>
+          </aixm:extent>
+        </aixm:ApronElementTimeSlice>
+      </aixm:timeSlice>
+    </aixm:ApronElement>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:ApronElement gml:id="AE27">
+      <gml:identifier>AE27</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:ApronElementTimeSlice gml:id="AETS27">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="AETSP27">
+              <gml:beginPosition>2008-03-23T14:00:00</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:type>NORMAL</aixm:type>
+          <aixm:surfaceProperties>
+            <aixm:SurfaceCharacteristics>
+              <aixm:composition>CONC</aixm:composition>
+            </aixm:SurfaceCharacteristics>
+          </aixm:surfaceProperties>
+          <aixm:extent>
+            <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4269" gml:id="b9826ec1">
+              <gml:patches>
+                <gml:PolygonPatch>
+                  <gml:exterior>
+                    <gml:LinearRing>
+                      <gml:posList>41.9718202801954 -87.883878710715 41.9718111647593 -87.8839080892542 41.9717810562179 -87.8839641275607 41.9717545842035 -87.8840088741646 41.9717213449526 -87.8840510887551 41.9715492081885 -87.8842185428371 41.971495573434 -87.884257736969 41.9714609527315 -87.8842839082911 41.971169252076 -87.8842939501488 41.9710498744325 -87.8842964965283 41.9709955482823 -87.8842853951756 41.9709413608132 -87.8842674448163 41.9708721649654 -87.8842329591521 41.9708082168915 -87.8841918040566 41.970778841953 -87.8841700036003 41.9706699598573 -87.8840746741912 41.9706299058029 -87.8840320968583 41.9705936269567 -87.8839713788163 41.9705692840659 -87.8839187488513 41.9705515590113 -87.8838678392189 41.9705424429052 -87.8838126700574 41.9705401864897 -87.8837554645106 41.9705462569709 -87.8831158707262 41.9705454972395 -87.8818333071395 41.9705499189563 -87.880988631039 41.9705528185306 -87.8809293244597 41.9705676426711 -87.8808704488615 41.9705941140155 -87.8808257022576 41.9706242232269 -87.8807696603596 41.9706594877581 -87.8807115246121 41.9706981141339 -87.8806557915838 41.9707714060993 -87.880571603034 41.9708165699164 -87.8805298194245 41.9708494413609 -87.8805058676546 41.9708839696093 -87.8804842611397 41.9709248162229 -87.8804722583184 41.970972696716 -87.8804648454449 41.9710306587233 -87.8804646515035 41.9712743871017 -87.880466590918 41.9715178856848 -87.880479947738 41.9715499283924 -87.8804970971909 41.97159196217 -87.8805260339746 41.9716336736982 -87.8805709565624 41.9717198589877 -87.8806928882747 41.9717545728142 -87.8807466962545 41.9717894246518 -87.8807936552276 41.9718140093971 -87.8808425284747 41.9718399759288 -87.8809074449902 41.9718480328328 -87.8809305850792 41.9718574249612 -87.8809720562274 41.9718631343355 -87.8810271032776 41.9718658051194 -87.881063758213 41.9718605131284 -87.8813263477626 41.9718619019494 -87.8821033131542 41.9718570578247 -87.8831533948066 41.9718547153197 -87.883692580789 41.9718497439032 -87.8837700927246 41.9718418719074 -87.8838223635387 41.9718202801954 -87.883878710715</gml:posList>
+                    </gml:LinearRing>
+                  </gml:exterior>
+                </gml:PolygonPatch>
+              </gml:patches>
+              <aixm:elevation uom="FT">738.679940886224</aixm:elevation>
+            </aixm:ElevatedSurface>
+          </aixm:extent>
+        </aixm:ApronElementTimeSlice>
+      </aixm:timeSlice>
+    </aixm:ApronElement>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:ApronElement gml:id="AE29">
+      <gml:identifier>AE29</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:ApronElementTimeSlice gml:id="AETS29">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="AETSP29">
+              <gml:beginPosition>2008-03-23T14:00:00</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:type>NORMAL</aixm:type>
+          <aixm:surfaceProperties>
+            <aixm:SurfaceCharacteristics>
+              <aixm:composition>CONC</aixm:composition>
+            </aixm:SurfaceCharacteristics>
+          </aixm:surfaceProperties>
+          <aixm:extent>
+            <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4269" gml:id="b9826ec1">
+              <gml:patches>
+                <gml:PolygonPatch>
+                  <gml:exterior>
+                    <gml:LinearRing>
+                      <gml:posList>41.987037803382 -87.8947928990892 41.9871404233888 -87.8947760351613 41.987201884582 -87.8947713985238 41.9872788150844 -87.8947604641763 41.9873115485177 -87.8947433650045 41.9873376064986 -87.894719169012 41.9873621905739 -87.8946834963542 41.9873817566706 -87.894643070335 41.9873878794084 -87.8945930208688 41.9873925744677 -87.8945292087422 41.9874006273519 -87.8941296175108 41.9874108937743 -87.8941277032368 41.9874115242039 -87.8926584458572 41.9872377741832 -87.8926521768792 41.9872397719952 -87.8898462193101 41.9878842204661 -87.8898420513646 41.9878829448678 -87.891029747051 41.9878824156017 -87.891522509195 41.9878792192365 -87.8944993525324 41.9878836416232 -87.8947874274261 41.9875147706206 -87.8947966486241 41.9871398318167 -87.8947922615965 41.987037803382 -87.8947928990892</gml:posList>
+                    </gml:LinearRing>
+                  </gml:exterior>
+                </gml:PolygonPatch>
+              </gml:patches>
+              <aixm:elevation uom="FT">738.701789087975</aixm:elevation>
+            </aixm:ElevatedSurface>
+          </aixm:extent>
+        </aixm:ApronElementTimeSlice>
+      </aixm:timeSlice>
+    </aixm:ApronElement>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:ApronElement gml:id="AE31">
+      <gml:identifier>AE31</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:ApronElementTimeSlice gml:id="AETS31">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="AETSP31">
+              <gml:beginPosition>2008-03-23T14:00:00</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:type>NORMAL</aixm:type>
+          <aixm:surfaceProperties>
+            <aixm:SurfaceCharacteristics>
+              <aixm:composition>CONC</aixm:composition>
+            </aixm:SurfaceCharacteristics>
+          </aixm:surfaceProperties>
+          <aixm:extent>
+            <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4269" gml:id="b9826ec1">
+              <gml:patches>
+                <gml:PolygonPatch>
+                  <gml:exterior>
+                    <gml:LinearRing>
+                      <gml:posList>41.988378717132 -87.8902467371508 41.9894355791264 -87.8902483084357 41.989497362569 -87.8902276877899 41.9895353906731 -87.890201638579 41.9895464396054 -87.8901609072816 41.98955417359 -87.890115485474 41.9895584090587 -87.8900745063625 41.9900255165389 -87.8900730805336 41.9900205494771 -87.8906578714904 41.990029573799 -87.8907176072549 41.9900525010705 -87.890764135247 41.9900964221172 -87.8907839998803 41.9904543265922 -87.8907877745557 41.9904565441502 -87.8915236369286 41.9900598598791 -87.8915234627405 41.9886608461106 -87.8915228503883 41.9878824156017 -87.891522509195 41.9878829448678 -87.891029747051 41.9883803457976 -87.8910476938188 41.988378717132 -87.8902467371508</gml:posList>
+                    </gml:LinearRing>
+                  </gml:exterior>
+                </gml:PolygonPatch>
+              </gml:patches>
+              <aixm:elevation uom="FT">735.480171866143</aixm:elevation>
+            </aixm:ElevatedSurface>
+          </aixm:extent>
+        </aixm:ApronElementTimeSlice>
+      </aixm:timeSlice>
+    </aixm:ApronElement>
+  </message:hasMember>
+  <message:hasMember>
+    <aixm:ApronElement gml:id="AE32">
+      <gml:identifier>AE32</gml:identifier>
+      <aixm:timeSlice>
+        <aixm:ApronElementTimeSlice gml:id="AETS32">
+          <gml:validTime>
+            <gml:TimePeriod gml:id="AETSP32">
+              <gml:beginPosition>2008-03-23T14:00:00</gml:beginPosition>
+              <gml:endPosition indeterminatePosition="unknown"/>
+            </gml:TimePeriod>
+          </gml:validTime>
+          <aixm:interpretation>BASELINE</aixm:interpretation>
+          <aixm:sequenceNumber>1</aixm:sequenceNumber>
+          <aixm:type>NORMAL</aixm:type>
+          <aixm:surfaceProperties>
+            <aixm:SurfaceCharacteristics>
+              <aixm:composition>CONC</aixm:composition>
+            </aixm:SurfaceCharacteristics>
+          </aixm:surfaceProperties>
+          <aixm:extent>
+            <aixm:ElevatedSurface srsName="urn:ogc:def:crs:EPSG::4269" gml:id="b9826ec1">
+              <gml:patches>
+                <gml:PolygonPatch>
+                  <gml:exterior>
+                    <gml:LinearRing>
+                      <gml:posList>41.9910106227796 -87.8909643618437 41.9912799482084 -87.8909649400766 41.991279563653 -87.8908857006254 41.9919427032567 -87.890885747315 41.991943993594 -87.890990904887 41.9921736870414 -87.890997495305 41.9924531422214 -87.8910030082705 41.9924459549217 -87.8918608741859 41.9918013021139 -87.8918637366182 41.9917945770847 -87.8915207385813 41.9910104472508 -87.8915198658447 41.9910106227796 -87.8909643618437</gml:posList>
+                    </gml:LinearRing>
+                  </gml:exterior>
+                </gml:PolygonPatch>
+              </gml:patches>
+              <aixm:elevation uom="FT">735.759464926446</aixm:elevation>
+            </aixm:ElevatedSurface>
+          </aixm:extent>
+        </aixm:ApronElementTimeSlice>
+      </aixm:timeSlice>
+    </aixm:ApronElement>
+  </message:hasMember>
+</message:AIXMBasicMessage>
