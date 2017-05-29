@@ -80,17 +80,13 @@ void AIXM_file_parser::find_boundaries()
   Coordinate min_lat,max_lat, min_lon, max_lon;
 
 
-  std::pair< std::vector<GMLObject*>::iterator, std::vector<GMLObject*>::iterator> minmax_lat =
-      std::minmax_element( Objects.begin(), Objects.end(), poly_compare(Coordinate::Lat));
+  auto minmax_lat = std::minmax_element( Objects.begin(), Objects.end(), poly_compare(Coordinate::Lat));
 
 
-  std::pair<std::vector<GMLObject*>::iterator, std::vector<GMLObject*>::iterator> minmax_lon = 
-      std::minmax_element( Objects.begin(), Objects.end(), poly_compare(Coordinate::Lon) );
-
+  auto minmax_lon = std::minmax_element( Objects.begin(), Objects.end(), poly_compare(Coordinate::Lon) );
 
   if ( m_Quadtree )
   {
-
     min_lat = *std::min_element((*minmax_lat.first)->m_Coordinates.begin(),(*minmax_lat.first)->m_Coordinates.begin(), Coordinate_compare(Coordinate::Lat));
     max_lat = *std::max_element((*minmax_lat.second)->m_Coordinates.begin(),(*minmax_lat.second)->m_Coordinates.end(), Coordinate_compare(Coordinate::Lat));
 
@@ -100,8 +96,10 @@ void AIXM_file_parser::find_boundaries()
     double tol1	= abs(min_lon.m_Lon - max_lon.m_Lon) * 0.0;
     double tol2	= abs(min_lat.m_Lat - max_lat.m_Lat) * 0.0;
 			
-    m_Quadtree->updateTreeBoundary( min_lon.m_Lon - (sign(min_lon.m_Lon)*tol1) , max_lon.m_Lon + (sign(max_lon.m_Lon)*tol1), min_lat.m_Lat + (sign(min_lat.m_Lat)*tol2), max_lat.m_Lat - (sign(max_lat.m_Lat)*tol2));
-    //m_Quadtree->updateTreeBoundary( min_lon.m_Lon, max_lon.m_Lon, min_lat.m_Lat, max_lat.m_Lat);
+    m_Quadtree->updateTreeBoundary( min_lon.m_Lon - (sign(min_lon.m_Lon)*tol1),
+                                    max_lon.m_Lon + (sign(max_lon.m_Lon)*tol1),
+                                    min_lat.m_Lat + (sign(min_lat.m_Lat)*tol2),
+                                    max_lat.m_Lat - (sign(max_lat.m_Lat)*tol2));
 
     QuadTree* temp_tree = m_Quadtree;
     std::for_each( Objects.begin(), Objects.end(),
@@ -132,12 +130,18 @@ float AIXM_file_parser::mapDistance ( float dLat, float dLon )
   float p_lat1 = 0;
   float p_lat2 = 0;
 
-  float a = sin(dLat/2) * sin(dLat/2) +
-            ( cos(p_lat1) * cos(p_lat2) * sin(dLon/2) * sin(dLon/2) ); 
+  float a = sin(dLat/2) *
+            sin(dLat/2) +
+            (cos(p_lat1) *
+             cos(p_lat2) *
+             sin(dLon/2) *
+             sin(dLon/2)); 
+
   float c = 2 * atan2(sqrt(a), sqrt(1-a)); 
   float d = R * c;
 
-  std::cout << "Distance = " << d << std::endl;
+  // std::cout << "Distance = " << d << std::endl;
+
   return d;
 }
 
@@ -197,11 +201,14 @@ double distance( double p_lon1, double p_lat1, double p_lon2, double p_lat2 )
   double dlat = (p_lat2-p_lat1) * (M_PI/180.0);
   double dlon = (p_lon2-p_lon1) * (M_PI/180.0);
 
-  double a = sin(dlat/2) * sin(dlat/2) +
-             cos(lat1_rad) * cos(lat2_rad) *
-             sin(dlon/2) * sin(dlon/2);
-  double c = 2 * atan2(sqrt(a), sqrt(1-a));
+  double a = sin(dlat/2) *
+             sin(dlat/2) +
+             cos(lat1_rad) *
+             cos(lat2_rad) *
+             sin(dlon/2) *
+             sin(dlon/2);
 
+  double c = 2 * atan2(sqrt(a), sqrt(1-a));
   double d = R * c;
   return d;
 }
@@ -209,7 +216,6 @@ double distance( double p_lon1, double p_lat1, double p_lon2, double p_lat2 )
 
 double bearing_rad( double p_lon1, double p_lat1, double p_lon2, double p_lat2 )
 {
-
   double y = sin(p_lon2-p_lon1) * cos(p_lat2);
   double x = cos(p_lat1)*sin(p_lat2) - sin(p_lat1)*cos(p_lat2)*cos(p_lon2-p_lon1);
   return atan2(y, x);
@@ -218,7 +224,6 @@ double bearing_rad( double p_lon1, double p_lat1, double p_lon2, double p_lat2 )
 double AIXM_file_parser::x_distance( double p_lon1, double p_lat1 )
 {
   return  6371.0 * sin(p_lat1) * cos(p_lon1);
-  //return (p_lon2-p_lon1)* cos( (p_lat1+p_lat2)/2.0 );
 }
 
 double AIXM_file_parser::y_distance( double p_lon1, double p_lat1)
