@@ -26,14 +26,13 @@ GLWidget::GLWidget(QWidget *parent) :
   //data.read_AIXM_file( "..\\Airport_data\\Chicago O'Hare Runways.xml");
   data.find_boundaries();
 
-
   const GLuint NumVertices = Tree->getNodeCount() * 4;
   std::vector< std::array<double,3> > vertices;
-  Tree->for_each_node( Tree->m_rootNode,[&vertices](Node* p_Node) 
+  Tree->for_each_node( Tree->m_rootNode,
+                       [&vertices](Node* p_Node) 
                        { 
                          std::array<double, 3> p;
                          double arr[3] = {p_Node->centre_x(), p_Node->centre_y(), p_Node->centre_z()};
-
                          p[0] = arr[0];
                          p[1] = arr[1];
                          p[2] = arr[2];
@@ -56,45 +55,19 @@ void GLWidget::initializeGL() {
   glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
   glClear( GL_COLOR_BUFFER_BIT );
   glClearColor( 0, 0, 0, 0 );
-
-
   // 
 
 }
 
-void GLWidget::resizeGL(int w, int h) {
-
-  //GlobalConst::BoundingBoxRight = w/2.0;
-  //GlobalConst::BoundingBoxLeft = -GlobalConst::BoundingBoxRight; 
-  //GlobalConst::BoundingBoxTop = h/2.0;
-  //GlobalConst::BoundingBoxBottom = -GlobalConst::BoundingBoxTop;
-
+void GLWidget::resizeGL(int w, int h)
+{
   m_width = w;
   m_height = h;
-
-  // glViewport( 0, 0, w, h );
-  // glMatrixMode( GL_PROJECTION );
-  // glLoadIdentity();
   setViewingVolume( w, h, m_zoom_factor );
-  // gluOrtho2D( Tree->get_left(), Tree->get_right(), Tree->get_bottom(), Tree->get_top() ); // set origin to bottom left corner
-  // glScalef(1, -1, 1);
-  // glMatrixMode( GL_MODELVIEW );
-  //glLoadIdentity();
-
-  // Fix me: improve this function by passing reference to the tree instead of copying.
-  // Tree->updateTreeBoundary( Tree->get_left(), Tree->get_right(), Tree->get_bottom(), Tree->get_top() );
-
-  //glClear( GL_COLOR_BUFFER_BIT );
-  //glClearColor( 0, 0, 0, 0 );
-
 }
 
-void GLWidget::paintGL() {
-
-
-  //glClear( GL_COLOR_BUFFER_BIT );
-  // glClearColor( 0, 0, 0, 0 );
-
+void GLWidget::paintGL()
+{
 
   // Draw the grid
   if (Tree)
@@ -131,9 +104,6 @@ void GLWidget::paintGL() {
     {
       // qDebug() << data.Objects.at( i )->Lons.at( j )-x+x_dist;
       glVertex3f ((*itr)->m_Coordinates.at( j ).m_Lon, (*itr)->m_Coordinates.at( j ).m_Lat, 0 );
-
-
-      //	qDebug() << data.Objects.at( i )->Lons.at( j ) << ", " << data.Objects.at( i )->Lats.at( j );
     }
     glEnd();
   }
@@ -151,8 +121,6 @@ void GLWidget::paintGL() {
   }
 
   Tree->camefromSet.clear();
-
-
 }
 
 void GLWidget::drawTreeNode( Node* pNode)
@@ -184,12 +152,6 @@ void GLWidget::drawTreeNode( Node* pNode)
     renderText ( pNode->centre_x(), pNode->centre_y(), 0, QString::number(pNode->id));
   }
 
-  // read taxiway data
-  // for ( unsigned int i=0; i<data.Objects.size(); ++i )
-  //static bool first_point = true;
-  //static double x,y,x_dist,y_dist;
-  //glEnd();
-
   // Node Count label
   TreeChanged( QString::fromStdString(std::to_string( __int64(Tree->getNodeCount()) )) );
 }
@@ -198,7 +160,6 @@ void GLWidget::drawTreeNode( Node* pNode)
 
 void GLWidget::mousePressEvent(QMouseEvent *event)
 {
-  // qDebug() << "Mouse Y " << event->y();
   double world_x, world_y, world_z;
   double model_view[16];
   glGetDoublev(GL_MODELVIEW_MATRIX, model_view);
@@ -211,7 +172,6 @@ void GLWidget::mousePressEvent(QMouseEvent *event)
 
   gluUnProject( event->x(), viewport[3] - event->y(), 0.0, model_view, projection, viewport, &world_x, &world_y, &world_z );
 
-  //qDebug() << world_x << " - " << world_y << " - " << world_z;
   switch ( event->button() )
   {
     case Qt::LeftButton:
@@ -247,9 +207,6 @@ void GLWidget::mousePressEvent(QMouseEvent *event)
 
       Tree->for_each_node( Tree->m_rootNode, std::bind(&QuadTree::balanceTree, Tree, std::placeholders::_1) );
 
-      //delete Tree;
-      //Tree = NULL;
-      
       break;
     default:
       event->ignore();
@@ -257,7 +214,8 @@ void GLWidget::mousePressEvent(QMouseEvent *event)
   }
   updateGL();
 }
-void GLWidget::mouseMoveEvent(QMouseEvent *event) {
+void GLWidget::mouseMoveEvent(QMouseEvent *event)
+{
   //	printf("%d, %d\n", event->x(), event->y());
   // if (event->buttons() & Qt::LeftButton) {
 
@@ -265,8 +223,10 @@ void GLWidget::mouseMoveEvent(QMouseEvent *event) {
   // }
 }
 
-void GLWidget::keyPressEvent(QKeyEvent* event) {
-  switch(event->key()) {
+void GLWidget::keyPressEvent(QKeyEvent* event)
+{
+  switch(event->key())
+  {
     case Qt::Key_Escape:
       QCoreApplication::quit();
       break;
@@ -278,7 +238,6 @@ void GLWidget::keyPressEvent(QKeyEvent* event) {
 
 void GLWidget::wheelEvent(QWheelEvent *event)
 {
-  // qDebug() << event->x();
   int numDegrees = event->delta() / 8.0;
   int numSteps = numDegrees / 15;
   m_zoom_factor += numSteps*0.01;
@@ -299,7 +258,6 @@ void GLWidget::resetTree()
   Tree->removeTreeNode( Tree->m_rootNode );
   glClear( GL_COLOR_BUFFER_BIT );
   glClearColor( 0, 0, 0, 0 );
-
   updateGL();
 }
 
@@ -325,10 +283,6 @@ void	GLWidget::zoom( const int& p_width, const int& p_height, const double& p_fa
   glLoadIdentity();
   gluPerspective (50.0*p_factor, (float)p_width/(float)p_height, 1, -1);
   /* ...Where 'zNear' and 'zFar' are up to you to fill in. */
-
-
-  //Tree->updateTreeBoundary( p_x+Tree->get_left(), p_x+Tree->get_right(), p_y+Tree->get_bottom(), p_y+Tree->get_top() );
-
   updateGL();
 
 }
@@ -349,19 +303,21 @@ void	GLWidget::setViewingVolume(const int& p_x, const int& p_y, const double& p_
 {
   double canvas_width  = abs(Tree->get_left()-Tree->get_right());
   double canvas_height = abs(Tree->get_top() - Tree->get_bottom());
-  double aspect_ratio  = (double)canvas_width/(double)canvas_height;xg
+  double aspect_ratio  = (double)canvas_width/(double)canvas_height;
 
-                                                                        glViewport( 0,0,p_x, p_y );
+  glViewport( 0,0,p_x, p_y );
   glMatrixMode( GL_PROJECTION );
   glLoadIdentity();
-  if( canvas_width > canvas_height ){
+  if( canvas_width > canvas_height )
+  {
     // gluOrtho2D((p_x+Tree->get_left())*aspect_ratio,(p_x+Tree->get_right())*aspect_ratio,p_y+Tree->get_bottom(),p_y+Tree->get_top());
-  }else{
+  }
+  else
+  {
     // gluOrtho2D(p_x+Tree->get_left(),p_x+Tree->get_right(),(p_y+Tree->get_bottom())*aspect_ratio,(p_y+Tree->get_top())*aspect_ratio);
   }
 
   gluOrtho2D( Tree->get_left() * p_zoom_factor, Tree->get_right() * p_zoom_factor, Tree->get_bottom() * p_zoom_factor, Tree->get_top() * p_zoom_factor );
   // updateZoomFactors();
   glMatrixMode( GL_MODELVIEW );
-
 }
