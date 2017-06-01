@@ -4,52 +4,50 @@
 
 #include <gl\GL.h>
 #include <gl\GLU.h>
-
-//#define GLdouble
-
 #include <QtOpenGL/QGLWidget>
 #include "QuadTree.h"
 #include "AIXM_file_parser.h"
 
 class GLWidget : public QGLWidget {
 
-	Q_OBJECT // must include this if you use Qt signals/slots
+  Q_OBJECT // must include this if you use Qt signals/slots
 
-public:
-	GLWidget(QWidget *parent = NULL);
-	QuadTree *Tree;
+ public:
 
-	// Draw Nodes
-	void drawTreeNode (Node* p);
+  GLWidget(QWidget *parent = NULL);
+  QuadTree *Tree;
 
-	// for routePath test
-	std::vector<Node*> testVec;
+  // Draw Nodes
+  void drawTreeNode (Node* p);
 
-	AIXM_file_parser data;
-	
+  // for routePath test
+  std::vector<Node*> testVec;
 
-protected:
-	//int width, height;
-	void initializeGL();
-	void resizeGL(int w, int h);
-	void paintGL();
-	void mousePressEvent(QMouseEvent *event);
-	void mouseMoveEvent(QMouseEvent *event);
-	void keyPressEvent(QKeyEvent *);
-	void wheelEvent( QWheelEvent *event);
+  AIXM_file_parser data;
+  
 
-	void zoom( const int& p_x, const int& p_y, const double& p_factor );
-	void zoomOut();
-	void setViewingVolume(const int& p_x, const int& p_y, const double& p_zoom_factor );
+ protected:
+  //int width, height;
+  void initializeGL();
+  void resizeGL(int w, int h);
+  void paintGL();
+  void mousePressEvent(QMouseEvent *event);
+  void mouseMoveEvent(QMouseEvent *event);
+  void keyPressEvent(QKeyEvent *);
+  void wheelEvent( QWheelEvent *event);
 
-	public slots:
-		void resetTree();
-signals:
-		void TreeChanged( const QString& NodeCount);
+  void zoom( const int& p_x, const int& p_y, const double& p_factor );
+  void zoomOut();
+  void setViewingVolume(const int& p_x, const int& p_y, const double& p_zoom_factor );
 
+ public slots:
+  void resetTree();
+ signals:
+  void TreeChanged( const QString& NodeCount);
 
-private:
-	double m_zoom_factor;
-	int m_width, m_height;
+ private:
+
+  double m_zoom_factor;
+  int m_width, m_height;
 };
 
