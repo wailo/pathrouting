@@ -1,4 +1,3 @@
-
 #include "pathrouting.h"
 #include "GLWidget.h"
 #include <QtWidgets/QApplication>
