@@ -17,22 +17,18 @@ P3::~P3(void)
 
 P3 P3::operator+( const P3& other ) const
 {
-	P3 result;
-
-	result.x = x + other.x;
-	result.y = y + other.y;
-	result.z = z + other.z;
-
-	return result;
+  P3 result;
+  result.x = x + other.x;
+  result.y = y + other.y;
+  result.z = z + other.z;
+  return result;
 }
 
 P3 P3::operator-( const P3& other ) const
 {
-	P3 result;
-
-	result.x = x - other.x;
-	result.y = y - other.y;
-	result.z = z - other.z;
-
-	return result;
+  P3 result;
+  result.x = x - other.x;
+  result.y = y - other.y;
+  result.z = z - other.z;
+  return result;
 }
