@@ -7,12 +7,8 @@
 
 int main(int argc, char *argv[])
 {
-	QApplication a(argc, argv);
-	PathRouting w;
-	 //GLDrawer p( &w , 0 );
-
-	
-
-	w.show();
-	return a.exec();
+  QApplication a(argc, argv);
+  PathRouting w;
+  w.show();
+  return a.exec();
 }
