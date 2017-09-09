@@ -54,12 +54,12 @@ bool AIXM_file_parser::read_AIXM_file( std::string full_path )
   pugi::xml_document doc;
   pugi::xml_parse_result result = doc.load_file(full_path.c_str());
 
-  if ( result )
-  {
-    simple_walker walker ( *this );
-    doc.traverse(walker);
+  if (!result) {
+    throw std::runtime_error("AIXM file does not exist");
   }
-  
+
+  simple_walker walker ( *this );
+  doc.traverse(walker);  
   return true;
 }
 
@@ -95,28 +95,28 @@ void AIXM_file_parser::find_boundaries()
 			
     double tol1	= abs(min_lon.m_Lon - max_lon.m_Lon) * 0.0;
     double tol2	= abs(min_lat.m_Lat - max_lat.m_Lat) * 0.0;
-			
+    
     m_Quadtree->updateTreeBoundary( min_lon.m_Lon - (sign(min_lon.m_Lon)*tol1),
                                     max_lon.m_Lon + (sign(max_lon.m_Lon)*tol1),
                                     min_lat.m_Lat + (sign(min_lat.m_Lat)*tol2),
                                     max_lat.m_Lat - (sign(max_lat.m_Lat)*tol2));
 
     QuadTree* temp_tree = m_Quadtree;
-    std::for_each( Objects.begin(), Objects.end(),
-                   [temp_tree]( GMLObject* p_poly )
-                   {
-                     for ( auto i = 1; i < p_poly->m_Coordinates.size(); ++i )
-                     {
-                       Node* node = temp_tree->findTreeNode( p_poly->m_Coordinates.at(i).m_Lon, p_poly->m_Coordinates.at(i).m_Lat );
-                       Node* node1 = temp_tree->findTreeNode( p_poly->m_Coordinates.at(i-1).m_Lon, p_poly->m_Coordinates.at(i-1).m_Lat );
-                       while (node == node1 /*false*/ )
-                       {
-                         node1 = temp_tree->findTreeNode( p_poly->m_Coordinates.at(i).m_Lon, p_poly->m_Coordinates.at(i).m_Lat, node1 );
-                         temp_tree->constructTreeNode( node1 );
-                       }
-                     }
-                   } 
-                   );
+    std::for_each(Objects.begin(), Objects.end(),
+                  [temp_tree]( GMLObject* p_poly )
+                  {
+                    for ( auto i = 1; i < p_poly->m_Coordinates.size(); ++i )
+                    {
+                      Node* node = temp_tree->findTreeNode( p_poly->m_Coordinates.at(i).m_Lon, p_poly->m_Coordinates.at(i).m_Lat );
+                      Node* node1 = temp_tree->findTreeNode( p_poly->m_Coordinates.at(i-1).m_Lon, p_poly->m_Coordinates.at(i-1).m_Lat );
+                      while (node == node1 /*false*/ )
+                      {
+                        node1 = temp_tree->findTreeNode( p_poly->m_Coordinates.at(i).m_Lon, p_poly->m_Coordinates.at(i).m_Lat, node1 );
+                        temp_tree->constructTreeNode( node1 );
+                      }
+                    }
+                  } 
+                  );
   }
 }
 
@@ -188,7 +188,6 @@ bool simple_walker::for_each(pugi::xml_node& node)
     }
 
     parser.Objects.push_back( object );
-
   }
 
   return true; // continue traversal
@@ -237,7 +236,7 @@ double AIXM_file_parser::polarTodec( std::string polarCoord )
   int direction = 0;
 
   std::error_code format_error;
-  std::tr1::regex Latitude("^\-?(\\d|[0-8][0-9]|90)+\\s\\d\\d\\s\\d\\d+[NSWE]");        
+  std::regex Latitude("^\-?(\\d|[0-8][0-9]|90)+\\s\\d\\d\\s\\d\\d+[NSWE]");        
 
   if ( !regex_match(polarCoord.begin(), polarCoord.end(), Latitude) )
   {

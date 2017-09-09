@@ -8,8 +8,16 @@ project(path_routing)
 # these instructions search the directory tree when cmake is
 # invoked and put all files that match the pattern in the variables 
 # `sources` and `data`
-file(GLOB_RECURSE sources *.cpp src/main/*.h)
-file(GLOB_RECURSE sources_test *.cpp)
+file(GLOB_RECURSE sources
+QuadTree.cpp
+GLWidget.cpp
+AIXM_file_parser.cpp
+main.cpp
+P3.cpp
+Node.cpp
+pathrouting.cpp)
+
+#file(GLOB_RECURSE sources_test *.cpp)
 file(GLOB_RECURSE data resources/*)
 # you can use set(sources src/main.cpp) etc if you don't want to
 # use globing to find files automatically
@@ -18,11 +26,6 @@ file(GLOB_RECURSE data resources/*)
 ## target definitions #########################################################
 ###############################################################################
 
-# add the data to the target, so it becomes visible in some IDE
-add_executable(path_routing ${sources} ${data})
-
-# just for example add some compiler flags
-target_compile_options(path_routing PUBLIC -std=c++1y -Wall -Wfloat-conversion -g)
 
 
 # this copies all resource files in the build directory
@@ -39,27 +42,51 @@ find_package(Boost REQUIRED)
 
 # Find includes in corresponding build directories
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
+find_package(Qt5Core REQUIRED)
+find_package(Qt5Gui REQUIRED)
 find_package(Qt5Widgets REQUIRED)
+find_package(Qt5OpenGL REQUIRED)
+find_package(OpenGL REQUIRED)
 set(CMAKE_AUTOMOC ON)
-set(CMAKE_AUTOUIC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
-find_package(OpenGL REQUIRED)
+set(UI_SOURCES
+  pathrouting.ui
+  )
 
-target_link_libraries(path_routing PUBLIC
-  ${Boost_LIBRARIES}
-  ${OPENGL_LIBRARIES}
-   # here you can add any library dependencies
-)
+set(QT5_LIBRARIES Qt5::Widgets Qt5::OpenGL)
 
-MESSAGE(${Boost_INCLUDE_DIRS})
-# this lets me include files relative to the root src dir with a <> pair
-target_include_directories(path_routing PUBLIC ${Boost_INCLUDE_DIRS} ../pugixml-1.2/src)
+qt5_wrap_ui(UI_GENERATED_HEADERS ${UI_SOURCES})
+
+
+add_subdirectory(../pugixml pugixml_lib)
 
 # Add the include directories for the Qt 5 Widgets module to
 # the compile lines.
 include_directories(${Qt5Widgets_INCLUDE_DIRS} ${OPENGL_INCLUDE_DIRS}  ${GLUT_INCLUDE_DIRS})
 
+# add the data to the target, so it becomes visible in some IDE
+add_executable(path_routing ${sources} ${data} ${UI_GENERATED_HEADERS})
+
+# just for example add some compiler flags
+target_compile_options(path_routing PUBLIC -std=c++1y -Wall -Wfloat-conversion -g)
+# this lets me include files relative to the root src dir with a <> pair
+target_include_directories(path_routing PUBLIC
+  ${Boost_INCLUDE_DIRS}
+  ../pugixml/src
+  )
+
+
+
+find_library(Pugixml_LIBRARY "pugixml"  "../pugixml/build/")
+target_link_libraries(path_routing PUBLIC
+  ${Boost_LIBRARIES}
+  ${OPENGL_LIBRARIES}
+  ${QT5_LIBRARIES}
+  ${Pugixml_LIBRARY}
+  -v
+   # here you can add any library dependencies
+   ) 
 ###############################################################################
 ## testing ####################################################################
 ###############################################################################
@@ -112,10 +139,6 @@ set(CPACK_PACKAGE_VERSION "1.0.0")
 # we don't want to split our program up into several things
 set(CPACK_MONOLITHIC_INSTALL 1)
 
+
 # This must be last
 include(CPack)
-
-
-set(CMAKE_CXX_FLAGS "-O0 -g -std=c++14")
-#set(CMAKE_CXX_FLAGS_DEBUG "-O0 -ggdb")
-#set(CMAKE_CXX_FLAGS_RELEASE "")

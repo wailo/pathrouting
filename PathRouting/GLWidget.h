@@ -1,9 +1,15 @@
 #pragma once
 
+#if defined(WIN32) || defined(_WIN32) || defined(__WIN32) && !defined(__CYGWIN__)
 #include <Windows.h>
-
 #include <gl\GL.h>
 #include <gl\GLU.h>
+#elif __APPLE__
+#include <gl.h>
+#include <glu.h>
+#endif
+
+
 #include <QtOpenGL/QGLWidget>
 #include "QuadTree.h"
 #include "AIXM_file_parser.h"

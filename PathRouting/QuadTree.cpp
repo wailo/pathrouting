@@ -37,7 +37,7 @@ QuadTree::QuadTree( int LT , int RT , int BT , int TP ) : left( LT ), right( RT 
 
 QuadTree::~QuadTree(void)
 {
-	for_each_node ( m_rootNode, std::bind(&QuadTree::removeTreeNode, this, std::placeholders::_1));
+  for_each_node ( m_rootNode, [&](Node* p_node){ removeTreeNode(p_node);});
 }
 
 void QuadTree::InitRootNode()
@@ -783,10 +783,6 @@ double QuadTree::distance (Node* start, Node* finish)
 	return  sqrt( ( temp_p3.x * temp_p3.x ) + ( temp_p3.y * temp_p3.y ) );
 }
 
-struct{
-	double distance;
-	Node*p;
-};
 
 std::vector<Node*> construct_path( std::vector<Node*>, Node* finish);
 
