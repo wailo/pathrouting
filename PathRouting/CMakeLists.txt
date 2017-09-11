@@ -1,4 +1,5 @@
 cmake_minimum_required(VERSION 3.0)
+set (CMAKE_INSTALL_PREFIX "${CMAKE_BINARY_DIR}" CACHE PATH "default install path" FORCE )
 project(path_routing)
 
 ###############################################################################
@@ -18,7 +19,8 @@ Node.cpp
 pathrouting.cpp)
 
 #file(GLOB_RECURSE sources_test *.cpp)
-file(GLOB_RECURSE data resources/*)
+#file(GLOB_RECURSE resources ../Airport_data/)
+set(resources ../Airport_data)
 # you can use set(sources src/main.cpp) etc if you don't want to
 # use globing to find files automatically
 
@@ -30,7 +32,8 @@ file(GLOB_RECURSE data resources/*)
 
 # this copies all resource files in the build directory
 # we need this, because we want to work with paths relative to the executable
-#file(COPY ${data} DESTINATION resources)
+message(${resources})
+file(COPY ${resources} DESTINATION .)
 
 ###############################################################################
 ## dependencies ###############################################################
@@ -59,7 +62,7 @@ set(QT5_LIBRARIES Qt5::Widgets Qt5::OpenGL)
 qt5_wrap_ui(UI_GENERATED_HEADERS ${UI_SOURCES})
 
 
-add_subdirectory(../pugixml pugixml_lib)
+#add_subdirectory(../pugixml pugixml_lib)
 
 # Add the include directories for the Qt 5 Widgets module to
 # the compile lines.
@@ -69,7 +72,7 @@ include_directories(${Qt5Widgets_INCLUDE_DIRS} ${OPENGL_INCLUDE_DIRS}  ${GLUT_IN
 add_executable(path_routing ${sources} ${data} ${UI_GENERATED_HEADERS})
 
 # just for example add some compiler flags
-target_compile_options(path_routing PUBLIC -std=c++1y -Wall -Wfloat-conversion -g)
+target_compile_options(path_routing PUBLIC -std=c++14 -Wall -Wfloat-conversion -ggdb -O)
 # this lets me include files relative to the root src dir with a <> pair
 target_include_directories(path_routing PUBLIC
   ${Boost_INCLUDE_DIRS}
@@ -84,9 +87,9 @@ target_link_libraries(path_routing PUBLIC
   ${OPENGL_LIBRARIES}
   ${QT5_LIBRARIES}
   ${Pugixml_LIBRARY}
-  -v
    # here you can add any library dependencies
-   ) 
+   )
+
 ###############################################################################
 ## testing ####################################################################
 ###############################################################################
@@ -123,11 +126,11 @@ target_link_libraries(path_routing PUBLIC
 
 # all install commands get the same destination. this allows us to use paths
 # relative to the executable.
-install(TARGETS path_routing DESTINATION example_destination)
+#install(TARGETS path_routing DESTINATION bin/ )
 # this is basically a repeat of the file copy instruction that copies the
 # resources in the build directory, but here we tell cmake that we want it
 # in the package
-install(DIRECTORY resources DESTINATION example_destination)
+install(DIRECTORY ../Airport_data DESTINATION .)
 
 # now comes everything we need, to create a package
 # there are a lot more variables you can set, and some
