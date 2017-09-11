@@ -82,7 +82,7 @@ public:
   OnDrawEventHandler func;
 
   // Visit all the tree nodes and execute func
-  void for_each_node(Node *pRootnode , OnDrawEventHandler func );
+  void forEachNode(Node *pRootnode , OnDrawEventHandler func );
 
   //void updateNodeCentre ( Node* node );
 

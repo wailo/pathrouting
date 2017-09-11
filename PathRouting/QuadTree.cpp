@@ -37,7 +37,7 @@ QuadTree::QuadTree( int LT , int RT , int BT , int TP ) : right( RT ), left( LT 
 
 QuadTree::~QuadTree(void)
 {
-  for_each_node ( m_rootNode, [&](Node* p_node){ removeTreeNode(p_node);});
+  forEachNode ( m_rootNode, [&](Node* p_node){ removeTreeNode(p_node);});
 }
 
 void QuadTree::InitRootNode()
@@ -248,7 +248,7 @@ void QuadTree::updateTreeBoundary( double LT, double RT, double BT, double TP )
 	gridHeight = fabs( top - bottom );
 	//constructTreeNode ( &rootNode ) ;
 
-	//for_each_node ( m_rootNode, std::bind(&QuadTree::updateNodeCentre, this, std::placeholders::_1) );
+	//forEachNode ( m_rootNode, std::bind(&QuadTree::updateNodeCentre, this, std::placeholders::_1) );
 
 	/*x_dsp = gridWidth / pow( 2.00 , rootNode.depth );
 	y_dsp = gridHeight / pow( 2.00 , rootNode.depth );
@@ -318,7 +318,7 @@ void QuadTree::updateTreeBoundary( double LT, double RT, double BT, double TP )
 //	// qDebug() << node->id << node->centre_x() << " "  << node->centre_y();
 //}
 
-void QuadTree::for_each_node(Node *pRootnode ,  OnDrawEventHandler func)
+void QuadTree::forEachNode(Node *pRootnode ,  OnDrawEventHandler func)
 {
 	// Function to be applied at each node, the function should modify the target node only!
 	//(this->*func)( &pRootnode );
@@ -337,7 +337,7 @@ void QuadTree::for_each_node(Node *pRootnode ,  OnDrawEventHandler func)
 			// check if the node is valid
 			if ( pRootnode->Child[i])
 			{
-				for_each_node( pRootnode->Child[i], func );
+				forEachNode( pRootnode->Child[i], func );
 			}
 		}
 	}
@@ -810,7 +810,7 @@ bool QuadTree::path_routing( Node* start, Node* finish)
 {
 
 
-	//	for_each_node ( rootNode, std::bind(&QuadTree::balanceTree, this, std::placeholders::_1) );
+	//	forEachNode ( rootNode, std::bind(&QuadTree::balanceTree, this, std::placeholders::_1) );
 	Node* current;
 	closedSet.clear();
 	camefromSet.clear();

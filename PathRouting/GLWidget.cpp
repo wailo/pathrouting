@@ -34,7 +34,7 @@ GLWidget::GLWidget(QWidget *parent) :
 
   const GLuint NumVertices = Tree->getNodeCount() * 4;
   std::vector< std::array<double,3> > vertices;
-  Tree->for_each_node( Tree->m_rootNode,
+  Tree->forEachNode( Tree->m_rootNode,
                        [&vertices](Node* p_Node) 
                        { 
                          std::array<double, 3> p;
@@ -78,7 +78,7 @@ void GLWidget::paintGL()
   // Draw the grid
   if (Tree)
   {
-    Tree->for_each_node ( Tree->m_rootNode , std::bind(&GLWidget::drawTreeNode, this, std::placeholders::_1) );
+    Tree->forEachNode ( Tree->m_rootNode , std::bind(&GLWidget::drawTreeNode, this, std::placeholders::_1) );
   }
 
 
@@ -211,7 +211,7 @@ void GLWidget::mousePressEvent(QMouseEvent *event)
       //Tree->constructTreeNode( Tree->findNeighbour( Tree->findTreeNode( event->x() , event->y()) , NULL ) );
       //Tree->getAllNeighbours(Tree->findTreeNode( event->x() , event->y()), Tree->neighbours );
 
-      Tree->for_each_node( Tree->m_rootNode, std::bind(&QuadTree::balanceTree, Tree, std::placeholders::_1) );
+      Tree->forEachNode( Tree->m_rootNode, std::bind(&QuadTree::balanceTree, Tree, std::placeholders::_1) );
 
       break;
     default:
