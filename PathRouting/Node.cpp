@@ -42,22 +42,22 @@ Node::~Node(void)
 
 double Node::x_dsp()
 {
-  return abs( m_parentTree->get_left() - m_parentTree->get_right() ) / pow( 2.00 , depth );
+  return fabs( m_parentTree->get_left() - m_parentTree->get_right() ) / pow( 2.00 , depth );
 }
 
 double Node::y_dsp()
 {
-  return abs( m_parentTree->get_top() - m_parentTree->get_bottom() ) / pow( 2.00 , depth );
+  return fabs( m_parentTree->get_top() - m_parentTree->get_bottom() ) / pow( 2.00 , depth );
 }
 
 double Node::x_dsp( int depth_ )
 {
-  return abs( m_parentTree->get_left() - m_parentTree->get_right() ) / pow( 2.00 , depth_ );
+  return fabs( m_parentTree->get_left() - m_parentTree->get_right() ) / pow( 2.00 , depth_ );
 }
 
 double Node::y_dsp( int depth_ )
 {
-  return abs( m_parentTree->get_top() - m_parentTree->get_bottom() ) / pow( 2.00 , depth_ );
+  return fabs( m_parentTree->get_top() - m_parentTree->get_bottom() ) / pow( 2.00 , depth_ );
 }
 
 double Node::centre_x()
@@ -103,7 +103,7 @@ double Node::centre_x()
     else
     {
       // Somthing wrong here!
-      assert(false);
+      throw std::runtime_error("Uknown Node");
       return 0;
     }
   }
@@ -149,7 +149,7 @@ double Node::centre_y()
     else
     {
       // Somthing wrong here!
-      assert(false);
+      throw std::runtime_error("Uknown Node");
       return 0;
     }
 

@@ -65,7 +65,7 @@ public:
   Node* m_rootNode;
 
   // Retrieve Tree node that contains XY coordinate
-  Node* findTreeNode(float x, float y, Node* p_startnode = NULL);
+  Node* findTreeNode(double x, double y, Node* p_startnode = NULL);
 	
   // Construct a tree branch by constructing all the children nodes
   void constructTreeNode(Node* node);

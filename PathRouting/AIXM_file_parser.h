@@ -52,11 +52,7 @@ struct Coordinate
 
 struct Coordinate_compare
 {
- Coordinate_compare( const Coordinate::CompareType& p_type): m_type(p_type)
-  {
-    
-  }
-
+ Coordinate_compare( const Coordinate::CompareType& p_type): m_type(p_type) {}
 	
   bool operator()( const Coordinate& p_coord_1 , const Coordinate& p_coord_2 )
   {

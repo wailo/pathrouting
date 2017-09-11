@@ -4,36 +4,6 @@
 #include <functional>
 
 
-struct poly_compare
-{
-  poly_compare( const Coordinate::CompareType& p_type): m_type(p_type)
-  {}
-
-  bool operator()( AIXM_file_parser::GMLObject* p_poly1, AIXM_file_parser::GMLObject* p_poly2)
-  {
-    return (*std::min_element(p_poly1->m_Coordinates.begin(),
-                              p_poly1->m_Coordinates.end(),
-                              Coordinate_compare(m_type)))(m_type) < (*std::min_element(p_poly2->m_Coordinates.begin(),
-                                                                                        p_poly2->m_Coordinates.end(),
-                                                                                        Coordinate_compare(m_type)))(m_type);
-  }
-
-  Coordinate::CompareType m_type;
-};
-
-template <typename T>
-int sign (const T& var )
-{
-  if (var<0)
-  {
-    return -1;
-  }
-  else
-  {
-    return 1;
-  }
-}
-
 AIXM_file_parser::AIXM_file_parser(void):
     m_Quadtree(NULL)
 {
@@ -65,7 +35,10 @@ bool AIXM_file_parser::read_AIXM_file( std::string full_path )
 
 void AIXM_file_parser::find_boundaries()
 {
-  
+    
+
+    
+    
   std::for_each(Objects.begin(), Objects.end(),
                 [this]( AIXM_file_parser::GMLObject* p_poly )
                 {
@@ -77,46 +50,48 @@ void AIXM_file_parser::find_boundaries()
                 }
                 );
 
-  Coordinate min_lat,max_lat, min_lon, max_lon;
+  Coordinate min_coord,max_coord; 
 
+  min_coord.m_Lat = std::numeric_limits<double>::max();
+  min_coord.m_Lon = std::numeric_limits<double>::max();
+  max_coord.m_Lat = std::numeric_limits<double>::lowest();
+  max_coord.m_Lon = std::numeric_limits<double>::lowest();
 
-  auto minmax_lat = std::minmax_element( Objects.begin(), Objects.end(), poly_compare(Coordinate::Lat));
-
-
-  auto minmax_lon = std::minmax_element( Objects.begin(), Objects.end(), poly_compare(Coordinate::Lon) );
-
+  for (const auto& obj : Objects) {
+    for (const auto& coord : obj->m_Coordinates) {
+      min_coord.m_Lat = std::min(coord.m_Lat, min_coord.m_Lat);
+      min_coord.m_Lon = std::min(coord.m_Lon, min_coord.m_Lon);
+      max_coord.m_Lat = std::max(coord.m_Lat, max_coord.m_Lat);
+      max_coord.m_Lon = std::max(coord.m_Lon, max_coord.m_Lon);
+    }
+  }
+    
   if ( m_Quadtree )
   {
-    min_lat = *std::min_element((*minmax_lat.first)->m_Coordinates.begin(),(*minmax_lat.first)->m_Coordinates.begin(), Coordinate_compare(Coordinate::Lat));
-    max_lat = *std::max_element((*minmax_lat.second)->m_Coordinates.begin(),(*minmax_lat.second)->m_Coordinates.end(), Coordinate_compare(Coordinate::Lat));
-
-    min_lon = *std::min_element((*minmax_lon.first)->m_Coordinates.begin(),(*minmax_lon.first)->m_Coordinates.end(), Coordinate_compare(Coordinate::Lon));
-    max_lon = *std::max_element((*minmax_lon.second)->m_Coordinates.begin(),(*minmax_lon.second)->m_Coordinates.end(), Coordinate_compare(Coordinate::Lon));
-			
-    double tol1	= abs(min_lon.m_Lon - max_lon.m_Lon) * 0.0;
-    double tol2	= abs(min_lat.m_Lat - max_lat.m_Lat) * 0.0;
+      
+    double tol1	= (max_coord.m_Lon - min_coord.m_Lon) * 0.001;
+    double tol2	= (max_coord.m_Lat - min_coord.m_Lat) * 0.001;
     
-    m_Quadtree->updateTreeBoundary( min_lon.m_Lon - (sign(min_lon.m_Lon)*tol1),
-                                    max_lon.m_Lon + (sign(max_lon.m_Lon)*tol1),
-                                    min_lat.m_Lat + (sign(min_lat.m_Lat)*tol2),
-                                    max_lat.m_Lat - (sign(max_lat.m_Lat)*tol2));
+    m_Quadtree->updateTreeBoundary( min_coord.m_Lon -  tol1,
+                                    max_coord.m_Lon +  tol1,
+                                    min_coord.m_Lat -  tol2,
+                                    max_coord.m_Lat +  tol2);
 
     QuadTree* temp_tree = m_Quadtree;
-    std::for_each(Objects.begin(), Objects.end(),
-                  [temp_tree]( GMLObject* p_poly )
-                  {
-                    for ( auto i = 1; i < p_poly->m_Coordinates.size(); ++i )
-                    {
-                      Node* node = temp_tree->findTreeNode( p_poly->m_Coordinates.at(i).m_Lon, p_poly->m_Coordinates.at(i).m_Lat );
-                      Node* node1 = temp_tree->findTreeNode( p_poly->m_Coordinates.at(i-1).m_Lon, p_poly->m_Coordinates.at(i-1).m_Lat );
-                      while (node == node1 /*false*/ )
-                      {
-                        node1 = temp_tree->findTreeNode( p_poly->m_Coordinates.at(i).m_Lon, p_poly->m_Coordinates.at(i).m_Lat, node1 );
-                        temp_tree->constructTreeNode( node1 );
-                      }
-                    }
-                  } 
-                  );
+      int kk = 0;
+      for (auto& p_poly : Objects) {
+          kk++;
+          for ( auto i = 1; i < p_poly->m_Coordinates.size(); ++i )
+          {
+              Node* node = temp_tree->findTreeNode( p_poly->m_Coordinates.at(i).m_Lon, p_poly->m_Coordinates.at(i).m_Lat );
+              Node* node1 = temp_tree->findTreeNode( p_poly->m_Coordinates.at(i-1).m_Lon, p_poly->m_Coordinates.at(i-1).m_Lat );
+              while (node == node1 /*false*/ )
+              {
+                  node1 = temp_tree->findTreeNode( p_poly->m_Coordinates.at(i).m_Lon, p_poly->m_Coordinates.at(i).m_Lat, node1 );
+                  temp_tree->constructTreeNode( node1 );
+              }
+          }
+      }
   }
 }
 

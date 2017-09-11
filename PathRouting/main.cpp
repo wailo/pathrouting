@@ -1,7 +1,7 @@
 #include "pathrouting.h"
 #include "GLWidget.h"
 #include <QtWidgets/QApplication>
-#include "Quadtree.h"
+#include "QuadTree.h"
 #include "AIXM_file_parser.h"
 
 

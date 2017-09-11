@@ -20,10 +20,10 @@ GLWidget::GLWidget(QWidget *parent) :
   // data.read_AIXM_file( "..\\Airport_data\\Chicago_Airspace_CRS84.xml");
   bool OK = false;
 
-  OK = data.read_AIXM_file( "..//Airport_data//Chicago O'Hare Aprons_CRS84.xml") &&
-       data.read_AIXM_file( "..//Airport_data//Chicago O'Hare Taxiways_CRS84.xml") &&
-       data.read_AIXM_file( "..//Airport_data//Chicago O'Hare Runways_CRS84.xml") &&
-       data.read_AIXM_file( "..//Airport_data//Chicago O'Hare VerticalStructures_CRS84.xml");
+  OK = data.read_AIXM_file( "Chicago O'Hare Aprons_CRS84.xml") &&
+       data.read_AIXM_file( "Chicago O'Hare Taxiways_CRS84.xml") &&
+       data.read_AIXM_file( "Chicago O'Hare Runways_CRS84.xml") &&
+       data.read_AIXM_file( "Chicago O'Hare VerticalStructures_CRS84.xml");
   //data.read_AIXM_file( "..//Airport_data//Chicago O'Hare Taxiways.xml");
   //data.read_AIXM_file( "..//Airport_data//Chicago O'Hare Runways.xml");
 
@@ -307,8 +307,8 @@ void	GLWidget::zoomOut()
 
 void	GLWidget::setViewingVolume(const int& p_x, const int& p_y, const double& p_zoom_factor )
 {
-  double canvas_width  = abs(Tree->get_left()-Tree->get_right());
-  double canvas_height = abs(Tree->get_top() - Tree->get_bottom());
+  double canvas_width  = fabs(Tree->get_left()-Tree->get_right());
+  double canvas_height = fabs(Tree->get_top() - Tree->get_bottom());
   double aspect_ratio  = (double)canvas_width/(double)canvas_height;
 
   glViewport( 0,0,p_x, p_y );

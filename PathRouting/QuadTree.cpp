@@ -9,7 +9,7 @@ double QuadTree::gridHeight = 0;
 
 int QuadTree::maxGridDepth = 1;
 
-QuadTree::QuadTree( int LT , int RT , int BT , int TP ) : left( LT ), right( RT ), bottom( BT ), top( TP ), m_rootNode(NULL)
+QuadTree::QuadTree( int LT , int RT , int BT , int TP ) : right( RT ), left( LT ), bottom( BT ), top( TP ), m_rootNode(NULL)
 {
 	
 
@@ -25,8 +25,8 @@ QuadTree::QuadTree( int LT , int RT , int BT , int TP ) : left( LT ), right( RT 
 	v_order [3] = 1;
 
 	// initialize the rootNode here
-	gridWidth = abs( right - left );
-	gridHeight = abs( top - bottom );
+	gridWidth = fabs( right - left );
+	gridHeight = fabs( top - bottom );
 
 
 	InitRootNode();
@@ -109,9 +109,8 @@ void QuadTree::removeTreeNode ( Node* (&pNode) )
 
 
 // Retrieve Tree node that contains a point defined by XY
-Node* QuadTree::findTreeNode(float x, float y, Node* p_startNode)
+Node* QuadTree::findTreeNode(double x, double y, Node* p_startNode)
 {
-
 
 	// If the rootNode is not initialized
 	if ( !m_rootNode )
@@ -126,11 +125,13 @@ Node* QuadTree::findTreeNode(float x, float y, Node* p_startNode)
 
 
 	// Check first if the point is inside the boundaries!!
-	if ( !( ( x <= p_startNode->centre_x() + p_startNode->x_dsp() ) && ( x >= p_startNode->centre_x() - p_startNode->x_dsp() ) 
-		 && ( y <= p_startNode->centre_y() + p_startNode->y_dsp() ) && ( y >= p_startNode->centre_y() - p_startNode->y_dsp() ) ) )
+	if ( !( ( x <= p_startNode->centre_x() + p_startNode->x_dsp() ) &&
+            ( x >= p_startNode->centre_x() - p_startNode->x_dsp() ) &&
+            ( y <= p_startNode->centre_y() + p_startNode->y_dsp() ) &&
+            ( y >= p_startNode->centre_y() - p_startNode->y_dsp() ) ) )
 	{
-		// If outside the boundary
-		assert( "Node is outside the tree boundary and will never be found" );
+          // If outside the boundary
+        throw std::runtime_error("X Y coords is outside the tree boundary and will never be found");
 	}
 
 	Node* pNode;
@@ -190,9 +191,10 @@ Node* QuadTree::findTreeNode(float x, float y, Node* p_startNode)
 // Construct a tree branch by constructing all the children nodes
 void QuadTree::constructTreeNode(Node* node)
 {
-	// If node is not a leaf then this will cause memory leak!
-	assert ( node->type != Node::NODE_TYPE );
-
+  // If node is not a leaf then this will cause memory leak!
+  if ( node->type == Node::NODE_TYPE ) {
+    throw std::runtime_error("Node is not a leaf node. Potential memory leak");
+  }
 
 	if ( node->type == Node::ROOT_TYPE )
 	{
@@ -242,8 +244,8 @@ void QuadTree::updateTreeBoundary( double LT, double RT, double BT, double TP )
 	bottom = BT;
 	top = TP;
 
-	gridWidth = abs( right - left );
-	gridHeight = abs( top - bottom );
+	gridWidth = fabs( right - left );
+	gridHeight = fabs( top - bottom );
 	//constructTreeNode ( &rootNode ) ;
 
 	//for_each_node ( m_rootNode, std::bind(&QuadTree::updateNodeCentre, this, std::placeholders::_1) );
@@ -531,6 +533,9 @@ Node* QuadTree::findLeafNeighbour ( Node *p , int Direction )
 	case SE:
 		return findTreeNode( p->centre_x() +  ( p->x_dsp() + (p->x_dsp( maxGridDepth ) / 2.0)), p->centre_y() +  ( p->y_dsp() + (p->y_dsp( maxGridDepth ) / 2.0) ));
 		break;
+        
+    default:
+         throw std::runtime_error("Unknown Direction");
 	};
 }
 
@@ -709,6 +714,7 @@ Node* QuadTree::findNeighbour ( Node *p , int Direction )
 			break;
 		}
 	}
+    throw std::runtime_error("Could not find a neighbour");
 }
 
 Node* QuadTree::findNeighbour ( Node *p, char Direction)
@@ -854,11 +860,10 @@ bool QuadTree::path_routing( Node* start, Node* finish)
 
 
 			// Initialize for node scanning
-			int tentative_cost = 0;
+			double tentative_cost = 0;
 			auto neighbour_itr = neighbours.begin();
 			while ( neighbour_itr != neighbours.end() )
 			{
-				neighbour_itr;
 				tentative_cost = current->cost + distance( current, (*neighbour_itr) );
 
 				qDebug() << "tentative cost: " << tentative_cost << " nbr_node: " << (*neighbour_itr)->id;
