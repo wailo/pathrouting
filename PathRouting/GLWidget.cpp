@@ -11,7 +11,7 @@ GLWidget::GLWidget(QWidget *parent) :
   setMouseTracking(true);
 
   // Initialize a new quadtree
-  Tree = new QuadTree( 0, 2048, 0, 2048 );
+  Tree = std::make_unique<QuadTree>(new QuadTree( 0, 2048, 0, 2048 ));
 
   // Link the XML parser to the quadtree
   data.link_to_QuadTree(Tree);
@@ -42,7 +42,6 @@ GLWidget::GLWidget(QWidget *parent) :
                          p[0] = arr[0];
                          p[1] = arr[1];
                          p[2] = arr[2];
-
                          vertices.push_back(p);
                        });
 

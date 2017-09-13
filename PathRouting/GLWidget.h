@@ -13,6 +13,7 @@
 #include <QtOpenGL/QGLWidget>
 #include "QuadTree.h"
 #include "AIXM_file_parser.h"
+#include <memory>
 
 class GLWidget : public QGLWidget {
 
@@ -21,7 +22,7 @@ class GLWidget : public QGLWidget {
  public:
 
   GLWidget(QWidget *parent = NULL);
-  QuadTree *Tree;
+  std::unique_ptr<QuadTree> Tree;
 
   // Draw Nodes
   void drawTreeNode (Node* p);

@@ -5,13 +5,13 @@
 
 
 AIXM_file_parser::AIXM_file_parser(void):
-    m_Quadtree(NULL)
+    m_Quadtree(nullptr)
 {
 }
 
-void AIXM_file_parser::link_to_QuadTree(QuadTree* p_Quadtree)
+void AIXM_file_parser::link_to_QuadTree(std::unique_ptr<QuadTree> p_Quadtree)
 {
-  m_Quadtree = p_Quadtree;
+  m_Quadtree = std::move(p_Quadtree);
 }
 
 
@@ -35,9 +35,6 @@ bool AIXM_file_parser::read_AIXM_file( std::string full_path )
 
 void AIXM_file_parser::find_boundaries()
 {
-    
-
-    
     
   std::for_each(Objects.begin(), Objects.end(),
                 [this]( AIXM_file_parser::GMLObject* p_poly )
@@ -77,21 +74,21 @@ void AIXM_file_parser::find_boundaries()
                                     min_coord.m_Lat -  tol2,
                                     max_coord.m_Lat +  tol2);
 
-    QuadTree* temp_tree = m_Quadtree;
-      int kk = 0;
-      for (auto& p_poly : Objects) {
-          kk++;
-          for ( auto i = 1; i < p_poly->m_Coordinates.size(); ++i )
-          {
-              Node* node = temp_tree->findTreeNode( p_poly->m_Coordinates.at(i).m_Lon, p_poly->m_Coordinates.at(i).m_Lat );
-              Node* node1 = temp_tree->findTreeNode( p_poly->m_Coordinates.at(i-1).m_Lon, p_poly->m_Coordinates.at(i-1).m_Lat );
-              while (node == node1 /*false*/ )
-              {
-                  node1 = temp_tree->findTreeNode( p_poly->m_Coordinates.at(i).m_Lon, p_poly->m_Coordinates.at(i).m_Lat, node1 );
-                  temp_tree->constructTreeNode( node1 );
-              }
-          }
+    
+    int kk = 0;
+    for (auto& p_poly : Objects) {
+      kk++;
+      for ( auto i = 1; i < p_poly->m_Coordinates.size(); ++i )
+      {
+        Node* node = m_Quadtree->findTreeNode( p_poly->m_Coordinates.at(i).m_Lon, p_poly->m_Coordinates.at(i).m_Lat );
+        Node* node1 = m_Quadtree->findTreeNode( p_poly->m_Coordinates.at(i-1).m_Lon, p_poly->m_Coordinates.at(i-1).m_Lat );
+        while (node == node1 /*false*/ )
+        {
+          node1 = m_Quadtree->findTreeNode( p_poly->m_Coordinates.at(i).m_Lon, p_poly->m_Coordinates.at(i).m_Lat, node1 );
+          m_Quadtree->constructTreeNode( node1 );
+        }
       }
+    }
   }
 }
 
@@ -209,7 +206,6 @@ double AIXM_file_parser::y_distance( double p_lon1, double p_lat1)
 double AIXM_file_parser::polarTodec( std::string polarCoord )
 {
   int direction = 0;
-
   std::error_code format_error;
   std::regex Latitude("^\-?(\\d|[0-8][0-9]|90)+\\s\\d\\d\\s\\d\\d+[NSWE]");        
 
@@ -229,7 +225,6 @@ double AIXM_file_parser::polarTodec( std::string polarCoord )
 
   // Remove the last char
   polarCoord.pop_back();
-
   double dlat = 0;
   int token = 0;
   std::stringstream stream1;

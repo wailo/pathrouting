@@ -83,7 +83,7 @@ class AIXM_file_parser
 {
 public:
   AIXM_file_parser(void);
-  void link_to_QuadTree(QuadTree* p_Quadtree);
+  void link_to_QuadTree(std::unique_ptr<QuadTree> p_Quadtree);
   ~AIXM_file_parser(void);
 
   double polarTodec( std::string polarCoord );
@@ -103,7 +103,7 @@ public:
 
   void adjust_position( GMLObject* );
 
-  QuadTree* m_Quadtree;		// Link to Quadtree object
+  std::unique_ptr<QuadTree> m_Quadtree;		// Link to Quadtree object
 };
 
 
