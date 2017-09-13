@@ -120,7 +120,7 @@ float AIXM_file_parser::mapDistance ( float dLat, float dLon )
 bool simple_walker::for_each(pugi::xml_node& node)
 {
   // begining of an Object
-  if (node.name() == "message:hasMember" )
+  if ( !strcmp( node.name(), "message:hasMember" ) )
   {
     object = new AIXM_file_parser::GMLObject();
     std::string temp_str = std::string(node.first_child().name());
@@ -131,13 +131,13 @@ bool simple_walker::for_each(pugi::xml_node& node)
     // qDebug() << " " << node.name() << "=" << node.first_child().name();
   }
   // Object type
-  else if (node.name() == "aixm:type")
+  else if ( !strcmp( node.name(), "aixm:type" ) )
   {
 
     // qDebug() << " " << node.name() << "=" << node.first_child().name();
   }
   // Position list
-  else if (node.name() == "gml:posList")
+  else if ( !strcmp( node.name(), "gml:posList" ) )
   {
     //qDebug() << " " << node.name() << "=" << node.first_child().value();;
 
