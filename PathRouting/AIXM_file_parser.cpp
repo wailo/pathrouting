@@ -9,7 +9,7 @@ AIXM_file_parser::AIXM_file_parser(void):
 {
 }
 
-void AIXM_file_parser::link_to_QuadTree(std::unique_ptr<QuadTree> p_Quadtree)
+void AIXM_file_parser::link_to_QuadTree(std::unique_ptr<QuadTree>& p_Quadtree)
 {
   m_Quadtree = std::move(p_Quadtree);
 }

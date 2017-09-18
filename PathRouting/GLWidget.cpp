@@ -6,12 +6,13 @@
 
 GLWidget::GLWidget(QWidget *parent) :
     m_zoom_factor( 1.0 ),
-    QGLWidget(QGLFormat(QGL::SampleBuffers), parent)
+    QGLWidget(QGLFormat(QGL::SampleBuffers), parent),
+    Tree(std::make_unique<QuadTree>(QuadTree( 0, 2048, 0, 2048 )))   // Initialize a new quadtree
 {
   setMouseTracking(true);
 
-  // Initialize a new quadtree
-  Tree = std::make_unique<QuadTree>(new QuadTree( 0, 2048, 0, 2048 ));
+
+  
 
   // Link the XML parser to the quadtree
   data.link_to_QuadTree(Tree);
@@ -210,7 +211,7 @@ void GLWidget::mousePressEvent(QMouseEvent *event)
       //Tree->constructTreeNode( Tree->findNeighbour( Tree->findTreeNode( event->x() , event->y()) , NULL ) );
       //Tree->getAllNeighbours(Tree->findTreeNode( event->x() , event->y()), Tree->neighbours );
 
-      Tree->forEachNode( Tree->m_rootNode, std::bind(&QuadTree::balanceTree, Tree, std::placeholders::_1) );
+      Tree->forEachNode( Tree->m_rootNode, [&](Node* node){Tree->balanceTree(node);} );
 
       break;
     default:
