@@ -72,7 +72,6 @@ struct Coordinate_compare {
 class AIXM_file_parser {
 public:
   AIXM_file_parser(void);
-  void link_to_QuadTree(std::unique_ptr<QuadTree> &p_Quadtree);
   ~AIXM_file_parser(void);
 
   double polarTodec(std::string polarCoord);
@@ -80,7 +79,7 @@ public:
   double x_distance(double lon1, double lat1);
   double y_distance(double lon1, double lat1);
   bool read_AIXM_file(std::string full_path);
-  void find_boundaries();
+  void process_boundaries(QuadTree& tree);
 
   struct GMLObject {
     std::string m_AIXM_object_type;
@@ -90,8 +89,6 @@ public:
   std::vector<GMLObject *> Objects;
 
   void adjust_position(GMLObject *);
-
-  std::unique_ptr<QuadTree> m_Quadtree; // Link to Quadtree object
 };
 
 struct simple_walker : pugi::xml_tree_walker {

@@ -3,9 +3,7 @@
 #include <functional>
 #include <math.h>
 
-AIXM_file_parser::AIXM_file_parser(void) : m_Quadtree(nullptr) {}
-
-void AIXM_file_parser::link_to_QuadTree(std::unique_ptr<QuadTree> &p_Quadtree) { m_Quadtree = std::move(p_Quadtree); }
+AIXM_file_parser::AIXM_file_parser(void) {}
 
 AIXM_file_parser::~AIXM_file_parser(void) {}
 
@@ -22,7 +20,7 @@ bool AIXM_file_parser::read_AIXM_file(std::string full_path) {
   return true;
 }
 
-void AIXM_file_parser::find_boundaries() {
+void AIXM_file_parser::process_boundaries(QuadTree &tree) {
 
   std::for_each(Objects.begin(), Objects.end(), [this](AIXM_file_parser::GMLObject *p_poly) {
     for (int i = 0; i < p_poly->m_Coordinates.size(); ++i) {
@@ -49,25 +47,21 @@ void AIXM_file_parser::find_boundaries() {
     }
   }
 
-  if (m_Quadtree) {
+  double tol1 = (max_coord.m_Lon - min_coord.m_Lon) * 0.001;
+  double tol2 = (max_coord.m_Lat - min_coord.m_Lat) * 0.001;
 
-    double tol1 = (max_coord.m_Lon - min_coord.m_Lon) * 0.001;
-    double tol2 = (max_coord.m_Lat - min_coord.m_Lat) * 0.001;
+  tree.updateTreeBoundary(min_coord.m_Lon - tol1, max_coord.m_Lon + tol1, min_coord.m_Lat - tol2,
+                          max_coord.m_Lat + tol2);
 
-    m_Quadtree->updateTreeBoundary(min_coord.m_Lon - tol1, max_coord.m_Lon + tol1, min_coord.m_Lat - tol2,
-                                   max_coord.m_Lat + tol2);
-
-    int kk = 0;
-    for (auto &p_poly : Objects) {
-      kk++;
-      for (auto i = 1; i < p_poly->m_Coordinates.size(); ++i) {
-        Node *node = m_Quadtree->findTreeNode(p_poly->m_Coordinates.at(i).m_Lon, p_poly->m_Coordinates.at(i).m_Lat);
-        Node *node1 =
-            m_Quadtree->findTreeNode(p_poly->m_Coordinates.at(i - 1).m_Lon, p_poly->m_Coordinates.at(i - 1).m_Lat);
-        while (node == node1 /*false*/) {
-          node1 = m_Quadtree->findTreeNode(p_poly->m_Coordinates.at(i).m_Lon, p_poly->m_Coordinates.at(i).m_Lat, node1);
-          m_Quadtree->constructTreeNode(node1);
-        }
+  int kk = 0;
+  for (auto &p_poly : Objects) {
+    kk++;
+    for (auto i = 1; i < p_poly->m_Coordinates.size(); ++i) {
+      Node *node = tree.findTreeNode(p_poly->m_Coordinates.at(i).m_Lon, p_poly->m_Coordinates.at(i).m_Lat);
+      Node *node1 = tree.findTreeNode(p_poly->m_Coordinates.at(i - 1).m_Lon, p_poly->m_Coordinates.at(i - 1).m_Lat);
+      while (node == node1 /*false*/) {
+        node1 = tree.findTreeNode(p_poly->m_Coordinates.at(i).m_Lon, p_poly->m_Coordinates.at(i).m_Lat, node1);
+        tree.constructTreeNode(node1);
       }
     }
   }

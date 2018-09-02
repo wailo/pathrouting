@@ -6,12 +6,10 @@
 
 GLWidget::GLWidget(QWidget *parent)
     : m_zoom_factor(1.0), QGLWidget(QGLFormat(QGL::SampleBuffers), parent),
-      Tree(std::make_unique<QuadTree>(QuadTree(0, 2048, 0, 2048))) // Initialize a new quadtree
+      Tree(new QuadTree(0, 2048, 0, 2048)) // Initialize a new quadtree
 {
   setMouseTracking(true);
 
-  // Link the XML parser to the quadtree
-  data.link_to_QuadTree(Tree);
 
   // Read Data
   // data.read_AIXM_file( "..\\Airport_data\\Chicago_Airspace_CRS84.xml");
@@ -27,7 +25,7 @@ GLWidget::GLWidget(QWidget *parent)
   if (!OK) {
     return;
   }
-  data.find_boundaries();
+  data.process_boundaries(*Tree);
 
   const GLuint NumVertices = Tree->getNodeCount() * 4;
   std::vector<std::array<double, 3>> vertices;
