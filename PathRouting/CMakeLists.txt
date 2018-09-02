@@ -1,5 +1,8 @@
 cmake_minimum_required(VERSION 3.0)
-set (CMAKE_INSTALL_PREFIX "${CMAKE_BINARY_DIR}" CACHE PATH "default install path" FORCE )
+set (CMAKE_CXX_STANDARD 14)
+set(CMAKE_BUILD_TYPE Debug)
+# set (CMAKE_INSTALL_PREFIX "${CMAKE_BINARY_DIR}" CACHE PATH "default install path" FORCE )
+set(CMAKE_PREFIX_PATH "/usr/local/opt/qt5/")
 project(path_routing)
 
 ###############################################################################
@@ -53,9 +56,7 @@ find_package(OpenGL REQUIRED)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
-set(UI_SOURCES
-  pathrouting.ui
-  )
+set(UI_SOURCES pathrouting.ui)
 
 set(QT5_LIBRARIES Qt5::Widgets Qt5::OpenGL)
 
@@ -66,16 +67,19 @@ qt5_wrap_ui(UI_GENERATED_HEADERS ${UI_SOURCES})
 
 # Add the include directories for the Qt 5 Widgets module to
 # the compile lines.
-include_directories(${Qt5Widgets_INCLUDE_DIRS} ${OPENGL_INCLUDE_DIRS}  ${GLUT_INCLUDE_DIRS})
+# include_directories(${Qt5Widgets_INCLUDE_DIRS} ${OPENGL_INCLUDE_DIRS}  ${GLUT_INCLUDE_DIRS})
 
 # add the data to the target, so it becomes visible in some IDE
 add_executable(path_routing ${sources} ${data} ${UI_GENERATED_HEADERS})
 
 # just for example add some compiler flags
-target_compile_options(path_routing PUBLIC -std=c++14 -Wall -Wfloat-conversion -ggdb -O)
+target_compile_options(path_routing INTERFACE "-Wall -Wfloat-conversion -g3 -O")
 # this lets me include files relative to the root src dir with a <> pair
 target_include_directories(path_routing PUBLIC
   ${Boost_INCLUDE_DIRS}
+  ${Qt5Widgets_INCLUDE_DIRS}
+  ${OPENGL_INCLUDE_DIRS}
+  ${GLUT_INCLUDE_DIRS}
   ../pugixml/src
   )
 
