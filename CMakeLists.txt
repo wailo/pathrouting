@@ -3,7 +3,7 @@ set (CMAKE_CXX_STANDARD 14)
 set(CMAKE_BUILD_TYPE Debug)
 # set (CMAKE_INSTALL_PREFIX "${CMAKE_BINARY_DIR}" CACHE PATH "default install path" FORCE )
 set(CMAKE_PREFIX_PATH "/usr/local/opt/qt5/")
-project(path_routing)
+project(path_routing_)
 
 ###############################################################################
 ## file globbing ##############################################################
@@ -12,7 +12,7 @@ project(path_routing)
 # these instructions search the directory tree when cmake is
 # invoked and put all files that match the pattern in the variables 
 # `sources` and `data`
-file(GLOB_RECURSE sources
+file(GLOB sources
 QuadTree.cpp
 GLWidget.cpp
 AIXM_file_parser.cpp
@@ -22,8 +22,8 @@ Node.cpp
 pathrouting.cpp)
 
 #file(GLOB_RECURSE sources_test *.cpp)
-#file(GLOB_RECURSE resources ../Airport_data/)
-set(resources ../Airport_data)
+#file(GLOB_RECURSE resources Airport_data/)
+set(resources Airport_data)
 # you can use set(sources src/main.cpp) etc if you don't want to
 # use globing to find files automatically
 
@@ -35,14 +35,13 @@ set(resources ../Airport_data)
 
 # this copies all resource files in the build directory
 # we need this, because we want to work with paths relative to the executable
-message(${resources})
 file(COPY ${resources} DESTINATION .)
 
 ###############################################################################
 ## dependencies ###############################################################
 ###############################################################################
 
-# this defines the variables Boost_LIBRARIES that contain all library names
+ # this defines the variables Boost_LIBRARIES that contain all library names
 # that we need to link to
 find_package(Boost REQUIRED)
 
@@ -62,8 +61,14 @@ set(QT5_LIBRARIES Qt5::Widgets Qt5::OpenGL)
 
 qt5_wrap_ui(UI_GENERATED_HEADERS ${UI_SOURCES})
 
+add_subdirectory(pugixml)
 
-#add_subdirectory(../pugixml pugixml_lib)
+message("********************")
+message(${resources})
+# message(${PUGIXML_VERSION_STRING})
+
+
+#add_subdirectory(pugixml pugixml_lib)
 
 # Add the include directories for the Qt 5 Widgets module to
 # the compile lines.
@@ -72,25 +77,24 @@ qt5_wrap_ui(UI_GENERATED_HEADERS ${UI_SOURCES})
 # add the data to the target, so it becomes visible in some IDE
 add_executable(path_routing ${sources} ${data} ${UI_GENERATED_HEADERS})
 
+
 # just for example add some compiler flags
 target_compile_options(path_routing INTERFACE "-Wall -Wfloat-conversion -g3 -O")
+
 # this lets me include files relative to the root src dir with a <> pair
 target_include_directories(path_routing PUBLIC
   ${Boost_INCLUDE_DIRS}
   ${Qt5Widgets_INCLUDE_DIRS}
   ${OPENGL_INCLUDE_DIRS}
-  ${GLUT_INCLUDE_DIRS}
-  ../pugixml/src
-  )
+  ${GLUT_INCLUDE_DIRS})
 
 
-
-find_library(Pugixml_LIBRARY "pugixml"  "../pugixml/build/")
+# find_library(Pugixml_LIBRARY "pugixml"  "pugixml")
 target_link_libraries(path_routing PUBLIC
   ${Boost_LIBRARIES}
   ${OPENGL_LIBRARIES}
   ${QT5_LIBRARIES}
-  ${Pugixml_LIBRARY}
+  pugixml
    # here you can add any library dependencies
    )
 
@@ -134,7 +138,7 @@ target_link_libraries(path_routing PUBLIC
 # this is basically a repeat of the file copy instruction that copies the
 # resources in the build directory, but here we tell cmake that we want it
 # in the package
-install(DIRECTORY ../Airport_data DESTINATION .)
+install(DIRECTORY Airport_data DESTINATION .)
 
 # now comes everything we need, to create a package
 # there are a lot more variables you can set, and some
