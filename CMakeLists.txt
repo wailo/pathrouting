@@ -63,10 +63,6 @@ qt5_wrap_ui(UI_GENERATED_HEADERS ${UI_SOURCES})
 
 add_subdirectory(pugixml)
 
-message("********************")
-message(${resources})
-# message(${PUGIXML_VERSION_STRING})
-
 
 #add_subdirectory(pugixml pugixml_lib)
 
