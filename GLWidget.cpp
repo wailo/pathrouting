@@ -10,13 +10,8 @@ GLWidget::GLWidget(QWidget *parent)
 {
   setMouseTracking(true);
 
-
   // Read Data
-  // data.read_AIXM_file( "..\\Airport_data\\Chicago_Airspace_CRS84.xml");
   bool OK = false;
-    char wd[1024];
-    std::cout << getcwd(wd, sizeof(wd)) << std::endl;
-    
   OK = data.read_AIXM_file("..//Airport_data//Chicago O'Hare Aprons_CRS84.xml") &&
        data.read_AIXM_file("..//Airport_data//Chicago O'Hare Taxiways_CRS84.xml") &&
        data.read_AIXM_file("..//Airport_data//Chicago O'Hare Runways_CRS84.xml") &&

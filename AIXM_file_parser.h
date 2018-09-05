@@ -79,7 +79,7 @@ public:
   double x_distance(double lon1, double lat1);
   double y_distance(double lon1, double lat1);
   bool read_AIXM_file(std::string full_path);
-  void process_boundaries(QuadTree& tree);
+  void process_boundaries(QuadTree &tree);
 
   struct GMLObject {
     std::string m_AIXM_object_type;
