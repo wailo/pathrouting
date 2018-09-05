@@ -12,13 +12,13 @@ project(path_routing)
 # invoked and put all files that match the pattern in the variables 
 # `sources` and `data`
 file(GLOB sources
-QuadTree.cpp
-GLWidget.cpp
-AIXM_file_parser.cpp
-main.cpp
-P3.cpp
-Node.cpp
-pathrouting.cpp)
+src/QuadTree.cpp
+src/GLWidget.cpp
+src/AIXM_file_parser.cpp
+src/main.cpp
+src/P3.cpp
+src/Node.cpp
+src/pathrouting.cpp)
 
 file(GLOB XML_FILES Airport_data)
   
@@ -40,7 +40,7 @@ find_package(OpenGL REQUIRED)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
-set(UI_SOURCES pathrouting.ui)
+set(UI_SOURCES src/pathrouting.ui)
 
 set(QT5_LIBRARIES Qt5::Widgets Qt5::OpenGL)
 
