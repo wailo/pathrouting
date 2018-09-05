@@ -1,4 +1,4 @@
-﻿#include "AIXM_file_parser.h"
+#include "AIXM_file_parser.h"
 #include "QuadTree.h"
 #include <functional>
 #include <math.h>
