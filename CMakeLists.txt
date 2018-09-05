@@ -1,9 +1,8 @@
 cmake_minimum_required(VERSION 3.0)
 set (CMAKE_CXX_STANDARD 14)
 set(CMAKE_BUILD_TYPE Debug)
-# set (CMAKE_INSTALL_PREFIX "${CMAKE_BINARY_DIR}" CACHE PATH "default install path" FORCE )
 set(CMAKE_PREFIX_PATH "/usr/local/opt/qt5/")
-project(path_routing_)
+project(path_routing)
 
 ###############################################################################
 ## file globbing ##############################################################
@@ -21,22 +20,8 @@ P3.cpp
 Node.cpp
 pathrouting.cpp)
 
-#file(GLOB_RECURSE sources_test *.cpp)
-#file(GLOB_RECURSE resources Airport_data/)
-set(resources Airport_data)
-# you can use set(sources src/main.cpp) etc if you don't want to
-# use globing to find files automatically
-
-###############################################################################
-## target definitions #########################################################
-###############################################################################
-
-
-
-# this copies all resource files in the build directory
-# we need this, because we want to work with paths relative to the executable
-file(COPY ${resources} DESTINATION .)
-
+file(GLOB XML_FILES Airport_data)
+  
 ###############################################################################
 ## dependencies ###############################################################
 ###############################################################################
@@ -63,16 +48,18 @@ qt5_wrap_ui(UI_GENERATED_HEADERS ${UI_SOURCES})
 
 add_subdirectory(pugixml)
 
+###############################################################################
+## target definitions #########################################################
+###############################################################################
 
-#add_subdirectory(pugixml pugixml_lib)
-
-# Add the include directories for the Qt 5 Widgets module to
-# the compile lines.
-# include_directories(${Qt5Widgets_INCLUDE_DIRS} ${OPENGL_INCLUDE_DIRS}  ${GLUT_INCLUDE_DIRS})
+  message("******************************")
+  message("${PROJECT_SOURCE_DIR}")
+  message("${PROJECT_BINARY_DIR}")
+  message("${CMAKE_RUNTIME_OUTPUT_DIRECTORY}")
+  message("${CMAKE_BINARY_DIR}")
 
 # add the data to the target, so it becomes visible in some IDE
-add_executable(path_routing ${sources} ${data} ${UI_GENERATED_HEADERS})
-
+add_executable(path_routing ${sources} ${UI_GENERATED_HEADERS} ${XML_FILES})
 
 # just for example add some compiler flags
 target_compile_options(path_routing INTERFACE "-Wall -Wfloat-conversion -g3 -O")
@@ -94,35 +81,14 @@ target_link_libraries(path_routing PUBLIC
    # here you can add any library dependencies
    )
 
-###############################################################################
-## testing ####################################################################
-###############################################################################
 
-# this is for our testing framework
-# we don't add REQUIRED because it's just for testing
-# find_package(GTest)
+set_target_properties( path_routing PROPERTIES OUTPUT_NAME_DEBUG path_routing_d)
+set_target_properties( path_routing PROPERTIES OUTPUT_NAME_RELEASE path_routing)
 
-# if(GTEST_FOUND)
-#   add_executable(unit_tests ${sources_test} ${sources})
+set_target_properties( path_routing PROPERTIES RUNTIME_OUTPUT_DIRECTORY_DEBUG "${CMAKE_BINARY_DIR}/bin" )
+set_target_properties( path_routing PROPERTIES RUNTIME_OUTPUT_DIRECTORY_RELEASE "${CMAKE_BINARY_DIR}/bin" )
 
-#   # we add this define to prevent collision with the main
-#   # this might be better solved by not adding the source with the main to the
-#   # testing target
-#   target_compile_definitions(unit_tests PUBLIC UNIT_TESTS)
-
-#   # this allows us to use our executable as a link library
-#   # therefore we can inherit all compiler options and library dependencies
-#   set_target_properties(example PROPERTIES ENABLE_EXPORTS on)
-
-#   target_link_libraries(unit_tests PUBLIC
-#     ${GTEST_BOTH_LIBRARIES}
-#     example
-#   )
-
-#   target_include_directories(unit_tests PUBLIC
-#     ${GTEST_INCLUDE_DIRS} # doesn't do anything on Linux
-#   )
-# endif()
+file(COPY ${XML_FILES} DESTINATION ${CMAKE_BINARY_DIR})              
 
 ###############################################################################
 ## packaging ##################################################################
@@ -134,7 +100,7 @@ target_link_libraries(path_routing PUBLIC
 # this is basically a repeat of the file copy instruction that copies the
 # resources in the build directory, but here we tell cmake that we want it
 # in the package
-install(DIRECTORY Airport_data DESTINATION .)
+# install(DIRECTORY Airport_data DESTINATION .)
 
 # now comes everything we need, to create a package
 # there are a lot more variables you can set, and some
