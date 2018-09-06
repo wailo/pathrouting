@@ -143,8 +143,8 @@ void GLWidget::mousePressEvent(QMouseEvent *event) {
   GLint viewport[4];
   glGetIntegerv(GL_VIEWPORT, viewport);
 
-  gluUnProject(event->x(), viewport[3] - event->y(), 0.0, model_view, projection, viewport, &world_x, &world_y,
-               &world_z);
+  gluUnProject(event->x() * this->devicePixelRatioF(), viewport[3] - event->y() * this->devicePixelRatioF(), 0.0,
+               model_view, projection, viewport, &world_x, &world_y, &world_z);
 
   switch (event->button()) {
   case Qt::LeftButton:
