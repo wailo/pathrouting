@@ -5,9 +5,7 @@
 #include <array>
 
 GLWidget::GLWidget(QWidget *parent)
-    : m_zoom_factor(1.0), QGLWidget(QGLFormat(QGL::SampleBuffers), parent),
-      Tree(new QuadTree(0, 2048, 0, 2048)) // Initialize a new quadtree
-{
+    : QGLWidget(QGLFormat(QGL::SampleBuffers), parent), Tree(new QuadTree(0, 2048, 0, 2048)), m_zoom_factor(1.0) {
   setMouseTracking(true);
 
   // Read Data
@@ -22,9 +20,9 @@ GLWidget::GLWidget(QWidget *parent)
   if (!OK) {
     return;
   }
+
   data.process_boundaries(*Tree);
 
-  const GLuint NumVertices = Tree->getNodeCount() * 4;
   std::vector<std::array<double, 3>> vertices;
   Tree->forEachNode(Tree->m_rootNode, [&vertices](Node *p_Node) {
     std::array<double, 3> p;
@@ -65,38 +63,33 @@ void GLWidget::paintGL() {
     Tree->forEachNode(Tree->m_rootNode, std::bind(&GLWidget::drawTreeNode, this, std::placeholders::_1));
   }
 
-  for (std::vector<AIXM_file_parser::GMLObject *>::const_iterator itr = data.Objects.begin(); itr != data.Objects.end();
-       ++itr) {
+  for (const auto& object : data.Objects) {
 
-    if ((*itr)->m_AIXM_object_type.compare("GuidanceLine") == 0) {
+    if ((object)->m_AIXM_object_type.compare("GuidanceLine") == 0) {
       glColor3f(0, 1, 0);
-    } else if ((*itr)->m_AIXM_object_type.compare("TaxiwayElement") == 0) {
+    } else if ((object)->m_AIXM_object_type.compare("TaxiwayElement") == 0) {
       glColor3f(1, 1, 0);
-      // continue;
-    } else if ((*itr)->m_AIXM_object_type.compare("RunwayElement") == 0) {
+    } else if ((object)->m_AIXM_object_type.compare("RunwayElement") == 0) {
       glColor3f(0, 0, 1);
-      // continue;
     } else {
-      // continue;
     }
 
     glPointSize(3);
     glBegin(GL_LINE_STRIP);
-    for (unsigned int j = 0; j < (*itr)->m_Coordinates.size() - 1; ++j) {
-      // qDebug() << data.Objects.at( i )->Lons.at( j )-x+x_dist;
-      glVertex3f((*itr)->m_Coordinates.at(j).m_Lon, (*itr)->m_Coordinates.at(j).m_Lat, 0);
+    for (const auto& coord : object->m_Coordinates) {
+      glVertex3f(coord.m_Lon, coord.m_Lat, 0);
     }
     glEnd();
   }
 
   // Draw the shortest path
   glColor4f(0, 1, 0, 0.5);
-  for (std::vector<Node *>::iterator itr = Tree->camefromSet.begin(); itr != Tree->camefromSet.end(); ++itr) {
+  for (const auto& node :Tree->camefromSet) {
     glBegin(GL_POLYGON);
-    glVertex3f((*itr)->centre_x() - ((*itr)->x_dsp()), (*itr)->centre_y() + ((*itr)->y_dsp()), 0);
-    glVertex3f((*itr)->centre_x() - ((*itr)->x_dsp()), (*itr)->centre_y() - ((*itr)->y_dsp()), 0);
-    glVertex3f((*itr)->centre_x() + ((*itr)->x_dsp()), (*itr)->centre_y() - ((*itr)->y_dsp()), 0);
-    glVertex3f((*itr)->centre_x() + ((*itr)->x_dsp()), (*itr)->centre_y() + ((*itr)->y_dsp()), 0);
+    glVertex3f(node->centre_x() - (node->x_dsp()), node->centre_y() + (node->y_dsp()), 0);
+    glVertex3f(node->centre_x() - (node->x_dsp()), node->centre_y() - (node->y_dsp()), 0);
+    glVertex3f(node->centre_x() + (node->x_dsp()), node->centre_y() - (node->y_dsp()), 0);
+    glVertex3f(node->centre_x() + (node->x_dsp()), node->centre_y() + (node->y_dsp()), 0);
     glEnd();
   }
 
