@@ -1,8 +1,13 @@
 cmake_minimum_required(VERSION 3.0)
-set (CMAKE_CXX_STANDARD 14)
-set(CMAKE_BUILD_TYPE Debug)
-set(CMAKE_PREFIX_PATH "/usr/local/opt/qt5/")
+
 project(path_routing)
+
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_BUILD_TYPE Debug)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
+# point to qt5 version.
+set(CMAKE_PREFIX_PATH "/usr/local/opt/qt5/")
 
 ###############################################################################
 ## file globbing ##############################################################
