@@ -23,11 +23,12 @@ bool AIXM_file_parser::read_AIXM_file(std::string full_path) {
 void AIXM_file_parser::process_boundaries(QuadTree &tree) {
 
   std::for_each(Objects.begin(), Objects.end(), [this](AIXM_file_parser::GMLObject *p_poly) {
+    const double DEG_TO_RAD = M_PI / 180.0;
     for (int i = 0; i < p_poly->m_Coordinates.size(); ++i) {
-      p_poly->m_Coordinates.at(i).m_Y = y_distance(p_poly->m_Coordinates.at(i).m_Lon * (22.0 / 7.0) / 180.0,
-                                                   p_poly->m_Coordinates.at(i).m_Lat * (22.0 / 7.0) / 180.0);
-      p_poly->m_Coordinates.at(i).m_X = x_distance(p_poly->m_Coordinates.at(i).m_Lon * (22.0 / 7.0) / 180.0,
-                                                   p_poly->m_Coordinates.at(i).m_Lat * (22.0 / 7.0) / 180.0);
+      p_poly->m_Coordinates.at(i).m_Y =
+          y_distance(p_poly->m_Coordinates.at(i).m_Lon * DEG_TO_RAD, p_poly->m_Coordinates.at(i).m_Lat * DEG_TO_RAD);
+      p_poly->m_Coordinates.at(i).m_X =
+          x_distance(p_poly->m_Coordinates.at(i).m_Lon * DEG_TO_RAD, p_poly->m_Coordinates.at(i).m_Lat * DEG_TO_RAD);
     }
   });
 
@@ -153,9 +154,8 @@ double AIXM_file_parser::x_distance(double p_lon1, double p_lat1) { return 6371.
 double AIXM_file_parser::y_distance(double p_lon1, double p_lat1) { return 6371.0 * sin(p_lat1) * sin(p_lon1); }
 
 double AIXM_file_parser::polarTodec(std::string polarCoord) {
-  int direction = 0;
   std::error_code format_error;
-  std::regex Latitude("^\-?(\\d|[0-8][0-9]|90)+\\s\\d\\d\\s\\d\\d+[NSWE]");
+  std::regex Latitude(R"(^\-?(\\d|[0-8][0-9]|90)+\\s\\d\\d\\s\\d\\d+[NSWE])");
 
   if (!regex_match(polarCoord.begin(), polarCoord.end(), Latitude)) {
     throw format_error;
@@ -163,10 +163,8 @@ double AIXM_file_parser::polarTodec(std::string polarCoord) {
 
   if (polarCoord.back() == 'S' || polarCoord.back() == 'W') {
     polarCoord.insert(polarCoord.begin(), '-');
-  } else {
-    direction = 1;
   }
-
+  
   // Remove the last char
   polarCoord.pop_back();
   double dlat = 0;
