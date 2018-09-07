@@ -10,10 +10,10 @@ GLWidget::GLWidget(QWidget *parent)
 
   // Read Data
   bool OK = false;
-  OK = data.read_AIXM_file("..//Airport_data//Chicago O'Hare Aprons_CRS84.xml") &&
-       data.read_AIXM_file("..//Airport_data//Chicago O'Hare Taxiways_CRS84.xml") &&
-       data.read_AIXM_file("..//Airport_data//Chicago O'Hare Runways_CRS84.xml") &&
-       data.read_AIXM_file("..//Airport_data//Chicago O'Hare VerticalStructures_CRS84.xml");
+  OK = data.read_AIXM_file(R"(../Airport_data/Chicago_Ohare/Chicago O'Hare Aprons_CRS84.xml)") &&
+       data.read_AIXM_file(R"(../Airport_data/Chicago_Ohare/Chicago O'Hare Taxiways_CRS84.xml)") &&
+       data.read_AIXM_file(R"(../Airport_data/Chicago_Ohare/Chicago O'Hare Runways_CRS84.xml)") &&
+       data.read_AIXM_file(R"(../Airport_data/Chicago_Ohare/Chicago O'Hare VerticalStructures_CRS84.xml)");
   // data.read_AIXM_file( "..//Airport_data//Chicago O'Hare Taxiways.xml");
   // data.read_AIXM_file( "..//Airport_data//Chicago O'Hare Runways.xml");
 

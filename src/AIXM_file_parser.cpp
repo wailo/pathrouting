@@ -96,16 +96,13 @@ bool simple_walker::for_each(pugi::xml_node &node) {
     temp_str = temp_str.substr(pos + 1);
     object->m_AIXM_object_type = temp_str;
 
-    // qDebug() << " " << node.name() << "=" << node.first_child().name();
   }
   // Object type
   else if (!strcmp(node.name(), "aixm:type")) {
 
-    // qDebug() << " " << node.name() << "=" << node.first_child().name();
   }
   // Position list
   else if (!strcmp(node.name(), "gml:posList")) {
-    // qDebug() << " " << node.name() << "=" << node.first_child().value();;
 
     std::istringstream iss(node.first_child().value());
     double lon, lat;
@@ -118,7 +115,7 @@ bool simple_walker::for_each(pugi::xml_node &node) {
 
       double temp_distance = distance(0, 0, lon, lat);
       double temp_bearing = bearing_rad(lon, lat, 0, 0);
-      // qDebug() << lon << "-----" << lat << "-----" << temp_distance << " ----- " << temp_bearing * (180.0/M_PI);
+
       m_cord.m_X = temp_distance * cos(temp_bearing);
       m_cord.m_Y = temp_distance * sin(temp_bearing);
       object->m_Coordinates.push_back(m_cord);
