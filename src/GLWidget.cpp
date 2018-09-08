@@ -54,6 +54,7 @@ void GLWidget::resizeGL(int w, int h) {
   m_width = w;
   m_height = h;
   setViewingVolume(w, h, m_zoom_factor);
+  Tree->invalidate_draw();
 }
 
 void GLWidget::paintGL() {
@@ -116,10 +117,10 @@ void GLWidget::drawTreeNode(Node *pNode) {
   glVertex3f(pNode->centre_x() - (pNode->x_dsp()), pNode->centre_y() + (pNode->y_dsp()), 0);
   glEnd();
 
-  glColor3f(1, 1, 1);
-  if (pNode->depth < 5) {
-    renderText(pNode->centre_x(), pNode->centre_y(), 0, QString::number(pNode->id));
-  }
+  // glColor3f(1, 1, 1);
+  // if (pNode->depth < 5) {
+  //   renderText(pNode->centre_x(), pNode->centre_y(), 0, QString::number(pNode->id));
+  // }
 
   // Node Count label
   TreeChanged(QString::fromStdString(std::to_string((Tree->getNodeCount()))));
@@ -248,21 +249,15 @@ void GLWidget::zoomOut() {
 }
 
 void GLWidget::setViewingVolume(const int &p_x, const int &p_y, const double &p_zoom_factor) {
-  double canvas_width = fabs(Tree->get_left() - Tree->get_right());
-  double canvas_height = fabs(Tree->get_top() - Tree->get_bottom());
-  double aspect_ratio = (double)canvas_width / (double)canvas_height;
 
   glViewport(0, 0, p_x, p_y);
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
-  if (canvas_width > canvas_height) {
-    // gluOrtho2D((p_x+Tree->get_left())*aspect_ratio,(p_x+Tree->get_right())*aspect_ratio,p_y+Tree->get_bottom(),p_y+Tree->get_top());
-  } else {
-    // gluOrtho2D(p_x+Tree->get_left(),p_x+Tree->get_right(),(p_y+Tree->get_bottom())*aspect_ratio,(p_y+Tree->get_top())*aspect_ratio);
-  }
-
-  gluOrtho2D(Tree->get_left() * p_zoom_factor, Tree->get_right() * p_zoom_factor, Tree->get_bottom() * p_zoom_factor,
+  
+  gluOrtho2D(Tree->get_left() * p_zoom_factor,
+             Tree->get_right() * p_zoom_factor,
+             Tree->get_bottom() * p_zoom_factor,
              Tree->get_top() * p_zoom_factor);
-  // updateZoomFactors();
+
   glMatrixMode(GL_MODELVIEW);
 }

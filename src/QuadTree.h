@@ -18,6 +18,9 @@ private:
 
   void InitRootNode();
 
+  // Reset draw flag
+  void invalidate_draw(Node* node);
+  
   //--- Path Rouring ---//
 
   // Closed set container
@@ -102,6 +105,9 @@ public:
   // get all the neighbours of a selected node
   void getAllNeighbours(Node *p, std::vector<Node *> &);
 
+  // Reset draw flag
+  void invalidate_draw();
+  
   enum Directions { NW, SW, NE, SE, N, S, E, W };
 
   // A* Algorithm Function

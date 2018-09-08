@@ -54,6 +54,25 @@ double QuadTree::get_left() { return left; }
 double QuadTree::get_bottom() { return bottom; }
 double QuadTree::get_top() { return top; }
 
+void QuadTree::invalidate_draw() {
+   invalidate_draw(m_rootNode);
+}
+
+
+void QuadTree::invalidate_draw(Node* node) {
+
+  if (!node) {
+    return;
+  }
+                
+  if (!node->m_draw) {
+    node->m_draw = true;
+    for (auto child : node->Child) {
+      invalidate_draw(child);
+    }
+  }
+}
+
 void QuadTree::removeTreeNode(Node *(&pNode)) {
   // pass the parent node to delete it and its children
   if (pNode != NULL) {
@@ -73,10 +92,6 @@ void QuadTree::removeTreeNode(Node *(&pNode)) {
           pNode->Parent->m_draw = true;
         }
       }
-      // else
-      //{
-
-      //}
     }
 
     // free the memory
@@ -158,12 +173,6 @@ void QuadTree::constructTreeNode(Node *node) {
     throw std::runtime_error("Node is not a leaf node. Potential memory leak");
   }
 
-  if (node->type == Node::ROOT_TYPE) {
-    // in a vector
-    // node->centre_x() = left + gridWidth - node->x_dsp();
-    // node->centre_y() = bottom + gridHeight - node->y_dsp();
-  }
-
   // problem here, this function create duplicate nodes!
   for (unsigned int i = 0; i < 4; ++i) {
     if (node->Child[i] == NULL) // To prevent creating duplicate nodes
@@ -183,17 +192,7 @@ void QuadTree::constructTreeNode(Node *node) {
       }
     }
 
-    // Locate the centre point of the node;
-    // node->Child[i]->centre_x() =  node->Child[i]->Parent->centre_x() - ( node->x_dsp() / 2.0 )
-    //+ ( 2 * h_order[i] * node->x_dsp() / 2.0 );
-
-    // node->Child[i]->centre_y() =  node->Child[i]->Parent->centre_y() - ( node->y_dsp() / 2.0 )
-    //+ ( 2 * v_order[i] * node->y_dsp() / 2.0 );
-
-    // qDebug() << "ID " << node->Child[i]->id << node->Child[i]->centre_x() << " "  << node->Child[i]->centre_y();
   }
-
-  // qDebug() << nodecount ;
 }
 
 void QuadTree::updateTreeBoundary(double LT, double RT, double BT, double TP) {
@@ -204,81 +203,10 @@ void QuadTree::updateTreeBoundary(double LT, double RT, double BT, double TP) {
 
   gridWidth = fabs(right - left);
   gridHeight = fabs(top - bottom);
-  // constructTreeNode ( &rootNode ) ;
-
-  // forEachNode ( m_rootNode, std::bind(&QuadTree::updateNodeCentre, this, std::placeholders::_1) );
-
-  /*x_dsp = gridWidth / pow( 2.00 , rootNode.depth );
-  y_dsp = gridHeight / pow( 2.00 , rootNode.depth );
-
-  rootNode.centre_x() = left + gridWidth - x_dsp;
-  rootNode.centre_y() = bottom + gridHeight - y_dsp;*/
 }
-
-//// On windows resize
-// void QuadTree::updateNodeCentre ( Node* node )
-//{
-//	if ( !node )
-//	{
-//		return;
-//	}
-//
-//	if ( node->type == Node::ROOT_TYPE )
-//	{
-//		// in a vector
-//		node->centre_x() = left + gridWidth - node->x_dsp();
-//		node->centre_y() = bottom + gridHeight - node->y_dsp();
-//	}
-//
-//	else
-//	{
-//		if (node == node->Parent->Child[0])
-//		{
-//			// Locate the centre point of the node;
-//			node->centre_x() =  node->Parent->centre_x() - ( node->x_dsp() )
-//				+ ( 2 * h_order[0] * node->x_dsp() );
-//
-//			node->centre_y() =  node->Parent->centre_y() - ( node->y_dsp() )
-//				+ ( 2 * v_order[0] * node->y_dsp() );
-//		}
-//
-//		else if (node == node->Parent->Child[1])
-//		{
-//			// Locate the centre point of the node;
-//			node->centre_x() =  node->Parent->centre_x() - ( node->x_dsp() )
-//				+ ( 2 * h_order[1] * node->x_dsp() );
-//
-//			node->centre_y() =  node->Parent->centre_y() - ( node->y_dsp() )
-//				+ ( 2 * v_order[1] * node->y_dsp() );
-//		}
-//
-//		else if (node == node->Parent->Child[2])
-//		{
-//			// Locate the centre point of the node;
-//			node->centre_x() =  node->Parent->centre_x() - ( node->x_dsp() )
-//				+ ( 2 * h_order[2] * node->x_dsp() );
-//
-//			node->centre_y() =  node->Parent->centre_y() - ( node->y_dsp() )
-//				+ ( 2 * v_order[2] * node->y_dsp() );
-//		}
-//
-//		else if (node == node->Parent->Child[3])
-//		{
-//			// Locate the centre point of the node;
-//			node->centre_x() =  node->Parent->centre_x() - ( node->x_dsp() )
-//				+ ( 2 * h_order[3] * node->x_dsp() );
-//
-//			node->centre_y() =  node->Parent->centre_y() - ( node->y_dsp() )
-//				+ ( 2 * v_order[3] * node->y_dsp() );
-//		}
-//	}
-//
-//	// qDebug() << node->id << node->centre_x() << " "  << node->centre_y();
-//}
 
 void QuadTree::forEachNode(Node *pRootnode, OnDrawEventHandler func) {
   // Function to be applied at each node, the function should modify the target node only!
-  //(this->*func)( &pRootnode );
   if (!pRootnode) {
     return;
   }
