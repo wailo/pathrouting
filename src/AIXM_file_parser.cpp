@@ -12,7 +12,7 @@ bool AIXM_file_parser::read_AIXM_file(std::string full_path) {
   pugi::xml_parse_result result = doc.load_file(full_path.c_str());
 
   if (!result) {
-    throw std::runtime_error("AIXM file does not exist");
+    throw std::runtime_error("AIXM file does not exist:" + full_path);
   }
 
   simple_walker walker(*this);

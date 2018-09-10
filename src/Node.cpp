@@ -30,22 +30,22 @@ Node::~Node(void) {
   nodecount--;
 
   // type = NULL;
-  id = NULL;
+  id = 0;
 }
 
-double Node::x_dsp() { return fabs(m_parentTree->get_left() - m_parentTree->get_right()) / pow(2.00, depth); }
+double Node::x_dsp() const { return fabs(m_parentTree->get_left() - m_parentTree->get_right()) / pow(2.00, depth); }
 
-double Node::y_dsp() { return fabs(m_parentTree->get_top() - m_parentTree->get_bottom()) / pow(2.00, depth); }
+double Node::y_dsp() const { return fabs(m_parentTree->get_top() - m_parentTree->get_bottom()) / pow(2.00, depth); }
 
-double Node::x_dsp(int depth_) {
+double Node::x_dsp(int depth_) const {
   return fabs(m_parentTree->get_left() - m_parentTree->get_right()) / pow(2.00, depth_);
 }
 
-double Node::y_dsp(int depth_) {
+double Node::y_dsp(int depth_) const {
   return fabs(m_parentTree->get_top() - m_parentTree->get_bottom()) / pow(2.00, depth_);
 }
 
-double Node::centre_x() {
+double Node::centre_x() const {
   if (type == Node::ROOT_TYPE) {
     // in a vector
     return m_parentTree->left + m_parentTree->gridWidth - x_dsp();
@@ -81,7 +81,7 @@ double Node::centre_x() {
   }
 }
 
-double Node::centre_y() {
+double Node::centre_y() const {
   if (type == Node::ROOT_TYPE) {
     // in a vector
     return m_parentTree->bottom + m_parentTree->gridHeight - y_dsp();
@@ -114,4 +114,4 @@ double Node::centre_y() {
   }
 }
 
-double Node::centre_z() { return 0; }
+double Node::centre_z() const { return 0; }

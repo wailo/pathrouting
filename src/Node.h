@@ -24,17 +24,17 @@ public:
   QuadTree *m_parentTree;
 
   // Calculate this node displacement value, which is the distance from centre point to the edge of node, same as raduis
-  double x_dsp();
-  double y_dsp();
+  double x_dsp() const;
+  double y_dsp() const;
 
   // Calculate node displacement value at given depth. Displacement is the distance from centre point to the edge of
   // node, same as raduis
-  double x_dsp(int depth);
-  double y_dsp(int depth);
+  double x_dsp(int depth) const;
+  double y_dsp(int depth) const;
 
-  double centre_x();
-  double centre_y();
-  double centre_z();
+  double centre_x() const;
+  double centre_y() const;
+  double centre_z() const;
 
   // Pointer to childern nodes
   Node *Child[4];
