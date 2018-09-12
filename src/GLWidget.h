@@ -9,16 +9,19 @@
 #include <glu.h>
 #endif
 
- #include "AIXM_file_parser.h"
- #include "QuadTree.h"
-#include <QtOpenGL/QGLWidget>
+#include "AIXM_file_parser.h"
+#include "QuadTree.h"
+#include <QOpenGLWidget>
 #include <memory>
 #include <QOpenGLVertexArrayObject>
 #include <QOpenGLBuffer>
 #include <QOpenGLFunctions>
+#include <QMatrix4x4>
 
 QT_FORWARD_DECLARE_CLASS(QOpenGLShaderProgram)
-class GLWidget : public QGLWidget, protected QOpenGLFunctions {
+
+
+class GLWidget : public QOpenGLWidget, protected QOpenGLFunctions {
 
   Q_OBJECT // must include this if you use Qt signals/slots
 
@@ -28,12 +31,11 @@ class GLWidget : public QGLWidget, protected QOpenGLFunctions {
   std::unique_ptr<QuadTree> Tree;
 
   
+  // Draw Nodes
+  void drawTreeNode(Node *p);
   void generate_vbo(const Node *pNode, std::vector<GLfloat>& list);
   
   void setupVertexAttribs();
-  // Draw Nodes
-  void drawTreeNode(Node *p);
-
   // for routePath test
   std::vector<Node *> testVec;
 
@@ -69,5 +71,15 @@ private:
   GLuint points_vbo = 0;
 
   std::vector<GLfloat> vertex_list;
+
+
+   int m_projMatrixLoc;
+    int m_mvMatrixLoc;
+    int m_normalMatrixLoc;
+    int m_lightPosLoc;
+    QMatrix4x4 m_proj;
+    QMatrix4x4 m_camera;
+    QMatrix4x4 m_world;
+
 
 };

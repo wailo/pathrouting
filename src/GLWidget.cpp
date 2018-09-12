@@ -1,107 +1,100 @@
 #include "GLWidget.h"
+#include <QOpenGLShaderProgram>
 #include <QtDebug>
 #include <QtGui/QMouseEvent>
 #include <QtWidgets/QApplication>
 #include <array>
-#include <QOpenGLShaderProgram>
 
 // #include <GLFW/glfw3.h>
 
-static const char *vertexShaderSourceCore =
-    "#version 150\n"
-    "in vec4 vertex;\n"
-    "in vec3 normal;\n"
-    "out vec3 vert;\n"
-    "out vec3 vertNormal;\n"
-    "uniform mat4 projMatrix;\n"
-    "uniform mat4 mvMatrix;\n"
-    "uniform mat3 normalMatrix;\n"
-    "void main() {\n"
-    "   vert = vertex.xyz;\n"
-    "   vertNormal = normalMatrix * normal;\n"
-    "   gl_Position = projMatrix * mvMatrix * vertex;\n"
-    "}\n";
+static const char *vertexShaderSourceCore = "#version 150\n"
+                                            "in vec4 vertex;\n"
+                                            "in vec3 normal;\n"
+                                            "out vec3 vert;\n"
+                                            "out vec3 vertNormal;\n"
+                                            "uniform mat4 projMatrix;\n"
+                                            "uniform mat4 mvMatrix;\n"
+                                            "uniform mat3 normalMatrix;\n"
+                                            "void main() {\n"
+                                            "   vert = vertex.xyz;\n"
+                                            "   vertNormal = normalMatrix * normal;\n"
+                                            "   gl_Position = projMatrix * mvMatrix * vertex;\n"
+                                            "}\n";
 
-static const char *fragmentShaderSourceCore =
-    "#version 150\n"
-    "in highp vec3 vert;\n"
-    "in highp vec3 vertNormal;\n"
-    "out highp vec4 fragColor;\n"
-    "uniform highp vec3 lightPos;\n"
-    "void main() {\n"
-    "   highp vec3 L = normalize(lightPos - vert);\n"
-    "   highp float NL = max(dot(normalize(vertNormal), L), 0.0);\n"
-    "   highp vec3 color = vec3(0.39, 1.0, 0.0);\n"
-    "   highp vec3 col = clamp(color * 0.2 + color * 0.8 * NL, 0.0, 1.0);\n"
-    "   fragColor = vec4(col, 1.0);\n"
-    "}\n";
+static const char *fragmentShaderSourceCore = "#version 150\n"
+                                              "in highp vec3 vert;\n"
+                                              "in highp vec3 vertNormal;\n"
+                                              "out highp vec4 fragColor;\n"
+                                              "uniform highp vec3 lightPos;\n"
+                                              "void main() {\n"
+                                              "   highp vec3 L = normalize(lightPos - vert);\n"
+                                              "   highp float NL = max(dot(normalize(vertNormal), L), 0.0);\n"
+                                              "   highp vec3 color = vec3(0.39, 1.0, 0.0);\n"
+                                              "   highp vec3 col = clamp(color * 0.2 + color * 0.8 * NL, 0.0, 1.0);\n"
+                                              "   fragColor = vec4(col, 1.0);\n"
+                                              "}\n";
 
-static const char *vertexShaderSource =
-    "attribute vec4 vertex;\n"
-    "attribute vec3 normal;\n"
-    "varying vec3 vert;\n"
-    "varying vec3 vertNormal;\n"
-    "uniform mat4 projMatrix;\n"
-    "uniform mat4 mvMatrix;\n"
-    "uniform mat3 normalMatrix;\n"
-    "void main() {\n"
-    "   vert = vertex.xyz;\n"
-    "   vertNormal = normalMatrix * normal;\n"
-    "   gl_Position = projMatrix * mvMatrix * vertex;\n"
-    "}\n";
+static const char *vertexShaderSource = "attribute vec4 vertex;\n"
+                                        "attribute vec3 normal;\n"
+                                        "varying vec3 vert;\n"
+                                        "varying vec3 vertNormal;\n"
+                                        "uniform mat4 projMatrix;\n"
+                                        "uniform mat4 mvMatrix;\n"
+                                        "uniform mat3 normalMatrix;\n"
+                                        "void main() {\n"
+                                        "   vert = vertex.xyz;\n"
+                                        "   vertNormal = normalMatrix * normal;\n"
+                                        "   gl_Position = projMatrix * mvMatrix * vertex;\n"
+                                        "}\n";
 
-static const char *fragmentShaderSource =
-    "varying highp vec3 vert;\n"
-    "varying highp vec3 vertNormal;\n"
-    "uniform highp vec3 lightPos;\n"
-    "void main() {\n"
-    "   highp vec3 L = normalize(lightPos - vert);\n"
-    "   highp float NL = max(dot(normalize(vertNormal), L), 0.0);\n"
-    "   highp vec3 color = vec3(0.39, 1.0, 0.0);\n"
-    "   highp vec3 col = clamp(color * 0.2 + color * 0.8 * NL, 0.0, 1.0);\n"
-    "   gl_FragColor = vec4(col, 1.0);\n"
-    "}\n";
+static const char *fragmentShaderSource = "varying highp vec3 vert;\n"
+                                          "varying highp vec3 vertNormal;\n"
+                                          "uniform highp vec3 lightPos;\n"
+                                          "void main() {\n"
+                                          "   highp vec3 L = normalize(lightPos - vert);\n"
+                                          "   highp float NL = max(dot(normalize(vertNormal), L), 0.0);\n"
+                                          "   highp vec3 color = vec3(0.39, 1.0, 0.0);\n"
+                                          "   highp vec3 col = clamp(color * 0.2 + color * 0.8 * NL, 0.0, 1.0);\n"
+                                          "   gl_FragColor = vec4(col, 1.0);\n"
+                                          "}\n";
 
 GLWidget::GLWidget(QWidget *parent)
-    : QGLWidget(QGLFormat(QGL::SampleBuffers), parent), Tree(new QuadTree(0, 2048, 0, 2048)), m_zoom_factor(1.0),
-      m_program(0){
+    : QOpenGLWidget(parent), Tree(new QuadTree(0, 2048, 0, 2048)), m_zoom_factor(1.0), m_program(0) {
   setMouseTracking(true);
 
-  QGLFormat glFormat;
+  QSurfaceFormat glFormat;
   glFormat.setVersion(4, 1);
-  glFormat.setProfile(QGLFormat::CoreProfile);
-  glFormat.setSampleBuffers(true);
+  glFormat.setProfile(QSurfaceFormat::CoreProfile);
+  // glFormat.setSampleBuffers(true);
   glFormat.setDefaultFormat(glFormat);
   glFormat.setSwapInterval(1);
   setFormat(glFormat);
   create();
 
-
-
-      // Create an OpenGL context
-  QGLContext* m_context = new QGLContext(glFormat);
-  m_context->create();
+  // m_context->create();
   // m_context->makeCurrent();
-  setContext(m_context);
-  makeCurrent();
+  // context
+  // m_context->makeCurrent();
+  // m_context->makeCurrent(this);
+  // this->makeCurrent(this);
+  // setContext(m_context);
 
-    // Make the context current on this window
-    // m_context->makeCurrent( this );
+  // Make the context current on this window
+  // m_context->makeCurrent( this );
 
-    // Obtain a functions object and resolve all entry points
-    // m_funcs is declared as: QOpenGLFunctions_4_3_Core* m_funcs
-    // auto m_funcs = m_context->i versionFunctions();
-    // if ( !m_funcs ) {
-    //     qWarning( &quot;Could not obtain OpenGL versions object&quot; );
-    //     exit( 1 );
-    // }
-    // m_funcs->initializeOpenGLFunctions();
-      // glewExperimental = GL_TRUE;
-      // if (glewInit() != GLEW_OK) {
-      //     qWarning("Failed to initialize GLEW\n");
-      // }
-    
-    
+  // Obtain a functions object and resolve all entry points
+  // m_funcs is declared as: QOpenGLFunctions_4_3_Core* m_funcs
+  // auto m_funcs = m_context->i versionFunctions();
+  // if ( !m_funcs ) {
+  //     qWarning( &quot;Could not obtain OpenGL versions object&quot; );
+  //     exit( 1 );
+  // }
+  // m_funcs->initializeOpenGLFunctions();
+  // glewExperimental = GL_TRUE;
+  // if (glewInit() != GLEW_OK) {
+  //     qWarning("Failed to initialize GLEW\n");
+  // }
+
   // Read Data
   bool OK = false;
   OK = data.read_AIXM_file(R"(../Airport_data/Chicago_Ohare/Chicago O'Hare Aprons_CRS84.xml)") &&
@@ -119,50 +112,53 @@ GLWidget::GLWidget(QWidget *parent)
 
   std::vector<std::array<double, 3>> vertices;
   Tree->forEachNode(Tree->m_rootNode, [&vertices](Node *p_Node) {
-      std::array<double, 3> p;
-      double arr[3] = {p_Node->centre_x(), p_Node->centre_y(), p_Node->centre_z()};
-      p[0] = arr[0];
-      p[1] = arr[1];
-      p[2] = arr[2];
-      vertices.push_back(p);
-    });
+    std::array<double, 3> p;
+    double arr[3] = {p_Node->centre_x(), p_Node->centre_y(), p_Node->centre_z()};
+    p[0] = arr[0];
+    p[1] = arr[1];
+    p[2] = arr[2];
+    vertices.push_back(p);
+  });
 
   // implement display list here!
 }
 
 void GLWidget::initializeGL() {
-    
 
   initializeOpenGLFunctions();
-  const QGLContext *m_context = context();
-    
+  const QOpenGLContext *m_context = context();
+
   qDebug() << "Context valid: " << m_context->isValid();
   qDebug() << "Really used OpenGl: " << m_context->format().majorVersion() << "." << m_context->format().minorVersion();
 
-    int major = 0;
-int minor = 0;
+  int major = 0;
+  int minor = 0;
 
-glGetIntegerv(GL_MAJOR_VERSION, &major);
-glGetIntegerv(GL_MINOR_VERSION, &minor);
-qDebug() << major  << " " << minor;
-qDebug() << (char*)glGetString(GL_VERSION);
-  qDebug() << "OpenGl information: VENDOR:       " << (const char*)glGetString(GL_VENDOR);
-  qDebug() << "                    RENDERDER:    " << (const char*)glGetString(GL_RENDERER);
-  qDebug() << "                    VERSION:      " << (const char*)glGetString(GL_VERSION);
-  qDebug() << "                    GLSL VERSION: " << (const char*)glGetString(GL_SHADING_LANGUAGE_VERSION);
+  glGetIntegerv(GL_MAJOR_VERSION, &major);
+  glGetIntegerv(GL_MINOR_VERSION, &minor);
+  qDebug() << major << " " << minor;
+  qDebug() << (char *)glGetString(GL_VERSION);
+  qDebug() << "OpenGl information: VENDOR:       " << (const char *)glGetString(GL_VENDOR);
+  qDebug() << "                    RENDERDER:    " << (const char *)glGetString(GL_RENDERER);
+  qDebug() << "                    VERSION:      " << (const char *)glGetString(GL_VERSION);
+  qDebug() << "                    GLSL VERSION: " << (const char *)glGetString(GL_SHADING_LANGUAGE_VERSION);
   qDebug() << "endstuff\n";
 
-
-  
   glClearColor(0, 0, 0, 0);
   m_program = new QOpenGLShaderProgram;
-  
-  m_program->addShaderFromSourceCode(QOpenGLShader::Vertex, vertexShaderSourceCore);
-  m_program->addShaderFromSourceCode(QOpenGLShader::Fragment, fragmentShaderSourceCore);
+
+  bool res = m_program->addShaderFromSourceCode(QOpenGLShader::Vertex, vertexShaderSourceCore);
+  res = m_program->addShaderFromSourceCode(QOpenGLShader::Fragment, fragmentShaderSourceCore);
   m_program->bindAttributeLocation("vertex", 0);
   m_program->bindAttributeLocation("normal", 1);
-  m_program->link();
-    
+  res = m_program->link();
+
+  res = m_program->bind();
+  res = m_projMatrixLoc = m_program->uniformLocation("projMatrix");
+  res = m_mvMatrixLoc = m_program->uniformLocation("mvMatrix");
+  res = m_normalMatrixLoc = m_program->uniformLocation("normalMatrix");
+  res = m_lightPosLoc = m_program->uniformLocation("lightPos");
+
   //	setAutoBufferSwap( TRUE );
   //	glDisable(GL_TEXTURE_2D);
   glDisable(GL_DEPTH_TEST);
@@ -172,29 +168,25 @@ qDebug() << (char*)glGetString(GL_VERSION);
   glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
   glClear(GL_COLOR_BUFFER_BIT);
 
-  
   generate_vbo(Tree->m_rootNode, vertex_list);
   decltype(vertex_list) vertex_color(vertex_list.size());
   std::fill(vertex_color.begin(), vertex_color.end(), 1);
-  
+
   GLuint points_vbo = 0;
-  GLfloat* vertices = new GLfloat[vertex_list.size()*3]; // create vertex array
+  GLfloat *vertices = new GLfloat[vertex_list.size() * 3]; // create vertex array
   glGenBuffers(1, &points_vbo);
   glBindBuffer(GL_ARRAY_BUFFER, points_vbo);
-  glBufferData(GL_ARRAY_BUFFER, vertex_list.size()*sizeof(GLfloat), vertices, GL_STATIC_DRAW);
-
+  glBufferData(GL_ARRAY_BUFFER, vertex_list.size() * sizeof(GLfloat), vertices, GL_STATIC_DRAW);
 
   GLuint colours_vbo = 0;
   glGenBuffers(1, &colours_vbo);
   glBindBuffer(GL_ARRAY_BUFFER, colours_vbo);
-  glBufferData(GL_ARRAY_BUFFER, vertex_color.size()*sizeof(GLfloat), vertex_color.data(), GL_STATIC_DRAW);
+  glBufferData(GL_ARRAY_BUFFER, vertex_color.size() * sizeof(GLfloat), vertex_color.data(), GL_STATIC_DRAW);
 
-
-// delete VBO when program terminated
+  // delete VBO when program terminated
   // glDeleteBuffers(1, &vboId);
   QOpenGLFunctions *f = QOpenGLContext::currentContext()->functions();
 
-  
   glGenVertexArrays(1, &vao);
   glBindVertexArray(vao);
   f->glBindBuffer(GL_ARRAY_BUFFER, points_vbo);
@@ -202,11 +194,8 @@ qDebug() << (char*)glGetString(GL_VERSION);
   f->glBindBuffer(GL_ARRAY_BUFFER, colours_vbo);
   f->glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, NULL);
 
-
-    
   f->glEnableVertexAttribArray(0);
   f->glEnableVertexAttribArray(1);
-
 }
 
 void GLWidget::resizeGL(int w, int h) {
@@ -214,6 +203,8 @@ void GLWidget::resizeGL(int w, int h) {
   m_height = h;
   setViewingVolume(w, h, m_zoom_factor);
   Tree->invalidate_draw();
+  m_proj.setToIdentity();
+  m_proj.ortho(Tree->get_left(), Tree->get_right(), Tree->get_bottom(), Tree->get_top(), -1, 1);
 }
 
 void GLWidget::paintGL() {
@@ -221,7 +212,7 @@ void GLWidget::paintGL() {
 
   m_program->bind();
   glBindVertexArray(vao);
-  glDrawArrays(GL_LINE_STRIP, 0, vertex_list.size()/5.0);
+  glDrawArrays(GL_LINE_STRIP, 0, vertex_list.size() / 5.0);
   m_program->release();
   // Draw the grid
   // if (Tree) {
@@ -290,19 +281,23 @@ void GLWidget::drawTreeNode(Node *pNode) {
   TreeChanged(QString::fromStdString(std::to_string((Tree->getNodeCount()))));
 }
 
-
-void GLWidget::generate_vbo(const Node *pNode, std::vector<GLfloat>& list) {
+void GLWidget::generate_vbo(const Node *pNode, std::vector<GLfloat> &list) {
   if (!pNode) {
     return;
   }
-  
-  list.push_back(pNode->centre_x() - pNode->x_dsp()); list.push_back(pNode->centre_y() + pNode->y_dsp()); //list.push_back(0);
-  list.push_back(pNode->centre_x() - pNode->x_dsp()); list.push_back(pNode->centre_y() - pNode->y_dsp()); //list.push_back(0);
-  list.push_back(pNode->centre_x() + pNode->x_dsp()); list.push_back(pNode->centre_y() - pNode->y_dsp()); //list.push_back(0);
-  list.push_back(pNode->centre_x() + pNode->x_dsp()); list.push_back(pNode->centre_y() + pNode->y_dsp()); //list.push_back(0);
-  list.push_back(pNode->centre_x() - pNode->x_dsp()); list.push_back(pNode->centre_y() + pNode->y_dsp()); //list.push_back(0);
 
-  for(auto& child : pNode->Child) {
+  list.push_back(pNode->centre_x() - pNode->x_dsp());
+  list.push_back(pNode->centre_y() + pNode->y_dsp()); // list.push_back(0);
+  list.push_back(pNode->centre_x() - pNode->x_dsp());
+  list.push_back(pNode->centre_y() - pNode->y_dsp()); // list.push_back(0);
+  list.push_back(pNode->centre_x() + pNode->x_dsp());
+  list.push_back(pNode->centre_y() - pNode->y_dsp()); // list.push_back(0);
+  list.push_back(pNode->centre_x() + pNode->x_dsp());
+  list.push_back(pNode->centre_y() + pNode->y_dsp()); // list.push_back(0);
+  list.push_back(pNode->centre_x() - pNode->x_dsp());
+  list.push_back(pNode->centre_y() + pNode->y_dsp()); // list.push_back(0);
+
+  for (auto &child : pNode->Child) {
     generate_vbo(child, list);
   }
 }
@@ -355,7 +350,7 @@ void GLWidget::mousePressEvent(QMouseEvent *event) {
     event->ignore();
     break;
   }
-  updateGL();
+  update();
 }
 void GLWidget::mouseMoveEvent(QMouseEvent *event) {
   //	printf("%d, %d\n", event->x(), event->y());
@@ -396,7 +391,7 @@ void GLWidget::resetTree() {
   Tree->removeTreeNode(Tree->m_rootNode);
   glClear(GL_COLOR_BUFFER_BIT);
   glClearColor(0, 0, 0, 0);
-  updateGL();
+  update();
 }
 
 void GLWidget::zoom(const int &p_width, const int &p_height, const double &p_factor) {
@@ -416,7 +411,7 @@ void GLWidget::zoom(const int &p_width, const int &p_height, const double &p_fac
   glLoadIdentity();
   gluPerspective(50.0 * p_factor, (float)p_width / (float)p_height, 1, -1);
   /* ...Where 'zNear' and 'zFar' are up to you to fill in. */
-  updateGL();
+  update();
 }
 
 void GLWidget::zoomOut() {
@@ -434,10 +429,8 @@ void GLWidget::setViewingVolume(const int &p_x, const int &p_y, const double &p_
   glViewport(0, 0, p_x, p_y);
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
-  
-  gluOrtho2D(Tree->get_left() * p_zoom_factor,
-             Tree->get_right() * p_zoom_factor,
-             Tree->get_bottom() * p_zoom_factor,
+
+  gluOrtho2D(Tree->get_left() * p_zoom_factor, Tree->get_right() * p_zoom_factor, Tree->get_bottom() * p_zoom_factor,
              Tree->get_top() * p_zoom_factor);
 
   glMatrixMode(GL_MODELVIEW);
