@@ -5,34 +5,39 @@
 #include <QtWidgets/QApplication>
 #include <array>
 
-// #include <GLFW/glfw3.h>
 
-static const char *vertexShaderSourceCore = "#version 150\n"
-                                            "in vec4 vertex;\n"
-                                            "in vec3 normal;\n"
-                                            "out vec3 vert;\n"
-                                            "out vec3 vertNormal;\n"
-                                            "uniform mat4 projMatrix;\n"
-                                            "uniform mat4 mvMatrix;\n"
-                                            "uniform mat3 normalMatrix;\n"
-                                            "void main() {\n"
-                                            "   vert = vertex.xyz;\n"
-                                            "   vertNormal = normalMatrix * normal;\n"
-                                            "   gl_Position = projMatrix * mvMatrix * vertex;\n"
-                                            "}\n";
+static const char *fragmentShaderSourceCore = R"(#version 330 core
+out vec3 color;
+void main(){
+  color = vec3(0,2,0);
+})";
 
-static const char *fragmentShaderSourceCore = "#version 150\n"
-                                              "in highp vec3 vert;\n"
-                                              "in highp vec3 vertNormal;\n"
-                                              "out highp vec4 fragColor;\n"
-                                              "uniform highp vec3 lightPos;\n"
-                                              "void main() {\n"
-                                              "   highp vec3 L = normalize(lightPos - vert);\n"
-                                              "   highp float NL = max(dot(normalize(vertNormal), L), 0.0);\n"
-                                              "   highp vec3 color = vec3(0.39, 1.0, 0.0);\n"
-                                              "   highp vec3 col = clamp(color * 0.2 + color * 0.8 * NL, 0.0, 1.0);\n"
-                                              "   fragColor = vec4(col, 1.0);\n"
-                                              "}\n";
+static const char *vertexShaderSourceCore = R"(#version 150
+                                            in vec4 vertex;
+                                            in vec3 normal;
+                                            out vec3 vert;
+                                            out vec3 vertNormal;
+                                            uniform mat4 projMatrix;
+                                            uniform mat4 mvMatrix;
+                                            uniform mat3 normalMatrix;
+                                            void main() {
+                                               vert = vertex.xyz;
+                                               vertNormal = normalMatrix * normal;
+                                               gl_Position = projMatrix * mvMatrix * vertex;
+                                            })";
+
+// static const char *fragmentShaderSourceCore = "#version 150\n"
+//                                               "in highp vec3 vert;\n"
+//                                               "in highp vec3 vertNormal;\n"
+//                                               "out highp vec4 fragColor;\n"
+//                                               "uniform highp vec3 lightPos;\n"
+//                                               "void main() {\n"
+//                                               "   highp vec3 L = normalize(lightPos - vert);\n"
+//                                               "   highp float NL = max(dot(normalize(vertNormal), L), 0.0);\n"
+//                                               "   highp vec3 color = vec3(0.39, 1.0, 0.0);\n"
+//                                               "   highp vec3 col = clamp(color * 0.2 + color * 0.8 * NL, 0.0, 1.0);\n"
+//                                               "   fragColor = vec4(col, 1.0);\n"
+//                                               "}\n";
 
 static const char *vertexShaderSource = "attribute vec4 vertex;\n"
                                         "attribute vec3 normal;\n"
@@ -126,7 +131,62 @@ GLWidget::GLWidget(QWidget *parent)
 void GLWidget::initializeGL() {
 
   initializeOpenGLFunctions();
-  const QOpenGLContext *m_context = context();
+
+  glClearColor(0, 0, 0, 0);
+  m_program = new QOpenGLShaderProgram;
+
+  bool res = m_program->addShaderFromSourceCode(QOpenGLShader::Vertex, vertexShaderSourceCore);
+  res = m_program->addShaderFromSourceCode(QOpenGLShader::Fragment, fragmentShaderSourceCore);
+  m_program->bindAttributeLocation("vertex", 0);
+  m_program->bindAttributeLocation("color", 1);
+  res = m_program->link();
+
+  m_program->bind();
+  m_projMatrixLoc = m_program->uniformLocation("projMatrix");
+  m_mvMatrixLoc = m_program->uniformLocation("mvMatrix");
+  m_normalMatrixLoc = m_program->uniformLocation("normalMatrix");
+  // m_lightPosLoc = m_program->uniformLocation("lightPos");
+  
+  generate_vbo(Tree->m_rootNode, vertex_list);
+  m_vao.create();
+  QOpenGLVertexArrayObject::Binder vaoBinder(&m_vao);
+
+  // Setup our vertex buffer object.
+  m_logoVbo.create();
+  m_logoVbo.setUsagePattern( QOpenGLBuffer::StaticDraw );
+  m_logoVbo.bind();
+  m_logoVbo.allocate(vertex_list.data(), vertex_list.size() * sizeof(GLfloat));
+
+  // Store the vertex attribute bindings for the program.
+  // setupVertexAttribs() {
+  m_logoVbo.bind();
+  QOpenGLFunctions *f = context()->functions();
+  f->glEnableVertexAttribArray(0);
+  f->glEnableVertexAttribArray(1);
+  f->glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), 0);
+  f->glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), 0);
+  m_logoVbo.release();
+    // }
+
+  m_program->release();
+
+}
+
+void GLWidget::resizeGL(int w, int h) {
+  glViewport(0, 0, (GLsizei) w, (GLsizei) h);
+  m_width = w;
+  m_height = h;
+  // setViewingVolume(w, h, m_zoom_factor);
+  Tree->invalidate_draw();
+  m_proj.setToIdentity();
+  m_proj.ortho(-2, 2, -2, 2, -1, 1);
+  // m_proj.ortho(Tree->get_left(), Tree->get_right(), Tree->get_bottom(), Tree->get_top(), -1, 1);
+}
+
+void GLWidget::paintGL() {
+
+
+    const QOpenGLContext *m_context = context();
 
   qDebug() << "Context valid: " << m_context->isValid();
   qDebug() << "Really used OpenGl: " << m_context->format().majorVersion() << "." << m_context->format().minorVersion();
@@ -144,76 +204,24 @@ void GLWidget::initializeGL() {
   qDebug() << "                    GLSL VERSION: " << (const char *)glGetString(GL_SHADING_LANGUAGE_VERSION);
   qDebug() << "endstuff\n";
 
-  glClearColor(0, 0, 0, 0);
-  m_program = new QOpenGLShaderProgram;
-
-  bool res = m_program->addShaderFromSourceCode(QOpenGLShader::Vertex, vertexShaderSourceCore);
-  res = m_program->addShaderFromSourceCode(QOpenGLShader::Fragment, fragmentShaderSourceCore);
-  m_program->bindAttributeLocation("vertex", 0);
-  m_program->bindAttributeLocation("normal", 1);
-  res = m_program->link();
-
-  res = m_program->bind();
-  res = m_projMatrixLoc = m_program->uniformLocation("projMatrix");
-  res = m_mvMatrixLoc = m_program->uniformLocation("mvMatrix");
-  res = m_normalMatrixLoc = m_program->uniformLocation("normalMatrix");
-  res = m_lightPosLoc = m_program->uniformLocation("lightPos");
-
-  //	setAutoBufferSwap( TRUE );
-  //	glDisable(GL_TEXTURE_2D);
+  
+  glClear(GL_COLOR_BUFFER_BIT);
   glDisable(GL_DEPTH_TEST);
-  //	glDisable(GL_COLOR_MATERIAL);
-  glEnable(GL_BLEND);
-  //	glEnable(GL_POLYGON_SMOOTH);
-  glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-  glClear(GL_COLOR_BUFFER_BIT);
-
-  generate_vbo(Tree->m_rootNode, vertex_list);
-  decltype(vertex_list) vertex_color(vertex_list.size());
-  std::fill(vertex_color.begin(), vertex_color.end(), 1);
-
-  GLuint points_vbo = 0;
-  GLfloat *vertices = new GLfloat[vertex_list.size() * 3]; // create vertex array
-  glGenBuffers(1, &points_vbo);
-  glBindBuffer(GL_ARRAY_BUFFER, points_vbo);
-  glBufferData(GL_ARRAY_BUFFER, vertex_list.size() * sizeof(GLfloat), vertices, GL_STATIC_DRAW);
-
-  GLuint colours_vbo = 0;
-  glGenBuffers(1, &colours_vbo);
-  glBindBuffer(GL_ARRAY_BUFFER, colours_vbo);
-  glBufferData(GL_ARRAY_BUFFER, vertex_color.size() * sizeof(GLfloat), vertex_color.data(), GL_STATIC_DRAW);
-
-  // delete VBO when program terminated
-  // glDeleteBuffers(1, &vboId);
-  QOpenGLFunctions *f = QOpenGLContext::currentContext()->functions();
-
-  glGenVertexArrays(1, &vao);
-  glBindVertexArray(vao);
-  f->glBindBuffer(GL_ARRAY_BUFFER, points_vbo);
-  f->glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, NULL);
-  f->glBindBuffer(GL_ARRAY_BUFFER, colours_vbo);
-  f->glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, NULL);
-
-  f->glEnableVertexAttribArray(0);
-  f->glEnableVertexAttribArray(1);
-}
-
-void GLWidget::resizeGL(int w, int h) {
-  m_width = w;
-  m_height = h;
-  setViewingVolume(w, h, m_zoom_factor);
-  Tree->invalidate_draw();
-  m_proj.setToIdentity();
-  m_proj.ortho(Tree->get_left(), Tree->get_right(), Tree->get_bottom(), Tree->get_top(), -1, 1);
-}
-
-void GLWidget::paintGL() {
-  glClear(GL_COLOR_BUFFER_BIT);
-
+  
+  m_world.setToIdentity();
+  m_world.rotate(0, 1, 0, 0);
+  m_world.rotate(m_yRot / 16.0f, 0, 1, 0);
+  m_world.rotate(m_zRot / 16.0f, 0, 0, 1);
+  
+  QOpenGLVertexArrayObject::Binder vaoBinder(&m_vao);
   m_program->bind();
-  glBindVertexArray(vao);
-  glDrawArrays(GL_LINE_STRIP, 0, vertex_list.size() / 5.0);
+  m_program->setUniformValue(m_projMatrixLoc, m_proj);
+  m_program->setUniformValue(m_mvMatrixLoc, m_camera * m_world);
+  QMatrix3x3 normalMatrix = m_world.normalMatrix();
+  m_program->setUniformValue(m_normalMatrixLoc, normalMatrix);
+  glDrawArrays(GL_LINE_STRIP, 0, vertex_list.size());
   m_program->release();
+  
   // Draw the grid
   // if (Tree) {
   //   Tree->forEachNode(Tree->m_rootNode, std::bind(&GLWidget::drawTreeNode, this, std::placeholders::_1));
@@ -282,24 +290,42 @@ void GLWidget::drawTreeNode(Node *pNode) {
 }
 
 void GLWidget::generate_vbo(const Node *pNode, std::vector<GLfloat> &list) {
-  if (!pNode) {
-    return;
-  }
 
-  list.push_back(pNode->centre_x() - pNode->x_dsp());
-  list.push_back(pNode->centre_y() + pNode->y_dsp()); // list.push_back(0);
-  list.push_back(pNode->centre_x() - pNode->x_dsp());
-  list.push_back(pNode->centre_y() - pNode->y_dsp()); // list.push_back(0);
-  list.push_back(pNode->centre_x() + pNode->x_dsp());
-  list.push_back(pNode->centre_y() - pNode->y_dsp()); // list.push_back(0);
-  list.push_back(pNode->centre_x() + pNode->x_dsp());
-  list.push_back(pNode->centre_y() + pNode->y_dsp()); // list.push_back(0);
-  list.push_back(pNode->centre_x() - pNode->x_dsp());
-  list.push_back(pNode->centre_y() + pNode->y_dsp()); // list.push_back(0);
+  list = {
+   0.0f, 0.0f, 0.0f,
+   1.0f, 1.0f, 0.0f,
+   2.0f, 1.0f, 0.0f
+};
 
-  for (auto &child : pNode->Child) {
-    generate_vbo(child, list);
-  }
+  
+
+  // if (!pNode) {
+  //   return;
+  // }
+
+  // list.push_back(pNode->centre_x() - pNode->x_dsp());
+  // list.push_back(pNode->centre_y() + pNode->y_dsp());
+  // list.push_back(0);
+
+  // list.push_back(pNode->centre_x() - pNode->x_dsp());
+  // list.push_back(pNode->centre_y() - pNode->y_dsp());
+  // list.push_back(0);
+
+  // list.push_back(pNode->centre_x() + pNode->x_dsp());
+  // list.push_back(pNode->centre_y() - pNode->y_dsp());
+  // list.push_back(0);
+
+  // list.push_back(pNode->centre_x() + pNode->x_dsp());
+  // list.push_back(pNode->centre_y() + pNode->y_dsp());
+  // list.push_back(0);
+
+  // list.push_back(pNode->centre_x() - pNode->x_dsp());
+  // list.push_back(pNode->centre_y() + pNode->y_dsp());
+  // list.push_back(0);
+
+  // for (auto &child : pNode->Child) {
+  //   generate_vbo(child, list);
+  // }
 }
 
 void GLWidget::mousePressEvent(QMouseEvent *event) {
@@ -390,48 +416,5 @@ void GLWidget::wheelEvent(QWheelEvent *event) {
 void GLWidget::resetTree() {
   Tree->removeTreeNode(Tree->m_rootNode);
   glClear(GL_COLOR_BUFFER_BIT);
-  glClearColor(0, 0, 0, 0);
   update();
-}
-
-void GLWidget::zoom(const int &p_width, const int &p_height, const double &p_factor) {
-
-  qDebug() << "Zoom factor = " << p_factor;
-  // GlobalConst::BoundingBoxLeft	*=	p_factor;
-  // GlobalConst::BoundingBoxRight	*=	p_factor;
-  // GlobalConst::BoundingBoxTop		*=	p_factor;
-  // GlobalConst::BoundingBoxBottom	*= p_factor;
-
-  /* A routine for setting the projection matrix. May be called from a resize
-     event handler in a typical application. Takes integer width and height
-     dimensions of the drawing area. Creates a projection matrix with correct
-     aspect ratio and zoom factor. */
-
-  glMatrixMode(GL_PROJECTION);
-  glLoadIdentity();
-  gluPerspective(50.0 * p_factor, (float)p_width / (float)p_height, 1, -1);
-  /* ...Where 'zNear' and 'zFar' are up to you to fill in. */
-  update();
-}
-
-void GLWidget::zoomOut() {
-  // Tree->updateTreeBoundary(
-  // Tree->get_left()	*	1.33f,
-  // Tree->get_right()	*	1.33f,
-  // Tree->get_bottom()	*	1.33f,
-  // Tree->get_top()		* 1.33f );
-
-  // setViewingVolume();
-}
-
-void GLWidget::setViewingVolume(const int &p_x, const int &p_y, const double &p_zoom_factor) {
-
-  glViewport(0, 0, p_x, p_y);
-  glMatrixMode(GL_PROJECTION);
-  glLoadIdentity();
-
-  gluOrtho2D(Tree->get_left() * p_zoom_factor, Tree->get_right() * p_zoom_factor, Tree->get_bottom() * p_zoom_factor,
-             Tree->get_top() * p_zoom_factor);
-
-  glMatrixMode(GL_MODELVIEW);
 }

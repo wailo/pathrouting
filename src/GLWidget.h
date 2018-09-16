@@ -51,9 +51,6 @@ protected:
   void keyPressEvent(QKeyEvent *);
   void wheelEvent(QWheelEvent *event);
 
-  void zoom(const int &p_x, const int &p_y, const double &p_factor);
-  void zoomOut();
-  void setViewingVolume(const int &p_x, const int &p_y, const double &p_zoom_factor);
 
 public slots:
   void resetTree();
@@ -72,14 +69,14 @@ private:
 
   std::vector<GLfloat> vertex_list;
 
-
-   int m_projMatrixLoc;
-    int m_mvMatrixLoc;
-    int m_normalMatrixLoc;
-    int m_lightPosLoc;
-    QMatrix4x4 m_proj;
-    QMatrix4x4 m_camera;
-    QMatrix4x4 m_world;
-
-
+  int m_xRot {0};
+  int m_yRot {0};
+  int m_zRot {0};
+  int m_projMatrixLoc;
+  int m_mvMatrixLoc;
+  int m_normalMatrixLoc;
+  int m_lightPosLoc;
+  QMatrix4x4 m_proj;
+  QMatrix4x4 m_camera;
+  QMatrix4x4 m_world;
 };
