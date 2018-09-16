@@ -5,7 +5,6 @@
 #include <QtWidgets/QApplication>
 #include <array>
 
-
 static const char *fragmentShaderSourceCore = R"(#version 330 core
 out vec3 color;
 void main(){
@@ -35,8 +34,8 @@ static const char *vertexShaderSourceCore = R"(#version 150
 //                                               "   highp vec3 L = normalize(lightPos - vert);\n"
 //                                               "   highp float NL = max(dot(normalize(vertNormal), L), 0.0);\n"
 //                                               "   highp vec3 color = vec3(0.39, 1.0, 0.0);\n"
-//                                               "   highp vec3 col = clamp(color * 0.2 + color * 0.8 * NL, 0.0, 1.0);\n"
-//                                               "   fragColor = vec4(col, 1.0);\n"
+//                                               "   highp vec3 col = clamp(color * 0.2 + color * 0.8 * NL,
+//                                               0.0, 1.0);\n" "   fragColor = vec4(col, 1.0);\n"
 //                                               "}\n";
 
 static const char *vertexShaderSource = "attribute vec4 vertex;\n"
@@ -75,7 +74,6 @@ GLWidget::GLWidget(QWidget *parent)
   glFormat.setSwapInterval(1);
   setFormat(glFormat);
   create();
-
 
   // Read Data
   bool OK = false;
@@ -123,14 +121,14 @@ void GLWidget::initializeGL() {
   m_mvMatrixLoc = m_program->uniformLocation("mvMatrix");
   m_normalMatrixLoc = m_program->uniformLocation("normalMatrix");
   // m_lightPosLoc = m_program->uniformLocation("lightPos");
-  
+
   generate_grid_vertices(Tree->m_rootNode, vertex_list);
   m_vao.create();
   QOpenGLVertexArrayObject::Binder vaoBinder(&m_vao);
 
   // Setup our vertex buffer object.
   m_logoVbo.create();
-  m_logoVbo.setUsagePattern( QOpenGLBuffer::StaticDraw );
+  m_logoVbo.setUsagePattern(QOpenGLBuffer::StaticDraw);
   m_logoVbo.bind();
   m_logoVbo.allocate(vertex_list.data(), vertex_list.size() * sizeof(GLfloat));
   m_logoVbo.bind();
@@ -139,7 +137,7 @@ void GLWidget::initializeGL() {
   setupVertexAttribs();
   m_program->release();
 
-  // Print debug data 
+  // Print debug data
   const QOpenGLContext *m_context = context();
   qDebug() << "Context valid: " << m_context->isValid();
   qDebug() << "Really used OpenGl: " << m_context->format().majorVersion() << "." << m_context->format().minorVersion();
@@ -154,7 +152,6 @@ void GLWidget::initializeGL() {
   qDebug() << "                    VERSION:      " << (const char *)glGetString(GL_VERSION);
   qDebug() << "                    GLSL VERSION: " << (const char *)glGetString(GL_SHADING_LANGUAGE_VERSION);
   qDebug() << "endstuff\n";
-
 }
 
 void GLWidget::setupVertexAttribs() {
@@ -166,9 +163,8 @@ void GLWidget::setupVertexAttribs() {
   m_logoVbo.release();
 }
 
-
 void GLWidget::resizeGL(int w, int h) {
-  glViewport(0, 0, (GLsizei) w, (GLsizei) h);
+  glViewport(0, 0, (GLsizei)w, (GLsizei)h);
   m_width = w;
   m_height = h;
   Tree->invalidate_draw();
@@ -178,25 +174,24 @@ void GLWidget::resizeGL(int w, int h) {
 }
 
 void GLWidget::paintGL() {
-  
+
   glClear(GL_COLOR_BUFFER_BIT);
   glDisable(GL_DEPTH_TEST);
-  
+
   m_world.setToIdentity();
   m_world.rotate(0, 1, 0, 0);
   m_world.rotate(m_yRot / 16.0f, 0, 1, 0);
   m_world.rotate(m_zRot / 16.0f, 0, 0, 1);
-  
+
   QOpenGLVertexArrayObject::Binder vaoBinder(&m_vao);
   m_program->bind();
   m_program->setUniformValue(m_projMatrixLoc, m_proj);
   m_program->setUniformValue(m_mvMatrixLoc, m_camera * m_world);
   QMatrix3x3 normalMatrix = m_world.normalMatrix();
   m_program->setUniformValue(m_normalMatrixLoc, normalMatrix);
-  glDrawArrays(GL_LINES, 0, vertex_list.size()/3);
+  glDrawArrays(GL_LINES, 0, vertex_list.size() / 3);
   m_program->release();
 
-  
   // for (const auto& object : data.Objects) {
 
   //   if ((object)->m_AIXM_object_type.compare("GuidanceLine") == 0) {
@@ -230,24 +225,39 @@ void GLWidget::paintGL() {
   // Tree->camefromSet.clear();
 }
 
-
 void GLWidget::generate_grid_vertices(const Node *pNode, std::vector<GLfloat> &list) {
-  
+
   if (!pNode) {
     return;
   }
 
-  list.push_back(pNode->centre_x() - pNode->x_dsp());  list.push_back(pNode->centre_y() + pNode->y_dsp());  list.push_back(0);
-  list.push_back(pNode->centre_x() - pNode->x_dsp());  list.push_back(pNode->centre_y() - pNode->y_dsp());  list.push_back(0);
-  
-  list.push_back(pNode->centre_x() - pNode->x_dsp());  list.push_back(pNode->centre_y() - pNode->y_dsp());  list.push_back(0);
-  list.push_back(pNode->centre_x() + pNode->x_dsp());  list.push_back(pNode->centre_y() - pNode->y_dsp());  list.push_back(0);
-  
-  list.push_back(pNode->centre_x() + pNode->x_dsp());  list.push_back(pNode->centre_y() - pNode->y_dsp());  list.push_back(0);
-  list.push_back(pNode->centre_x() + pNode->x_dsp());  list.push_back(pNode->centre_y() + pNode->y_dsp());  list.push_back(0);
-  
-  list.push_back(pNode->centre_x() + pNode->x_dsp());  list.push_back(pNode->centre_y() + pNode->y_dsp());  list.push_back(0);
-  list.push_back(pNode->centre_x() - pNode->x_dsp());  list.push_back(pNode->centre_y() + pNode->y_dsp());  list.push_back(0);
+  list.push_back(pNode->centre_x() - pNode->x_dsp());
+  list.push_back(pNode->centre_y() + pNode->y_dsp());
+  list.push_back(0);
+  list.push_back(pNode->centre_x() - pNode->x_dsp());
+  list.push_back(pNode->centre_y() - pNode->y_dsp());
+  list.push_back(0);
+
+  list.push_back(pNode->centre_x() - pNode->x_dsp());
+  list.push_back(pNode->centre_y() - pNode->y_dsp());
+  list.push_back(0);
+  list.push_back(pNode->centre_x() + pNode->x_dsp());
+  list.push_back(pNode->centre_y() - pNode->y_dsp());
+  list.push_back(0);
+
+  list.push_back(pNode->centre_x() + pNode->x_dsp());
+  list.push_back(pNode->centre_y() - pNode->y_dsp());
+  list.push_back(0);
+  list.push_back(pNode->centre_x() + pNode->x_dsp());
+  list.push_back(pNode->centre_y() + pNode->y_dsp());
+  list.push_back(0);
+
+  list.push_back(pNode->centre_x() + pNode->x_dsp());
+  list.push_back(pNode->centre_y() + pNode->y_dsp());
+  list.push_back(0);
+  list.push_back(pNode->centre_x() - pNode->x_dsp());
+  list.push_back(pNode->centre_y() + pNode->y_dsp());
+  list.push_back(0);
 
   for (auto &child : pNode->Child) {
     generate_grid_vertices(child, list);

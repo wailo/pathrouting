@@ -11,15 +11,14 @@
 
 #include "AIXM_file_parser.h"
 #include "QuadTree.h"
-#include <QOpenGLWidget>
-#include <memory>
-#include <QOpenGLVertexArrayObject>
+#include <QMatrix4x4>
 #include <QOpenGLBuffer>
 #include <QOpenGLFunctions>
-#include <QMatrix4x4>
+#include <QOpenGLVertexArrayObject>
+#include <QOpenGLWidget>
+#include <memory>
 
 QT_FORWARD_DECLARE_CLASS(QOpenGLShaderProgram)
-
 
 class GLWidget : public QOpenGLWidget, protected QOpenGLFunctions {
 
@@ -30,10 +29,9 @@ class GLWidget : public QOpenGLWidget, protected QOpenGLFunctions {
       GLWidget(QWidget *parent = NULL);
   std::unique_ptr<QuadTree> Tree;
 
-  
   // Draw Nodes
-  void generate_grid_vertices(const Node *pNode, std::vector<GLfloat>& list);
-  
+  void generate_grid_vertices(const Node *pNode, std::vector<GLfloat> &list);
+
   void setupVertexAttribs();
   // for routePath test
   std::vector<Node *> testVec;
@@ -49,7 +47,6 @@ protected:
   void mouseMoveEvent(QMouseEvent *event);
   void keyPressEvent(QKeyEvent *);
   void wheelEvent(QWheelEvent *event);
-
 
 public slots:
   void resetTree();
@@ -68,9 +65,9 @@ private:
 
   std::vector<GLfloat> vertex_list;
 
-  int m_xRot {0};
-  int m_yRot {0};
-  int m_zRot {0};
+  int m_xRot{0};
+  int m_yRot{0};
+  int m_zRot{0};
   int m_projMatrixLoc;
   int m_mvMatrixLoc;
   int m_normalMatrixLoc;
