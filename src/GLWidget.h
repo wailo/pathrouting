@@ -32,8 +32,7 @@ class GLWidget : public QOpenGLWidget, protected QOpenGLFunctions {
 
   
   // Draw Nodes
-  void drawTreeNode(Node *p);
-  void generate_vbo(const Node *pNode, std::vector<GLfloat>& list);
+  void generate_grid_vertices(const Node *pNode, std::vector<GLfloat>& list);
   
   void setupVertexAttribs();
   // for routePath test

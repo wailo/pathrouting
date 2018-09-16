@@ -76,29 +76,6 @@ GLWidget::GLWidget(QWidget *parent)
   setFormat(glFormat);
   create();
 
-  // m_context->create();
-  // m_context->makeCurrent();
-  // context
-  // m_context->makeCurrent();
-  // m_context->makeCurrent(this);
-  // this->makeCurrent(this);
-  // setContext(m_context);
-
-  // Make the context current on this window
-  // m_context->makeCurrent( this );
-
-  // Obtain a functions object and resolve all entry points
-  // m_funcs is declared as: QOpenGLFunctions_4_3_Core* m_funcs
-  // auto m_funcs = m_context->i versionFunctions();
-  // if ( !m_funcs ) {
-  //     qWarning( &quot;Could not obtain OpenGL versions object&quot; );
-  //     exit( 1 );
-  // }
-  // m_funcs->initializeOpenGLFunctions();
-  // glewExperimental = GL_TRUE;
-  // if (glewInit() != GLEW_OK) {
-  //     qWarning("Failed to initialize GLEW\n");
-  // }
 
   // Read Data
   bool OK = false;
@@ -147,7 +124,7 @@ void GLWidget::initializeGL() {
   m_normalMatrixLoc = m_program->uniformLocation("normalMatrix");
   // m_lightPosLoc = m_program->uniformLocation("lightPos");
   
-  generate_vbo(Tree->m_rootNode, vertex_list);
+  generate_grid_vertices(Tree->m_rootNode, vertex_list);
   m_vao.create();
   QOpenGLVertexArrayObject::Binder vaoBinder(&m_vao);
 
@@ -156,44 +133,18 @@ void GLWidget::initializeGL() {
   m_logoVbo.setUsagePattern( QOpenGLBuffer::StaticDraw );
   m_logoVbo.bind();
   m_logoVbo.allocate(vertex_list.data(), vertex_list.size() * sizeof(GLfloat));
+  m_logoVbo.bind();
 
   // Store the vertex attribute bindings for the program.
-  // setupVertexAttribs() {
-  m_logoVbo.bind();
-  QOpenGLFunctions *f = context()->functions();
-  f->glEnableVertexAttribArray(0);
-  f->glEnableVertexAttribArray(1);
-  f->glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), 0);
-  f->glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), 0);
-  m_logoVbo.release();
-    // }
-
+  setupVertexAttribs();
   m_program->release();
 
-}
-
-void GLWidget::resizeGL(int w, int h) {
-  glViewport(0, 0, (GLsizei) w, (GLsizei) h);
-  m_width = w;
-  m_height = h;
-  // setViewingVolume(w, h, m_zoom_factor);
-  Tree->invalidate_draw();
-  m_proj.setToIdentity();
-  m_proj.ortho(-2, 2, -2, 2, -1, 1);
-  // m_proj.ortho(Tree->get_left(), Tree->get_right(), Tree->get_bottom(), Tree->get_top(), -1, 1);
-}
-
-void GLWidget::paintGL() {
-
-
-    const QOpenGLContext *m_context = context();
-
+  // Print debug data 
+  const QOpenGLContext *m_context = context();
   qDebug() << "Context valid: " << m_context->isValid();
   qDebug() << "Really used OpenGl: " << m_context->format().majorVersion() << "." << m_context->format().minorVersion();
-
   int major = 0;
   int minor = 0;
-
   glGetIntegerv(GL_MAJOR_VERSION, &major);
   glGetIntegerv(GL_MINOR_VERSION, &minor);
   qDebug() << major << " " << minor;
@@ -204,6 +155,29 @@ void GLWidget::paintGL() {
   qDebug() << "                    GLSL VERSION: " << (const char *)glGetString(GL_SHADING_LANGUAGE_VERSION);
   qDebug() << "endstuff\n";
 
+}
+
+void GLWidget::setupVertexAttribs() {
+  QOpenGLFunctions *f = context()->functions();
+  f->glEnableVertexAttribArray(0);
+  f->glEnableVertexAttribArray(1);
+  f->glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), 0);
+  f->glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), 0);
+  m_logoVbo.release();
+}
+
+
+void GLWidget::resizeGL(int w, int h) {
+  glViewport(0, 0, (GLsizei) w, (GLsizei) h);
+  m_width = w;
+  m_height = h;
+  Tree->invalidate_draw();
+  m_proj.setToIdentity();
+  // m_proj.ortho(-1.1, 1.1, -1.1, 1.1, -1, 1);
+  m_proj.ortho(Tree->get_left(), Tree->get_right(), Tree->get_bottom(), Tree->get_top(), -1, 1);
+}
+
+void GLWidget::paintGL() {
   
   glClear(GL_COLOR_BUFFER_BIT);
   glDisable(GL_DEPTH_TEST);
@@ -219,14 +193,10 @@ void GLWidget::paintGL() {
   m_program->setUniformValue(m_mvMatrixLoc, m_camera * m_world);
   QMatrix3x3 normalMatrix = m_world.normalMatrix();
   m_program->setUniformValue(m_normalMatrixLoc, normalMatrix);
-  glDrawArrays(GL_LINE_STRIP, 0, vertex_list.size());
+  glDrawArrays(GL_LINES, 0, vertex_list.size()/3);
   m_program->release();
-  
-  // Draw the grid
-  // if (Tree) {
-  //   Tree->forEachNode(Tree->m_rootNode, std::bind(&GLWidget::drawTreeNode, this, std::placeholders::_1));
-  // }
 
+  
   // for (const auto& object : data.Objects) {
 
   //   if ((object)->m_AIXM_object_type.compare("GuidanceLine") == 0) {
@@ -260,72 +230,28 @@ void GLWidget::paintGL() {
   // Tree->camefromSet.clear();
 }
 
-void GLWidget::drawTreeNode(Node *pNode) {
+
+void GLWidget::generate_grid_vertices(const Node *pNode, std::vector<GLfloat> &list) {
+  
   if (!pNode) {
     return;
   }
 
-  if (!pNode->m_draw) {
-    return;
-  }
-
-  pNode->m_draw = false;
-
-  glColor3f(1, 0, 0);
-  glBegin(GL_LINE_STRIP);
-  glVertex3f(pNode->centre_x() - (pNode->x_dsp()), pNode->centre_y() + (pNode->y_dsp()), 0);
-  glVertex3f(pNode->centre_x() - (pNode->x_dsp()), pNode->centre_y() - (pNode->y_dsp()), 0);
-  glVertex3f(pNode->centre_x() + (pNode->x_dsp()), pNode->centre_y() - (pNode->y_dsp()), 0);
-  glVertex3f(pNode->centre_x() + (pNode->x_dsp()), pNode->centre_y() + (pNode->y_dsp()), 0);
-  glVertex3f(pNode->centre_x() - (pNode->x_dsp()), pNode->centre_y() + (pNode->y_dsp()), 0);
-  glEnd();
-
-  // glColor3f(1, 1, 1);
-  // if (pNode->depth < 5) {
-  //   renderText(pNode->centre_x(), pNode->centre_y(), 0, QString::number(pNode->id));
-  // }
-
-  // Node Count label
-  TreeChanged(QString::fromStdString(std::to_string((Tree->getNodeCount()))));
-}
-
-void GLWidget::generate_vbo(const Node *pNode, std::vector<GLfloat> &list) {
-
-  list = {
-   0.0f, 0.0f, 0.0f,
-   1.0f, 1.0f, 0.0f,
-   2.0f, 1.0f, 0.0f
-};
-
+  list.push_back(pNode->centre_x() - pNode->x_dsp());  list.push_back(pNode->centre_y() + pNode->y_dsp());  list.push_back(0);
+  list.push_back(pNode->centre_x() - pNode->x_dsp());  list.push_back(pNode->centre_y() - pNode->y_dsp());  list.push_back(0);
   
+  list.push_back(pNode->centre_x() - pNode->x_dsp());  list.push_back(pNode->centre_y() - pNode->y_dsp());  list.push_back(0);
+  list.push_back(pNode->centre_x() + pNode->x_dsp());  list.push_back(pNode->centre_y() - pNode->y_dsp());  list.push_back(0);
+  
+  list.push_back(pNode->centre_x() + pNode->x_dsp());  list.push_back(pNode->centre_y() - pNode->y_dsp());  list.push_back(0);
+  list.push_back(pNode->centre_x() + pNode->x_dsp());  list.push_back(pNode->centre_y() + pNode->y_dsp());  list.push_back(0);
+  
+  list.push_back(pNode->centre_x() + pNode->x_dsp());  list.push_back(pNode->centre_y() + pNode->y_dsp());  list.push_back(0);
+  list.push_back(pNode->centre_x() - pNode->x_dsp());  list.push_back(pNode->centre_y() + pNode->y_dsp());  list.push_back(0);
 
-  // if (!pNode) {
-  //   return;
-  // }
-
-  // list.push_back(pNode->centre_x() - pNode->x_dsp());
-  // list.push_back(pNode->centre_y() + pNode->y_dsp());
-  // list.push_back(0);
-
-  // list.push_back(pNode->centre_x() - pNode->x_dsp());
-  // list.push_back(pNode->centre_y() - pNode->y_dsp());
-  // list.push_back(0);
-
-  // list.push_back(pNode->centre_x() + pNode->x_dsp());
-  // list.push_back(pNode->centre_y() - pNode->y_dsp());
-  // list.push_back(0);
-
-  // list.push_back(pNode->centre_x() + pNode->x_dsp());
-  // list.push_back(pNode->centre_y() + pNode->y_dsp());
-  // list.push_back(0);
-
-  // list.push_back(pNode->centre_x() - pNode->x_dsp());
-  // list.push_back(pNode->centre_y() + pNode->y_dsp());
-  // list.push_back(0);
-
-  // for (auto &child : pNode->Child) {
-  //   generate_vbo(child, list);
-  // }
+  for (auto &child : pNode->Child) {
+    generate_grid_vertices(child, list);
+  }
 }
 
 void GLWidget::mousePressEvent(QMouseEvent *event) {
