@@ -259,18 +259,8 @@ void GLWidget::generate_airport_vertices(std::vector<GLdouble> &list) {
 }
 
 void GLWidget::mousePressEvent(QMouseEvent *event) {
-  double world_x, world_y, world_z;
-  double model_view[16];
-  glGetDoublev(GL_MODELVIEW_MATRIX, model_view);
 
-  double projection[16];
-  glGetDoublev(GL_PROJECTION_MATRIX, projection);
-
-  GLint viewport[4];
-  glGetIntegerv(GL_VIEWPORT, viewport);
-
-  gluUnProject(event->x() * this->devicePixelRatioF(), viewport[3] - event->y() * this->devicePixelRatioF(), 0.0,
-               model_view, projection, viewport, &world_x, &world_y, &world_z);
+  QVector3D worldPosition = QVector3D(event->x() * devicePixelRatioF(),  event->y() * devicePixelRatioF(), 0).unproject(m_world, m_proj, QRect(0, 0, width(), height()));
 
   switch (event->button()) {
   case Qt::LeftButton:
@@ -279,7 +269,7 @@ void GLWidget::mousePressEvent(QMouseEvent *event) {
 
       if (testVec.size() < 2) {
         qDebug() << "Pathrouting S" << testVec.size();
-        testVec.push_back(Tree->findTreeNode(world_x, world_y));
+        testVec.push_back(Tree->findTreeNode(worldPosition.x(), worldPosition.y()));
       } else {
         Tree->path_routing(testVec.at(0), testVec.at(1));
         testVec.clear();
@@ -287,7 +277,7 @@ void GLWidget::mousePressEvent(QMouseEvent *event) {
     }
 
     else {
-      Tree->constructTreeNode(Tree->findTreeNode(world_x, world_y));
+      Tree->constructTreeNode(Tree->findTreeNode(worldPosition.x(), worldPosition.y()));
     }
 
     break;
