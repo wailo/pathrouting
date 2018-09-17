@@ -30,8 +30,8 @@ class GLWidget : public QOpenGLWidget, protected QOpenGLFunctions {
   std::unique_ptr<QuadTree> Tree;
 
   // Draw Nodes
-  void generate_grid_vertices(const Node *pNode, std::vector<GLfloat> &list);
-
+  void generate_grid_vertices(const Node *pNode, std::vector<GLdouble> &list);
+  void generate_airport_vertices(std::vector<GLdouble> &list);
   void setupVertexAttribs();
   // for routePath test
   std::vector<Node *> testVec;
@@ -63,7 +63,7 @@ private:
   GLuint vao = 0;
   GLuint points_vbo = 0;
 
-  std::vector<GLfloat> vertex_list;
+  std::vector<GLdouble> vertex_list;
 
   int m_xRot{0};
   int m_yRot{0};

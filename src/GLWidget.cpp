@@ -89,18 +89,7 @@ GLWidget::GLWidget(QWidget *parent)
   }
 
   data.process_boundaries(*Tree);
-
-  std::vector<std::array<double, 3>> vertices;
-  Tree->forEachNode(Tree->m_rootNode, [&vertices](Node *p_Node) {
-    std::array<double, 3> p;
-    double arr[3] = {p_Node->centre_x(), p_Node->centre_y(), p_Node->centre_z()};
-    p[0] = arr[0];
-    p[1] = arr[1];
-    p[2] = arr[2];
-    vertices.push_back(p);
-  });
-
-  // implement display list here!
+  Tree->balanceTree(Tree->m_rootNode);
 }
 
 void GLWidget::initializeGL() {
@@ -130,7 +119,7 @@ void GLWidget::initializeGL() {
   m_logoVbo.create();
   m_logoVbo.setUsagePattern(QOpenGLBuffer::StaticDraw);
   m_logoVbo.bind();
-  m_logoVbo.allocate(vertex_list.data(), vertex_list.size() * sizeof(GLfloat));
+  m_logoVbo.allocate(vertex_list.data(), vertex_list.size() * sizeof(GLdouble));
   m_logoVbo.bind();
 
   // Store the vertex attribute bindings for the program.
@@ -158,8 +147,8 @@ void GLWidget::setupVertexAttribs() {
   QOpenGLFunctions *f = context()->functions();
   f->glEnableVertexAttribArray(0);
   f->glEnableVertexAttribArray(1);
-  f->glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), 0);
-  f->glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), 0);
+  f->glVertexAttribPointer(0, 3, GL_DOUBLE, GL_FALSE, 3 * sizeof(GLdouble), 0);
+  f->glVertexAttribPointer(1, 3, GL_DOUBLE, GL_FALSE, 3 * sizeof(GLdouble), 0);
   m_logoVbo.release();
 }
 
@@ -170,7 +159,8 @@ void GLWidget::resizeGL(int w, int h) {
   Tree->invalidate_draw();
   m_proj.setToIdentity();
   // m_proj.ortho(-1.1, 1.1, -1.1, 1.1, -1, 1);
-  m_proj.ortho(Tree->get_left(), Tree->get_right(), Tree->get_bottom(), Tree->get_top(), -1, 1);
+  m_proj.ortho(Tree->get_left() - 0.01, Tree->get_right() + 0.01, Tree->get_bottom() - 0.01, Tree->get_top() + 0.01, -1,
+               1);
 }
 
 void GLWidget::paintGL() {
@@ -225,42 +215,46 @@ void GLWidget::paintGL() {
   // Tree->camefromSet.clear();
 }
 
-void GLWidget::generate_grid_vertices(const Node *pNode, std::vector<GLfloat> &list) {
+void GLWidget::generate_grid_vertices(const Node *pNode, std::vector<GLdouble> &list) {
 
   if (!pNode) {
     return;
   }
 
-  list.push_back(pNode->centre_x() - pNode->x_dsp());
-  list.push_back(pNode->centre_y() + pNode->y_dsp());
-  list.push_back(0);
-  list.push_back(pNode->centre_x() - pNode->x_dsp());
-  list.push_back(pNode->centre_y() - pNode->y_dsp());
-  list.push_back(0);
+  list.insert(list.end(), {(pNode->centre_x() - pNode->x_dsp()), (pNode->centre_y() + pNode->y_dsp()), 0,
+                           (pNode->centre_x() - pNode->x_dsp()), (pNode->centre_y() - pNode->y_dsp()), 0,
 
-  list.push_back(pNode->centre_x() - pNode->x_dsp());
-  list.push_back(pNode->centre_y() - pNode->y_dsp());
-  list.push_back(0);
-  list.push_back(pNode->centre_x() + pNode->x_dsp());
-  list.push_back(pNode->centre_y() - pNode->y_dsp());
-  list.push_back(0);
+                           (pNode->centre_x() - pNode->x_dsp()), (pNode->centre_y() - pNode->y_dsp()), 0,
+                           (pNode->centre_x() + pNode->x_dsp()), (pNode->centre_y() - pNode->y_dsp()), 0,
 
-  list.push_back(pNode->centre_x() + pNode->x_dsp());
-  list.push_back(pNode->centre_y() - pNode->y_dsp());
-  list.push_back(0);
-  list.push_back(pNode->centre_x() + pNode->x_dsp());
-  list.push_back(pNode->centre_y() + pNode->y_dsp());
-  list.push_back(0);
+                           (pNode->centre_x() + pNode->x_dsp()), (pNode->centre_y() - pNode->y_dsp()), 0,
+                           (pNode->centre_x() + pNode->x_dsp()), (pNode->centre_y() + pNode->y_dsp()), 0,
 
-  list.push_back(pNode->centre_x() + pNode->x_dsp());
-  list.push_back(pNode->centre_y() + pNode->y_dsp());
-  list.push_back(0);
-  list.push_back(pNode->centre_x() - pNode->x_dsp());
-  list.push_back(pNode->centre_y() + pNode->y_dsp());
-  list.push_back(0);
+                           (pNode->centre_x() + pNode->x_dsp()), (pNode->centre_y() + pNode->y_dsp()), 0,
+                           (pNode->centre_x() - pNode->x_dsp()), (pNode->centre_y() + pNode->y_dsp()), 0});
 
   for (auto &child : pNode->Child) {
     generate_grid_vertices(child, list);
+  }
+}
+
+void GLWidget::generate_airport_vertices(std::vector<GLdouble> &list) {
+  for (const auto &object : data.Objects) {
+
+    // if ((object)->m_AIXM_object_type.compare("GuidanceLine") == 0) {
+    //   glColor3f(0, 1, 0);
+    // } else if ((object)->m_AIXM_object_type.compare("TaxiwayElement") == 0) {
+    //   glColor3f(1, 1, 0);
+    // } else if ((object)->m_AIXM_object_type.compare("RunwayElement") == 0) {
+    //   glColor3f(0, 0, 1);
+    // } else {
+    // }
+
+    glPointSize(3);
+    glBegin(GL_LINE_STRIP);
+    for (const auto &coord : object->m_Coordinates) {
+      list.insert(list.end(), {coord.m_Lon, coord.m_Lat, 0});
+    }
   }
 }
 
