@@ -25,43 +25,6 @@ static const char *vertexShaderSourceCore = R"(#version 150
                                                gl_Position = projMatrix * mvMatrix * vertex;
                                             })";
 
-// static const char *fragmentShaderSourceCore = "#version 150\n"
-//                                               "in highp vec3 vert;\n"
-//                                               "in highp vec3 vertNormal;\n"
-//                                               "out highp vec4 fragColor;\n"
-//                                               "uniform highp vec3 lightPos;\n"
-//                                               "void main() {\n"
-//                                               "   highp vec3 L = normalize(lightPos - vert);\n"
-//                                               "   highp float NL = max(dot(normalize(vertNormal), L), 0.0);\n"
-//                                               "   highp vec3 color = vec3(0.39, 1.0, 0.0);\n"
-//                                               "   highp vec3 col = clamp(color * 0.2 + color * 0.8 * NL,
-//                                               0.0, 1.0);\n" "   fragColor = vec4(col, 1.0);\n"
-//                                               "}\n";
-
-static const char *vertexShaderSource = "attribute vec4 vertex;\n"
-                                        "attribute vec3 normal;\n"
-                                        "varying vec3 vert;\n"
-                                        "varying vec3 vertNormal;\n"
-                                        "uniform mat4 projMatrix;\n"
-                                        "uniform mat4 mvMatrix;\n"
-                                        "uniform mat3 normalMatrix;\n"
-                                        "void main() {\n"
-                                        "   vert = vertex.xyz;\n"
-                                        "   vertNormal = normalMatrix * normal;\n"
-                                        "   gl_Position = projMatrix * mvMatrix * vertex;\n"
-                                        "}\n";
-
-static const char *fragmentShaderSource = "varying highp vec3 vert;\n"
-                                          "varying highp vec3 vertNormal;\n"
-                                          "uniform highp vec3 lightPos;\n"
-                                          "void main() {\n"
-                                          "   highp vec3 L = normalize(lightPos - vert);\n"
-                                          "   highp float NL = max(dot(normalize(vertNormal), L), 0.0);\n"
-                                          "   highp vec3 color = vec3(0.39, 1.0, 0.0);\n"
-                                          "   highp vec3 col = clamp(color * 0.2 + color * 0.8 * NL, 0.0, 1.0);\n"
-                                          "   gl_FragColor = vec4(col, 1.0);\n"
-                                          "}\n";
-
 GLWidget::GLWidget(QWidget *parent)
     : QOpenGLWidget(parent), Tree(new QuadTree(0, 2048, 0, 2048)), m_zoom_factor(1.0), m_program(0) {
   setMouseTracking(true);
@@ -260,7 +223,8 @@ void GLWidget::generate_airport_vertices(std::vector<GLdouble> &list) {
 
 void GLWidget::mousePressEvent(QMouseEvent *event) {
 
-  QVector3D worldPosition = QVector3D(event->x() * devicePixelRatioF(),  event->y() * devicePixelRatioF(), 0).unproject(m_world, m_proj, QRect(0, 0, width(), height()));
+  QVector3D worldPosition = QVector3D(event->x() * devicePixelRatioF(), event->y() * devicePixelRatioF(), 0)
+                                .unproject(m_world, m_proj, QRect(0, 0, width(), height()));
 
   switch (event->button()) {
   case Qt::LeftButton:
