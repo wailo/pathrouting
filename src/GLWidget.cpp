@@ -75,6 +75,8 @@ void GLWidget::initializeGL() {
   // m_lightPosLoc = m_program->uniformLocation("lightPos");
 
   generate_grid_vertices(Tree->m_rootNode, vertex_list);
+  generate_airport_vertices(vertex_list);
+
   m_vao.create();
   QOpenGLVertexArrayObject::Binder vaoBinder(&m_vao);
 
@@ -119,10 +121,10 @@ void GLWidget::resizeGL(int w, int h) {
   glViewport(0, 0, (GLsizei)w, (GLsizei)h);
   m_width = w;
   m_height = h;
-  Tree->invalidate_draw();
+  // Tree->invalidate_draw();
   m_proj.setToIdentity();
   // m_proj.ortho(-1.1, 1.1, -1.1, 1.1, -1, 1);
-  m_proj.ortho(Tree->get_left() - 0.01, Tree->get_right() + 0.01, Tree->get_bottom() - 0.01, Tree->get_top() + 0.01, -1,
+  m_proj.ortho(Tree->get_left() - 0.001, Tree->get_right() + 0.001, Tree->get_bottom() - 0.001, Tree->get_top() + 0.001, -1,
                1);
 }
 
@@ -213,10 +215,9 @@ void GLWidget::generate_airport_vertices(std::vector<GLdouble> &list) {
     // } else {
     // }
 
-    glPointSize(3);
-    glBegin(GL_LINE_STRIP);
-    for (const auto &coord : object->m_Coordinates) {
-      list.insert(list.end(), {coord.m_Lon, coord.m_Lat, 0});
+    for (std::size_t i = 1; i < object->m_Coordinates.size(); ++i) {
+      list.insert(list.end(), {object->m_Coordinates.at(i - 1).m_Lon, object->m_Coordinates.at(i - 1).m_Lat, 0});
+      list.insert(list.end(), {object->m_Coordinates.at(i).m_Lon, object->m_Coordinates.at(i).m_Lat, 0});
     }
   }
 }
