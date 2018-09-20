@@ -6,16 +6,19 @@
 #include <array>
 
 static const char *fragmentShaderSourceCore = R"(#version 330 core
+in vec3 v_color;
 out vec3 color;
 void main(){
-  color = vec3(1,1,1);
+  color = v_color;
 })";
 
-static const char *vertexShaderSourceCore = R"(#version 150
+static const char *vertexShaderSourceCore = R"(#version 330
                                             in vec4 vertex;
                                             in vec3 normal;
+                                            in vec3 color;
                                             out vec3 vert;
                                             out vec3 vertNormal;
+                                            out vec3 v_color;
                                             uniform mat4 projMatrix;
                                             uniform mat4 mvMatrix;
                                             uniform mat3 normalMatrix;
@@ -23,6 +26,7 @@ static const char *vertexShaderSourceCore = R"(#version 150
                                                vert = vertex.xyz;
                                                vertNormal = normalMatrix * normal;
                                                gl_Position = projMatrix * mvMatrix * vertex;
+                                               v_color = color;
                                             })";
 
 GLWidget::GLWidget(QWidget *parent)
@@ -59,7 +63,7 @@ void GLWidget::initializeGL() {
 
   initializeOpenGLFunctions();
 
-  glClearColor(0, 0, 0, 0);
+  glClearColor(0.0, 0.0, 0.0, 0);
   m_program = new QOpenGLShaderProgram;
 
   bool res = m_program->addShaderFromSourceCode(QOpenGLShader::Vertex, vertexShaderSourceCore);
@@ -84,7 +88,7 @@ void GLWidget::initializeGL() {
   m_logoVbo.create();
   m_logoVbo.setUsagePattern(QOpenGLBuffer::StaticDraw);
   m_logoVbo.bind();
-  m_logoVbo.allocate(m_vertex_list.data(), m_vertex_list.size() * sizeof(GLdouble));
+  m_logoVbo.allocate(m_vertex_list.data(), m_vertex_list.size() * sizeof(vertex_object));
   m_logoVbo.bind();
 
   // Store the vertex attribute bindings for the program.
@@ -112,8 +116,10 @@ void GLWidget::setupVertexAttribs() {
   QOpenGLFunctions *f = context()->functions();
   f->glEnableVertexAttribArray(0);
   f->glEnableVertexAttribArray(1);
-  f->glVertexAttribPointer(0, 3, GL_DOUBLE, GL_FALSE, 3 * sizeof(GLdouble), 0);
-  f->glVertexAttribPointer(1, 3, GL_DOUBLE, GL_FALSE, 3 * sizeof(GLdouble), 0);
+  f->glVertexAttribPointer(0, 3, GL_DOUBLE, GL_FALSE, sizeof(vertex_object), 0);
+  f->glVertexAttribPointer(1, 3, GL_DOUBLE, GL_FALSE, sizeof(vertex_object),
+                           reinterpret_cast<void *>(sizeof(vertex_object) / 2));
+
   m_logoVbo.release();
 }
 
@@ -144,27 +150,9 @@ void GLWidget::paintGL() {
   m_program->setUniformValue(m_mvMatrixLoc, m_camera * m_world);
   QMatrix3x3 normalMatrix = m_world.normalMatrix();
   m_program->setUniformValue(m_normalMatrixLoc, normalMatrix);
+  // Or user GL_TRIANGLE_FAN for polygon views
   glMultiDrawArrays(GL_LINE_STRIP, m_vertex_starts.data(), m_vertex_count.data(), m_vertex_count.size());
   m_program->release();
-
-  // for (const auto& object : data.Objects) {
-
-  //   if ((object)->m_AIXM_object_type.compare("GuidanceLine") == 0) {
-  //     glColor3f(0, 1, 0);
-  //   } else if ((object)->m_AIXM_object_type.compare("TaxiwayElement") == 0) {
-  //     glColor3f(1, 1, 0);
-  //   } else if ((object)->m_AIXM_object_type.compare("RunwayElement") == 0) {
-  //     glColor3f(0, 0, 1);
-  //   } else {
-  //   }
-
-  //   glPointSize(3);
-  //   glBegin(GL_LINE_STRIP);
-  //   for (const auto& coord : object->m_Coordinates) {
-  //     glVertex3f(coord.m_Lon, coord.m_Lat, 0);
-  //   }
-  //   glEnd();
-  // }
 
   // // Draw the shortest path
   // glColor4f(0, 1, 0, 0.5);
@@ -180,46 +168,55 @@ void GLWidget::paintGL() {
   // Tree->camefromSet.clear();
 }
 
-void GLWidget::generate_grid_vertices(const Node *pNode, std::vector<GLdouble> &list) {
+void GLWidget::generate_grid_vertices(const Node *pNode, std::vector<vertex_object> &list) {
 
   if (!pNode) {
     return;
   }
 
-  list.insert(list.end(), {(pNode->centre_x() - pNode->x_dsp()), (pNode->centre_y() + pNode->y_dsp()), 0,
-                           (pNode->centre_x() - pNode->x_dsp()), (pNode->centre_y() - pNode->y_dsp()), 0,
+  m_vertex_starts.push_back(list.size());
+  m_vertex_count.push_back(5);
 
-                           (pNode->centre_x() - pNode->x_dsp()), (pNode->centre_y() - pNode->y_dsp()), 0,
-                           (pNode->centre_x() + pNode->x_dsp()), (pNode->centre_y() - pNode->y_dsp()), 0,
-
-                           (pNode->centre_x() + pNode->x_dsp()), (pNode->centre_y() - pNode->y_dsp()), 0,
-                           (pNode->centre_x() + pNode->x_dsp()), (pNode->centre_y() + pNode->y_dsp()), 0,
-
-                           (pNode->centre_x() + pNode->x_dsp()), (pNode->centre_y() + pNode->y_dsp()), 0,
-                           (pNode->centre_x() - pNode->x_dsp()), (pNode->centre_y() + pNode->y_dsp()), 0});
+  GLdouble grid_color[3] = {1, 0, 0};
+  list.emplace_back(vertex_object{(pNode->centre_x() - pNode->x_dsp()), (pNode->centre_y() + pNode->y_dsp()), 0,
+                                  grid_color[0], grid_color[1], grid_color[2]});
+  list.emplace_back(vertex_object{(pNode->centre_x() - pNode->x_dsp()), (pNode->centre_y() - pNode->y_dsp()), 0,
+                                  grid_color[0], grid_color[1], grid_color[2]});
+  list.emplace_back(vertex_object{(pNode->centre_x() + pNode->x_dsp()), (pNode->centre_y() - pNode->y_dsp()), 0,
+                                  grid_color[0], grid_color[1], grid_color[2]});
+  list.emplace_back(vertex_object{(pNode->centre_x() + pNode->x_dsp()), (pNode->centre_y() + pNode->y_dsp()), 0,
+                                  grid_color[0], grid_color[1], grid_color[2]});
+  list.emplace_back(vertex_object{(pNode->centre_x() - pNode->x_dsp()), (pNode->centre_y() + pNode->y_dsp()), 0,
+                                  grid_color[0], grid_color[1], grid_color[2]});
 
   for (auto &child : pNode->Child) {
     generate_grid_vertices(child, list);
   }
 }
 
-void GLWidget::generate_airport_vertices(std::vector<GLdouble> &list) {
+void GLWidget::generate_airport_vertices(std::vector<vertex_object> &list) {
 
+  GLdouble color[3] = {1, 0, 1};
   for (const auto &object : data.Objects) {
-    m_vertex_starts.push_back(list.size() / 3);
+    m_vertex_starts.push_back(list.size());
     m_vertex_count.push_back(object->m_Coordinates.size());
 
-    // if ((object)->m_AIXM_object_type.compare("GuidanceLine") == 0) {
-    //   glColor3f(0, 1, 0);
-    // } else if ((object)->m_AIXM_object_type.compare("TaxiwayElement") == 0) {
-    //   glColor3f(1, 1, 0);
-    // } else if ((object)->m_AIXM_object_type.compare("RunwayElement") == 0) {
-    //   glColor3f(0, 0, 1);
-    // } else {
-    // }
+    if ((object)->m_AIXM_object_type.compare("GuidanceLine") == 0) {
+      color[0] = 0;
+      color[1] = 1;
+      color[2] = 0;
+    } else if ((object)->m_AIXM_object_type.compare("TaxiwayElement") == 0) {
+      color[0] = 1;
+      color[1] = 1;
+      color[2] = 0;
+    } else if ((object)->m_AIXM_object_type.compare("RunwayElement") == 0) {
+      color[0] = 0;
+      color[1] = 0;
+      color[2] = 1;
+    }
 
     for (const auto &coord : object->m_Coordinates) {
-      list.insert(list.end(), {coord.m_Lon, coord.m_Lat, 0});
+      list.emplace_back(vertex_object{GLdouble(coord.m_Lon), GLdouble(coord.m_Lat), 0.0, color[0], color[1], color[2]});
     }
   }
 }

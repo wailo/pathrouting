@@ -29,10 +29,6 @@ class GLWidget : public QOpenGLWidget, protected QOpenGLFunctions {
       GLWidget(QWidget *parent = NULL);
   std::unique_ptr<QuadTree> Tree;
 
-  // Draw Nodes
-  void generate_grid_vertices(const Node *pNode, std::vector<GLdouble> &list);
-  void generate_airport_vertices(std::vector<GLdouble> &list);
-  void setupVertexAttribs();
   // for routePath test
   std::vector<Node *> testVec;
 
@@ -61,9 +57,6 @@ private:
   QOpenGLBuffer m_logoVbo;
   QOpenGLShaderProgram *m_program;
 
-  std::vector<GLdouble> m_vertex_list;
-  std::vector<GLsizei> m_vertex_count;
-  std::vector<GLint> m_vertex_starts;
   int m_xRot{0};
   int m_yRot{0};
   int m_zRot{0};
@@ -74,4 +67,17 @@ private:
   QMatrix4x4 m_proj;
   QMatrix4x4 m_camera;
   QMatrix4x4 m_world;
+
+  struct vertex_object {
+    GLdouble x{0}, y{0}, z{0}, r{0}, g{0}, b{0};
+  };
+
+  std::vector<vertex_object> m_vertex_list;
+  std::vector<GLsizei> m_vertex_count;
+  std::vector<GLint> m_vertex_starts;
+
+  // Draw Nodes
+  void generate_grid_vertices(const Node *pNode, std::vector<vertex_object> &list);
+  void generate_airport_vertices(std::vector<vertex_object> &list);
+  void setupVertexAttribs();
 };
