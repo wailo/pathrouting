@@ -8,7 +8,7 @@
 static const char *fragmentShaderSourceCore = R"(#version 330 core
 out vec3 color;
 void main(){
-  color = vec3(0,2,0);
+  color = vec3(1,1,1);
 })";
 
 static const char *vertexShaderSourceCore = R"(#version 150
@@ -74,8 +74,8 @@ void GLWidget::initializeGL() {
   m_normalMatrixLoc = m_program->uniformLocation("normalMatrix");
   // m_lightPosLoc = m_program->uniformLocation("lightPos");
 
-  generate_grid_vertices(Tree->m_rootNode, vertex_list);
-  generate_airport_vertices(vertex_list);
+  generate_grid_vertices(Tree->m_rootNode, m_vertex_list);
+  generate_airport_vertices(m_vertex_list);
 
   m_vao.create();
   QOpenGLVertexArrayObject::Binder vaoBinder(&m_vao);
@@ -84,7 +84,7 @@ void GLWidget::initializeGL() {
   m_logoVbo.create();
   m_logoVbo.setUsagePattern(QOpenGLBuffer::StaticDraw);
   m_logoVbo.bind();
-  m_logoVbo.allocate(vertex_list.data(), vertex_list.size() * sizeof(GLdouble));
+  m_logoVbo.allocate(m_vertex_list.data(), m_vertex_list.size() * sizeof(GLdouble));
   m_logoVbo.bind();
 
   // Store the vertex attribute bindings for the program.
@@ -124,8 +124,8 @@ void GLWidget::resizeGL(int w, int h) {
   // Tree->invalidate_draw();
   m_proj.setToIdentity();
   // m_proj.ortho(-1.1, 1.1, -1.1, 1.1, -1, 1);
-  m_proj.ortho(Tree->get_left() - 0.001, Tree->get_right() + 0.001, Tree->get_bottom() - 0.001, Tree->get_top() + 0.001, -1,
-               1);
+  m_proj.ortho(Tree->get_left() - 0.001, Tree->get_right() + 0.001, Tree->get_bottom() - 0.001, Tree->get_top() + 0.001,
+               -1, 1);
 }
 
 void GLWidget::paintGL() {
@@ -144,7 +144,7 @@ void GLWidget::paintGL() {
   m_program->setUniformValue(m_mvMatrixLoc, m_camera * m_world);
   QMatrix3x3 normalMatrix = m_world.normalMatrix();
   m_program->setUniformValue(m_normalMatrixLoc, normalMatrix);
-  glDrawArrays(GL_LINES, 0, vertex_list.size() / 3);
+  glMultiDrawArrays(GL_LINE_STRIP, m_vertex_starts.data(), m_vertex_count.data(), m_vertex_count.size());
   m_program->release();
 
   // for (const auto& object : data.Objects) {
@@ -204,7 +204,10 @@ void GLWidget::generate_grid_vertices(const Node *pNode, std::vector<GLdouble> &
 }
 
 void GLWidget::generate_airport_vertices(std::vector<GLdouble> &list) {
+
   for (const auto &object : data.Objects) {
+    m_vertex_starts.push_back(list.size() / 3);
+    m_vertex_count.push_back(object->m_Coordinates.size());
 
     // if ((object)->m_AIXM_object_type.compare("GuidanceLine") == 0) {
     //   glColor3f(0, 1, 0);
@@ -215,9 +218,8 @@ void GLWidget::generate_airport_vertices(std::vector<GLdouble> &list) {
     // } else {
     // }
 
-    for (std::size_t i = 1; i < object->m_Coordinates.size(); ++i) {
-      list.insert(list.end(), {object->m_Coordinates.at(i - 1).m_Lon, object->m_Coordinates.at(i - 1).m_Lat, 0});
-      list.insert(list.end(), {object->m_Coordinates.at(i).m_Lon, object->m_Coordinates.at(i).m_Lat, 0});
+    for (const auto &coord : object->m_Coordinates) {
+      list.insert(list.end(), {coord.m_Lon, coord.m_Lat, 0});
     }
   }
 }

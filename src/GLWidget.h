@@ -60,11 +60,10 @@ private:
   QOpenGLVertexArrayObject m_vao;
   QOpenGLBuffer m_logoVbo;
   QOpenGLShaderProgram *m_program;
-  GLuint vao = 0;
-  GLuint points_vbo = 0;
 
-  std::vector<GLdouble> vertex_list;
-
+  std::vector<GLdouble> m_vertex_list;
+  std::vector<GLsizei> m_vertex_count;
+  std::vector<GLint> m_vertex_starts;
   int m_xRot{0};
   int m_yRot{0};
   int m_zRot{0};
