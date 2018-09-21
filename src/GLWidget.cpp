@@ -151,7 +151,11 @@ void GLWidget::paintGL() {
   QMatrix3x3 normalMatrix = m_world.normalMatrix();
   m_program->setUniformValue(m_normalMatrixLoc, normalMatrix);
   // Or user GL_TRIANGLE_FAN for polygon views
-  glMultiDrawArrays(GL_LINE_STRIP, m_vertex_starts.data(), m_vertex_count.data(), m_vertex_count.size());
+  glMultiDrawArrays(GL_LINE_STRIP, m_grid_vertex_indices.data(), m_grid_vertex_count.data(),
+                    m_grid_vertex_count.size());
+  glMultiDrawArrays(GL_LINE_STRIP, m_airport_vertex_indices.data(), m_airport_vertex_count.data(),
+                    m_airport_vertex_count.size());
+
   m_program->release();
 
   // // Draw the shortest path
@@ -174,8 +178,8 @@ void GLWidget::generate_grid_vertices(const Node *pNode, std::vector<vertex_obje
     return;
   }
 
-  m_vertex_starts.push_back(list.size());
-  m_vertex_count.push_back(5);
+  m_grid_vertex_indices.push_back(list.size());
+  m_grid_vertex_count.push_back(5);
 
   GLdouble grid_color[3] = {1, 0, 0};
   list.emplace_back(vertex_object{(pNode->centre_x() - pNode->x_dsp()), (pNode->centre_y() + pNode->y_dsp()), 0,
@@ -198,8 +202,8 @@ void GLWidget::generate_airport_vertices(std::vector<vertex_object> &list) {
 
   GLdouble color[3] = {1, 0, 1};
   for (const auto &object : data.Objects) {
-    m_vertex_starts.push_back(list.size());
-    m_vertex_count.push_back(object->m_Coordinates.size());
+    m_airport_vertex_indices.push_back(list.size());
+    m_airport_vertex_count.push_back(object->m_Coordinates.size());
 
     if ((object)->m_AIXM_object_type.compare("GuidanceLine") == 0) {
       color[0] = 0;

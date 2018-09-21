@@ -73,8 +73,12 @@ private:
   };
 
   std::vector<vertex_object> m_vertex_list;
-  std::vector<GLsizei> m_vertex_count;
-  std::vector<GLint> m_vertex_starts;
+  
+  std::vector<GLsizei> m_airport_vertex_count;
+  std::vector<GLint> m_airport_vertex_indices;
+  
+  std::vector<GLsizei> m_grid_vertex_count;
+  std::vector<GLint> m_grid_vertex_indices;
 
   // Draw Nodes
   void generate_grid_vertices(const Node *pNode, std::vector<vertex_object> &list);
