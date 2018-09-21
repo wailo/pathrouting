@@ -63,7 +63,7 @@ void GLWidget::initializeGL() {
 
   initializeOpenGLFunctions();
 
-  glClearColor(0.0, 0.0, 0.0, 0);
+  glClearColor(27.0 / 255, 31.0 / 255.0, 61.0 / 255.0, 0);
   m_program = new QOpenGLShaderProgram;
 
   bool res = m_program->addShaderFromSourceCode(QOpenGLShader::Vertex, vertexShaderSourceCore);
@@ -153,8 +153,12 @@ void GLWidget::paintGL() {
   // Or user GL_TRIANGLE_FAN for polygon views
   glMultiDrawArrays(GL_LINE_STRIP, m_grid_vertex_indices.data(), m_grid_vertex_count.data(),
                     m_grid_vertex_count.size());
-  glMultiDrawArrays(GL_LINE_STRIP, m_airport_vertex_indices.data(), m_airport_vertex_count.data(),
-                    m_airport_vertex_count.size());
+
+  glMultiDrawArrays(GL_LINE_LOOP, m_airport_polygon_indices.data(), m_airport_polygon_count.data(),
+                    m_airport_polygon_count.size());
+
+  glMultiDrawArrays(GL_LINE_STRIP, m_airport_lines_indices.data(), m_airport_lines_count.data(),
+                    m_airport_lines_count.size());
 
   m_program->release();
 
@@ -181,7 +185,7 @@ void GLWidget::generate_grid_vertices(const Node *pNode, std::vector<vertex_obje
   m_grid_vertex_indices.push_back(list.size());
   m_grid_vertex_count.push_back(5);
 
-  GLdouble grid_color[3] = {1, 0, 0};
+  GLdouble grid_color[3] = {0.15, 0.15, 0.15};
   list.emplace_back(vertex_object{(pNode->centre_x() - pNode->x_dsp()), (pNode->centre_y() + pNode->y_dsp()), 0,
                                   grid_color[0], grid_color[1], grid_color[2]});
   list.emplace_back(vertex_object{(pNode->centre_x() - pNode->x_dsp()), (pNode->centre_y() - pNode->y_dsp()), 0,
@@ -201,23 +205,42 @@ void GLWidget::generate_grid_vertices(const Node *pNode, std::vector<vertex_obje
 void GLWidget::generate_airport_vertices(std::vector<vertex_object> &list) {
 
   GLdouble color[3] = {1, 0, 1};
+
+  decltype(m_airport_polygon_indices) *target_indicies_list;
+  decltype(m_airport_polygon_count) *target_count_list;
+
   for (const auto &object : data.Objects) {
-    m_airport_vertex_indices.push_back(list.size());
-    m_airport_vertex_count.push_back(object->m_Coordinates.size());
 
     if ((object)->m_AIXM_object_type.compare("GuidanceLine") == 0) {
-      color[0] = 0;
-      color[1] = 1;
-      color[2] = 0;
+      color[0] = 248 / 255.0;
+      color[1] = 248 / 255.0;
+      color[2] = 24 / 255.0;
+      target_indicies_list = &m_airport_lines_indices;
+      target_count_list = &m_airport_lines_count;
     } else if ((object)->m_AIXM_object_type.compare("TaxiwayElement") == 0) {
-      color[0] = 1;
-      color[1] = 1;
-      color[2] = 0;
+      color[0] = (200.0 / 255.0);
+      color[1] = (200.0 / 255.0);
+      color[2] = (200.0 / 255.0);
+
+      target_indicies_list = &m_airport_polygon_indices;
+      target_count_list = &m_airport_polygon_count;
+
     } else if ((object)->m_AIXM_object_type.compare("RunwayElement") == 0) {
-      color[0] = 0;
-      color[1] = 0;
-      color[2] = 1;
+      color[0] = (86.0 / 255.0);
+      color[1] = (86.0 / 255.0);
+      color[2] = (86.0 / 255.0);
+      target_indicies_list = &m_airport_polygon_indices;
+      target_count_list = &m_airport_polygon_count;
+    } else {
+      color[0] = (75.0 / 255.0);
+      color[1] = (230.0 / 255.0);
+      color[2] = (75.0 / 255.0);
+      target_indicies_list = &m_airport_lines_indices;
+      target_count_list = &m_airport_lines_count;
     }
+
+    target_indicies_list->push_back(list.size());
+    target_count_list->push_back(object->m_Coordinates.size());
 
     for (const auto &coord : object->m_Coordinates) {
       list.emplace_back(vertex_object{GLdouble(coord.m_Lon), GLdouble(coord.m_Lat), 0.0, color[0], color[1], color[2]});

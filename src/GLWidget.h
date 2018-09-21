@@ -73,10 +73,13 @@ private:
   };
 
   std::vector<vertex_object> m_vertex_list;
-  
-  std::vector<GLsizei> m_airport_vertex_count;
-  std::vector<GLint> m_airport_vertex_indices;
-  
+
+  std::vector<GLsizei> m_airport_polygon_count;
+  std::vector<GLint> m_airport_polygon_indices;
+
+  std::vector<GLsizei> m_airport_lines_count;
+  std::vector<GLint> m_airport_lines_indices;
+
   std::vector<GLsizei> m_grid_vertex_count;
   std::vector<GLint> m_grid_vertex_indices;
 
