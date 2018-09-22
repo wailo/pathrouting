@@ -211,38 +211,39 @@ void GLWidget::generate_airport_vertices(std::vector<vertex_object> &list) {
 
   for (const auto &object : data.Objects) {
 
-    if ((object)->m_AIXM_object_type.compare("GuidanceLine") == 0) {
+    if (object.m_AIXM_object_type == "GuidanceLine") {
       color[0] = 248 / 255.0;
       color[1] = 248 / 255.0;
       color[2] = 24 / 255.0;
-      target_indicies_list = &m_airport_lines_indices;
-      target_count_list = &m_airport_lines_count;
-    } else if ((object)->m_AIXM_object_type.compare("TaxiwayElement") == 0) {
+    } else if (object.m_AIXM_object_type == "TaxiwayElement") {
       color[0] = (200.0 / 255.0);
       color[1] = (200.0 / 255.0);
       color[2] = (200.0 / 255.0);
-
-      target_indicies_list = &m_airport_polygon_indices;
-      target_count_list = &m_airport_polygon_count;
-
-    } else if ((object)->m_AIXM_object_type.compare("RunwayElement") == 0) {
+    } else if (object.m_AIXM_object_type == "RunwayElement") {
       color[0] = (86.0 / 255.0);
       color[1] = (86.0 / 255.0);
       color[2] = (86.0 / 255.0);
-      target_indicies_list = &m_airport_polygon_indices;
-      target_count_list = &m_airport_polygon_count;
     } else {
       color[0] = (75.0 / 255.0);
       color[1] = (230.0 / 255.0);
       color[2] = (75.0 / 255.0);
+    }
+
+    if (object.m_GML_vertex_type == "LineStringSegment") {
       target_indicies_list = &m_airport_lines_indices;
       target_count_list = &m_airport_lines_count;
+    } else if (object.m_GML_vertex_type == "LinearRing") {
+      target_indicies_list = &m_airport_polygon_indices;
+      target_count_list = &m_airport_polygon_count;
+    } else {
+      target_indicies_list = &m_airport_polygon_indices;
+      target_count_list = &m_airport_polygon_count;
     }
 
     target_indicies_list->push_back(list.size());
-    target_count_list->push_back(object->m_Coordinates.size());
+    target_count_list->push_back(object.m_Coordinates.size());
 
-    for (const auto &coord : object->m_Coordinates) {
+    for (const auto &coord : object.m_Coordinates) {
       list.emplace_back(vertex_object{GLdouble(coord.m_Lon), GLdouble(coord.m_Lat), 0.0, color[0], color[1], color[2]});
     }
   }

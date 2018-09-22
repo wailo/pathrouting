@@ -15,20 +15,63 @@ bool AIXM_file_parser::read_AIXM_file(std::string full_path) {
     throw std::runtime_error("AIXM file does not exist:" + full_path);
   }
 
-  simple_walker walker(*this);
-  doc.traverse(walker);
+  const auto &aixm_members = doc.select_nodes("//message:hasMember", 0);
+  for (const auto &member_itr : aixm_members) {
+
+    const auto &node = member_itr.node();
+    if (!strcmp(node.name(), "message:hasMember")) {
+
+      AIXM_file_parser::GMLObject gml_object;
+      std::string temp_str = std::string(node.first_child().name());
+      std::size_t pos = temp_str.find_first_of(':');
+      temp_str = temp_str.substr(pos + 1);
+      gml_object.m_AIXM_object_type = temp_str;
+      // Get the first parent which describes the vertices type
+      temp_str = node.select_node(pugi::xpath_query(".//gml:posList/..", 0)).node().name();
+      pos = temp_str.find_first_of(':');
+      temp_str = temp_str.substr(pos + 1);
+      gml_object.m_GML_vertex_type = temp_str;
+      // Get the positions lists.
+      const auto &pos_list_itr = node.select_node(pugi::xpath_query(".//gml:posList", 0));
+
+      if (!pos_list_itr) {
+        return false;
+      }
+
+      const auto &pos_list_node = pos_list_itr.node();
+
+      std::istringstream iss(pos_list_node.first_child().value());
+      double lon, lat;
+      while (iss.good()) {
+        iss >> lon;
+        iss >> lat;
+        Coordinate m_cord;
+        m_cord.m_Lat = lat;
+        m_cord.m_Lon = lon;
+
+        double temp_distance = distance(0, 0, lon, lat);
+        double temp_bearing = bearing_rad(lon, lat, 0, 0);
+
+        m_cord.m_X = temp_distance * cos(temp_bearing);
+        m_cord.m_Y = temp_distance * sin(temp_bearing);
+        gml_object.m_Coordinates.push_back(m_cord);
+      }
+
+      Objects.push_back(gml_object);
+    }
+  }
   return true;
 }
 
 void AIXM_file_parser::process_boundaries(QuadTree &tree) {
 
-  std::for_each(Objects.begin(), Objects.end(), [this](AIXM_file_parser::GMLObject *p_poly) {
+  std::for_each(Objects.begin(), Objects.end(), [this](AIXM_file_parser::GMLObject p_poly) {
     const double DEG_TO_RAD = M_PI / 180.0;
-    for (int i = 0; i < p_poly->m_Coordinates.size(); ++i) {
-      p_poly->m_Coordinates.at(i).m_Y =
-          y_distance(p_poly->m_Coordinates.at(i).m_Lon * DEG_TO_RAD, p_poly->m_Coordinates.at(i).m_Lat * DEG_TO_RAD);
-      p_poly->m_Coordinates.at(i).m_X =
-          x_distance(p_poly->m_Coordinates.at(i).m_Lon * DEG_TO_RAD, p_poly->m_Coordinates.at(i).m_Lat * DEG_TO_RAD);
+    for (int i = 0; i < p_poly.m_Coordinates.size(); ++i) {
+      p_poly.m_Coordinates.at(i).m_Y =
+          y_distance(p_poly.m_Coordinates.at(i).m_Lon * DEG_TO_RAD, p_poly.m_Coordinates.at(i).m_Lat * DEG_TO_RAD);
+      p_poly.m_Coordinates.at(i).m_X =
+          x_distance(p_poly.m_Coordinates.at(i).m_Lon * DEG_TO_RAD, p_poly.m_Coordinates.at(i).m_Lat * DEG_TO_RAD);
     }
   });
 
@@ -40,7 +83,7 @@ void AIXM_file_parser::process_boundaries(QuadTree &tree) {
   max_coord.m_Lon = std::numeric_limits<double>::lowest();
 
   for (const auto &obj : Objects) {
-    for (const auto &coord : obj->m_Coordinates) {
+    for (const auto &coord : obj.m_Coordinates) {
       min_coord.m_Lat = std::min(coord.m_Lat, min_coord.m_Lat);
       min_coord.m_Lon = std::min(coord.m_Lon, min_coord.m_Lon);
       max_coord.m_Lat = std::max(coord.m_Lat, max_coord.m_Lat);
@@ -57,11 +100,11 @@ void AIXM_file_parser::process_boundaries(QuadTree &tree) {
   int kk = 0;
   for (auto &p_poly : Objects) {
     kk++;
-    for (auto i = 1; i < p_poly->m_Coordinates.size(); ++i) {
-      Node *node = tree.findTreeNode(p_poly->m_Coordinates.at(i).m_Lon, p_poly->m_Coordinates.at(i).m_Lat);
-      Node *node1 = tree.findTreeNode(p_poly->m_Coordinates.at(i - 1).m_Lon, p_poly->m_Coordinates.at(i - 1).m_Lat);
+    for (auto i = 1; i < p_poly.m_Coordinates.size(); ++i) {
+      Node *node = tree.findTreeNode(p_poly.m_Coordinates.at(i).m_Lon, p_poly.m_Coordinates.at(i).m_Lat);
+      Node *node1 = tree.findTreeNode(p_poly.m_Coordinates.at(i - 1).m_Lon, p_poly.m_Coordinates.at(i - 1).m_Lat);
       while (node == node1 /*false*/) {
-        node1 = tree.findTreeNode(p_poly->m_Coordinates.at(i).m_Lon, p_poly->m_Coordinates.at(i).m_Lat, node1);
+        node1 = tree.findTreeNode(p_poly.m_Coordinates.at(i).m_Lon, p_poly.m_Coordinates.at(i).m_Lat, node1);
         tree.constructTreeNode(node1);
       }
     }
@@ -81,51 +124,9 @@ float AIXM_file_parser::mapDistance(float dLat, float dLon) {
 
   float c = 2 * atan2(sqrt(a), sqrt(1 - a));
   float d = R * c;
-
-  // std::cout << "Distance = " << d << std::endl;
-
   return d;
 }
 
-bool simple_walker::for_each(pugi::xml_node &node) {
-  // begining of an Object
-  if (!strcmp(node.name(), "message:hasMember")) {
-    object = new AIXM_file_parser::GMLObject();
-    std::string temp_str = std::string(node.first_child().name());
-    std::size_t pos = temp_str.find_first_of(':');
-    temp_str = temp_str.substr(pos + 1);
-    object->m_AIXM_object_type = temp_str;
-
-  }
-  // Object type
-  else if (!strcmp(node.name(), "aixm:type")) {
-
-  }
-  // Position list
-  else if (!strcmp(node.name(), "gml:posList")) {
-
-    std::istringstream iss(node.first_child().value());
-    double lon, lat;
-    while (iss.good()) {
-      iss >> lon;
-      iss >> lat;
-      Coordinate m_cord;
-      m_cord.m_Lat = lat;
-      m_cord.m_Lon = lon;
-
-      double temp_distance = distance(0, 0, lon, lat);
-      double temp_bearing = bearing_rad(lon, lat, 0, 0);
-
-      m_cord.m_X = temp_distance * cos(temp_bearing);
-      m_cord.m_Y = temp_distance * sin(temp_bearing);
-      object->m_Coordinates.push_back(m_cord);
-    }
-
-    parser.Objects.push_back(object);
-  }
-
-  return true; // continue traversal
-}
 double distance(double p_lon1, double p_lat1, double p_lon2, double p_lat2) {
   double R = 6371; // km
   double lat1_rad = p_lat1 * (M_PI / 180.0);
@@ -161,7 +162,7 @@ double AIXM_file_parser::polarTodec(std::string polarCoord) {
   if (polarCoord.back() == 'S' || polarCoord.back() == 'W') {
     polarCoord.insert(polarCoord.begin(), '-');
   }
-  
+
   // Remove the last char
   polarCoord.pop_back();
   double dlat = 0;

@@ -83,22 +83,13 @@ public:
 
   struct GMLObject {
     std::string m_AIXM_object_type;
+    std::string m_GML_vertex_type;
     std::vector<Coordinate> m_Coordinates;
   };
 
-  std::vector<GMLObject *> Objects;
+  std::vector<GMLObject> Objects;
 
   void adjust_position(GMLObject *);
-};
-
-struct simple_walker : pugi::xml_tree_walker {
-  simple_walker();
-  simple_walker(AIXM_file_parser &p_parser) : parser(p_parser) {}
-
-  AIXM_file_parser &parser;
-  AIXM_file_parser::GMLObject *object;
-
-  virtual bool for_each(pugi::xml_node &node);
 };
 
 double distance(double p_lon1, double p_lat1, double p_lon2, double p_lat2);
