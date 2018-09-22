@@ -185,7 +185,7 @@ void GLWidget::generate_grid_vertices(const Node *pNode, std::vector<vertex_obje
   m_grid_vertex_indices.push_back(list.size());
   m_grid_vertex_count.push_back(5);
 
-  GLdouble grid_color[3] = {0.15, 0.15, 0.15};
+  GLdouble grid_color[3] = {110.0/255., 10.0/255.0, 5.0/255.0};
   list.emplace_back(vertex_object{(pNode->centre_x() - pNode->x_dsp()), (pNode->centre_y() + pNode->y_dsp()), 0,
                                   grid_color[0], grid_color[1], grid_color[2]});
   list.emplace_back(vertex_object{(pNode->centre_x() - pNode->x_dsp()), (pNode->centre_y() - pNode->y_dsp()), 0,
