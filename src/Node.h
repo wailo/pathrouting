@@ -6,19 +6,19 @@ class QuadTree;
 class Node {
 
 public:
-  enum nodeType { ROOT_TYPE, NODE_TYPE, LEAF_TYPE };
-
   Node(QuadTree *p_parentTree);
   ~Node(void);
 
   // Node type
-  nodeType type;
+  inline bool is_leaf() const { return !Child[0]; }
+  inline bool is_root() const { return !Parent; }
+  inline bool is_node() const { return Parent && Child[0]; };
 
   // Node ID
   int id;
 
   // Node depth
-  short depth;
+  int depth;
 
   // parent Tree
   QuadTree *m_parentTree;

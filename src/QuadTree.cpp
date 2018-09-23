@@ -44,9 +44,6 @@ void QuadTree::InitRootNode() {
 
   // set root node parent to NULL
   m_rootNode->Parent = NULL;
-
-  // Set node type
-  m_rootNode->type = Node::ROOT_TYPE;
 }
 
 double QuadTree::get_right() { return right; }
@@ -54,17 +51,14 @@ double QuadTree::get_left() { return left; }
 double QuadTree::get_bottom() { return bottom; }
 double QuadTree::get_top() { return top; }
 
-void QuadTree::invalidate_draw() {
-   invalidate_draw(m_rootNode);
-}
+void QuadTree::invalidate_draw() { invalidate_draw(m_rootNode); }
 
-
-void QuadTree::invalidate_draw(Node* node) {
+void QuadTree::invalidate_draw(Node *node) {
 
   if (!node) {
     return;
   }
-                
+
   if (!node->m_draw) {
     node->m_draw = true;
     for (auto child : node->Child) {
@@ -77,7 +71,7 @@ void QuadTree::removeTreeNode(Node *(&pNode)) {
   // pass the parent node to delete it and its children
   if (pNode != NULL) {
     // IF the node has children
-    if (pNode->type != Node::LEAF_TYPE) {
+    if (!pNode->is_leaf()) {
       for (unsigned int i = 0; i < 4; ++i) {
         // Remove the all the child nodes recursively
         removeTreeNode(pNode->Child[i]);
@@ -87,8 +81,7 @@ void QuadTree::removeTreeNode(Node *(&pNode)) {
 
       // If this node is not the root node, then assign its type to leaf node
       if (pNode->Parent) {
-        if (pNode->Parent->type != Node::ROOT_TYPE) {
-          pNode->Parent->type = Node::LEAF_TYPE;
+        if (!pNode->Parent->is_root()) {
           pNode->Parent->m_draw = true;
         }
       }
@@ -127,7 +120,7 @@ Node *QuadTree::findTreeNode(double x, double y, Node *p_startNode) {
   unsigned char bit = 0;
 
   pNode = p_startNode;
-  while (pNode->type != Node::LEAF_TYPE) {
+  while (!pNode->is_leaf()) {
     // reset the bit to [0|0]
     bit = 0;
 
@@ -169,29 +162,21 @@ Node *QuadTree::findTreeNode(double x, double y, Node *p_startNode) {
 // Construct a tree branch by constructing all the children nodes
 void QuadTree::constructTreeNode(Node *node) {
   // If node is not a leaf then this will cause memory leak!
-  if (node->type == Node::NODE_TYPE) {
+  if (node->is_node()) {
     throw std::runtime_error("Node is not a leaf node. Potential memory leak");
   }
 
   // problem here, this function create duplicate nodes!
   for (unsigned int i = 0; i < 4; ++i) {
-    if (node->Child[i] == NULL) // To prevent creating duplicate nodes
-    {
-      // Initialize the node
-      node->Child[i] = new Node(this);
+    assert(node->Child[i] == NULL);
+    // Initialize the node
+    node->Child[i] = new Node(this);
 
-      node->Child[i]->Parent = node;
-      node->Child[i]->depth = node->Child[i]->Parent->depth + 1;
-      if (node->Child[i]->depth > maxGridDepth) {
-        maxGridDepth = node->Child[i]->depth;
-      }
-      node->Child[i]->type = Node::LEAF_TYPE;
-      node->Child[i]->id = (4 * node->Child[i]->Parent->id) - 2 + i;
-      if (node->type != Node::ROOT_TYPE) {
-        node->type = Node::NODE_TYPE;
-      }
-    }
+    node->Child[i]->Parent = node;
+    node->Child[i]->depth = node->depth + 1;
+    node->Child[i]->id = (4 * node->id) - 2 + i;
 
+    maxGridDepth = std::max(node->Child[i]->depth, maxGridDepth);
   }
 }
 
@@ -213,7 +198,7 @@ void QuadTree::forEachNode(Node *pRootnode, OnDrawEventHandler func) {
 
   func(pRootnode);
 
-  if (pRootnode->type != Node::LEAF_TYPE) {
+  if (!pRootnode->is_leaf()) {
     for (unsigned int i = 0; i < 4; ++i) {
       // This is for a special case where the root node is initilized but not expanded yet
       // check if the node is valid
@@ -233,7 +218,7 @@ void QuadTree::balanceTree(Node *P) {
   for (int i = NW; i <= W; ++i) {
     tempPtr = findNeighbour(P, i);
 
-    if ((P->depth - tempPtr->depth) > 1 && (tempPtr->type == Node::LEAF_TYPE)) {
+    if ((P->depth - tempPtr->depth) > 1 && (tempPtr->is_leaf())) {
 
       constructTreeNode(tempPtr);
       for (unsigned int j = 0; j < 4; ++j) {
@@ -245,7 +230,7 @@ void QuadTree::balanceTree(Node *P) {
 
 void recursive(Node *pNode, int D1, int D2, std::vector<Node *> &vector) {
 
-  if (pNode->type == Node::LEAF_TYPE) {
+  if (pNode->is_leaf()) {
     vector.push_back(pNode);
   }
 
@@ -504,7 +489,7 @@ Node *QuadTree::findNeighbour(Node *p, int Direction) {
   // return the east neighbour of the parent cell
   Node *p1 = findNeighbour(p->Parent, Direction);
 
-  if (p1->type == Node::LEAF_TYPE || p1->type == Node::ROOT_TYPE) {
+  if (p1->is_leaf() || p1->is_root()) {
     return p1;
   }
 
@@ -570,7 +555,7 @@ Node *QuadTree::findNeighbour(Node *p, char Direction) {
   boost::dynamic_bitset<> xbit;
   boost::dynamic_bitset<> ybit;
 
-  while (p->type != Node::ROOT_TYPE) {
+  while (!p->is_root()) {
     qDebug() << p->centre_x() << " - x - " << p->Parent->centre_x() << endl;
     qDebug() << p->centre_y() << " - y - " << p->Parent->centre_y() << endl;
 

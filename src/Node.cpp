@@ -13,14 +13,14 @@ Node::Node(QuadTree *p_parentTree) : m_parentTree(p_parentTree), m_draw(true) {
 
   // Set all the child nodes to NULL
   for (unsigned int i = 0; i < 4; ++i) {
-    Child[i] = NULL;
+    Child[i] = nullptr;
   }
 
   // Set parent to NULL so it can be tested using if ( parent )
-  Parent = NULL;
+  Parent = nullptr;
 
   // For Path routing
-  A_Parent = NULL;
+  A_Parent = nullptr;
   cost = std::numeric_limits<double>::infinity();
   f_cost = std::numeric_limits<double>::infinity();
 }
@@ -46,7 +46,7 @@ double Node::y_dsp(int depth_) const {
 }
 
 double Node::centre_x() const {
-  if (type == Node::ROOT_TYPE) {
+  if (is_root()) {
     // in a vector
     return m_parentTree->left + m_parentTree->gridWidth - x_dsp();
   }
@@ -82,7 +82,7 @@ double Node::centre_x() const {
 }
 
 double Node::centre_y() const {
-  if (type == Node::ROOT_TYPE) {
+  if (is_root()) {
     // in a vector
     return m_parentTree->bottom + m_parentTree->gridHeight - y_dsp();
   }
