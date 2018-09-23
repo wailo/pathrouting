@@ -65,25 +65,20 @@ bool AIXM_file_parser::read_AIXM_file(std::string full_path) {
 
 void AIXM_file_parser::process_boundaries(QuadTree &tree) {
 
-  std::for_each(Objects.begin(), Objects.end(), [this](AIXM_file_parser::GMLObject p_poly) {
-    const double DEG_TO_RAD = M_PI / 180.0;
-    for (int i = 0; i < p_poly.m_Coordinates.size(); ++i) {
-      p_poly.m_Coordinates.at(i).m_Y =
-          y_distance(p_poly.m_Coordinates.at(i).m_Lon * DEG_TO_RAD, p_poly.m_Coordinates.at(i).m_Lat * DEG_TO_RAD);
-      p_poly.m_Coordinates.at(i).m_X =
-          x_distance(p_poly.m_Coordinates.at(i).m_Lon * DEG_TO_RAD, p_poly.m_Coordinates.at(i).m_Lat * DEG_TO_RAD);
-    }
-  });
-
+  const double DEG_TO_RAD = M_PI / 180.0;
   Coordinate min_coord, max_coord;
-
   min_coord.m_Lat = std::numeric_limits<double>::max();
   min_coord.m_Lon = std::numeric_limits<double>::max();
   max_coord.m_Lat = std::numeric_limits<double>::lowest();
   max_coord.m_Lon = std::numeric_limits<double>::lowest();
 
-  for (const auto &obj : Objects) {
-    for (const auto &coord : obj.m_Coordinates) {
+  for (auto &obj : Objects) {
+    for (auto &coord : obj.m_Coordinates) {
+      // Calculate coordinates
+      coord.m_Y = y_distance(coord.m_Lon * DEG_TO_RAD, coord.m_Lat * DEG_TO_RAD);
+      coord.m_X = x_distance(coord.m_Lon * DEG_TO_RAD, coord.m_Lat * DEG_TO_RAD);
+
+      // Find min/max coords
       min_coord.m_Lat = std::min(coord.m_Lat, min_coord.m_Lat);
       min_coord.m_Lon = std::min(coord.m_Lon, min_coord.m_Lon);
       max_coord.m_Lat = std::max(coord.m_Lat, max_coord.m_Lat);
@@ -91,21 +86,23 @@ void AIXM_file_parser::process_boundaries(QuadTree &tree) {
     }
   }
 
-  double tol1 = (max_coord.m_Lon - min_coord.m_Lon) * 0.001;
-  double tol2 = (max_coord.m_Lat - min_coord.m_Lat) * 0.001;
+  // Add margins
+  const double lon_margin = (max_coord.m_Lon - min_coord.m_Lon) * 0.001;
+  const double lat_margin = (max_coord.m_Lat - min_coord.m_Lat) * 0.001;
 
-  tree.updateTreeBoundary(min_coord.m_Lon - tol1, max_coord.m_Lon + tol1, min_coord.m_Lat - tol2,
-                          max_coord.m_Lat + tol2);
+  // Update the tree boundaries to min/max
+  tree.updateTreeBoundary(min_coord.m_Lon - lon_margin, max_coord.m_Lon + lon_margin, min_coord.m_Lat - lat_margin,
+                          max_coord.m_Lat + lat_margin);
 
-  int kk = 0;
-  for (auto &p_poly : Objects) {
-    kk++;
-    for (auto i = 1; i < p_poly.m_Coordinates.size(); ++i) {
-      Node *node = tree.findTreeNode(p_poly.m_Coordinates.at(i).m_Lon, p_poly.m_Coordinates.at(i).m_Lat);
-      Node *node1 = tree.findTreeNode(p_poly.m_Coordinates.at(i - 1).m_Lon, p_poly.m_Coordinates.at(i - 1).m_Lat);
-      while (node == node1 /*false*/) {
-        node1 = tree.findTreeNode(p_poly.m_Coordinates.at(i).m_Lon, p_poly.m_Coordinates.at(i).m_Lat, node1);
-        tree.constructTreeNode(node1);
+  // Create tree nodes
+  for (auto &obj : Objects) {
+    for (auto i = 1; i < obj.m_Coordinates.size(); ++i) {
+      // Divide the tree until each tree node contains one point only.
+      Node *node_current = tree.findTreeNode(obj.m_Coordinates.at(i).m_Lon, obj.m_Coordinates.at(i).m_Lat);
+      Node *node_prev = tree.findTreeNode(obj.m_Coordinates.at(i - 1).m_Lon, obj.m_Coordinates.at(i - 1).m_Lat);
+      while (node_current == node_prev) {
+        node_prev = tree.findTreeNode(obj.m_Coordinates.at(i).m_Lon, obj.m_Coordinates.at(i).m_Lat, node_prev);
+        tree.constructTreeNode(node_prev);
       }
     }
   }
