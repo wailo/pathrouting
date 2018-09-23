@@ -124,13 +124,12 @@ void GLWidget::setupVertexAttribs() {
 }
 
 void GLWidget::resizeGL(int w, int h) {
-  glViewport(0, 0, (GLsizei)w, (GLsizei)h);
-  m_width = w;
-  m_height = h;
-  // Tree->invalidate_draw();
   m_proj.setToIdentity();
   // m_proj.ortho(-1.1, 1.1, -1.1, 1.1, -1, 1);
-  m_proj.ortho(Tree->get_left() - 0.001, Tree->get_right() + 0.001, Tree->get_bottom() - 0.001, Tree->get_top() + 0.001,
+  m_proj.ortho(Tree->get_left() - 0.001,
+               Tree->get_right() + 0.001,
+               Tree->get_bottom() - 0.001,
+               Tree->get_top() + 0.001,
                -1, 1);
 }
 
