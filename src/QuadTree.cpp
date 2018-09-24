@@ -29,7 +29,7 @@ QuadTree::QuadTree(int LT, int RT, int BT, int TP) : right(RT), left(LT), bottom
 }
 
 QuadTree::~QuadTree(void) {
-  forEachNode(m_rootNode, [&](Node *p_node) { removeTreeNode(p_node); });
+  removeTreeNode(m_rootNode);
 }
 
 void QuadTree::InitRootNode() {
@@ -91,7 +91,7 @@ void QuadTree::removeTreeNode(Node *(&pNode)) {
     delete pNode;
 
     // Set the pointer to NULL
-    pNode = NULL;
+    pNode = nullptr;
   }
 }
 
