@@ -29,11 +29,6 @@ public:
   double x_dsp() const;
   double y_dsp() const;
 
-  // Calculate node displacement value at given depth. Displacement is the distance from centre point to the edge of
-  // node, same as raduis
-  double x_dsp(int depth) const;
-  double y_dsp(int depth) const;
-
   double centre_x() const;
   double centre_y() const;
   double centre_z() const;
@@ -46,6 +41,11 @@ public:
 
   // Node counter
   static unsigned int nodecount;
+
+  // Calculate node displacement value at given depth. Displacement is the distance from centre point to the edge of
+  // node, same as raduis
+  static double x_dsp(double left, double right, int depth_);
+  static double y_dsp(double top, double bottom, int depth_);
 
   // Path routing
 

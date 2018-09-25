@@ -4,6 +4,10 @@
 // Initiaize static member
 unsigned int Node::nodecount = 0;
 
+double Node::x_dsp(double left, double right, int depth_) { return fabs(left - right) / pow(2.00, depth_); }
+
+double Node::y_dsp(double top, double bottom, int depth_) { return fabs(top - bottom) / pow(2.00, depth_); }
+
 Node::Node() { init(); }
 
 Node::Node(QuadTree *p_parentTree) : m_parent_tree(p_parentTree) { init(); }
@@ -33,14 +37,6 @@ void Node::init() {
 double Node::x_dsp() const { return fabs(m_parent_tree->get_left() - m_parent_tree->get_right()) / pow(2.00, m_depth); }
 
 double Node::y_dsp() const { return fabs(m_parent_tree->get_top() - m_parent_tree->get_bottom()) / pow(2.00, m_depth); }
-
-double Node::x_dsp(int depth_) const {
-  return fabs(m_parent_tree->get_left() - m_parent_tree->get_right()) / pow(2.00, depth_);
-}
-
-double Node::y_dsp(int depth_) const {
-  return fabs(m_parent_tree->get_top() - m_parent_tree->get_bottom()) / pow(2.00, depth_);
-}
 
 double Node::centre_x() const {
   if (is_root()) {

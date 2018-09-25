@@ -223,8 +223,9 @@ void QuadTree::getAllNeighbours(Node *thisNode, std::vector<Node *> &vector) {
     case E:
 
       // Get Eastern node
-      pNeighbourNode = findTreeNode(thisNode->centre_x() + (thisNode->x_dsp() + (thisNode->x_dsp(maxGridDepth) / 2.0)),
-                                    thisNode->centre_y());
+      pNeighbourNode = findTreeNode(
+          thisNode->centre_x() + (thisNode->x_dsp() + (Node::x_dsp(get_left(), get_right(), maxGridDepth) / 2.0)),
+          thisNode->centre_y());
 
       // If the neighbouring node is not this node (flaw in neighbour finding function)
       if (pNeighbourNode->m_node_id != thisNode->m_node_id) {
@@ -241,8 +242,9 @@ void QuadTree::getAllNeighbours(Node *thisNode, std::vector<Node *> &vector) {
       break;
 
     case W:
-      pNeighbourNode = findTreeNode(thisNode->centre_x() - (thisNode->x_dsp() + (thisNode->x_dsp(maxGridDepth) / 2.0)),
-                                    thisNode->centre_y());
+      pNeighbourNode = findTreeNode(
+          thisNode->centre_x() - (thisNode->x_dsp() + (Node::x_dsp(get_left(), get_right(), maxGridDepth) / 2.0)),
+          thisNode->centre_y());
 
       if (pNeighbourNode->m_node_id != thisNode->m_node_id) {
         while (pNeighbourNode->m_depth > thisNode->m_depth) {
@@ -256,7 +258,8 @@ void QuadTree::getAllNeighbours(Node *thisNode, std::vector<Node *> &vector) {
     case N:
       pNeighbourNode =
           findTreeNode(thisNode->centre_x(),
-                       thisNode->centre_y() - (thisNode->y_dsp() + (thisNode->y_dsp(maxGridDepth) / 2.0)) + 0.005);
+                       thisNode->centre_y() -
+                           (thisNode->y_dsp() + (Node::y_dsp(get_top(), get_bottom(), maxGridDepth) / 2.0)) + 0.005);
 
       if (pNeighbourNode->m_node_id != thisNode->m_node_id) {
         while (pNeighbourNode->m_depth > thisNode->m_depth) {
@@ -268,8 +271,9 @@ void QuadTree::getAllNeighbours(Node *thisNode, std::vector<Node *> &vector) {
       break;
 
     case S:
-      pNeighbourNode = findTreeNode(thisNode->centre_x(),
-                                    thisNode->centre_y() + (thisNode->y_dsp() + (thisNode->y_dsp(maxGridDepth) / 2.0)));
+      pNeighbourNode = findTreeNode(
+          thisNode->centre_x(),
+          thisNode->centre_y() + (thisNode->y_dsp() + (Node::y_dsp(get_top(), get_bottom(), maxGridDepth) / 2.0)));
       if (pNeighbourNode->m_node_id != thisNode->m_node_id) {
         while (pNeighbourNode->m_depth > thisNode->m_depth) {
           pNeighbourNode = pNeighbourNode->m_parent_node;
@@ -279,32 +283,36 @@ void QuadTree::getAllNeighbours(Node *thisNode, std::vector<Node *> &vector) {
       break;
 
     case NW:
-      pNeighbourNode = findTreeNode(thisNode->centre_x() - (thisNode->x_dsp() + (thisNode->x_dsp(maxGridDepth) / 2.0)),
-                                    thisNode->centre_y() - (thisNode->y_dsp() + (thisNode->y_dsp(maxGridDepth) / 2.0)));
+      pNeighbourNode = findTreeNode(
+          thisNode->centre_x() - (thisNode->x_dsp() + (Node::x_dsp(get_left(), get_right(), maxGridDepth) / 2.0)),
+          thisNode->centre_y() - (thisNode->y_dsp() + (Node::y_dsp(get_top(), get_bottom(), maxGridDepth) / 2.0)));
       if (pNeighbourNode->m_node_id != thisNode->m_node_id) {
         vector.push_back(pNeighbourNode);
       }
       break;
 
     case NE:
-      pNeighbourNode = findTreeNode(thisNode->centre_x() + (thisNode->x_dsp() + (thisNode->x_dsp(maxGridDepth) / 2.0)),
-                                    thisNode->centre_y() - (thisNode->y_dsp() + (thisNode->y_dsp(maxGridDepth) / 2.0)));
+      pNeighbourNode = findTreeNode(
+          thisNode->centre_x() + (thisNode->x_dsp() + (Node::x_dsp(get_left(), get_right(), maxGridDepth) / 2.0)),
+          thisNode->centre_y() - (thisNode->y_dsp() + (Node::y_dsp(get_top(), get_bottom(), maxGridDepth) / 2.0)));
       if (pNeighbourNode->m_node_id != thisNode->m_node_id) {
         vector.push_back(pNeighbourNode);
       }
       break;
 
     case SW:
-      pNeighbourNode = findTreeNode(thisNode->centre_x() - (thisNode->x_dsp() + (thisNode->x_dsp(maxGridDepth) / 2.0)),
-                                    thisNode->centre_y() + (thisNode->y_dsp() + (thisNode->y_dsp(maxGridDepth) / 2.0)));
+      pNeighbourNode = findTreeNode(
+          thisNode->centre_x() - (thisNode->x_dsp() + (Node::x_dsp(get_left(), get_right(), maxGridDepth) / 2.0)),
+          thisNode->centre_y() + (thisNode->y_dsp() + (Node::y_dsp(get_top(), get_bottom(), maxGridDepth) / 2.0)));
       if (pNeighbourNode->m_node_id != thisNode->m_node_id) {
         vector.push_back(pNeighbourNode);
       }
       break;
 
     case SE:
-      pNeighbourNode = findTreeNode(thisNode->centre_x() + (thisNode->x_dsp() + (thisNode->x_dsp(maxGridDepth) / 2.0)),
-                                    thisNode->centre_y() + (thisNode->y_dsp() + (thisNode->y_dsp(maxGridDepth) / 2.0)));
+      pNeighbourNode = findTreeNode(
+          thisNode->centre_x() + (thisNode->x_dsp() + (Node::x_dsp(get_left(), get_right(), maxGridDepth) / 2.0)),
+          thisNode->centre_y() + (thisNode->y_dsp() + (Node::y_dsp(get_top(), get_bottom(), maxGridDepth) / 2.0)));
       if (pNeighbourNode->m_node_id != thisNode->m_node_id) {
         vector.push_back(pNeighbourNode);
       }
@@ -329,40 +337,44 @@ void QuadTree::getAllNeighbours(Node *thisNode, std::vector<Node *> &vector) {
 Node *QuadTree::findLeafNeighbour(Node *p, int Direction) {
   switch (Direction) {
   case E:
-    return findTreeNode(p->centre_x() + (p->x_dsp() + (p->x_dsp(maxGridDepth) / 2.0)), p->centre_y());
+    return findTreeNode(p->centre_x() + (p->x_dsp() + (Node::x_dsp(get_left(), get_right(), maxGridDepth) / 2.0)),
+                        p->centre_y());
     break;
 
   case W:
-    return findTreeNode(p->centre_x() - (p->x_dsp() + (p->x_dsp(maxGridDepth) / 2.0)), p->centre_y());
+    return findTreeNode(p->centre_x() - (p->x_dsp() + (Node::x_dsp(get_left(), get_right(), maxGridDepth) / 2.0)),
+                        p->centre_y());
     break;
 
   case N:
 
-    return findTreeNode(p->centre_x(), p->centre_y() - (p->y_dsp() + (p->y_dsp(maxGridDepth) / 2.0)));
+    return findTreeNode(p->centre_x(),
+                        p->centre_y() - (p->y_dsp() + (Node::y_dsp(get_top(), get_bottom(), maxGridDepth) / 2.0)));
     break;
 
   case S:
-    return findTreeNode(p->centre_x(), p->centre_y() + (p->y_dsp() + (p->y_dsp(maxGridDepth) / 2.0)));
+    return findTreeNode(p->centre_x(),
+                        p->centre_y() + (p->y_dsp() + (Node::y_dsp(get_top(), get_bottom(), maxGridDepth) / 2.0)));
     break;
 
   case NW:
-    return findTreeNode(p->centre_x() - (p->x_dsp() + (p->x_dsp(maxGridDepth) / 2.0)),
-                        p->centre_y() - (p->y_dsp() + (p->y_dsp(maxGridDepth) / 2.0)));
+    return findTreeNode(p->centre_x() - (p->x_dsp() + (Node::x_dsp(get_left(), get_right(), maxGridDepth) / 2.0)),
+                        p->centre_y() - (p->y_dsp() + (Node::y_dsp(get_top(), get_bottom(), maxGridDepth) / 2.0)));
     break;
 
   case NE:
-    return findTreeNode(p->centre_x() + (p->x_dsp() + (p->x_dsp(maxGridDepth) / 2.0)),
-                        p->centre_y() - (p->y_dsp() + (p->y_dsp(maxGridDepth) / 2.0)));
+    return findTreeNode(p->centre_x() + (p->x_dsp() + (Node::x_dsp(get_left(), get_right(), maxGridDepth) / 2.0)),
+                        p->centre_y() - (p->y_dsp() + (Node::y_dsp(get_top(), get_bottom(), maxGridDepth) / 2.0)));
     break;
 
   case SW:
-    return findTreeNode(p->centre_x() - (p->x_dsp() + (p->x_dsp(maxGridDepth) / 2.0)),
-                        p->centre_y() + (p->y_dsp() + (p->y_dsp(maxGridDepth) / 2.0)));
+    return findTreeNode(p->centre_x() - (p->x_dsp() + (Node::x_dsp(get_left(), get_right(), maxGridDepth) / 2.0)),
+                        p->centre_y() + (p->y_dsp() + (Node::y_dsp(get_top(), get_bottom(), maxGridDepth) / 2.0)));
     break;
 
   case SE:
-    return findTreeNode(p->centre_x() + (p->x_dsp() + (p->x_dsp(maxGridDepth) / 2.0)),
-                        p->centre_y() + (p->y_dsp() + (p->y_dsp(maxGridDepth) / 2.0)));
+    return findTreeNode(p->centre_x() + (p->x_dsp() + (Node::x_dsp(get_left(), get_right(), maxGridDepth) / 2.0)),
+                        p->centre_y() + (p->y_dsp() + (Node::y_dsp(get_top(), get_bottom(), maxGridDepth) / 2.0)));
     break;
 
   default:
