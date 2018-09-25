@@ -4,26 +4,9 @@
 // Initiaize static member
 unsigned int Node::nodecount = 0;
 
-Node::Node(QuadTree *p_parentTree) : m_parentTree(p_parentTree), m_draw(true) {
-  // Increment the node counter
-  nodecount++;
+Node::Node() { init(); }
 
-  // Set the ID to the node counter
-  id = nodecount;
-
-  // Set all the child nodes to NULL
-  for (unsigned int i = 0; i < 4; ++i) {
-    Child[i] = nullptr;
-  }
-
-  // Set parent to NULL so it can be tested using if ( parent )
-  Parent = nullptr;
-
-  // For Path routing
-  A_Parent = nullptr;
-  cost = std::numeric_limits<double>::infinity();
-  f_cost = std::numeric_limits<double>::infinity();
-}
+Node::Node(QuadTree *p_parentTree) : m_parentTree(p_parentTree) { init(); }
 
 Node::~Node(void) {
   // Node count decremented
@@ -31,6 +14,20 @@ Node::~Node(void) {
 
   // type = NULL;
   id = 0;
+}
+
+void Node::init() {
+
+  // Increment the node counter
+  nodecount++;
+
+  // Set the ID to the node counter
+  id = nodecount;
+
+  // For Path routing
+  A_Parent = nullptr;
+  cost = std::numeric_limits<double>::infinity();
+  f_cost = std::numeric_limits<double>::infinity();
 }
 
 double Node::x_dsp() const { return fabs(m_parentTree->get_left() - m_parentTree->get_right()) / pow(2.00, depth); }
@@ -52,25 +49,25 @@ double Node::centre_x() const {
   }
 
   else {
-    if (this == Parent->Child[0]) {
+    if (this == &Parent->Child.get()->at(0)) {
       // Locate the centre point of the node;
       return Parent->centre_x() - (x_dsp()) + (2 * m_parentTree->h_order[0] * -x_dsp());
 
     }
 
-    else if (this == Parent->Child[1]) {
+    else if (this == &Parent->Child.get()->at(1)) {
       // Locate the centre point of the node;
       return Parent->centre_x() - (x_dsp()) + (2 * m_parentTree->h_order[1] * x_dsp());
 
     }
 
-    else if (this == Parent->Child[2]) {
+    else if (this == &Parent->Child.get()->at(2)) {
       // Locate the centre point of the node;
       return Parent->centre_x() - (x_dsp()) + (2 * m_parentTree->h_order[2] * x_dsp());
 
     }
 
-    else if (this == Parent->Child[3]) {
+    else if (this == &Parent->Child.get()->at(3)) {
       // Locate the centre point of the node;
       return Parent->centre_x() - (x_dsp()) + (2 * m_parentTree->h_order[3] * x_dsp());
     } else {
@@ -88,22 +85,22 @@ double Node::centre_y() const {
   }
 
   else {
-    if (this == Parent->Child[0]) {
+    if (this == &Parent->Child.get()->at(0)) {
       // Locate the centre point of the node;
       return Parent->centre_y() - (y_dsp()) + (2 * m_parentTree->v_order[0] * y_dsp());
     }
 
-    else if (this == Parent->Child[1]) {
+    else if (this == &Parent->Child.get()->at(1)) {
       // Locate the centre point of the node;
       return Parent->centre_y() - (y_dsp()) + (2 * m_parentTree->v_order[1] * y_dsp());
     }
 
-    else if (this == Parent->Child[2]) {
+    else if (this == &Parent->Child.get()->at(2)) {
       // Locate the centre point of the node;
       return Parent->centre_y() - (y_dsp()) + (2 * m_parentTree->v_order[2] * y_dsp());
     }
 
-    else if (this == Parent->Child[3]) {
+    else if (this == &Parent->Child.get()->at(3)) {
       // Locate the centre point of the node;
       return Parent->centre_y() - (y_dsp()) + (2 * m_parentTree->v_order[3] * y_dsp());
     } else {

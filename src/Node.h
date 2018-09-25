@@ -1,18 +1,20 @@
 #pragma once
 #include "P3.h"
-
+#include <array>
+#include <memory>
 class QuadTree;
 
 class Node {
 
 public:
+  Node();
   Node(QuadTree *p_parentTree);
   ~Node(void);
-
+  void init();
   // Node type
-  inline bool is_leaf() const { return !Child[0]; }
   inline bool is_root() const { return !Parent; }
-  inline bool is_node() const { return Parent && Child[0]; };
+  inline bool is_leaf() const { return !Child && Parent; }
+  inline bool is_node() const { return Parent && Child; };
 
   // Node ID
   int id;
@@ -37,10 +39,10 @@ public:
   double centre_z() const;
 
   // Pointer to childern nodes
-  Node *Child[4];
+  std::unique_ptr<std::array<Node, 4>> Child;
 
   // Pointer to parent node
-  Node *Parent;
+  Node *Parent = nullptr;
 
   // Node counter
   static unsigned int nodecount;
@@ -55,5 +57,5 @@ public:
   double f_cost;
 
   // Boolean to indicate when a node need to be redrawn.
-  bool m_draw;
+  bool m_draw = true;
 };

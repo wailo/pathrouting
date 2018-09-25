@@ -53,7 +53,7 @@ public:
   static double gridHeight;
 
   // Remove node from the tree
-  void removeTreeNode(Node *(&pNode));
+  void removeTreeNode(Node& pNode);
 
   // Tree Ctor with boundary arguments
   QuadTree(int left, int right, int bottom, int top);
@@ -62,7 +62,7 @@ public:
   ~QuadTree(void);
 
   // Root node of the tree
-  Node *m_rootNode;
+  Node m_rootNode;
 
   // Retrieve Tree node that contains XY coordinate
   Node *findTreeNode(double x, double y, Node *p_startnode = NULL);

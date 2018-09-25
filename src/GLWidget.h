@@ -84,7 +84,7 @@ private:
   std::vector<GLint> m_grid_vertex_indices;
 
   // Draw Nodes
-  void generate_grid_vertices(const Node *pNode, std::vector<vertex_object> &list);
+  void generate_grid_vertices(const Node &pNode, std::vector<vertex_object> &list);
   void generate_airport_vertices(std::vector<vertex_object> &list);
   void setupVertexAttribs();
 };

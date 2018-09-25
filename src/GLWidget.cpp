@@ -56,7 +56,7 @@ GLWidget::GLWidget(QWidget *parent)
   }
 
   data.process_boundaries(*Tree);
-  Tree->balanceTree(Tree->m_rootNode);
+  Tree->balanceTree(&Tree->m_rootNode);
 }
 
 void GLWidget::initializeGL() {
@@ -126,10 +126,7 @@ void GLWidget::setupVertexAttribs() {
 void GLWidget::resizeGL(int w, int h) {
   m_proj.setToIdentity();
   // m_proj.ortho(-1.1, 1.1, -1.1, 1.1, -1, 1);
-  m_proj.ortho(Tree->get_left() - 0.001,
-               Tree->get_right() + 0.001,
-               Tree->get_bottom() - 0.001,
-               Tree->get_top() + 0.001,
+  m_proj.ortho(Tree->get_left() - 0.001, Tree->get_right() + 0.001, Tree->get_bottom() - 0.001, Tree->get_top() + 0.001,
                -1, 1);
 }
 
@@ -175,28 +172,28 @@ void GLWidget::paintGL() {
   // Tree->camefromSet.clear();
 }
 
-void GLWidget::generate_grid_vertices(const Node *pNode, std::vector<vertex_object> &list) {
-
-  if (!pNode) {
-    return;
-  }
+void GLWidget::generate_grid_vertices(const Node &pNode, std::vector<vertex_object> &list) {
 
   m_grid_vertex_indices.push_back(list.size());
   m_grid_vertex_count.push_back(5);
 
-  GLdouble grid_color[3] = {110.0/255., 10.0/255.0, 5.0/255.0};
-  list.emplace_back(vertex_object{(pNode->centre_x() - pNode->x_dsp()), (pNode->centre_y() + pNode->y_dsp()), 0,
+  GLdouble grid_color[3] = {110.0 / 255., 10.0 / 255.0, 5.0 / 255.0};
+  list.emplace_back(vertex_object{(pNode.centre_x() - pNode.x_dsp()), (pNode.centre_y() + pNode.y_dsp()), 0,
                                   grid_color[0], grid_color[1], grid_color[2]});
-  list.emplace_back(vertex_object{(pNode->centre_x() - pNode->x_dsp()), (pNode->centre_y() - pNode->y_dsp()), 0,
+  list.emplace_back(vertex_object{(pNode.centre_x() - pNode.x_dsp()), (pNode.centre_y() - pNode.y_dsp()), 0,
                                   grid_color[0], grid_color[1], grid_color[2]});
-  list.emplace_back(vertex_object{(pNode->centre_x() + pNode->x_dsp()), (pNode->centre_y() - pNode->y_dsp()), 0,
+  list.emplace_back(vertex_object{(pNode.centre_x() + pNode.x_dsp()), (pNode.centre_y() - pNode.y_dsp()), 0,
                                   grid_color[0], grid_color[1], grid_color[2]});
-  list.emplace_back(vertex_object{(pNode->centre_x() + pNode->x_dsp()), (pNode->centre_y() + pNode->y_dsp()), 0,
+  list.emplace_back(vertex_object{(pNode.centre_x() + pNode.x_dsp()), (pNode.centre_y() + pNode.y_dsp()), 0,
                                   grid_color[0], grid_color[1], grid_color[2]});
-  list.emplace_back(vertex_object{(pNode->centre_x() - pNode->x_dsp()), (pNode->centre_y() + pNode->y_dsp()), 0,
+  list.emplace_back(vertex_object{(pNode.centre_x() - pNode.x_dsp()), (pNode.centre_y() + pNode.y_dsp()), 0,
                                   grid_color[0], grid_color[1], grid_color[2]});
 
-  for (auto &child : pNode->Child) {
+  if (!pNode.Child) {
+    return;
+  }
+
+  for (auto &child : (*pNode.Child)) {
     generate_grid_vertices(child, list);
   }
 }
@@ -280,7 +277,7 @@ void GLWidget::mousePressEvent(QMouseEvent *event) {
     // Tree->constructTreeNode( Tree->findNeighbour( Tree->findTreeNode( event->x() , event->y()) , NULL ) );
     // Tree->getAllNeighbours(Tree->findTreeNode( event->x() , event->y()), Tree->neighbours );
 
-    Tree->forEachNode(Tree->m_rootNode, [&](Node *node) { Tree->balanceTree(node); });
+    Tree->forEachNode(&Tree->m_rootNode, [&](Node *node) { Tree->balanceTree(node); });
 
     break;
   default:
