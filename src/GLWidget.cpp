@@ -189,11 +189,11 @@ void GLWidget::generate_grid_vertices(const Node &pNode, std::vector<vertex_obje
   list.emplace_back(vertex_object{(pNode.centre_x() - pNode.x_dsp()), (pNode.centre_y() + pNode.y_dsp()), 0,
                                   grid_color[0], grid_color[1], grid_color[2]});
 
-  if (!pNode.Child) {
+  if (!pNode.m_child_nodes) {
     return;
   }
 
-  for (auto &child : (*pNode.Child)) {
+  for (auto &child : (*pNode.m_child_nodes)) {
     generate_grid_vertices(child, list);
   }
 }

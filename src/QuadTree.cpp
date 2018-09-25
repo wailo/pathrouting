@@ -32,12 +32,12 @@ QuadTree::~QuadTree(void) { removeTreeNode(m_rootNode); }
 
 void QuadTree::InitRootNode() {
   // Start node id from 1
-  m_rootNode.id = 1;
+  m_rootNode.m_node_id = 1;
   // Start depth from 1
-  m_rootNode.depth = 1;
+  m_rootNode.m_depth = 1;
 
   // set root node parent to NULL
-  m_rootNode.Parent = nullptr;
+  m_rootNode.m_parent_node = nullptr;
 }
 
 double QuadTree::get_right() { return right; }
@@ -55,7 +55,7 @@ void QuadTree::invalidate_draw(Node *node) {
 
   if (!node->m_draw) {
     node->m_draw = true;
-    for (auto &child : *node->Child.get()) {
+    for (auto &child : *node->m_child_nodes.get()) {
       invalidate_draw(&child);
     }
   }
@@ -64,9 +64,9 @@ void QuadTree::invalidate_draw(Node *node) {
 void QuadTree::removeTreeNode(Node &pNode) {
 
   // If this node is not the root node, then assign its type to leaf node
-  if (pNode.Parent) {
-    if (!pNode.Parent->is_root()) {
-      pNode.Parent->m_draw = true;
+  if (pNode.m_parent_node) {
+    if (!pNode.m_parent_node->is_root()) {
+      pNode.m_parent_node->m_draw = true;
     }
   }
 }
@@ -120,8 +120,8 @@ Node *QuadTree::findTreeNode(double x, double y, Node *p_startNode) {
 
     // This is for a special case where the root node is initilized but not expanded yet
     // check if the node is valid
-    if (pNode->Child) {
-      pNode = &pNode->Child.get()->at(bit);
+    if (pNode->m_child_nodes) {
+      pNode = &pNode->m_child_nodes.get()->at(bit);
     } else {
       break;
     }
@@ -137,18 +137,18 @@ void QuadTree::constructTreeNode(Node *node) {
     throw std::runtime_error("Node is not a leaf node. Potential memory leak");
   }
 
-  assert(node->Child == nullptr);
-  node->Child.reset(new std::array<Node, 4>());
+  assert(node->m_child_nodes == nullptr);
+  node->m_child_nodes.reset(new std::array<Node, 4>());
 
   // problem here, this function create duplicate nodes!
   for (unsigned int i = 0; i < 4; ++i) {
     // Initialize the node
-    node->Child.get()->at(i).m_parentTree = this;
-    node->Child.get()->at(i).Parent = node;
-    node->Child.get()->at(i).depth = node->depth + 1;
-    node->Child.get()->at(i).id = (4 * node->id) - 2 + i;
+    node->m_child_nodes.get()->at(i).m_parent_tree = this;
+    node->m_child_nodes.get()->at(i).m_parent_node = node;
+    node->m_child_nodes.get()->at(i).m_depth = node->m_depth + 1;
+    node->m_child_nodes.get()->at(i).m_node_id = (4 * node->m_node_id) - 2 + i;
 
-    maxGridDepth = std::max(node->Child.get()->at(i).depth, maxGridDepth);
+    maxGridDepth = std::max(node->m_child_nodes.get()->at(i).m_depth, maxGridDepth);
   }
 }
 
@@ -174,8 +174,8 @@ void QuadTree::forEachNode(Node *pRootnode, OnDrawEventHandler func) {
     for (unsigned int i = 0; i < 4; ++i) {
       // This is for a special case where the root node is initilized but not expanded yet
       // check if the node is valid
-      if (pRootnode->Child) {
-        forEachNode(&pRootnode->Child.get()->at(i), func);
+      if (pRootnode->m_child_nodes) {
+        forEachNode(&pRootnode->m_child_nodes.get()->at(i), func);
       }
     }
   }
@@ -190,11 +190,11 @@ void QuadTree::balanceTree(Node *P) {
   for (int i = NW; i <= W; ++i) {
     tempPtr = findNeighbour(P, i);
 
-    if ((P->depth - tempPtr->depth) > 1 && (tempPtr->is_leaf())) {
+    if ((P->m_depth - tempPtr->m_depth) > 1 && (tempPtr->is_leaf())) {
 
       constructTreeNode(tempPtr);
       for (unsigned int j = 0; j < 4; ++j) {
-        balanceTree(&tempPtr->Child.get()->at(j));
+        balanceTree(&tempPtr->m_child_nodes.get()->at(j));
       }
     }
   }
@@ -207,8 +207,8 @@ void recursive(Node *pNode, int D1, int D2, std::vector<Node *> &vector) {
   }
 
   else {
-    recursive(&pNode->Child.get()->at(D1), D1, D2, vector);
-    recursive(&pNode->Child.get()->at(D2), D1, D2, vector);
+    recursive(&pNode->m_child_nodes.get()->at(D1), D1, D2, vector);
+    recursive(&pNode->m_child_nodes.get()->at(D2), D1, D2, vector);
   }
 }
 
@@ -227,10 +227,10 @@ void QuadTree::getAllNeighbours(Node *thisNode, std::vector<Node *> &vector) {
                                     thisNode->centre_y());
 
       // If the neighbouring node is not this node (flaw in neighbour finding function)
-      if (pNeighbourNode->id != thisNode->id) {
+      if (pNeighbourNode->m_node_id != thisNode->m_node_id) {
         // traverse through the neighbouring node parents until the parent with the same depth is found
-        while (pNeighbourNode->depth > thisNode->depth) {
-          pNeighbourNode = pNeighbourNode->Parent;
+        while (pNeighbourNode->m_depth > thisNode->m_depth) {
+          pNeighbourNode = pNeighbourNode->m_parent_node;
         }
 
         // Now find all the NW and SW children of the neighbouring node that share the same edge with this node and add
@@ -244,9 +244,9 @@ void QuadTree::getAllNeighbours(Node *thisNode, std::vector<Node *> &vector) {
       pNeighbourNode = findTreeNode(thisNode->centre_x() - (thisNode->x_dsp() + (thisNode->x_dsp(maxGridDepth) / 2.0)),
                                     thisNode->centre_y());
 
-      if (pNeighbourNode->id != thisNode->id) {
-        while (pNeighbourNode->depth > thisNode->depth) {
-          pNeighbourNode = pNeighbourNode->Parent;
+      if (pNeighbourNode->m_node_id != thisNode->m_node_id) {
+        while (pNeighbourNode->m_depth > thisNode->m_depth) {
+          pNeighbourNode = pNeighbourNode->m_parent_node;
         }
         recursive(pNeighbourNode, NE, SE, vector);
       }
@@ -258,9 +258,9 @@ void QuadTree::getAllNeighbours(Node *thisNode, std::vector<Node *> &vector) {
           findTreeNode(thisNode->centre_x(),
                        thisNode->centre_y() - (thisNode->y_dsp() + (thisNode->y_dsp(maxGridDepth) / 2.0)) + 0.005);
 
-      if (pNeighbourNode->id != thisNode->id) {
-        while (pNeighbourNode->depth > thisNode->depth) {
-          pNeighbourNode = pNeighbourNode->Parent;
+      if (pNeighbourNode->m_node_id != thisNode->m_node_id) {
+        while (pNeighbourNode->m_depth > thisNode->m_depth) {
+          pNeighbourNode = pNeighbourNode->m_parent_node;
         }
         recursive(pNeighbourNode, SW, SE, vector);
       }
@@ -270,9 +270,9 @@ void QuadTree::getAllNeighbours(Node *thisNode, std::vector<Node *> &vector) {
     case S:
       pNeighbourNode = findTreeNode(thisNode->centre_x(),
                                     thisNode->centre_y() + (thisNode->y_dsp() + (thisNode->y_dsp(maxGridDepth) / 2.0)));
-      if (pNeighbourNode->id != thisNode->id) {
-        while (pNeighbourNode->depth > thisNode->depth) {
-          pNeighbourNode = pNeighbourNode->Parent;
+      if (pNeighbourNode->m_node_id != thisNode->m_node_id) {
+        while (pNeighbourNode->m_depth > thisNode->m_depth) {
+          pNeighbourNode = pNeighbourNode->m_parent_node;
         }
         recursive(pNeighbourNode, NW, NE, vector);
       }
@@ -281,7 +281,7 @@ void QuadTree::getAllNeighbours(Node *thisNode, std::vector<Node *> &vector) {
     case NW:
       pNeighbourNode = findTreeNode(thisNode->centre_x() - (thisNode->x_dsp() + (thisNode->x_dsp(maxGridDepth) / 2.0)),
                                     thisNode->centre_y() - (thisNode->y_dsp() + (thisNode->y_dsp(maxGridDepth) / 2.0)));
-      if (pNeighbourNode->id != thisNode->id) {
+      if (pNeighbourNode->m_node_id != thisNode->m_node_id) {
         vector.push_back(pNeighbourNode);
       }
       break;
@@ -289,7 +289,7 @@ void QuadTree::getAllNeighbours(Node *thisNode, std::vector<Node *> &vector) {
     case NE:
       pNeighbourNode = findTreeNode(thisNode->centre_x() + (thisNode->x_dsp() + (thisNode->x_dsp(maxGridDepth) / 2.0)),
                                     thisNode->centre_y() - (thisNode->y_dsp() + (thisNode->y_dsp(maxGridDepth) / 2.0)));
-      if (pNeighbourNode->id != thisNode->id) {
+      if (pNeighbourNode->m_node_id != thisNode->m_node_id) {
         vector.push_back(pNeighbourNode);
       }
       break;
@@ -297,7 +297,7 @@ void QuadTree::getAllNeighbours(Node *thisNode, std::vector<Node *> &vector) {
     case SW:
       pNeighbourNode = findTreeNode(thisNode->centre_x() - (thisNode->x_dsp() + (thisNode->x_dsp(maxGridDepth) / 2.0)),
                                     thisNode->centre_y() + (thisNode->y_dsp() + (thisNode->y_dsp(maxGridDepth) / 2.0)));
-      if (pNeighbourNode->id != thisNode->id) {
+      if (pNeighbourNode->m_node_id != thisNode->m_node_id) {
         vector.push_back(pNeighbourNode);
       }
       break;
@@ -305,7 +305,7 @@ void QuadTree::getAllNeighbours(Node *thisNode, std::vector<Node *> &vector) {
     case SE:
       pNeighbourNode = findTreeNode(thisNode->centre_x() + (thisNode->x_dsp() + (thisNode->x_dsp(maxGridDepth) / 2.0)),
                                     thisNode->centre_y() + (thisNode->y_dsp() + (thisNode->y_dsp(maxGridDepth) / 2.0)));
-      if (pNeighbourNode->id != thisNode->id) {
+      if (pNeighbourNode->m_node_id != thisNode->m_node_id) {
         vector.push_back(pNeighbourNode);
       }
       break;
@@ -315,8 +315,8 @@ void QuadTree::getAllNeighbours(Node *thisNode, std::vector<Node *> &vector) {
   // Remove duplicates from the vector
 
   // Predicates lambda functions
-  auto compare_nodes = [](Node *i, Node *j) -> bool { return i->id == j->id; };
-  auto sort_nodes = [](Node *i, Node *j) -> bool { return i->id < j->id; };
+  auto compare_nodes = [](Node *i, Node *j) -> bool { return i->m_node_id == j->m_node_id; };
+  auto sort_nodes = [](Node *i, Node *j) -> bool { return i->m_node_id < j->m_node_id; };
 
   // Sort first
   std::sort(vector.begin(), vector.end(), sort_nodes);
@@ -382,60 +382,60 @@ Node *QuadTree::findNeighbour(Node *p, int Direction) {
   case E:
 
     // if p = NW-child
-    if (p == &p->Parent->Child.get()->at(NW)) {
+    if (p == &p->m_parent_node->m_child_nodes.get()->at(NW)) {
       // then return the NE
-      return &p->Parent->Child.get()->at(NE);
+      return &p->m_parent_node->m_child_nodes.get()->at(NE);
     }
 
     // if p = SW-child
-    else if (p == &p->Parent->Child.get()->at(SW)) {
+    else if (p == &p->m_parent_node->m_child_nodes.get()->at(SW)) {
       // then return the SE
-      return &p->Parent->Child.get()->at(SE);
+      return &p->m_parent_node->m_child_nodes.get()->at(SE);
     }
     break;
 
   case W:
 
     // if p = NW-child
-    if (p == &p->Parent->Child.get()->at(NE)) {
+    if (p == &p->m_parent_node->m_child_nodes.get()->at(NE)) {
       // then return the NE
-      return &p->Parent->Child.get()->at(NW);
+      return &p->m_parent_node->m_child_nodes.get()->at(NW);
     }
 
     // if p = SW-child
-    else if (p == &p->Parent->Child.get()->at(SE)) {
+    else if (p == &p->m_parent_node->m_child_nodes.get()->at(SE)) {
       // then return the SE
-      return &p->Parent->Child.get()->at(SW);
+      return &p->m_parent_node->m_child_nodes.get()->at(SW);
     }
     break;
 
   case N:
 
     // if p = NW-child
-    if (p == &p->Parent->Child.get()->at(SE)) {
+    if (p == &p->m_parent_node->m_child_nodes.get()->at(SE)) {
       // then return the NE
-      return &p->Parent->Child.get()->at(NE);
+      return &p->m_parent_node->m_child_nodes.get()->at(NE);
     }
 
     // if p = SW-child
-    else if (p == &p->Parent->Child.get()->at(SW)) {
+    else if (p == &p->m_parent_node->m_child_nodes.get()->at(SW)) {
       // then return the SE
-      return &p->Parent->Child.get()->at(NW);
+      return &p->m_parent_node->m_child_nodes.get()->at(NW);
     }
     break;
 
   case S:
 
     // if p = NW-child
-    if (p == &p->Parent->Child.get()->at(NE)) {
+    if (p == &p->m_parent_node->m_child_nodes.get()->at(NE)) {
       // then return the NE
-      return &p->Parent->Child.get()->at(SE);
+      return &p->m_parent_node->m_child_nodes.get()->at(SE);
     }
 
     // if p = SW-child
-    else if (p == &p->Parent->Child.get()->at(NW)) {
+    else if (p == &p->m_parent_node->m_child_nodes.get()->at(NW)) {
       // then return the SE
-      return &p->Parent->Child.get()->at(SW);
+      return &p->m_parent_node->m_child_nodes.get()->at(SW);
     }
     break;
 
@@ -459,7 +459,7 @@ Node *QuadTree::findNeighbour(Node *p, int Direction) {
   // another swictch statement here
 
   // return the east neighbour of the parent cell
-  Node *p1 = findNeighbour(p->Parent, Direction);
+  Node *p1 = findNeighbour(p->m_parent_node, Direction);
 
   if (p1->is_leaf() || p1->is_root()) {
     return p1;
@@ -469,53 +469,53 @@ Node *QuadTree::findNeighbour(Node *p, int Direction) {
     switch (Direction) {
     case E:
       // if p == NE-Child
-      if (p == &p->Parent->Child.get()->at(NE)) {
+      if (p == &p->m_parent_node->m_child_nodes.get()->at(NE)) {
         // return the NW-Child of p1
-        return &p1->Child.get()->at(NW);
+        return &p1->m_child_nodes.get()->at(NW);
       }
 
       else {
         // return the SW-Child of p1
-        return &p1->Child.get()->at(SW);
+        return &p1->m_child_nodes.get()->at(SW);
       }
       break;
 
     case W:
       // if p == NE-Child
-      if (p == &p->Parent->Child.get()->at(NW)) {
+      if (p == &p->m_parent_node->m_child_nodes.get()->at(NW)) {
         // return the NW-Child of p1
-        return &p1->Child.get()->at(NE);
+        return &p1->m_child_nodes.get()->at(NE);
       }
 
       else {
         // return the SW-Child of p1
-        return &p1->Child.get()->at(SE);
+        return &p1->m_child_nodes.get()->at(SE);
       }
       break;
 
     case N:
       // if p == NE-Child
-      if (p == &p->Parent->Child.get()->at(NW)) {
+      if (p == &p->m_parent_node->m_child_nodes.get()->at(NW)) {
         // return the NW-Child of p1
-        return &p1->Child.get()->at(SW);
+        return &p1->m_child_nodes.get()->at(SW);
       }
 
       else {
         // return the SW-Child of p1
-        return &p1->Child.get()->at(SE);
+        return &p1->m_child_nodes.get()->at(SE);
       }
       break;
 
     case S:
       // if p == NE-Child
-      if (p == &p->Parent->Child.get()->at(SW)) {
+      if (p == &p->m_parent_node->m_child_nodes.get()->at(SW)) {
         // return the NW-Child of p1
-        return &p1->Child.get()->at(NW);
+        return &p1->m_child_nodes.get()->at(NW);
       }
 
       else {
         // return the SW-Child of p1
-        return &p1->Child.get()->at(NE);
+        return &p1->m_child_nodes.get()->at(NE);
       }
       break;
     }
@@ -528,10 +528,10 @@ Node *QuadTree::findNeighbour(Node *p, char Direction) {
   boost::dynamic_bitset<> ybit;
 
   while (!p->is_root()) {
-    qDebug() << p->centre_x() << " - x - " << p->Parent->centre_x() << endl;
-    qDebug() << p->centre_y() << " - y - " << p->Parent->centre_y() << endl;
+    qDebug() << p->centre_x() << " - x - " << p->m_parent_node->centre_x() << endl;
+    qDebug() << p->centre_y() << " - y - " << p->m_parent_node->centre_y() << endl;
 
-    if (p->centre_x() > p->Parent->centre_x()) {
+    if (p->centre_x() > p->m_parent_node->centre_x()) {
       xbit.push_back(1);
     }
 
@@ -539,7 +539,7 @@ Node *QuadTree::findNeighbour(Node *p, char Direction) {
       xbit.push_back(0);
     }
 
-    if (p->centre_y() > p->Parent->centre_y()) {
+    if (p->centre_y() > p->m_parent_node->centre_y()) {
       ybit.push_back(1);
     }
 
@@ -547,7 +547,7 @@ Node *QuadTree::findNeighbour(Node *p, char Direction) {
       ybit.push_back(0);
     }
 
-    p = p->Parent;
+    p = p->m_parent_node;
   }
   if (xbit.count() == xbit.size()) {
     qDebug() << " edge node ";
@@ -607,7 +607,7 @@ bool QuadTree::path_routing(Node *start, Node *finish) {
   camefromSet.clear();
   openedSet.clear();
 
-  openedSet[start->id] = start;
+  openedSet[start->m_node_id] = start;
   start->cost = 0;
   start->f_cost = 0;
   // start->A_Parent = start;
@@ -616,7 +616,7 @@ bool QuadTree::path_routing(Node *start, Node *finish) {
     // getNodeWithLowestCost( openedSet)->A_Parent = current;
     current = getNodeWithLowestCost(openedSet);
 
-    qDebug() << "Node with lowest cost is: " << current->id;
+    qDebug() << "Node with lowest cost is: " << current->m_node_id;
     // Node Found!
     if (current == finish) {
       qDebug() << "Path found";
@@ -626,7 +626,7 @@ bool QuadTree::path_routing(Node *start, Node *finish) {
 
       camefromSet.push_back(tnode);
 
-      while (tnode->id != start->id) {
+      while (tnode->m_node_id != start->m_node_id) {
         camefromSet.push_back(tnode);
         tnode = tnode->A_Parent;
       }
@@ -637,8 +637,8 @@ bool QuadTree::path_routing(Node *start, Node *finish) {
     }
 
     else {
-      openedSet.erase(current->id);
-      closedSet[current->id] = current;
+      openedSet.erase(current->m_node_id);
+      closedSet[current->m_node_id] = current;
 
       // for each neighbour
 
@@ -650,9 +650,9 @@ bool QuadTree::path_routing(Node *start, Node *finish) {
       while (neighbour_itr != neighbours.end()) {
         tentative_cost = current->cost + distance(current, (*neighbour_itr));
 
-        qDebug() << "tentative cost: " << tentative_cost << " nbr_node: " << (*neighbour_itr)->id;
+        qDebug() << "tentative cost: " << tentative_cost << " nbr_node: " << (*neighbour_itr)->m_node_id;
         // if the node in the closed list
-        if (closedSet.find((*neighbour_itr)->id) != closedSet.end() /*&& neighbour_itr->depth != 4*/) {
+        if (closedSet.find((*neighbour_itr)->m_node_id) != closedSet.end() /*&& neighbour_itr->depth != 4*/) {
           if (tentative_cost >= (*neighbour_itr)->cost) {
             ++neighbour_itr;
             continue;
@@ -660,7 +660,7 @@ bool QuadTree::path_routing(Node *start, Node *finish) {
         }
 
         // if the node not in the opened list
-        if (openedSet.find((*neighbour_itr)->id) == openedSet.end() || tentative_cost < (*neighbour_itr)->cost) {
+        if (openedSet.find((*neighbour_itr)->m_node_id) == openedSet.end() || tentative_cost < (*neighbour_itr)->cost) {
           // add more statements (node not walkable)
           (*neighbour_itr)->A_Parent = current;
           (*neighbour_itr)->cost = tentative_cost;
@@ -668,9 +668,9 @@ bool QuadTree::path_routing(Node *start, Node *finish) {
         }
 
         // if the node not in the closed list
-        if (closedSet.find((*neighbour_itr)->id) == closedSet.end() /*&& neighbour_itr->depth != 4*/) {
+        if (closedSet.find((*neighbour_itr)->m_node_id) == closedSet.end() /*&& neighbour_itr->depth != 4*/) {
           // add neighbour to openset
-          openedSet[(*neighbour_itr)->id] = (*neighbour_itr);
+          openedSet[(*neighbour_itr)->m_node_id] = (*neighbour_itr);
         }
 
         // neighbours.pop_back();
