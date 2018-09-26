@@ -56,7 +56,6 @@ GLWidget::GLWidget(QWidget *parent)
   }
 
   data.process_boundaries(*Tree);
-  Tree->balanceTree(&Tree->m_rootNode);
 }
 
 void GLWidget::initializeGL() {
