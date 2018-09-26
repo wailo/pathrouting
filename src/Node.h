@@ -7,6 +7,15 @@ class QuadTree;
 class Node {
 
 public:
+
+  // Node counter
+  static unsigned int nodecount;
+
+  // Calculate node displacement value at given depth. Displacement is the distance from centre point to the edge of
+  // node, same as raduis
+  static double x_dsp(double left, double right, int depth_);
+  static double y_dsp(double top, double bottom, int depth_);
+
   Node();
   Node(QuadTree *p_parentTree);
   ~Node(void);
@@ -39,16 +48,7 @@ public:
   // Pointer to parent node
   Node *m_parent_node = nullptr;
 
-  // Node counter
-  static unsigned int nodecount;
-
-  // Calculate node displacement value at given depth. Displacement is the distance from centre point to the edge of
-  // node, same as raduis
-  static double x_dsp(double left, double right, int depth_);
-  static double y_dsp(double top, double bottom, int depth_);
-
   // Path routing
-
   // A* algorithm parent
   Node *A_Parent;
 
