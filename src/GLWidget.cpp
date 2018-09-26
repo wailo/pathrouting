@@ -247,8 +247,8 @@ void GLWidget::generate_airport_vertices(std::vector<vertex_object> &list) {
 
 void GLWidget::mousePressEvent(QMouseEvent *event) {
 
-  QVector3D worldPosition = QVector3D(event->x() * devicePixelRatioF(), event->y() * devicePixelRatioF(), 0)
-                                .unproject(m_world, m_proj, QRect(0, 0, width(), height()));
+  QVector3D worldPosition =
+      QVector3D(event->x(), event->y(), 0).unproject(m_world, m_proj, QRect(0, 0, width(), height()));
 
   switch (event->button()) {
   case Qt::LeftButton:
