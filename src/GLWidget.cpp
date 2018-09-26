@@ -146,8 +146,7 @@ void GLWidget::paintGL() {
   QMatrix3x3 normalMatrix = m_world.normalMatrix();
   m_program->setUniformValue(m_normalMatrixLoc, normalMatrix);
   // Or user GL_TRIANGLE_FAN for polygon views
-  glMultiDrawArrays(GL_LINE_STRIP, m_grid_vertex_indices.data(), m_grid_vertex_count.data(),
-                    m_grid_vertex_count.size());
+  glMultiDrawArrays(GL_LINES, m_grid_vertex_indices.data(), m_grid_vertex_count.data(), m_grid_vertex_count.size());
 
   glMultiDrawArrays(GL_LINE_LOOP, m_airport_polygon_indices.data(), m_airport_polygon_count.data(),
                     m_airport_polygon_count.size());
@@ -173,27 +172,43 @@ void GLWidget::paintGL() {
 
 void GLWidget::generate_grid_vertices(const Node &pNode, std::vector<vertex_object> &list) {
 
-  m_grid_vertex_indices.push_back(list.size());
-  m_grid_vertex_count.push_back(5);
+  const GLdouble R{110.0 / 255.0}, G{10.0 / 255.0}, B{5.0 / 255.0};
+  const auto mid_x = pNode.centre_x();
+  const auto mid_y = pNode.centre_y();
+  const auto x_dsp = pNode.x_dsp();
+  const auto y_dsp = pNode.y_dsp();
 
-  GLdouble grid_color[3] = {110.0 / 255., 10.0 / 255.0, 5.0 / 255.0};
-  list.emplace_back(vertex_object{(pNode.centre_x() - pNode.x_dsp()), (pNode.centre_y() + pNode.y_dsp()), 0,
-                                  grid_color[0], grid_color[1], grid_color[2]});
-  list.emplace_back(vertex_object{(pNode.centre_x() - pNode.x_dsp()), (pNode.centre_y() - pNode.y_dsp()), 0,
-                                  grid_color[0], grid_color[1], grid_color[2]});
-  list.emplace_back(vertex_object{(pNode.centre_x() + pNode.x_dsp()), (pNode.centre_y() - pNode.y_dsp()), 0,
-                                  grid_color[0], grid_color[1], grid_color[2]});
-  list.emplace_back(vertex_object{(pNode.centre_x() + pNode.x_dsp()), (pNode.centre_y() + pNode.y_dsp()), 0,
-                                  grid_color[0], grid_color[1], grid_color[2]});
-  list.emplace_back(vertex_object{(pNode.centre_x() - pNode.x_dsp()), (pNode.centre_y() + pNode.y_dsp()), 0,
-                                  grid_color[0], grid_color[1], grid_color[2]});
+  // Draw the bounding box for the root node only.
+  if (pNode.is_root()) {
+    m_grid_vertex_indices.push_back(list.size());
+    m_grid_vertex_count.push_back(8);
 
-  if (!pNode.m_child_nodes) {
-    return;
+    // Left line
+    list.emplace_back(vertex_object{mid_x - x_dsp, mid_y + y_dsp, 0, R, G, B});
+    list.emplace_back(vertex_object{mid_x - x_dsp, mid_y - y_dsp, 0, R, G, B});
+    // Bottom line
+    list.emplace_back(vertex_object{mid_x - x_dsp, mid_y - y_dsp, 0, R, G, B});
+    list.emplace_back(vertex_object{mid_x + x_dsp, mid_y - y_dsp, 0, R, G, B});
+    // Right line
+    list.emplace_back(vertex_object{mid_x + x_dsp, mid_y + y_dsp, 0, R, G, B});
+    list.emplace_back(vertex_object{mid_x + x_dsp, mid_y - y_dsp, 0, R, G, B});
+    // Top line
+    list.emplace_back(vertex_object{mid_x + x_dsp, mid_y + y_dsp, 0, R, G, B});
+    list.emplace_back(vertex_object{mid_x - x_dsp, mid_y + y_dsp, 0, R, G, B});
   }
 
-  for (auto &child : (*pNode.m_child_nodes)) {
-    generate_grid_vertices(child, list);
+  if (!pNode.is_leaf()) {
+    m_grid_vertex_indices.push_back(list.size());
+    m_grid_vertex_count.push_back(4);
+
+    list.emplace_back(vertex_object{mid_x - x_dsp, mid_y, 0, R, G, B});
+    list.emplace_back(vertex_object{mid_x + x_dsp, mid_y, 0, R, G, B});
+    list.emplace_back(vertex_object{mid_x, mid_y - y_dsp, 0, R, G, B});
+    list.emplace_back(vertex_object{mid_x, mid_y + y_dsp, 0, R, G, B});
+
+    for (auto &child : (*pNode.m_child_nodes)) {
+      generate_grid_vertices(child, list);
+    }
   }
 }
 
