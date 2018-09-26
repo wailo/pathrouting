@@ -55,7 +55,4 @@ public:
   // A* Cost
   double cost;
   double f_cost;
-
-  // Boolean to indicate when a node need to be redrawn.
-  bool m_draw = true;
 };

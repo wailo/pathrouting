@@ -45,28 +45,12 @@ double QuadTree::get_left() { return left; }
 double QuadTree::get_bottom() { return bottom; }
 double QuadTree::get_top() { return top; }
 
-void QuadTree::invalidate_draw() { invalidate_draw(&m_rootNode); }
-
-void QuadTree::invalidate_draw(Node *node) {
-
-  if (!node) {
-    return;
-  }
-
-  if (!node->m_draw) {
-    node->m_draw = true;
-    for (auto &child : *node->m_child_nodes.get()) {
-      invalidate_draw(&child);
-    }
-  }
-}
 
 void QuadTree::removeTreeNode(Node &pNode) {
 
   // If this node is not the root node, then assign its type to leaf node
   if (pNode.m_parent_node) {
     if (!pNode.m_parent_node->is_root()) {
-      pNode.m_parent_node->m_draw = true;
     }
   }
 }
