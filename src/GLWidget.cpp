@@ -93,7 +93,7 @@ void GLWidget::initializeGL() {
   // Store the vertex attribute bindings for the program.
   setupVertexAttribs();
   m_program->release();
-
+  m_vertex_list.clear();
   // Print debug data
   const QOpenGLContext *m_context = context();
   qDebug() << "Context valid: " << m_context->isValid();
