@@ -97,12 +97,17 @@ void AIXM_file_parser::process_boundaries(QuadTree &tree) {
   // Create tree nodes
   for (auto &obj : Objects) {
     for (auto i = 1; i < obj.m_Coordinates.size(); ++i) {
-      // Divide the tree until each tree node contains one point only.
-      Node *node_current = tree.findTreeNode(obj.m_Coordinates.at(i).m_Lon, obj.m_Coordinates.at(i).m_Lat);
-      Node *node_prev = tree.findTreeNode(obj.m_Coordinates.at(i - 1).m_Lon, obj.m_Coordinates.at(i - 1).m_Lat);
+      const auto &current_lon = obj.m_Coordinates.at(i).m_Lon;
+      const auto &current_lat = obj.m_Coordinates.at(i).m_Lat;
+      const auto &prev_lon = obj.m_Coordinates.at(i - 1).m_Lon;
+      const auto &prev_lat = obj.m_Coordinates.at(i - 1).m_Lat;
+
+      Node *node_current = tree.findTreeNode(current_lon, current_lat);
+      Node *node_prev = tree.findTreeNode(prev_lon, prev_lat);
+      // If two coordinates are in the same node, divide until each coordinate is in a separate node.
       while (node_current == node_prev) {
-        node_prev = tree.findTreeNode(obj.m_Coordinates.at(i).m_Lon, obj.m_Coordinates.at(i).m_Lat, node_prev);
-        tree.constructTreeNode(node_prev);
+        tree.constructTreeNode(node_current);
+        node_current = tree.findTreeNode(current_lon, current_lat, node_current);
       }
     }
   }
