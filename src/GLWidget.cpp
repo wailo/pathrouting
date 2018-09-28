@@ -56,6 +56,7 @@ GLWidget::GLWidget(QWidget *parent)
   }
 
   data.process_boundaries(*Tree);
+  qDebug() << "      ----       " << Node::nodecount;
 }
 
 void GLWidget::initializeGL() {
@@ -77,6 +78,7 @@ void GLWidget::initializeGL() {
   m_normalMatrixLoc = m_program->uniformLocation("normalMatrix");
   // m_lightPosLoc = m_program->uniformLocation("lightPos");
 
+  Tree->forEachNode(&Tree->m_rootNode, [&](Node *node) { Tree->balanceTree(node); });
   generate_grid_vertices(Tree->m_rootNode, m_vertex_list);
   generate_airport_vertices(m_vertex_list);
 
@@ -93,7 +95,8 @@ void GLWidget::initializeGL() {
   // Store the vertex attribute bindings for the program.
   setupVertexAttribs();
   m_program->release();
-
+  
+  m_vertex_list.clear();
   // Print debug data
   const QOpenGLContext *m_context = context();
   qDebug() << "Context valid: " << m_context->isValid();
@@ -155,6 +158,8 @@ void GLWidget::paintGL() {
                     m_airport_lines_count.size());
 
   m_program->release();
+  m_vao.release();
+  m_logoVbo.release();
 
   // // Draw the shortest path
   // glColor4f(0, 1, 0, 0.5);
