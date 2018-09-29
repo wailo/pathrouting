@@ -45,7 +45,6 @@ double QuadTree::get_left() { return left; }
 double QuadTree::get_bottom() { return bottom; }
 double QuadTree::get_top() { return top; }
 
-
 void QuadTree::removeTreeNode(Node &pNode) {
 
   // If this node is not the root node, then assign its type to leaf node
@@ -575,7 +574,6 @@ Node *QuadTree::findNeighbour(Node *p, char Direction) {
 }
 
 double QuadTree::distance(Node *start, Node *finish) {
-  // Get dX, dY,dZ
   P3 temp_p3;
   temp_p3.x = start->centre_x() - finish->centre_x();
   temp_p3.y = start->centre_y() - finish->centre_y();
@@ -583,21 +581,17 @@ double QuadTree::distance(Node *start, Node *finish) {
   return sqrt((temp_p3.x * temp_p3.x) + (temp_p3.y * temp_p3.y));
 }
 
-std::vector<Node *> construct_path(std::vector<Node *>, Node *finish);
-
-bool sortByCost(std::pair<int, Node *> i, std::pair<int, Node *> j) {
-  return ((i.second->f_cost) < (j.second->f_cost));
-}
-
 Node *getNodeWithLowestCost(std::map<int, Node *> &map) {
-  //*std::min_element (map.begin(), map.end(), sortByCost);
 
-  return std::min_element(map.begin(), map.end(), sortByCost)->second;
+  auto sort_by_cost = [](std::pair<int, Node *> const i, std::pair<int, Node *> const j) {
+    return (i.second->f_cost) < (j.second->f_cost);
+  };
+
+  return std::min_element(map.begin(), map.end(), sort_by_cost)->second;
 }
 
 bool QuadTree::path_routing(Node *start, Node *finish) {
 
-  //	forEachNode ( rootNode, std::bind(&QuadTree::balanceTree, this, std::placeholders::_1) );
   Node *current;
   closedSet.clear();
   camefromSet.clear();
@@ -606,10 +600,8 @@ bool QuadTree::path_routing(Node *start, Node *finish) {
   openedSet[start->m_node_id] = start;
   start->cost = 0;
   start->f_cost = 0;
-  // start->A_Parent = start;
 
   while (!openedSet.empty()) {
-    // getNodeWithLowestCost( openedSet)->A_Parent = current;
     current = getNodeWithLowestCost(openedSet);
 
     qDebug() << "Node with lowest cost is: " << current->m_node_id;
@@ -619,17 +611,15 @@ bool QuadTree::path_routing(Node *start, Node *finish) {
 
       Node *tnode = finish;
       camefromSet.clear();
-
       camefromSet.push_back(tnode);
 
       while (tnode->m_node_id != start->m_node_id) {
         camefromSet.push_back(tnode);
         tnode = tnode->A_Parent;
       }
-      camefromSet.push_back(start);
 
+      camefromSet.push_back(start);
       return true;
-      //	construct_path( camefromSet, finish);
     }
 
     else {
