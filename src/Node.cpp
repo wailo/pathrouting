@@ -15,9 +15,6 @@ Node::Node(QuadTree *p_parentTree) : m_parent_tree(p_parentTree) { init(); }
 Node::~Node(void) {
   // Node count decremented
   nodecount--;
-
-  // type = NULL;
-  m_node_id = 0;
 }
 
 void Node::init() {

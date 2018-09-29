@@ -7,7 +7,6 @@ class QuadTree;
 class Node {
 
 public:
-
   // Node counter
   static unsigned int nodecount;
 
@@ -25,15 +24,6 @@ public:
   inline bool is_leaf() const { return !m_child_nodes && m_parent_node; }
   inline bool is_node() const { return m_parent_node && m_child_nodes; };
 
-  // Node ID
-  int m_node_id;
-
-  // Node depth
-  int m_depth;
-
-  // parent Tree
-  QuadTree *m_parent_tree;
-
   // Calculate this node displacement value, which is the distance from centre point to the edge of node, same as raduis
   double x_dsp() const;
   double y_dsp() const;
@@ -42,12 +32,6 @@ public:
   double centre_y() const;
   double centre_z() const;
 
-  // Pointer to childern nodes
-  std::unique_ptr<std::array<Node, 4>> m_child_nodes;
-
-  // Pointer to parent node
-  Node *m_parent_node = nullptr;
-
   // Path routing
   // A* algorithm parent
   Node *A_Parent;
@@ -55,4 +39,19 @@ public:
   // A* Cost
   double cost;
   double f_cost;
+
+  // Pointer to childern nodes
+  std::unique_ptr<std::array<Node, 4>> m_child_nodes;
+
+  // Node ID
+  int m_node_id;
+
+  // Node depth
+  int m_depth;
+
+  // Pointer to parent node
+  Node *m_parent_node = nullptr;
+
+  // parent Tree
+  QuadTree *m_parent_tree;
 };

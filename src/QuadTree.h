@@ -74,13 +74,8 @@ public:
   // Upon windows resize, call this function to update the tree boundary
   void updateTreeBoundary(double left, double right, double bottom, double top);
 
-  // Function pointer, with Node* as an input arguement.
-  // This allow the quadtree nodes to be accesed by a visitor class.
-  typedef std::function<void(Node *)> OnDrawEventHandler;
-  OnDrawEventHandler func;
-
-  // Visit all the tree nodes and execute func
-  void forEachNode(Node *pRootnode, OnDrawEventHandler func);
+  // Node visitor function. Visit all the tree nodes and execute func
+  void forEachNode(Node *pRootnode, std::function<void(Node *)> func);
 
   // void updateNodeCentre ( Node* node );
 

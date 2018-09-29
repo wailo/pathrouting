@@ -33,9 +33,6 @@ void QuadTree::InitRootNode() {
   m_rootNode.m_node_id = 1;
   // Start depth from 1
   m_rootNode.m_depth = 1;
-
-  // set root node parent to NULL
-  m_rootNode.m_parent_node = nullptr;
 }
 
 double QuadTree::get_right() { return right; }
@@ -44,12 +41,7 @@ double QuadTree::get_bottom() { return bottom; }
 double QuadTree::get_top() { return top; }
 
 void QuadTree::removeTreeNode(Node &pNode) {
-
-  // If this node is not the root node, then assign its type to leaf node
-  if (pNode.m_parent_node) {
-    if (!pNode.m_parent_node->is_root()) {
-    }
-  }
+  pNode.m_child_nodes.reset(nullptr);
 }
 
 // Retrieve Tree node that contains a point defined by XY
@@ -143,7 +135,7 @@ void QuadTree::updateTreeBoundary(double LT, double RT, double BT, double TP) {
   gridHeight = fabs(top - bottom);
 }
 
-void QuadTree::forEachNode(Node *pRootnode, OnDrawEventHandler func) {
+void QuadTree::forEachNode(Node *pRootnode, std::function<void(Node *)> func) {
   // Function to be applied at each node, the function should modify the target node only!
   if (!pRootnode) {
     return;
@@ -152,12 +144,8 @@ void QuadTree::forEachNode(Node *pRootnode, OnDrawEventHandler func) {
   func(pRootnode);
 
   if (!pRootnode->is_leaf()) {
-    for (unsigned int i = 0; i < 4; ++i) {
-      // This is for a special case where the root node is initilized but not expanded yet
-      // check if the node is valid
-      if (pRootnode->m_child_nodes) {
-        forEachNode(&pRootnode->m_child_nodes.get()->at(i), func);
-      }
+    for (auto &child : *pRootnode->m_child_nodes) {
+      forEachNode(&child, func);
     }
   }
 }
