@@ -1,3 +1,5 @@
+#define GL_SILENCE_DEPRECATION
+
 #include "GLWidget.h"
 #include <QOpenGLShaderProgram>
 #include <QtDebug>
