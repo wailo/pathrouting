@@ -3,12 +3,10 @@
 #include <QtDebug>
 #include <algorithm>
 
-double QuadTree::gridWidth = 0;
-double QuadTree::gridHeight = 0;
-
 int QuadTree::maxGridDepth = 1;
 
-QuadTree::QuadTree(int LT, int RT, int BT, int TP) : right(RT), left(LT), bottom(BT), top(TP), m_rootNode(this) {
+QuadTree::QuadTree(int LT, int RT, int BT, int TP)
+    : right(RT), left(LT), bottom(BT), top(TP), gridWidth(0.0), gridHeight(0.0), m_rootNode(this) {
 
   // NW, SW, NE, SE
   h_order[0] = 0;

@@ -14,13 +14,11 @@ private:
   // Max node depth, this value increments when a node with new depth level is created.
   static int maxGridDepth;
 
-  // void createTreeNode ( Node* rootNode );
-
   void InitRootNode();
 
   // Reset draw flag
-  void invalidate_draw(Node* node);
-  
+  void invalidate_draw(Node *node);
+
   //--- Path Rouring ---//
 
   // Closed set container
@@ -48,12 +46,12 @@ public:
   bool v_order[4];
 
   // Width of the root node
-  static double gridWidth;
+  double gridWidth;
   // Height of the root node
-  static double gridHeight;
+  double gridHeight;
 
   // Remove node from the tree
-  void removeTreeNode(Node& pNode);
+  void removeTreeNode(Node &pNode);
 
   // Tree Ctor with boundary arguments
   QuadTree(int left, int right, int bottom, int top);
@@ -107,7 +105,7 @@ public:
 
   // Reset draw flag
   void invalidate_draw();
-  
+
   enum Directions { NW, SW, NE, SE, N, S, E, W };
 
   // A* Algorithm Function
