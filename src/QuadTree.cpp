@@ -111,7 +111,7 @@ void QuadTree::constructTreeNode(Node *node) {
   }
 
   assert(node->m_child_nodes == nullptr);
-  node->m_child_nodes.reset(new std::array<Node, 4>());
+  node->m_child_nodes = std::make_unique<std::array<Node, 4>>();
 
   // problem here, this function create duplicate nodes!
   for (unsigned int i = 0; i < 4; ++i) {
