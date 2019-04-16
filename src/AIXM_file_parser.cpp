@@ -96,34 +96,21 @@ void AIXM_file_parser::process_boundaries(QuadTree &tree) {
 
   // Create tree nodes
   for (auto &obj : Objects) {
-    for (auto i = 1; i < obj.m_Coordinates.size(); ++i) {
-      const auto &current_lon = obj.m_Coordinates.at(i).m_Lon;
-      const auto &current_lat = obj.m_Coordinates.at(i).m_Lat;
-      const auto &prev_lon = obj.m_Coordinates.at(i - 1).m_Lon;
-      const auto &prev_lat = obj.m_Coordinates.at(i - 1).m_Lat;
-
-      Node *node_current = tree.findTreeNode(current_lon, current_lat);
-      Node *node_prev = tree.findTreeNode(prev_lon, prev_lat);
-      // If two coordinates are in the same node, divide until each coordinate is in a separate node.
-      while (node_current == node_prev) {
-        tree.constructTreeNode(node_current);
-        node_current = tree.findTreeNode(current_lon, current_lat, node_current);
-      }
+    for (const auto coord : obj.m_Coordinates) {
+      QuadTree::node_find_result node_current = tree.findTreeNode(coord.m_Lon, coord.m_Lat);
+      tree.constructTreeNode(node_current.node, node_current.location);
     }
   }
 }
 
 float AIXM_file_parser::mapDistance(float dLat, float dLon) {
-
   float toRad = (M_PI / 180.00);
   float R = 6371; // km
   dLat *= toRad;
   dLon *= toRad;
   float p_lat1 = 0;
   float p_lat2 = 0;
-
   float a = sin(dLat / 2) * sin(dLat / 2) + (cos(p_lat1) * cos(p_lat2) * sin(dLon / 2) * sin(dLon / 2));
-
   float c = 2 * atan2(sqrt(a), sqrt(1 - a));
   float d = R * c;
   return d;
@@ -135,9 +122,7 @@ double distance(double p_lon1, double p_lat1, double p_lon2, double p_lat2) {
   double lat2_rad = p_lat2 * (M_PI / 180.0);
   double dlat = (p_lat2 - p_lat1) * (M_PI / 180.0);
   double dlon = (p_lon2 - p_lon1) * (M_PI / 180.0);
-
   double a = sin(dlat / 2) * sin(dlat / 2) + cos(lat1_rad) * cos(lat2_rad) * sin(dlon / 2) * sin(dlon / 2);
-
   double c = 2 * atan2(sqrt(a), sqrt(1 - a));
   double d = R * c;
   return d;

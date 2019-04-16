@@ -7,6 +7,9 @@ class QuadTree;
 class Node {
 
 public:
+  // alias type for child nodes
+  using child_nodes_t = std::array<std::unique_ptr<Node>, 4>;
+
   // Node counter
   static unsigned int nodecount;
 
@@ -19,10 +22,20 @@ public:
   Node(QuadTree *p_parentTree);
   ~Node(void);
   void init();
-  // Node type
+  // Root node does not have a parent
   inline bool is_root() const { return !m_parent_node; }
-  inline bool is_leaf() const { return !m_child_nodes && m_parent_node; }
-  inline bool is_node() const { return m_parent_node && m_child_nodes; };
+  // leaf node, does have a parent, no child nodes
+  inline bool is_leaf() const {
+    return std::all_of(m_child_nodes.begin(), m_child_nodes.end(),
+                       [](std::unique_ptr<Node> const &p) { return p == nullptr; }) &&
+           m_parent_node;
+  }
+  // Normal node does have a parent and child nodes
+  inline bool is_node() const {
+    return !std::all_of(m_child_nodes.begin(), m_child_nodes.end(), [](std::unique_ptr<Node> const &p) {
+      return p == nullptr;
+    }) && m_parent_node;
+  };
 
   // Calculate this node displacement value, which is the distance from centre point to the edge of node, same as raduis
   double x_dsp() const;
@@ -40,8 +53,8 @@ public:
   double cost;
   double f_cost;
 
-  // Pointer to childern nodes
-  std::unique_ptr<std::array<Node, 4>> m_child_nodes;
+  // Child nodes
+  child_nodes_t m_child_nodes;
 
   // Node ID
   int m_node_id;

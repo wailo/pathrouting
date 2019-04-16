@@ -202,14 +202,16 @@ void GLWidget::generate_grid_vertices(const Node &pNode, std::vector<vertex_obje
   if (!pNode.is_leaf()) {
     m_grid_vertex_indices.push_back(list.size());
     m_grid_vertex_count.push_back(4);
-
+    // Draw cross in the middle of the box
     list.emplace_back(vertex_object{mid_x - x_dsp, mid_y, 0, R, G, B});
     list.emplace_back(vertex_object{mid_x + x_dsp, mid_y, 0, R, G, B});
     list.emplace_back(vertex_object{mid_x, mid_y - y_dsp, 0, R, G, B});
     list.emplace_back(vertex_object{mid_x, mid_y + y_dsp, 0, R, G, B});
 
-    for (auto &child : (*pNode.m_child_nodes)) {
-      generate_grid_vertices(child, list);
+    for (const auto &child : pNode.m_child_nodes) {
+      if (child) {
+        generate_grid_vertices(*child, list);
+      }
     }
   }
 }
@@ -273,7 +275,7 @@ void GLWidget::mousePressEvent(QMouseEvent *event) {
 
       if (testVec.size() < 2) {
         qDebug() << "Pathrouting S" << testVec.size();
-        testVec.push_back(Tree->findTreeNode(worldPosition.x(), worldPosition.y()));
+        testVec.push_back(Tree->findTreeNode(worldPosition.x(), worldPosition.y()).node);
       } else {
         Tree->path_routing(testVec.at(0), testVec.at(1));
         testVec.clear();
@@ -281,7 +283,7 @@ void GLWidget::mousePressEvent(QMouseEvent *event) {
     }
 
     else {
-      Tree->constructTreeNode(Tree->findTreeNode(worldPosition.x(), worldPosition.y()));
+      Tree->constructTreeNode(Tree->findTreeNode(worldPosition.x(), worldPosition.y()).node);
     }
 
     break;

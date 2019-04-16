@@ -42,25 +42,22 @@ double Node::centre_x() const {
   }
 
   else {
-    if (this == &m_parent_node->m_child_nodes.get()->at(0)) {
+    if (this == m_parent_node->m_child_nodes.at(0).get()) {
       // Locate the centre point of the node;
       return m_parent_node->centre_x() - (x_dsp()) + (2 * m_parent_tree->h_order[0] * -x_dsp());
-
     }
 
-    else if (this == &m_parent_node->m_child_nodes.get()->at(1)) {
+    else if (this == m_parent_node->m_child_nodes.at(1).get()) {
       // Locate the centre point of the node;
       return m_parent_node->centre_x() - (x_dsp()) + (2 * m_parent_tree->h_order[1] * x_dsp());
-
     }
 
-    else if (this == &m_parent_node->m_child_nodes.get()->at(2)) {
+    else if (this == m_parent_node->m_child_nodes.at(2).get()) {
       // Locate the centre point of the node;
       return m_parent_node->centre_x() - (x_dsp()) + (2 * m_parent_tree->h_order[2] * x_dsp());
-
     }
 
-    else if (this == &m_parent_node->m_child_nodes.get()->at(3)) {
+    else if (this == m_parent_node->m_child_nodes.at(3).get()) {
       // Locate the centre point of the node;
       return m_parent_node->centre_x() - (x_dsp()) + (2 * m_parent_tree->h_order[3] * x_dsp());
     } else {
@@ -78,22 +75,22 @@ double Node::centre_y() const {
   }
 
   else {
-    if (this == &m_parent_node->m_child_nodes.get()->at(0)) {
+    if (this == m_parent_node->m_child_nodes.at(0).get()) {
       // Locate the centre point of the node;
       return m_parent_node->centre_y() - (y_dsp()) + (2 * m_parent_tree->v_order[0] * y_dsp());
     }
 
-    else if (this == &m_parent_node->m_child_nodes.get()->at(1)) {
+    else if (this == m_parent_node->m_child_nodes.at(1).get()) {
       // Locate the centre point of the node;
       return m_parent_node->centre_y() - (y_dsp()) + (2 * m_parent_tree->v_order[1] * y_dsp());
     }
 
-    else if (this == &m_parent_node->m_child_nodes.get()->at(2)) {
+    else if (this == m_parent_node->m_child_nodes.at(2).get()) {
       // Locate the centre point of the node;
       return m_parent_node->centre_y() - (y_dsp()) + (2 * m_parent_tree->v_order[2] * y_dsp());
     }
 
-    else if (this == &m_parent_node->m_child_nodes.get()->at(3)) {
+    else if (this == m_parent_node->m_child_nodes.at(3).get()) {
       // Locate the centre point of the node;
       return m_parent_node->centre_y() - (y_dsp()) + (2 * m_parent_tree->v_order[3] * y_dsp());
     } else {

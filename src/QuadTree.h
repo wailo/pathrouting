@@ -19,8 +19,6 @@ private:
   // Reset draw flag
   void invalidate_draw(Node *node);
 
-  //--- Path Rouring ---//
-
   // Closed set container
   std::map<int, Node *> closedSet;
 
@@ -33,9 +31,12 @@ private:
   // distance (cost) calculation
   double distance(Node *start, Node *end);
 
-  //--- End of Path Routing ---//
-
 public:
+  struct node_find_result {
+    Node *node{nullptr};
+    int location{0};
+  };
+
   // BOunding box for the tree
   double right, left, bottom, top;
 
@@ -63,10 +64,13 @@ public:
   Node m_rootNode;
 
   // Retrieve Tree node that contains XY coordinate
-  Node *findTreeNode(double x, double y, Node *p_startnode = NULL);
+  node_find_result findTreeNode(double x, double y, Node *p_startnode = NULL);
 
   // Construct a tree branch by constructing all the children nodes
   void constructTreeNode(Node *node);
+
+  // Construct a tree branch by constructing a specific tree node
+  void constructTreeNode(Node *node, unsigned char loc);
 
   // Enforce [2:1] rule between cells
   void balanceTree(Node *P);
@@ -83,10 +87,10 @@ public:
   int getNodeCount() const;
 
   // Getters
-  double get_right();
-  double get_left();
-  double get_bottom();
-  double get_top();
+  inline double get_right() const { return right; }
+  inline double get_left() const { return left; }
+  inline double get_bottom() const { return bottom; }
+  inline double get_top() const { return top; }
 
   // Find neighbour node with the same depth
   Node *findNeighbour(Node *p, int Direction);
