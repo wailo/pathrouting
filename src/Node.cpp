@@ -37,7 +37,6 @@ double Node::y_dsp() const { return fabs(m_parent_tree->get_top() - m_parent_tre
 
 double Node::centre_x() const {
   if (is_root()) {
-    // in a vector
     return m_parent_tree->left + m_parent_tree->gridWidth - x_dsp();
   }
 

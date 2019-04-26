@@ -85,6 +85,8 @@ private:
 
   // Draw Nodes
   void generate_grid_vertices(const Node &pNode, std::vector<vertex_object> &list);
-  void generate_airport_vertices(std::vector<vertex_object> &list);
+  void generate_vertices(const GMLObject &objects, std::vector<vertex_object> &list);
   void setupVertexAttribs();
+
+  airport m_airport;
 };

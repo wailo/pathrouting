@@ -41,10 +41,11 @@ public:
   double right, left, bottom, top;
 
   // enfore the order of nodes in a quad using bools
+  // NW, SW, NE, SE
   // for h_order 0= left, 1 =right
   // for v_order 0= top, 1= bottom
-  bool h_order[4];
-  bool v_order[4];
+  const bool h_order[4];
+  const bool v_order[4];
 
   // Width of the root node
   double gridWidth;

@@ -46,10 +46,10 @@ GLWidget::GLWidget(QWidget *parent)
 
   // Read Data
   bool OK = false;
-  OK = data.read_AIXM_file(R"(../Airport_data/Chicago_Ohare/Chicago O'Hare Aprons_CRS84.xml)") &&
-       data.read_AIXM_file(R"(../Airport_data/Chicago_Ohare/Chicago O'Hare Taxiways_CRS84.xml)") &&
-       data.read_AIXM_file(R"(../Airport_data/Chicago_Ohare/Chicago O'Hare Runways_CRS84.xml)") &&
-       data.read_AIXM_file(R"(../Airport_data/Chicago_Ohare/Chicago O'Hare VerticalStructures_CRS84.xml)");
+  OK = data.read_AIXM_file(R"(../Airport_data/Chicago_Ohare/Chicago O'Hare Aprons_CRS84.xml)", m_airport) &&
+       data.read_AIXM_file(R"(../Airport_data/Chicago_Ohare/Chicago O'Hare Taxiways_CRS84.xml)", m_airport) &&
+       data.read_AIXM_file(R"(../Airport_data/Chicago_Ohare/Chicago O'Hare Runways_CRS84.xml)", m_airport) &&
+       data.read_AIXM_file(R"(../Airport_data/Chicago_Ohare/Chicago O'Hare VerticalStructures_CRS84.xml)", m_airport);
   // data.read_AIXM_file( "..//Airport_data//Chicago O'Hare Taxiways.xml");
   // data.read_AIXM_file( "..//Airport_data//Chicago O'Hare Runways.xml");
 
@@ -57,7 +57,22 @@ GLWidget::GLWidget(QWidget *parent)
     return;
   }
 
-  data.process_boundaries(*Tree);
+  const double lon_margin = (data.m_max_coord.m_Lon - data.m_min_coord.m_Lon) * 0.001;
+  const double lat_margin = (data.m_max_coord.m_Lat - data.m_min_coord.m_Lat) * 0.001;
+
+  // Update the tree boundaries to min/max
+  Tree->updateTreeBoundary(data.m_min_coord.m_Lon - lon_margin, data.m_max_coord.m_Lon + lon_margin,
+                           data.m_min_coord.m_Lat - lat_margin, data.m_max_coord.m_Lat + lat_margin);
+
+  // Construct the tree.
+  m_airport.visit_coordinates([this](const std::vector<GMLObject> &objects) {
+    for (const auto &object : objects) {
+      for (const auto &coord : object.m_Coordinates) {
+        QuadTree::node_find_result node_current = this->Tree->findTreeNode(coord.m_Lon, coord.m_Lat);
+        this->Tree->constructTreeNode(node_current.node, node_current.location);
+      }
+    }
+  });
 }
 
 void GLWidget::initializeGL() {
@@ -80,7 +95,12 @@ void GLWidget::initializeGL() {
   // m_lightPosLoc = m_program->uniformLocation("lightPos");
 
   generate_grid_vertices(Tree->m_rootNode, m_vertex_list);
-  generate_airport_vertices(m_vertex_list);
+
+  m_airport.visit_coordinates(([this](const std::vector<GMLObject> &objects) {
+    for (const auto &object : objects) {
+      generate_vertices(object, m_vertex_list);
+    }
+  }));
 
   m_vao.create();
   QOpenGLVertexArrayObject::Binder vaoBinder(&m_vao);
@@ -216,50 +236,47 @@ void GLWidget::generate_grid_vertices(const Node &pNode, std::vector<vertex_obje
   }
 }
 
-void GLWidget::generate_airport_vertices(std::vector<vertex_object> &list) {
+void GLWidget::generate_vertices(GMLObject const &object, std::vector<vertex_object> &list) {
 
   GLdouble color[3] = {1, 0, 1};
 
   decltype(m_airport_polygon_indices) *target_indicies_list;
   decltype(m_airport_polygon_count) *target_count_list;
 
-  for (const auto &object : data.Objects) {
+  if (object.m_AIXM_object_type == "GuidanceLine") {
+    color[0] = 248 / 255.0;
+    color[1] = 248 / 255.0;
+    color[2] = 24 / 255.0;
+  } else if (object.m_AIXM_object_type == "TaxiwayElement") {
+    color[0] = (200.0 / 255.0);
+    color[1] = (200.0 / 255.0);
+    color[2] = (200.0 / 255.0);
+  } else if (object.m_AIXM_object_type == "RunwayElement") {
+    color[0] = (86.0 / 255.0);
+    color[1] = (86.0 / 255.0);
+    color[2] = (86.0 / 255.0);
+  } else {
+    color[0] = (75.0 / 255.0);
+    color[1] = (230.0 / 255.0);
+    color[2] = (75.0 / 255.0);
+  }
 
-    if (object.m_AIXM_object_type == "GuidanceLine") {
-      color[0] = 248 / 255.0;
-      color[1] = 248 / 255.0;
-      color[2] = 24 / 255.0;
-    } else if (object.m_AIXM_object_type == "TaxiwayElement") {
-      color[0] = (200.0 / 255.0);
-      color[1] = (200.0 / 255.0);
-      color[2] = (200.0 / 255.0);
-    } else if (object.m_AIXM_object_type == "RunwayElement") {
-      color[0] = (86.0 / 255.0);
-      color[1] = (86.0 / 255.0);
-      color[2] = (86.0 / 255.0);
-    } else {
-      color[0] = (75.0 / 255.0);
-      color[1] = (230.0 / 255.0);
-      color[2] = (75.0 / 255.0);
-    }
+  if (object.m_GML_vertex_type == "LineStringSegment") {
+    target_indicies_list = &m_airport_lines_indices;
+    target_count_list = &m_airport_lines_count;
+  } else if (object.m_GML_vertex_type == "LinearRing") {
+    target_indicies_list = &m_airport_polygon_indices;
+    target_count_list = &m_airport_polygon_count;
+  } else {
+    target_indicies_list = &m_airport_polygon_indices;
+    target_count_list = &m_airport_polygon_count;
+  }
 
-    if (object.m_GML_vertex_type == "LineStringSegment") {
-      target_indicies_list = &m_airport_lines_indices;
-      target_count_list = &m_airport_lines_count;
-    } else if (object.m_GML_vertex_type == "LinearRing") {
-      target_indicies_list = &m_airport_polygon_indices;
-      target_count_list = &m_airport_polygon_count;
-    } else {
-      target_indicies_list = &m_airport_polygon_indices;
-      target_count_list = &m_airport_polygon_count;
-    }
+  target_indicies_list->push_back(list.size());
+  target_count_list->push_back(object.m_Coordinates.size());
 
-    target_indicies_list->push_back(list.size());
-    target_count_list->push_back(object.m_Coordinates.size());
-
-    for (const auto &coord : object.m_Coordinates) {
-      list.emplace_back(vertex_object{GLdouble(coord.m_Lon), GLdouble(coord.m_Lat), 0.0, color[0], color[1], color[2]});
-    }
+  for (const auto &coord : object.m_Coordinates) {
+    list.emplace_back(vertex_object{GLdouble(coord.m_Lon), GLdouble(coord.m_Lat), 0.0, color[0], color[1], color[2]});
   }
 }
 

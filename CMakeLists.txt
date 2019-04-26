@@ -23,7 +23,12 @@ src/AIXM_file_parser.cpp
 src/main.cpp
 src/P3.cpp
 src/Node.cpp
-src/pathrouting.cpp)
+src/pathrouting.cpp
+src/airport.cpp
+src/taxiway.cpp
+src/runway.cpp
+src/gate.cpp
+src/aircraft.cpp)
 
 file(GLOB XML_FILES Airport_data)
   

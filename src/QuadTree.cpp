@@ -6,18 +6,8 @@
 int QuadTree::maxGridDepth = 1;
 
 QuadTree::QuadTree(int LT, int RT, int BT, int TP)
-    : right(RT), left(LT), bottom(BT), top(TP), gridWidth(0.0), gridHeight(0.0), m_rootNode(this) {
-
-  // NW, SW, NE, SE
-  h_order[0] = 0;
-  h_order[1] = 0;
-  h_order[2] = 1;
-  h_order[3] = 1;
-
-  v_order[0] = 0;
-  v_order[1] = 1;
-  v_order[2] = 0;
-  v_order[3] = 1;
+    : right(RT), left(LT), bottom(BT), top(TP), gridWidth(0.0), gridHeight(0.0),
+      m_rootNode(this), h_order{0, 0, 1, 1}, v_order{0, 1, 0, 1} {
 
   // initialize the rootNode here
   gridWidth = fabs(right - left);
