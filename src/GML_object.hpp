@@ -26,6 +26,7 @@ struct AIXM_coordinate {
 };
 
 struct GMLObject {
+  std::string m_AIXM_object_id;
   std::string m_AIXM_object_type;
   std::string m_GML_vertex_type;
   std::vector<AIXM_coordinate> m_Coordinates;

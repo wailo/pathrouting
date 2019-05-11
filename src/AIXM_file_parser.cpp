@@ -35,6 +35,8 @@ bool AIXM_file_parser::read_AIXM_file(const std::string &full_path, airport &air
       std::size_t pos = temp_str.find_first_of(':');
       temp_str = temp_str.substr(pos + 1);
       gml_object.m_AIXM_object_type = temp_str;
+      const auto identifier = node.select_node(pugi::xpath_query(".//gml:identifier", 0)).node().first_child().value();
+      gml_object.m_AIXM_object_id = identifier;
       // Get the first parent which describes the vertices type
       temp_str = node.select_node(pugi::xpath_query(".//gml:posList/..", 0)).node().name();
       pos = temp_str.find_first_of(':');
